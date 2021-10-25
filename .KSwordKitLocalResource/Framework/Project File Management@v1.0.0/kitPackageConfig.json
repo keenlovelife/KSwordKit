@@ -1,0 +1,16 @@
+{
+    "ID": "Project File Management@v1.0.0",
+    "Name": "Project File Management",
+    "Version": "v1.0.0",
+    "Author": "ks",
+    "Contact": "ks@keenlove.com",
+    "HomePage": "https://github.com/keenlovelife",
+    "Date": "2021-10-25 11:36:41",
+    "Description": "项目文件管理，提供自动添加文件注释等项目文件管理",
+    "Dependencies": [],
+    "Tags": [
+        "项目文件管理",
+        "自动添加注释"
+    ],
+    "FileSettings": []
+}

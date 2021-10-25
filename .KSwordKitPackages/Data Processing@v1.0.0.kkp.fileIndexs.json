@@ -1,0 +1,67 @@
+{
+    "dir": "H:/Mine/Workspace/KSwordKit/.KSwordKitLocalResource/Basic/Data Processing@v1.0.0",
+    "fileBytesLength": 141737,
+    "fileCount": 10,
+    "fileIndexList": [
+        {
+            "fileName": "kitPackageConfig.json",
+            "relativeFilePath": "kitPackageConfig.json",
+            "fileBytesLength": 453,
+            "filePosition": 0
+        },
+        {
+            "fileName": "LitJsonScene.unity",
+            "relativeFilePath": "Example/ExamplesLitJson/LitJsonScene.unity",
+            "fileBytesLength": 8405,
+            "filePosition": 453
+        },
+        {
+            "fileName": "LitJsonTest.cs",
+            "relativeFilePath": "Example/ExamplesLitJson/LitJsonTest.cs",
+            "fileBytesLength": 1111,
+            "filePosition": 8858
+        },
+        {
+            "fileName": "ExamplesMono.XmlScene.unity",
+            "relativeFilePath": "Example/ExamplesMono.Xml/ExamplesMono.XmlScene.unity",
+            "fileBytesLength": 8398,
+            "filePosition": 9969
+        },
+        {
+            "fileName": "MonoXmlTest.cs",
+            "relativeFilePath": "Example/ExamplesMono.Xml/MonoXmlTest.cs",
+            "fileBytesLength": 630,
+            "filePosition": 18367
+        },
+        {
+            "fileName": "Tutorial.xml",
+            "relativeFilePath": "Example/ExamplesMono.Xml/Resources/Tutorial.xml",
+            "fileBytesLength": 5501,
+            "filePosition": 18997
+        },
+        {
+            "fileName": "LitJSON.dll",
+            "relativeFilePath": "JSON/LitJson/LitJSON.dll",
+            "fileBytesLength": 60928,
+            "filePosition": 24498
+        },
+        {
+            "fileName": "MiniParser.cs",
+            "relativeFilePath": "XML/Mono.Xml/MiniParser.cs",
+            "fileBytesLength": 38706,
+            "filePosition": 85426
+        },
+        {
+            "fileName": "SecurityParser.cs",
+            "relativeFilePath": "XML/Mono.Xml/SecurityParser.cs",
+            "fileBytesLength": 2973,
+            "filePosition": 124132
+        },
+        {
+            "fileName": "SmallXmlParser.cs",
+            "relativeFilePath": "XML/Mono.Xml/SmallXmlParser.cs",
+            "fileBytesLength": 14632,
+            "filePosition": 127105
+        }
+    ]
+}

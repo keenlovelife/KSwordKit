@@ -1,0 +1,19 @@
+{
+    "dir": ".KSwordKitLocalResource/Basic/Timer@v1.0.0",
+    "fileBytesLength": 1625,
+    "fileCount": 2,
+    "fileIndexList": [
+        {
+            "fileName": "config.json",
+            "relativeFilePath": "config.json",
+            "fileBytesLength": 329,
+            "filePosition": 0
+        },
+        {
+            "fileName": "Timer.cs",
+            "relativeFilePath": "Timer.cs",
+            "fileBytesLength": 1296,
+            "filePosition": 329
+        }
+    ]
+}

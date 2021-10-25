@@ -1,0 +1,163 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+
+namespace KSwordKit.Editor
+{
+    [InitializeOnLoad]
+    public class KitInitializeEditor : UnityEditor.AssetModificationProcessor
+    {
+        public static KSwordKit.KSwordKitConfig KSwordKitConfig { get { return config; } }
+        public static KSwordKit.Editor.PackageManager.KitOriginConfig KitOriginConfig { get { return originConfig; } }
+
+        static KSwordKit.Editor.PackageManager.KitOriginConfig originConfig;
+        static KSwordKit.KSwordKitConfig config;
+        static string KitInstallationPath;
+        static string KitVersion = KitConst.KitVersion;
+        static readonly string scriptName = "KitInitializeEditor";
+        static readonly string scriptPath = KSwordKit.KitConst.KitName + "/Editor/Initialize/KitInitializeEditor.cs";
+        static readonly string configPath = "Resources/KSwordKitConfig.asset";
+        static readonly string configName = "KSwordKitConfig";
+        static KitInitializeEditor()
+        {
+            var paths = AssetDatabase.FindAssets(scriptName);
+            foreach (var path in paths)
+            {
+                var _path = AssetDatabase.GUIDToAssetPath(path);
+                if (_path.Contains(scriptPath))
+                {
+                    // 找到KSwordKit安装目录
+                    var projectDir = _path.Replace(scriptPath, KSwordKit.KitConst.KitName);
+                    KitInstallationPath = projectDir;
+                    // 将路径写入文件中，以备其他地方使用。
+                    var _configPath = System.IO.Path.Combine(projectDir, configPath);
+                    if (System.IO.File.Exists(_configPath))
+                    {
+                        if(config == null)
+                            config = Resources.Load<KSwordKit.KSwordKitConfig>(configName);
+                        config.KitInstallationPath = KitInstallationPath;
+                        config.KitVersion = KitVersion;
+                        EditorUtility.SetDirty(config);
+                        AssetDatabase.SaveAssets();
+                        AssetDatabase.Refresh();
+                    }
+                    else
+                    {
+                        config = ScriptableObject.CreateInstance<KSwordKit.KSwordKitConfig>();
+                        config.KitInstallationPath = KitInstallationPath;
+                        config.KitVersion = KitVersion;
+                        AssetDatabase.CreateAsset(config, _configPath);
+                        AssetDatabase.SaveAssets();
+                        AssetDatabase.Refresh();
+                    }
+                    break;
+                }
+            }
+
+            EditorApplication.projectChanged += OnProjectChanged;
+
+            EditorApplication.update += EditorApplication_update;
+            DateTime = System.DateTime.Now;
+
+        }
+
+        static string KitConfigURL = KitConst.KitCheckForUpdates;
+        static UnityEngine.Networking.UnityWebRequest www;
+        static System.DateTime DateTime;
+        static bool isFirstRequst = true;
+        static bool isRequestting;
+        static void RequestUpdate()
+        {
+            if (isFirstRequst) isFirstRequst = false;
+            isRequestting = true;
+            www = UnityEngine.Networking.UnityWebRequest.Get(KitConfigURL);
+            www.SendWebRequest();
+            EditorApplication.update += Request_update;
+        }
+        static void Request_update()
+        {
+            if (www != null && www.isDone)
+            {
+                if (www.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
+                {
+                    Debug.Log(KitConst.KitName + ": 请求结果：" + www.downloadHandler.text);
+                    originConfig = JsonUtility.FromJson<PackageManager.KitOriginConfig>(www.downloadHandler.text);
+                    if (originConfig.Version != config.KitVersion)
+                        ShowUpdateKitDialog();
+                }
+                else
+                {
+                    Debug.LogWarning(KSwordKit.KitConst.KitName + ": 请求资源更新信息出错：" + www.error);
+                }
+
+                EditorApplication.update -= Request_update;
+
+                DateTime = System.DateTime.Now;
+                isRequestting = false;
+            }
+        }
+        public static void ShowUpdateKitDialog()
+        {
+            string temp_show_kitDialog = System.IO.Path.Combine(Application.temporaryCachePath, "temp_showed_kitDialog");
+            //Debug.Log(temp_show_kitDialog);
+            if (!System.IO.File.Exists(temp_show_kitDialog))
+                System.IO.File.CreateText(temp_show_kitDialog);
+            else
+                return;
+
+            if(EditorUtility.DisplayDialog(KitConst.KitName + ": 新版本通知", KitConst.KitName + ": 有新版本了！", "更新", "取消"))
+            {
+                Debug.Log("更新新版本");
+
+            }
+        }
+        static void EditorApplication_update()
+        {
+            if (isFirstRequst || (!isRequestting && (System.DateTime.Now - DateTime).TotalMinutes > 1))
+                RequestUpdate();
+
+
+            var _configPath = System.IO.Path.Combine(KitInstallationPath, configPath);
+            if (System.IO.File.Exists(_configPath))
+            {
+                if (config == null)
+                    config = Resources.Load<KSwordKitConfig>(configName);
+                if(config.KitInstallationPath != KitInstallationPath || config.KitVersion != KitVersion)
+                {
+                    config.KitInstallationPath = KitInstallationPath;
+                    config.KitVersion = KitVersion;
+                    EditorUtility.DisplayDialog("该文件数据不能修改", "KSwordKitSetting.asset 资源数据内容不能修改！", "知道了");
+                }
+            }
+
+        }
+        static void OnProjectChanged()
+        {
+            var _configPath = System.IO.Path.Combine(KitInstallationPath, configPath);
+            if (!System.IO.File.Exists(_configPath))
+            {
+                config = ScriptableObject.CreateInstance<KSwordKit.KSwordKitConfig>();
+                config.KitInstallationPath = KitInstallationPath;
+                config.KitVersion = KitVersion;
+                AssetDatabase.CreateAsset(config, _configPath);
+                AssetDatabase.SaveAssets();
+                Debug.Log(KSwordKit.KitConst.KitName + ": " + configName + ".asset 是必要资源，必须存在，目前已被重新创建！");
+            }
+        }
+        public static AssetDeleteResult OnWillDeleteAsset(string assetPath, RemoveAssetOptions options)
+        {
+            if (assetPath.Contains(configPath))
+            {
+                EditorUtility.DisplayDialog("不能删除该文件", configName + ".asset 是必要资源，必须存在，不能删除！", "知道了");
+                return AssetDeleteResult.DidDelete;
+            }
+            return AssetDeleteResult.DidNotDelete;
+        }
+
+    }
+
+}
+
+#endif

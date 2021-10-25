@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/New Scene.unity
+    guid: a6690f2bc7aa6a643a9216b055eafeb6
+  - enabled: 1
+    path: Assets/KSwordKit/Examples/ExampleResourcesManagement/Test.unity
+    guid: 19b3cca4dec6fda4c83f740980de4df0
+  - enabled: 1
+    path: Assets/KSwordKit/Examples/ExampleResourcesManagement/Test2.unity
+    guid: 27813a687e8bae744a85b7f252d9e093
+  - enabled: 1
+    path: Assets/KSwordKit/Examples/ExampleResourcesManagement/Test3.unity
+    guid: f30bfd05efd3bd640bcb6f685488dca1
+  m_configObjects: {}
