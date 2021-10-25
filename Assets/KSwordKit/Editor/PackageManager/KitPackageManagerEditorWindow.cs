@@ -112,7 +112,7 @@ namespace KSwordKit.Editor.PackageManager
             GUILayout.Space(30);
         }
 
-        void DrawItemGUI(int index, KitOriginPackageConfig originPackageConfig)
+        void DrawItemGUI(int index, string originPackageID)
         {
             GUILayout.Button("", GUILayout.Height(2));
             GUILayout.Space(5);
@@ -121,56 +121,71 @@ namespace KSwordKit.Editor.PackageManager
             blod.fontSize = 14;
             blod.normal.textColor = new Color(255, 200, 200);
             GUILayout.Label(index.ToString() + ",", blod, GUILayout.Width(15), GUILayout.Height(22));
-            GUILayout.Label(originPackageConfig.ID, blod, GUILayout.Height(22));
+            GUILayout.Label(originPackageID, blod, GUILayout.Height(22));
+            var kkpurl = "https://github.com/keenlovelife/KSwordKit/blob/kkp/.KSwordKit/Packages/" + originPackageID + ".kkp";
+            var configurl = "https://github.com/keenlovelife/KSwordKit/blob/kkp/.KSwordKit/Packages/" + originPackageID + ".kitPackageConfig.json";
+            var _www = new UnityEngine.Networking.UnityWebRequest(UnityEngine.Networking.UnityWebRequest.EscapeURL(kkpurl));
+            var savepath = System.IO.Path.Combine(KitConst.KitPackagesRootDirectory, originPackageID + ".kkp");
+
             if (GUILayout.Button("导入", GUILayout.Width(50), GUILayout.Height(23)))
             {
-                EditorUtility.DisplayProgressBar("导入: " + originPackageConfig.ID, "正在准备数据...", 0);
+                EditorUtility.DisplayProgressBar("导入: " + originPackageID, "正在准备数据...", 0);
 
-                var _www = new UnityEngine.Networking.UnityWebRequest(originPackageConfig.URL);
-                var savepath = System.IO.Path.Combine(KitConst.KitPackagesRootDirectory, originPackageConfig.ID + originPackageConfig.Extension);
-                _www.downloadHandler = new UnityEngine.Networking.DownloadHandlerFile(savepath);
-                _www.disposeDownloadHandlerOnDispose = true;
-
-                KitToolEditor.AddWebRequest(new KitToolEditor.WebRequest() { 
-                    www = _www,
-                    waitAction = (uwq) =>
+                System.Action unpackAction = () => {
+                    KitPacker.Unpack(savepath,
+                    System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, originPackageID)),
+                    (filename, progress) =>
                     {
                         KitToolEditor.WaitNextFrame(() => {
-                            EditorUtility.DisplayProgressBar("导入: " + originPackageConfig.ID, "正在下载包 " + uwq.downloadProgress * 100, uwq.downloadProgress * 100 / 2);
+                            EditorUtility.DisplayProgressBar("导入: " + originPackageID, "包下载完毕！正在导入: " + filename, 0.5f + progress * 0.5f);
                         });
-                    },
-                    ResultAction = (uwq) => 
-                    { 
-                        if(uwq.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
-                        {
-                            KitToolEditor.WaitNextFrame(() => {
-                                EditorUtility.DisplayProgressBar("导入: " + originPackageConfig.ID, "包下载完毕！正在导入... ", uwq.downloadProgress * 100 / 2);
-                            });
+                    });
+                };
 
-                            KitPacker.Unpack("Assets/KSwordKit/Packages/Enhanced Coroutine@v1.0.0.package",
-                                System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, originPackageConfig.ID)),
-                                (filename, progress) =>
-                                {
-                                    KitToolEditor.WaitNextFrame(() => {
-                                        EditorUtility.DisplayProgressBar("导入: " + originPackageConfig.ID, "包下载完毕！正在导入: " + filename, 0.5f + progress * 0.5f);
-                                    });
-                                });
-                            KitToolEditor.WaitNextFrame(() => {
-                                AssetDatabase.SaveAssets();
-                                AssetDatabase.Refresh();
-                                EditorUtility.ClearProgressBar();
-                                Debug.Log(KitConst.KitName + ": 导入 " + originPackageConfig.ID + " 成功！");
-                            });
-                        }
-                        else
+                if (System.IO.File.Exists(savepath))
+                {
+                    unpackAction();
+                }
+                else
+                {
+                    _www.downloadHandler = new UnityEngine.Networking.DownloadHandlerFile(savepath);
+                    _www.disposeDownloadHandlerOnDispose = true;
+
+                    KitToolEditor.AddWebRequest(new KitToolEditor.WebRequest()
+                    {
+                        www = _www,
+                        waitAction = (uwq) =>
                         {
                             KitToolEditor.WaitNextFrame(() => {
-                                EditorUtility.DisplayDialog("导入: " + originPackageConfig.ID, "下载包失败：" + uwq.error, "确定");
-                                EditorUtility.ClearProgressBar();
+                                EditorUtility.DisplayProgressBar("导入: " + originPackageID, "正在下载包 " + uwq.downloadProgress * 100, uwq.downloadProgress * 100 / 2);
                             });
+                        },
+                        ResultAction = (uwq) =>
+                        {
+                            if (uwq.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
+                            {
+                                KitToolEditor.WaitNextFrame(() => {
+                                    EditorUtility.DisplayProgressBar("导入: " + originPackageID, "包下载完毕！正在导入... ", uwq.downloadProgress * 100 / 2);
+                                });
+
+                                unpackAction();
+                                KitToolEditor.WaitNextFrame(() => {
+                                    AssetDatabase.SaveAssets();
+                                    AssetDatabase.Refresh();
+                                    EditorUtility.ClearProgressBar();
+                                    Debug.Log(KitConst.KitName + ": 导入 " + originPackageID + " 成功！");
+                                });
+                            }
+                            else
+                            {
+                                KitToolEditor.WaitNextFrame(() => {
+                                    EditorUtility.DisplayDialog("导入: " + originPackageID, "下载包失败：" + uwq.error, "确定");
+                                    EditorUtility.ClearProgressBar();
+                                });
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
             if (GUILayout.Button("更新", GUILayout.Width(50), GUILayout.Height(23)))
             {
@@ -186,7 +201,7 @@ namespace KSwordKit.Editor.PackageManager
             EditorGUILayout.BeginHorizontal();
             GUILayout.Space(35);
             GUILayout.Label("描述：", EditorStyles.boldLabel, GUILayout.Width(30));
-            GUILayout.Label(originPackageConfig.Description);
+            //GUILayout.Label(originPackageConfig.Description);
 
             EditorGUILayout.EndHorizontal();
             GUILayout.Space(10);

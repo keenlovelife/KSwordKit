@@ -315,21 +315,21 @@ namespace KSwordKit.Editor.PackageManager
                 EditorGUILayout.LabelField("可用包列表 -> ", blod, GUILayout.Width(80));
                 scorllPos_dependencies = EditorGUILayout.BeginScrollView(scorllPos_dependencies, false, false, GUILayout.Height(120));
                 if (KitInitializeEditor.KitOriginConfig != null && KitInitializeEditor.KitOriginConfig.PackageList != null)
-                    foreach (var packageConfig in KitInitializeEditor.KitOriginConfig.PackageList)
+                    foreach (var packageConfigID in KitInitializeEditor.KitOriginConfig.PackageList)
                     {
                         GUILayout.Button("", GUILayout.Height(1));
                         GUILayout.BeginHorizontal();
-                        EditorGUILayout.LabelField(packageConfig.ID, blod);
+                        EditorGUILayout.LabelField(packageConfigID, blod);
                         var dslist = new List<string>();
                         dslist.AddRange(ds);
-                        if (dslist.Contains(packageConfig.ID))
+                        if (dslist.Contains(packageConfigID))
                             GUI.enabled = false;
                         if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
                         {
                             if (Dependencies == "以';'号分割依赖")
-                                Dependencies = packageConfig.ID + ";";
+                                Dependencies = packageConfigID + ";";
                             else
-                                Dependencies += "\n" + packageConfig.ID + ";";
+                                Dependencies += "\n" + packageConfigID + ";";
                         }
                         GUI.enabled = true;
                         GUILayout.EndHorizontal();

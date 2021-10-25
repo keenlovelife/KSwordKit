@@ -45,7 +45,7 @@ namespace KSwordKit
         /// <para>此目录指示了在用户执行 `导入包`时, 将此处存取数据。</para>
         /// <para>该目录在当前Unity项目根目录下，不会出现在 `Assets` 目录中，避免被Unity编辑器编译。</para>
         /// </summary>
-        public const string KitPackagesRootDirectory = ".KSwordKitPackages";
+        public const string KitPackagesRootDirectory = ".KSwordKit/Packages";
         /// <summary>
         /// KSwordKit检查更新地址
         /// </summary>

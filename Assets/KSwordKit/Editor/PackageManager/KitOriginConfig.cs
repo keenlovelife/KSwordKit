@@ -14,16 +14,7 @@ namespace KSwordKit.Editor.PackageManager
     {
         public string Version;
         public int PackageCount;
-        public List<KitOriginPackageConfig> PackageList;
-    }
-
-    [Serializable]
-    public class KitOriginPackageConfig
-    {
-        public string ID;
-        public string Description;
-        public string URL;
-        public string Extension;
+        public List<string> PackageList;
     }
 
 }
