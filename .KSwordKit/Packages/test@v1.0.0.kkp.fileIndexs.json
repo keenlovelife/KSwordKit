@@ -1,0 +1,37 @@
+{
+    "dir": "H:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/test",
+    "fileBytesLength": 7944,
+    "fileCount": 5,
+    "fileIndexList": [
+        {
+            "fileName": "kitPackageConfig.json",
+            "relativeFilePath": "kitPackageConfig.json",
+            "fileBytesLength": 1334,
+            "filePosition": 0
+        },
+        {
+            "fileName": "test.txt",
+            "relativeFilePath": "test.txt",
+            "fileBytesLength": 0,
+            "filePosition": 1334
+        },
+        {
+            "fileName": "新建 文本文档.txt",
+            "relativeFilePath": "新建 文本文档.txt",
+            "fileBytesLength": 0,
+            "filePosition": 1334
+        },
+        {
+            "fileName": "新建 Microsoft Excel 工作表.xlsx",
+            "relativeFilePath": "新建文件夹/新建 Microsoft Excel 工作表.xlsx",
+            "fileBytesLength": 6603,
+            "filePosition": 1334
+        },
+        {
+            "fileName": "新建 RTF 文档.rtf",
+            "relativeFilePath": "新建文件夹/新建文件夹/新建 RTF 文档.rtf",
+            "fileBytesLength": 7,
+            "filePosition": 7937
+        }
+    ]
+}

@@ -45,11 +45,11 @@ namespace KSwordKit
         /// <para>此目录指示了在用户执行 `导入包`时, 将此处存取数据。</para>
         /// <para>该目录在当前Unity项目根目录下，不会出现在 `Assets` 目录中，避免被Unity编辑器编译。</para>
         /// </summary>
-        public const string KitPackagesRootDirectory = ".KSwordKit/Packages";
+        public const string KitPackagesRootDirectory = ".KSwordKitPackages";
         /// <summary>
         /// KSwordKit检查更新地址
         /// </summary>
-        public const string KitCheckForUpdates = "https://raw.githubusercontent.com/keenlovelife/KSwordKit/master/.KitConfig.json";
+        public const string KitCheckForUpdates = "https://raw.githubusercontent.com/keenlovelife/KSwordKit/kkp/.KitConfig.json";
         /// <summary>
         /// KSwordKit框架更新时使用的URL前缀
         /// </summary>

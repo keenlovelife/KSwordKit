@@ -1,0 +1,2464 @@
+{
+    "ID": "Multithreading@v1.0.0",
+    "Name": "Multithreading",
+    "Version": "v1.0.0",
+    "Author": "ks",
+    "Contact": "ks@keenlove.com",
+    "HomePage": "https://github.com/keenlovelife",
+    "Date": "2021-10-25 15:17:27",
+    "Description": "多线程库，提供多线程操作的api。",
+    "Dependencies": [],
+    "Tags": [
+        "多线程"
+    ],
+    "FileSettings": []
+}﻿using System;
+
+
+namespace Frankfort.Threading
+{
+
+    
+    
+    public interface IThreadWorkerObject
+    {
+        /// <summary>
+        /// This method is called by the Scheduler as the main entryPoint to start working.
+        /// - Note: Make sure it doesn't throw any errors, because errors outside of the Mainthread are "eaten" by Unity.
+        /// - You can enable "savemode" if required, which executes all the work within a Try-catch statement to keep it going...
+        /// Example:
+        /// 
+        ///     private bool isAborted;
+        ///     public void ExecuteThreadedWork()
+        ///     {
+        ///         long i = 10000000;
+        ///         while (--i > -1 && !isAborted)
+        ///             result++;
+        ///     }
+        ///     
+        ///     public void AbortThreadedWork()
+        ///     {
+        ///         isAborted = true;
+        ///     }
+        /// </summary>
+        void ExecuteThreadedWork();
+
+
+        /// <summary>
+        /// When called by the Scheduler, do whatever you need to do to directly interupt/stop the work in progress.
+        /// Why no aborting the thread? Its not possible to interupt an loop without calling Thread.Abort() or Thread.Join(). 
+        /// This freamwork does NOT use Thread.Abort & Thread.Join because of webplayer-sandbox restrictions etc.
+        /// Therefore its up to you to implement a way to always directly abort the process as shown in the example bellow.
+        /// - Note: Make sure it doesn't throw any errors, because errors outside of the Mainthread are "eaten" by Unity.
+        /// - You can enable "savemode" if required, which executes all the work within a Try-catch statement to keep it going...
+        /// 
+        /// Example:
+        /// 
+        ///     private bool isAborted;
+        ///     public void ExecuteThreadedWork()
+        ///     {
+        ///         long i = 10000000;
+        ///         while (--i > -1 && !isAborted)
+        ///             result++;
+        ///     }
+        ///     
+        ///     public void AbortThreadedWork()
+        ///     {
+        ///         isAborted = true;
+        ///     }
+        /// </summary>
+        void AbortThreadedWork();
+    }
+}﻿/*
+Thank you for using "Loom for Unity". This code was written by Michiel Frankfort - Q1 2013.
+
+Features:
+- Turn your app into a true Multi-Threaded application overnight! Starting a simple worker/background thread is not a challenge... Utilizing all the available cores for one (or more) heavy-duty tasks is a true challenge! This framework helps you spread the workload to all cores and manage them the easy way.
+- Powerfull “DispatchToMainThread” tools, which let you instantiate and directly use Unity-objects from the external threads!
+- Three Demo's included:
+    Flocking Massive: A Multi-threaded flocking demo, prept to run on a Samsung Galaxy S3 with 7000 boids!!!
+    
+    Texture blur: Shows how easy it is to use this framework for repetitive tasks, using the “StartMultithreadedWorkloadExecution” tool, which subdivides work into smaller packages and feeds them to multiple cores/threads.
+    
+    SimpleExampleImplementation: Showing how to use the “Abort”, “DispatchToMainThread-tools” and “WaitForNextFrame” actions.
+ 
+- No Threading experience required: you'll learn fast enough from the provided examples!
+- Pick your max Cores/Threads to do the work for you. 
+- All ThreadPoolScheduler events (onComplete, onWorkerObjectDone) are fired in the MainThread / GameThread.
+
+
+Why did I build this?
+This framework was initially created as the cornerstone of the Realtime-Raytracing-engine that I'm currently working on (yes, when its done, I'll put it in the store as well)
+In order to obtain Realtime-Raytracing, I needed more horsepower and utilize multiple cores while keeping the MainThread alive, smooth & unblocked.
+So I ended up building a ThreadScheduler which fires all events in the MainThread, but does not block it.
+
+Any Field-experience so far?
+Products always get better when you use them yourself and where born out of need instead of theoretical appliances.
+This framework is up and running within my own Raytracer and has proves perfect workload delegation between cores, with low overhead.
+For as long as my Raytracer is under development, I'll keep iterating on this tool, and if people actually buy this tool, I'll keep providing Updates :-)
+
+API Documentation: http://www.frankfortsoftware.com/LOOM/Documentation/
+Support: LoomThreadingFramework@gmail.com
+ */
+
+
+
+
+
+
+
+using System;
+using System.Threading;
+using System.Collections.Generic;
+using Frankfort.Threading;
+using Frankfort.Threading.Internal;
+using UnityEngine;
+
+
+
+
+
+/// <summary>
+/// Primairy accespoint/interface to all framework methods & helpers. This is just a static wrapper-class for sake of ease...
+/// </summary>
+public static class Loom
+{
+
+
+
+
+    //--------------------------------------- 2 START SINGLE THREAD OVERLOADS --------------------------------------
+    //--------------------------------------- 2 START SINGLE THREAD OVERLOADS --------------------------------------
+    #region 2 START SINGLE THREAD OVERLOADS 
+
+    
+        
+    /// <summary>
+    /// Starts an method running on a new thread. The Thread dies when the method has stopped running.
+    /// You can now make use of the DispatchToMainThread-actions & WaitForNextFrame
+    /// </summary>
+    /// <param name="targetMethod">The method that will be executed by the new thread</param>
+    /// <param name="priority">Thread Priority</param>
+    /// <param name="safeMode">Default TRUE: Executes the targetMethod within a Try-Catch statement and will log any errors back to the MainThread</param>
+    /// <returns>Newly instantiated Thread</returns>
+    public static Thread StartSingleThread(ThreadStart targetMethod, System.Threading.ThreadPriority priority = System.Threading.ThreadPriority.Normal, bool safeMode = true)
+    {   
+        return SingleThreadStarter.StartSingleThread(targetMethod, priority, safeMode);
+    } 
+    
+    
+
+
+    /// <summary>
+    /// Starts an method running on a new thread. The Thread dies when the method has stopped running.
+    /// You can now make use of the DispatchToMainThread-actions & WaitForNextFrame
+    /// </summary>
+    /// <param name="targetMethod">The method that will be executed by the new thread</param>
+    /// <param name="argument">Object to pass to the targetMethod as soon as the Thread is started</param>
+    /// <param name="priority">Thread Priority</param>
+    /// <param name="safeMode">Default TRUE: Executes the targetMethod within a Try-Catch statement and will log any errors back to the MainThread</param>
+    /// <returns>Newly instantiated Thread</returns>
+    public static Thread StartSingleThread(ParameterizedThreadStart targetMethod, object argument, System.Threading.ThreadPriority priority = System.Threading.ThreadPriority.Normal, bool safeMode = true)
+    {
+        return SingleThreadStarter.StartSingleThread(targetMethod, argument, priority, safeMode);
+    }
+
+
+    #endregion
+    //--------------------------------------- 2 START SINGLE THREAD OVERLOADS --------------------------------------
+    //--------------------------------------- 2 START SINGLE THREAD OVERLOADS --------------------------------------
+			
+
+
+
+
+
+
+
+
+
+
+
+
+    //--------------------------------------- 4 MULTI THREADED WORK EXECUTION OVERLOADS --------------------------------------
+    //--------------------------------------- 4 MULTI THREADED WORK EXECUTION OVERLOADS --------------------------------------
+
+    #region 4 MULTI THREADED WORK EXECUTION OVERLOADS
+    /// <summary>
+    /// Helps spreading the same repetetive workload over multiple threads/cores in an easy way.
+    /// </summary>
+    /// <typeparam name="T">T: Generic-Type of the object you want to be computed by the executor</typeparam>
+    /// <param name="staticWorkloadExecutor"> A (static) method that computes one workLoad-object at a time</param>
+    /// <param name="workLoad">An array with objects you want to get computed by the executor</param>
+    /// <param name="onComplete">Fired when all re-packaged workLoad-objects are finished computing</param>
+    /// <param name="onPackageExecuted">Fires foreach finished re-packaged set of workLoad-object</param>
+    /// <param name="maxThreads"> Lets you choose how many threads will be run simultaneously by the threadpool. Default: -1 == number of cores minus one, to make sure the MainThread has at least one Core to run on. (quadcore == 1 Core Mainthread, 3 cores used by the ThreadPoolScheduler)</param>
+    /// <param name="scheduler">If Null, a new ThreadPoolScheduler will be instantiated.</param>
+    /// <param name="safeMode">Executes all the computations within try-catch events, logging it the message + stacktrace</param>
+    /// <returns>A ThreadPoolScheduler that handles all the repackaged workLoad-Objects</returns>
+    public static ThreadPoolScheduler StartMultithreadedWorkloadExecution<T>(ThreadWorkloadExecutor<T> workloadExecutor, T[] workLoad, MultithreadedWorkloadComplete<T> onComplete, MultithreadedWorkloadPackageComplete<T> onPackageComplete, int maxThreads = -1, ThreadPoolScheduler scheduler = null, bool safeMode = true)
+    {
+        return MultithreadedWorkloadHelper.StartMultithreadedWorkloadExecution<ThreadWorkloadExecutor<T>, T>(workloadExecutor, workLoad, null, onComplete, onPackageComplete, maxThreads, scheduler, safeMode);
+    }
+
+
+
+    /// <summary>
+    /// Helps spreading the same repetetive workload over multiple threads/cores in an easy way.
+    /// Besides the workLoad-object, the current index of the workLoad-array is passed to the Executor-delegate.
+    /// </summary>
+    /// <typeparam name="T">T: Generic-Type of the object you want to be computed by the executor</typeparam>
+    /// <param name="staticWorkloadExecutor"> A (static) method that computes one workLoad-object at a time</param>
+    /// <param name="workLoad">An array with objects you want to get computed by the executor</param>
+    /// <param name="onComplete">Fired when all re-packaged workLoad-objects are finished computing</param>
+    /// <param name="onPackageExecuted">Fires foreach finished re-packaged set of workLoad-object</param>
+    /// <param name="maxThreads"> Lets you choose how many threads will be run simultaneously by the threadpool. Default: -1 == number of cores minus one, to make sure the MainThread has at least one Core to run on. (quadcore == 1 Core Mainthread, 3 cores used by the ThreadPoolScheduler)</param>
+    /// <param name="scheduler">If Null, a new ThreadPoolScheduler will be instantiated.</param>
+    /// <param name="safeMode">Executes all the computations within try-catch events, logging it the message + stacktrace</param>
+    /// <returns>A ThreadPoolScheduler that handles all the repackaged workLoad-Objects</returns>
+    public static ThreadPoolScheduler StartMultithreadedWorkloadExecution<T>(ThreadWorkloadExecutorIndexed<T> workloadExecutor, T[] workLoad, MultithreadedWorkloadComplete<T> onComplete, MultithreadedWorkloadPackageComplete<T> onPackageComplete, int maxThreads = -1, ThreadPoolScheduler scheduler = null, bool safeMode = true)
+    {
+        return MultithreadedWorkloadHelper.StartMultithreadedWorkloadExecution<ThreadWorkloadExecutorIndexed<T>, T>(workloadExecutor, workLoad, null, onComplete, onPackageComplete, maxThreads, scheduler, safeMode);
+    }
+
+
+    /// <summary>
+    /// Helps spreading the same repetetive workload over multiple threads/cores in an easy way.
+    /// Besides the workLoad-object, an extra Argument will be passed to the Executor-delegate
+    /// </summary>
+    /// <typeparam name="T">T: Generic-Type of the object you want to be computed by the executor</typeparam>
+    /// <param name="staticWorkloadExecutor"> A (static) method that computes one workLoad-object at a time</param>
+    /// <param name="workLoad">An array with objects you want to get computed by the executor</param>
+    /// <param name="onComplete">Fired when all re-packaged workLoad-objects are finished computing</param>
+    /// <param name="onPackageExecuted">Fires foreach finished re-packaged set of workLoad-object</param>
+    /// <param name="maxThreads"> Lets you choose how many threads will be run simultaneously by the threadpool. Default: -1 == number of cores minus one, to make sure the MainThread has at least one Core to run on. (quadcore == 1 Core Mainthread, 3 cores used by the ThreadPoolScheduler)</param>
+    /// <param name="scheduler">If Null, a new ThreadPoolScheduler will be instantiated.</param>
+    /// <param name="safeMode">Executes all the computations within try-catch events, logging it the message + stacktrace</param>
+    /// <returns>A ThreadPoolScheduler that handles all the repackaged workLoad-Objects</returns>
+    public static ThreadPoolScheduler StartMultithreadedWorkloadExecution<T>(ThreadWorkloadExecutorArg<T> workloadExecutor, T[] workLoad, object extraArgument, MultithreadedWorkloadComplete<T> onComplete, MultithreadedWorkloadPackageComplete<T> onPackageComplete, int maxThreads = -1, ThreadPoolScheduler scheduler = null, bool safeMode = true)
+    {
+        return MultithreadedWorkloadHelper.StartMultithreadedWorkloadExecution<ThreadWorkloadExecutorArg<T>, T>(workloadExecutor, workLoad, extraArgument, onComplete, onPackageComplete, maxThreads, scheduler, safeMode);
+    }
+
+
+    /// <summary>
+    /// Helps spreading the same repetetive workload over multiple threads/cores in an easy way.
+    /// Besides the workLoad-object, an extra Argument & the current index of the workLoad-array is passed to the Executor-delegate.
+    /// </summary>
+    /// <typeparam name="T">T: Generic-Type of the object you want to be computed by the executor</typeparam>
+    /// <param name="staticWorkloadExecutor"> A (static) method that computes one workLoad-object at a time</param>
+    /// <param name="workLoad">An array with objects you want to get computed by the executor</param>
+    /// <param name="onComplete">Fired when all re-packaged workLoad-objects are finished computing</param>
+    /// <param name="onPackageExecuted">Fires foreach finished re-packaged set of workLoad-object</param>
+    /// <param name="maxThreads"> Lets you choose how many threads will be run simultaneously by the threadpool. Default: -1 == number of cores minus one, to make sure the MainThread has at least one Core to run on. (quadcore == 1 Core Mainthread, 3 cores used by the ThreadPoolScheduler)</param>
+    /// <param name="scheduler">If Null, a new ThreadPoolScheduler will be instantiated.</param>
+    /// <param name="safeMode">Executes all the computations within try-catch events, logging it the message + stacktrace</param>
+    /// <returns>A ThreadPoolScheduler that handles all the repackaged workLoad-Objects</returns>
+    public static ThreadPoolScheduler StartMultithreadedWorkloadExecution<T>(ThreadWorkloadExecutorArgIndexed<T> workloadExecutor, T[] workLoad, object extraArgument, MultithreadedWorkloadComplete<T> onComplete, MultithreadedWorkloadPackageComplete<T> onPackageComplete, int maxThreads = -1, ThreadPoolScheduler scheduler = null, bool safeMode = true)
+    {
+        return MultithreadedWorkloadHelper.StartMultithreadedWorkloadExecution<ThreadWorkloadExecutorArgIndexed<T>, T>(workloadExecutor, workLoad, extraArgument, onComplete, onPackageComplete, maxThreads, scheduler, safeMode);
+    }
+
+    #endregion
+
+    //--------------------------------------- 4 MULTI THREADED WORK EXECUTION OVERLOADS --------------------------------------
+    //--------------------------------------- 4 MULTI THREADED WORK EXECUTION OVERLOADS --------------------------------------
+			
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+    //--------------------------------------- THREAD POOL SCHEDULAR --------------------------------------
+    //--------------------------------------- THREAD POOL SCHEDULAR --------------------------------------
+
+    #region THREAD POOL SCHEDULAR
+
+
+    /// <summary>
+    /// Unlike "StartMultithreadedWorkloadExecution", you will have to build your own IThreadWorkerObject.
+    /// Downside: It requires some extra work. Upside: you got more controll over what goes in and comes out
+    /// Infact: You can create you own polymorphed IThreadWorkerObject-array, each ellement being a completely different type. For example: the statemachines of enemies are IThreadWorkerObject's and the array contains completely different classes with enemies/AI-behaviours.
+    /// </summary>
+    /// <param name="workerObjects">An array of IThreadWorkerObject objects to be handled by the threads. If you want multiple cores/threads to be active, make sure that the number of IThreadWorkerObject's proves matches/exeeds your preferred number maxWorkingThreads. </param>
+    /// <param name="onComplete">Fired when all re-packaged workLoad-objects are finished computing</param>
+    /// <param name="onPackageExecuted">Fires foreach finished re-packaged set of workLoad-object</param>
+    /// <param name="maxThreads"> Lets you choose how many threads will be run simultaneously by the threadpool. Default: -1 == number of cores minus one, to make sure the MainThread has at least one Core to run on. (quadcore == 1 Core Mainthread, 3 cores used by the ThreadPoolScheduler)</param>
+    /// <param name="scheduler">If Null, a new ThreadPoolScheduler will be instantiated.</param>
+    /// <param name="safeMode">Executes all the computations within try-catch events, logging it the message + stacktrace</param>
+    /// <returns>A ThreadPoolScheduler that handles all the repackaged workLoad-Objects</returns>
+    public static ThreadPoolScheduler StartMultithreadedWorkerObjects(IThreadWorkerObject[] workerObjects, ThreadPoolSchedulerEvent onCompleteCallBack, ThreadedWorkCompleteEvent onPackageExecuted = null, int maxThreads = -1, ThreadPoolScheduler scheduler = null, bool safeMode = true)
+    {
+        if (scheduler == null)
+            scheduler = CreateThreadPoolScheduler();
+
+        scheduler.StartASyncThreads(workerObjects, onCompleteCallBack, onPackageExecuted, maxThreads, safeMode);
+        return scheduler;
+    }
+
+
+
+    /// <summary>
+    /// Creates an ThreadPoolScheduler instance, which happens to be a Monobehaviour and therefore will showup as gameobject "ThreadPoolScheduler";
+    /// </summary>
+    /// <returns></returns>
+    public static ThreadPoolScheduler CreateThreadPoolScheduler()
+    {
+        GameObject go = new GameObject("ThreadPoolScheduler");
+        return go.AddComponent<ThreadPoolScheduler>();
+    }
+
+
+    /// <summary>
+    /// Creates an ThreadPoolScheduler instance, which happens to be a Monobehaviour and therefore will showup by the name you provide (default: "ThreadPoolScheduler");
+    /// </summary>
+    /// <returns></returns>
+    public static ThreadPoolScheduler CreateThreadPoolScheduler(string name)
+    {
+        GameObject go = new GameObject(name == null || name == string.Empty ? "ThreadPoolScheduler" : name);
+        return go.AddComponent<ThreadPoolScheduler>();
+    }
+
+
+    #endregion
+
+    //--------------------------------------- THREAD POOL SCHEDULAR --------------------------------------
+    //--------------------------------------- THREAD POOL SCHEDULAR --------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //--------------------------------------- THREAD WAIT COMMANDS --------------------------------------
+    //--------------------------------------- THREAD WAIT COMMANDS --------------------------------------
+
+    #region THREAD WAIT COMMANDS
+
+    /// <summary>
+    /// Halts/Sleeps the current thread until Unity has rendered a frame. This can be used Coroutine-wise and is safe to be placed within an endless while-loop. Not recommended though...
+    /// If fired from the MainThread, an error-log will be thrown because its not allowed to freeze the MainThread.
+    /// </summary>
+    /// <param name="waitFrames">By default set to 1. You can let the Thread wait several frames if needed</param>
+    public static void WaitForNextFrame(int waitFrames = 1)
+    {
+        new ThreadWaitForNextFrame(waitFrames);
+    }
+
+
+    /// <summary>
+    /// Halts/Sleeps the current thread until "seconds" has expired. This can be used Coroutine-wise and is safe to be placed within an endless while-loop. Not recommended though...
+    /// If fired from the MainThread, an error-log will be thrown because its not allowed to freeze the MainThread.
+    /// </summary>
+    /// <param name="seconds">Amount of time you want the Thread to sleep.</param>
+    public static void WaitForSeconds(float seconds)
+    {
+        new ThreadWaitForSeconds(seconds);
+    }
+
+    #endregion
+
+    //--------------------------------------- THREAD WAIT COMMANDS --------------------------------------
+    //--------------------------------------- THREAD WAIT COMMANDS --------------------------------------
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //--------------------------------------- 4 DISPATCHER OVERLOADS --------------------------------------
+    //--------------------------------------- 4 DISPATCHER OVERLOADS --------------------------------------
+
+    #region 4 DISPATCHER OVERLOADS
+
+
+
+    /// <summary>
+    /// Fire and forget: The MainThread will execute this method witout any arguments to pass, nothing will be returned.
+    /// </summary>
+    /// <param name="dispatchCall">Example: "() => Debug.Log("This will be fired from the MainThread: " + System.Threading.Thread.CurrentThread.Name)" </param>
+    /// <param name="waitForExecution">Freezes the thread, waiting for the MainThread to execute & finish the "dispatchCall".</param>
+    /// <param name="safeMode">Executes all the computations within try-catch events, logging it the message + stacktrace</param>
+    public static void DispatchToMainThread(ThreadDispatchDelegate dispatchCall, bool waitForExecution = false, bool safeMode = true)
+    {
+        MainThreadDispatcher.DispatchToMainThread(dispatchCall, waitForExecution, safeMode);
+    }
+
+
+    
+    
+    /// <summary>
+    /// When executed by the MainThread, this argument will be passed to the "dispatchCall";
+    /// </summary>
+    /// <param name="dispatchCall">Example: "(object obj) => Debug.Log("This will be fired from the MainThread: " + System.Threading.Thread.CurrentThread.Name + "\nObject: " + obj.toString())"</param>
+    /// <param name="dispatchArgument">Once the MainThread executes this action, the argument will be passed to the delegate</param>
+    /// <param name="waitForExecution">Freezes the thread, waiting for the MainThread to execute & finish the "dispatchCall".</param>
+    /// <param name="safeMode">Executes all the computations within try-catch events, logging it the message + stacktrace</param>
+    public static void DispatchToMainThread(ThreadDispatchDelegateArg dispatchCall, object dispatchArgument, bool waitForExecution = false, bool safeMode = true)
+    {
+        MainThreadDispatcher.DispatchToMainThread(dispatchCall, dispatchArgument, waitForExecution, safeMode);
+    }
+
+
+
+
+    /// <summary>     
+    /// When executed by the MainThread, this argument will be passed to the "dispatchCall";
+    /// Allows you to dispatch an delegate returning an object (for example: a newly instantiated gameobject) that is directly available in your ThreadPool-Thread.
+    /// Because the thread you are dispatching from is not the MainThread, your ThreadPool-thread needs to wait till the MainThread executed the method, and the returned value can be used directly
+    /// </summary>
+    /// <param name="dispatchCall">Example: "(object obj) => Debug.Log("This will be fired from the MainThread: " + System.Threading.Thread.CurrentThread.Name + "\nObject: " + obj.toString())"</param>
+    /// <param name="dispatchArgument">Once the MainThread executes this action, the argument will be passed to the delegate</param>
+    /// <param name="safeMode">Executes all the computations within try-catch events, logging it the message + stacktrace</param>
+    /// <returns>After the MainThread has executed the "dispatchCall" (and the worker-thread has been waiting), it will return whatever the dispatchCall returns to the worker-thread</returns>
+    public static object DispatchToMainThreadReturn(ThreadDispatchDelegateArgReturn dispatchCall, object dispatchArgument, bool safeMode = true)
+    {
+        return MainThreadDispatcher.DispatchToMainThreadReturn(dispatchCall, dispatchArgument, safeMode);
+    }
+
+
+    /// <summary>
+    /// Allows you to dispatch an delegate returning an object (for example: a newly instantiated gameobject) that is directly available in your ThreadPool-Thread.
+    /// Because the thread you are dispatching from is not the MainThread, your ThreadPool-thread needs to wait till the MainThread executed the method, and the returned value can be used directly
+    /// </summary>
+    /// <param name="dispatchCall">Example: "(object obj) => Debug.Log("This will be fired from the MainThread: " + System.Threading.Thread.CurrentThread.Name + "\nObject: " + obj.toString())"</param>
+    /// <param name="safeMode">Executes all the computations within try-catch events, logging it the message + stacktrace</param>
+    /// <returns>After the MainThread has executed the "dispatchCall" (and the worker-thread has been waiting), it will return whatever the dispatchCall returns to the worker-thread</returns>
+    public static object DispatchToMainThreadReturn(ThreadDispatchDelegateReturn dispatchCall, bool safeMode = true)
+    {
+        return MainThreadDispatcher.DispatchToMainThreadReturn(dispatchCall, safeMode);
+    }
+    
+
+    #endregion
+
+    //--------------------------------------- 4 DISPATCHER OVERLOADS --------------------------------------
+    //--------------------------------------- 4 DISPATCHER OVERLOADS --------------------------------------
+    
+
+
+
+
+
+
+
+    //--------------------------------------- CHECK UNITY ACTIVITY --------------------------------------
+    //--------------------------------------- CHECK UNITY ACTIVITY --------------------------------------
+    #region CHECK UNITY ACTIVITY
+
+    /// <summary>
+    /// A easy way to check if Unity is still running, focused and not pauzed.
+    /// This comes in handy if threads keep running heavy workloads on seperate threads while IOS for example tries to puch the Application to the background.
+    /// If you are executing a giant routine on a seperate thread that takes several seconds per cycle, you might want to check regularly if unity is still active by using this check.
+    /// </summary>
+    /// <returns>Returns TRUE if Unity is still running, not pauzed and has focus. </returns>
+    public static bool CheckUnityActive()
+    {
+        return UnityActivityWatchdog.CheckUnityActive();
+    }
+
+
+
+
+    /// <summary>
+    /// !IMPORTANT! This method should be called regularly within routines that take more then half a second to complete, to make sure IOS for example is able to force an application to sleep when it looses focus or gets puched to the background.
+    /// This is a very light-weight check, internally it only needs to check two static booleans once everything is Initialized and running.
+    /// You can use this without causing any serious overhead.
+    /// Motivation: Sins Threads cannot be put asleep from the outside, it needs the be managed from within the thread itself, thats why this method was build.
+    /// 
+    /// Example:
+    /// for(int i = 0; i < 999999999; i++)
+    /// {
+    ///     Loom.SleepOrAbortIfUnityInactive(); //Prevents IOS for example of killing this app because the threads won't sleep once your unity-app is puched to the background.
+    ///     //Do something heavy that will cause this routine to run more then 0.5 seconds.
+    /// }
+    /// </summary>
+    public static void SleepOrAbortIfUnityInactive()
+    {
+        UnityActivityWatchdog.SleepOrAbortIfUnityInactive();
+    }
+    #endregion
+    //--------------------------------------- CHECK UNITY ACTIVITY --------------------------------------
+    //--------------------------------------- CHECK UNITY ACTIVITY --------------------------------------
+			
+
+
+
+
+
+
+
+
+
+    //--------------------------------------- MAIN THREAD WATCHDOG --------------------------------------
+    //--------------------------------------- MAIN THREAD WATCHDOG --------------------------------------
+    #region MAIN THREAD WATCHDOG
+
+    /// <summary>
+    /// If you need your current code to be running on the MainThread, you can always call this method to check if its the MainThread or not...
+    /// </summary>
+    /// <returns>Returns TRUE if its the MainThread</returns>
+    public static bool CheckIfMainThread()
+    {
+        return MainThreadWatchdog.CheckIfMainThread();
+    }
+
+
+    #endregion
+    //--------------------------------------- MAIN THREAD WATCHDOG --------------------------------------
+    //--------------------------------------- MAIN THREAD WATCHDOG --------------------------------------
+			
+}﻿
+
+using System;
+using System.Collections;
+using System.Threading;
+using System.Collections.Generic;
+using UnityEngine;
+using Frankfort.Threading.Internal;
+
+
+
+
+
+
+
+
+
+namespace Frankfort.Threading
+{
+    public delegate void ThreadPoolSchedulerEvent(IThreadWorkerObject[] finishedObjects);
+    public delegate void ThreadedWorkCompleteEvent(IThreadWorkerObject finishedObject);
+
+
+    /// <summary>
+    /// This is the most important class of the framework. It starts & stops threads, caps the amount of threads running at the same time, handles Mainthread completion-delegates, etc.
+    /// </summary>
+    public class ThreadPoolScheduler : MonoBehaviour
+    {
+
+        //--------------- public Session Variables --------------------
+        public bool DebugMode = false;
+        public bool ForceToMainThread = false;
+        public float WaitForSecondsTime = 0.001f; //Wait 1 ms per tick!
+        
+        public bool isBusy
+        {
+            get
+            {
+                return _shedularBusy;
+            }
+        }
+
+        public float Progress
+        {
+            get
+            {
+                if (workData == null || workData.workerPackages == null || workData.workerPackages.Length == 0)
+                    return 1f;
+
+                //return (float)GetHandledFinishedPackages().Length / (float)workData.workerPackages.Length;
+                int finishedPackages = 0;
+                int i = workData.workerPackages.Length;
+                while(--i > -1)
+                {
+                    if (workData.workerPackages[i].finishedWorking)
+                        finishedPackages++;
+                }
+
+                return (float)finishedPackages / (float)workData.workerPackages.Length;
+            }
+        }
+        //--------------- public Session Variables --------------------
+
+
+
+
+        //--------------- PrivateSession Variables --------------------
+        private bool _providerThreadBusy;
+        private bool _shedularBusy;
+        private bool _isAborted;
+        private ASyncThreadWorkData workData;
+        private Thread providerThread;
+        private int workObjectIndex;
+        private ThreadPoolSchedulerEvent onCompleteCallBack;
+        private ThreadedWorkCompleteEvent onWorkerObjectDoneCallBack;
+        private bool safeMode;
+        //--------------- Private Session Variables --------------------
+
+
+
+
+
+
+
+
+        //--------------------------------------- UNITY MONOBEHAVIOUR COMMANDS --------------------------------------
+        //--------------------------------------- UNITY MONOBEHAVIOUR COMMANDS --------------------------------------
+        #region UNITY MONOBEHAVIOUR COMMANDS
+
+        protected virtual void Awake()
+        {
+            MainThreadWatchdog.Init();
+            MainThreadDispatcher.Init();
+            UnityActivityWatchdog.Init();
+        }
+
+        protected virtual void OnApplicationQuit()
+        {
+            Debug.Log("ThreadPoolScheduler.OnApplicationQuit!");
+            AbortASyncThreads();    
+        }
+
+        protected virtual void OnDestroy()
+		{
+			Debug.Log("ThreadPoolScheduler.OnDestroy!");
+            AbortASyncThreads();
+        }
+        #endregion
+        //--------------------------------------- UNITY MONOBEHAVIOUR COMMANDS --------------------------------------
+        //--------------------------------------- UNITY MONOBEHAVIOUR COMMANDS --------------------------------------
+			
+
+
+
+
+
+
+
+
+
+
+
+
+        //--------------------------------------- UNITY COROUTINE & PROVIDER-THREAD IMPLEMENTATION --------------------------------------
+        //--------------------------------------- UNITY COROUTINE & PROVIDER-THREAD IMPLEMENTATION --------------------------------------
+        #region UNITY COROUTINE & PROVIDER-THREAD IMPLEMENTATION
+
+        /// <summary>
+        /// Unlike "StartMultithreadedWorkloadExecution", you will have to build your own IThreadWorkerObject.
+        /// Downside: It requires some extra work. Upside: you got more controll over what goes in and comes out
+        /// Infact: You can create you own polymorphed IThreadWorkerObject-array, each ellement being a completely different type. For example: the statemachines of enemies are IThreadWorkerObject's and the array contains completely different classes with enemies/AI-behaviours.
+        /// </summary>
+        /// <param name="workerObjects">An array of IThreadWorkerObject objects to be handled by the threads. If you want multiple cores/threads to be active, make sure that the number of IThreadWorkerObject's proves matches/exeeds your preferred number maxWorkingThreads. </param>
+        /// <param name="onComplete">Fired when all re-packaged workLoad-objects are finished computing</param>
+        /// <param name="onPackageExecuted">Fires foreach finished re-packaged set of workLoad-object</param>
+        /// <param name="maxThreads"> Lets you choose how many threads will be run simultaneously by the threadpool. Default: -1 == number of cores minus one, to make sure the MainThread has at least one Core to run on. (quadcore == 1 Core Mainthread, 3 cores used by the ThreadPoolScheduler)</param>
+        /// <param name="scheduler">If Null, a new ThreadPoolScheduler will be instantiated.</param>
+        /// <param name="safeMode">Executes all the computations within try-catch events, logging it the message + stacktrace</param>
+        public void StartASyncThreads(IThreadWorkerObject[] workerObjects, ThreadPoolSchedulerEvent onCompleteCallBack, ThreadedWorkCompleteEvent onPackageExecuted = null, int maxThreads = -1, bool safeMode = true)
+        {
+            if (_shedularBusy)
+            {
+                Debug.LogError("You are trying the start a new ASync threading-process, but is still Busy!");
+                return;
+            }
+
+            if (workerObjects == null || workerObjects.Length == 0)
+            {
+                Debug.LogError("Please provide an Array with atleast \"IThreadWorkerObject\"-object!");
+                return;
+            }
+
+            _isAborted = false;
+            _shedularBusy = true;
+            _providerThreadBusy = true;
+            this.onCompleteCallBack = onCompleteCallBack;
+            this.onWorkerObjectDoneCallBack = onPackageExecuted;
+                
+            if (!ForceToMainThread)
+            {   
+                //--------------- Start Waiting for the Provider-thread to complete --------------------
+                StartCoroutine("WaitForCompletion");
+                workData = new ASyncThreadWorkData(workerObjects, safeMode, maxThreads);
+                providerThread = new Thread(new ThreadStart(InvokeASyncThreadPoolWork));
+                providerThread.Start();
+                //--------------- Start Waiting for the Provider-thread to complete --------------------
+            }
+            else
+            {
+                //--------------- Execute all work in one bunch! --------------------
+                StartCoroutine(WaitAndExecuteWorkerObjects(workerObjects));
+                //--------------- Execute all work in one bunch! --------------------
+            }
+        }
+
+
+
+
+        private IEnumerator WaitAndExecuteWorkerObjects(IThreadWorkerObject[] workerObjects)
+        {
+            yield return new WaitForEndOfFrame();
+            for (int i = 0; i < workerObjects.Length; i++)
+            {
+                workerObjects[i].ExecuteThreadedWork();
+
+                if (onWorkerObjectDoneCallBack != null)
+                    onWorkerObjectDoneCallBack(workerObjects[i]);
+            }
+
+            _shedularBusy = false;
+            _providerThreadBusy = false;
+
+            if (onCompleteCallBack != null)
+                onCompleteCallBack(workerObjects);
+        }
+
+
+
+
+        private IEnumerator WaitForCompletion()
+        {
+            if (DebugMode)
+                Debug.Log(" ----- WaitForCompletion: " + Thread.CurrentThread.ManagedThreadId);
+            
+			while (!_isAborted)
+			{
+				//After waiting a while, in the meantime it might have finished itself, or got aborted!
+				yield return new WaitForSeconds(WaitForSecondsTime);
+
+				if(_isAborted)
+					break;
+
+                //--------------- fire events while still working --------------------
+                int finishedObjectsCount = GetFinishedPackagesCount();
+                if (finishedObjectsCount == workData.workerPackages.Length)
+                    break;
+        
+                int unhandledPackagesCount = GetUnhandledFinishedPackagesCount();
+                if (DebugMode)
+                    Debug.Log(" ----- unhandledPackages: " + unhandledPackagesCount + " ( out of: " + finishedObjectsCount + " completed so far...)");
+
+                if (unhandledPackagesCount > 0)
+                {
+                    foreach (ThreadWorkStatePackage package in workData.workerPackages)
+                    {
+                        if (package.finishedWorking && !package.eventFired)
+                        {
+                            if (onWorkerObjectDoneCallBack != null)
+                                onWorkerObjectDoneCallBack(package.workerObject);
+
+                            package.eventFired = true;
+                        }
+                    }
+                }
+                //--------------- fire events while still working --------------------
+			}
+
+			if(!_isAborted)
+			{
+				if (DebugMode)
+	                Debug.Log(" ----- Coroutine knows its done!");
+
+	            IThreadWorkerObject[] workedObjects = GetWorkerObjectsFromPackages();
+	            
+	            workData.Dispose();
+	            workData = null;
+	            _shedularBusy = false;
+	            
+	            if (onCompleteCallBack != null)
+	                onCompleteCallBack(workedObjects);
+			}
+        }
+        
+        #endregion
+        //--------------------------------------- UNITY COROUTINE & PROVIDER-THREAD IMPLEMENTATION --------------------------------------
+        //--------------------------------------- UNITY COROUTINE & PROVIDER-THREAD IMPLEMENTATION --------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+        //--------------------------------------- EXTRA COMMANDS & ACTIONS --------------------------------------
+        //--------------------------------------- EXTRA COMMANDS & ACTIONS --------------------------------------
+        #region EXTRA COMMANDS & ACTIONS
+
+        /// <summary>
+        /// Aborts all worker processes currently queued.
+        /// </summary>
+        /// <param name="sleepTillAborted">if true: Makes sure that after invoking "AbortASyncThreads" the ThreadPoolSheduler is available again, but halts the MainThread while waiting for the other threads to finish</param>
+        public void AbortASyncThreads()
+        {
+            if (!_providerThreadBusy)
+                return;
+
+            _isAborted = true;
+            StopCoroutine("WaitForCompletion");
+
+            if(workData != null && workData.workerPackages != null)
+            {
+                lock (workData.workerPackages)
+                {
+                    foreach (ThreadWorkStatePackage package in workData.workerPackages)
+                    {
+                        if (package.running && !package.finishedWorking)
+                            package.workerObject.AbortThreadedWork();
+                    }
+                }
+            }
+			
+			if (providerThread != null && providerThread.IsAlive)
+			{
+				Debug.Log("ThreadPoolScheduler.AbortASyncThreads - Interrupt!");
+				providerThread.Interrupt();
+				providerThread.Join();
+			}
+			else
+			{
+				Debug.Log("ThreadPoolScheduler.AbortASyncThreads!");
+			}
+
+			_providerThreadBusy = false;
+		}
+		
+		#endregion
+        //--------------------------------------- EXTRA COMMANDS & ACTIONS --------------------------------------
+        //--------------------------------------- EXTRA COMMANDS & ACTIONS --------------------------------------
+			
+
+
+
+        
+
+
+
+
+
+
+        //--------------------------------------- .NET THREADPOOL IMPLEMENTATION --------------------------------------
+        //--------------------------------------- .NET THREADPOOL IMPLEMENTATION --------------------------------------
+        #region .NET THREADPOOL IMPLEMENTATION
+
+        /// <summary>
+        /// This method is the work-provider-method. It makes sure the .NET threadpool has things to do...
+        /// This method is NOT invoked by the mainThread, therefor is safe to use WaitHandle.WaitAll / WaitAny without halting Unity's gameThread!
+        /// </summary>
+        public void InvokeASyncThreadPoolWork()
+        {
+            UnityActivityWatchdog.SleepOrAbortIfUnityInactive();
+
+            int totalWork = workData.workerPackages.Length;
+            int startBurst = Mathf.Clamp(workData.maxWorkingThreads, 1, totalWork);
+
+            if (DebugMode)
+                Debug.Log(" ----- InvokeASyncThreadPoolWork. startBurst: " + startBurst + ", totalWork: " + totalWork);
+            
+            //--------------- Initial Startup burst --------------------
+            for (int i = 0; i < startBurst && !_isAborted; i++)
+            {
+                //Add to .NET ThreadPool
+                if (workData.workerPackages[i] != null)
+                {
+                    workData.workerPackages[i].started = true;
+                    ThreadPool.QueueUserWorkItem(workData.workerPackages[i].ExecuteThreadWork, i);
+                }
+            }
+            //--------------- Initial Startup burst ---------------s-----
+
+
+            if (DebugMode)
+                Debug.Log(" ----- Burst with WorkerObjects being processed!");
+
+            //--------------- Create a new Thread to keep the Threadpool running  & cores saturated! --------------------
+            workObjectIndex = startBurst; //at this point the amount of running WorkObjects/Threads is equal to the startBurst;
+            while (workObjectIndex < totalWork && !_isAborted)
+            {
+                UnityActivityWatchdog.SleepOrAbortIfUnityInactive();
+
+                AutoResetEvent[] startedEvents = GetStartedPackageEvents();
+                if (startedEvents.Length > 0)
+                    WaitHandle.WaitAny(startedEvents);
+                
+                workData.workerPackages[workObjectIndex].started = true;
+                ThreadPool.QueueUserWorkItem(workData.workerPackages[workObjectIndex].ExecuteThreadWork, workObjectIndex);
+                workObjectIndex++;
+            } 
+            //--------------- Create a new Thread to keep the Threadpool running & cores saturated! --------------------
+
+
+            if (DebugMode)
+                Debug.Log(" ----- all packages fed to the pool!");
+            
+            //--------------- Wait till all are finished! --------------------
+            //All WorkObjects have been set to work, but the last few Threads might still be pending!
+            AutoResetEvent[] pendingEvents = GetStartedPackageEvents();
+            if (pendingEvents.Length > 0)
+            {
+                UnityActivityWatchdog.SleepOrAbortIfUnityInactive();
+                WaitHandle.WaitAll(pendingEvents);
+            }
+            //--------------- Wait till all are finished! --------------------
+
+
+            if (DebugMode)
+                Debug.Log(" ----- PROVIDER THREAD DONE");
+    
+            //DONE!
+            _providerThreadBusy = false;
+        }
+
+        #endregion
+        //--------------------------------------- .NET THREADPOOL IMPLEMENTATION --------------------------------------
+        //--------------------------------------- .NET THREADPOOL IMPLEMENTATION --------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //--------------------------------------- MISC --------------------------------------
+        //--------------------------------------- MISC --------------------------------------
+        #region MISC
+
+        private AutoResetEvent[] GetStartedPackageEvents()
+        {
+            List<AutoResetEvent> result = new List<AutoResetEvent>();
+            for (int i = 0; i < workData.workerPackages.Length; i++)
+            {
+                ThreadWorkStatePackage package = workData.workerPackages[i];
+                if(package.started && !package.finishedWorking)
+                    result.Add(package.waitHandle);
+            }
+            return result.ToArray();
+		}
+
+        
+        private IThreadWorkerObject[] GetWorkerObjectsFromPackages()
+        {
+            if (workData == null || workData.workerPackages == null)
+                return new IThreadWorkerObject[0];
+
+            IThreadWorkerObject[] result = new IThreadWorkerObject[workData.workerPackages.Length];
+            int i = workData.workerPackages.Length;
+            while (--i > -1)
+                result[i] = workData.workerPackages[i].workerObject;
+
+            return result;
+        }
+
+        public int GetFinishedPackagesCount()
+        {
+            if (workData == null || workData.workerPackages == null)
+                return 0;
+
+            int count = 0;
+            int i = workData.workerPackages.Length;
+            while (--i > -1)
+            {
+                if (workData.workerPackages[i].finishedWorking)
+                    count++;
+            }
+            return count;
+        }
+
+        public int GetUnhandledFinishedPackagesCount()
+        {
+            if (workData == null || workData.workerPackages == null)
+                return 0;
+            
+            int count = 0;
+            int i = workData.workerPackages.Length;
+            while (--i > -1)
+            {
+                if (workData.workerPackages[i].finishedWorking && !workData.workerPackages[i].eventFired)
+                    count++;
+            }
+            return count;
+        }
+
+        #endregion
+        //--------------------------------------- MISC --------------------------------------
+        //--------------------------------------- MISC --------------------------------------
+
+
+    }
+}﻿using System;
+using UnityEngine;
+using System.Threading;
+using System.Collections.Generic;
+
+
+
+namespace Frankfort.Threading
+{
+    /// <summary>
+    /// Fire and forget: The MainThread will execute this method witout any arguments to pass, nothing will be returned.
+    /// </summary>
+    public delegate void ThreadDispatchDelegate();
+
+    /// <summary>
+    /// Alows you to pass a argument to the delegate.
+    /// </summary>
+    /// <param name="arg">Once the MainThread executes this action, the argument will be passed to the delegate</param>
+    public delegate void ThreadDispatchDelegateArg(object arg);
+
+    /// <summary>
+    /// Alows you to pass a argument to the delegate.
+    /// Allows you to dispatch an delegate returning an object (for example: a newly instantiated gameobject) that is directly available in your ThreadPool-Thread.
+    /// Because the thread you are dispatching from is not the MainThread, your ThreadPool-thread needs to wait till the MainThread executed the method, and the returned value can be used directly
+    /// </summary>
+    /// <param name="arg">Once the MainThread executes this action, the argument will be passed to the delegate</param>
+    /// <returns></returns>
+    public delegate object ThreadDispatchDelegateArgReturn(object arg);
+
+
+    /// <summary>
+    /// Allows you to dispatch an delegate returning an object (for example: a newly instantiated gameobject) that is directly available in your ThreadPool-Thread.
+    /// Because the thread you are dispatching from is not the MainThread, your ThreadPool-thread needs to wait till the MainThread executed the method, and the returned value can be used directly
+    /// </summary>
+    /// <param name="arg">Once the MainThread executes this action, the argument will be passed to the delegate</param>
+    public delegate object ThreadDispatchDelegateReturn();
+}
+
+
+
+
+
+
+
+
+namespace Frankfort.Threading.Internal
+{
+    /// <summary>
+    /// This static class helps you use Unity-engine related objects like GameObjects or Components, without violating threadsafty of Unity.
+    /// </summary>
+    public static class MainThreadDispatcher
+    {
+
+        private static List<ThreadDispatchAction> dispatchActions = new List<ThreadDispatchAction>();
+        private static bool helperCreated;
+        public static int currentFrame = 0;
+        
+
+
+
+        //--------------------------------------- INIT --------------------------------------
+        //--------------------------------------- INIT --------------------------------------
+        #region INIT
+
+        //Sins this class is static, it needs to be called from the MainThread, by some monobehaviour-awake (ThreadPoolScheduler that is...)
+        public static void Init()
+        {
+            if (!helperCreated)
+                CreateHelperGameObject();
+        }
+
+        private static void CreateHelperGameObject()
+        {
+            GameObject helperGO = new GameObject("MainThreadDispatchHelper");
+            MainThreadDispatchHelper helper = helperGO.AddComponent<MainThreadDispatchHelper>();
+            helper.hideFlags = helperGO.hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
+            GameObject.DontDestroyOnLoad(helperGO);
+            helperCreated = true;
+        }
+
+        #endregion
+        //--------------------------------------- INIT --------------------------------------
+        //--------------------------------------- INIT --------------------------------------
+
+
+
+
+
+
+
+
+
+        //--------------------------------------- UPDATE CALLED BY HELPER --------------------------------------
+        //--------------------------------------- UPDATE CALLED BY HELPER --------------------------------------
+
+        #region UPDATE CALLED BY HELPER
+        public static void Update()
+        {
+            DispatchActionsIfPresent();
+        }
+
+
+        private static void DispatchActionsIfPresent()
+        {
+            if (dispatchActions != null && dispatchActions.Count > 0)
+            {
+                lock (dispatchActions)
+                {
+                    foreach (ThreadDispatchAction action in dispatchActions)
+                    {
+                        if (!action.executed) //Might be executed internally. This happens when de event was dispatched from the MainThread in the firstplace....
+                            action.ExecuteDispatch();
+                    }
+                    dispatchActions.Clear();
+                    Monitor.PulseAll(dispatchActions);
+                }
+            }
+        }
+
+        #endregion
+
+        //--------------------------------------- UPDATE CALLED BY HELPER --------------------------------------
+        //--------------------------------------- UPDATE CALLED BY HELPER --------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+        //--------------------------------------- 4 DISPATCH OVERLOADS --------------------------------------
+        //--------------------------------------- 4 DISPATCH OVERLOADS --------------------------------------
+        #region 4 DISPATCH OVERLOADS
+
+
+        /// <summary>
+        /// Fire and forget: The MainThread will execute this method witout any arguments to pass, nothing will be returned.
+        /// </summary>
+        /// <param name="dispatchCall">Example: "() => Debug.Log("This will be fired from the MainThread: " + System.Threading.Thread.CurrentThread.Name)" </param>
+        /// <param name="waitForExecution">Freezes the thread, waiting for the MainThread to execute & finish the "dispatchCall".</param>
+        /// <param name="safeMode">Executes all the computations within try-catch events, logging it the message + stacktrace</param>
+        public static void DispatchToMainThread(ThreadDispatchDelegate dispatchCall, bool waitForExecution = false, bool safeMode = true)
+        {
+            if (MainThreadWatchdog.CheckIfMainThread())
+            {
+                if (dispatchCall != null)
+                    dispatchCall();
+            }
+            else
+            {
+                ThreadDispatchAction action = new ThreadDispatchAction();
+                lock (dispatchActions) { dispatchActions.Add(action); }
+                action.Init(dispatchCall, waitForExecution, safeMode);
+            }
+        }
+
+
+
+        /// <summary>
+        /// When executed by the MainThread, this argument will be passed to the "dispatchCall";
+        /// </summary>
+        /// <param name="dispatchCall">Example: "(object obj) => Debug.Log("This will be fired from the MainThread: " + System.Threading.Thread.CurrentThread.Name + "\nObject: " + obj.toString())"</param>
+        /// <param name="dispatchArgument">Once the MainThread executes this action, the argument will be passed to the delegate</param>
+        /// <param name="waitForExecution">Freezes the thread, waiting for the MainThread to execute & finish the "dispatchCall".</param>
+        /// <param name="safeMode">Executes all the computations within try-catch events, logging it the message + stacktrace</param>
+        public static void DispatchToMainThread(ThreadDispatchDelegateArg dispatchCall, object dispatchArgument, bool waitForExecution = false, bool safeMode = true)
+        {
+            if (MainThreadWatchdog.CheckIfMainThread())
+            {
+                if (dispatchCall != null)
+                    dispatchCall(dispatchArgument);
+            }
+            else
+            {
+                ThreadDispatchAction action = new ThreadDispatchAction();
+                lock (dispatchActions) { dispatchActions.Add(action); }
+                action.Init(dispatchCall, dispatchArgument, waitForExecution, safeMode);
+            }
+        }
+
+
+
+
+        /// <summary>     
+        /// When executed by the MainThread, this argument will be passed to the "dispatchCall";
+        /// Allows you to dispatch an delegate returning an object (for example: a newly instantiated gameobject) that is directly available in your ThreadPool-Thread.
+        /// Because the thread you are dispatching from is not the MainThread, your ThreadPool-thread needs to wait till the MainThread executed the method, and the returned value can be used directly
+        /// </summary>
+        /// <param name="dispatchCall">Example: "(object obj) => Debug.Log("This will be fired from the MainThread: " + System.Threading.Thread.CurrentThread.Name + "\nObject: " + obj.toString())"</param>
+        /// <param name="dispatchArgument">Once the MainThread executes this action, the argument will be passed to the delegate</param>
+        /// <param name="safeMode">Executes all the computations within try-catch events, logging it the message + stacktrace</param>
+        /// <returns>After the MainThread has executed the "dispatchCall" (and the worker-thread has been waiting), it will return whatever the dispatchCall returns to the worker-thread</returns>
+        public static object DispatchToMainThreadReturn(ThreadDispatchDelegateArgReturn dispatchCall, object dispatchArgument, bool safeMode = true)
+        {
+            if (MainThreadWatchdog.CheckIfMainThread())
+            {
+                if (dispatchCall != null)
+                    return dispatchCall(dispatchArgument);
+            }
+            else
+            {
+                ThreadDispatchAction action = new ThreadDispatchAction();
+                lock (dispatchActions) { dispatchActions.Add(action); }
+                action.Init(dispatchCall, dispatchArgument, safeMode); //Puts the Thread to sleep while waiting for the action to be invoked.
+                return action.dispatchExecutionResult;
+            }
+            return null;
+        }
+
+
+
+
+
+        /// <summary>
+        /// Allows you to dispatch an delegate returning an object (for example: a newly instantiated gameobject) that is directly available in your ThreadPool-Thread.
+        /// Because the thread you are dispatching from is not the MainThread, your ThreadPool-thread needs to wait till the MainThread executed the method, and the returned value can be used directly
+        /// </summary>
+        /// <param name="dispatchCall">Example: "(object obj) => Debug.Log("This will be fired from the MainThread: " + System.Threading.Thread.CurrentThread.Name + "\nObject: " + obj.toString())"</param>
+        /// <param name="safeMode">Executes all the computations within try-catch events, logging it the message + stacktrace</param>
+        /// <returns>After the MainThread has executed the "dispatchCall" (and the worker-thread has been waiting), it will return whatever the dispatchCall returns to the worker-thread</returns>
+        public static object DispatchToMainThreadReturn(ThreadDispatchDelegateReturn dispatchCall, bool safeMode = true)
+        {
+            if (MainThreadWatchdog.CheckIfMainThread())
+            {
+                if (dispatchCall != null)
+                    return dispatchCall();
+            }
+            else
+            {
+                ThreadDispatchAction action = new ThreadDispatchAction();
+                lock (dispatchActions) { dispatchActions.Add(action); }
+                action.Init(dispatchCall, safeMode); //Puts the Thread to sleep while waiting for the action to be invoked.
+                return action.dispatchExecutionResult;
+            }
+            return null;
+        }
+
+        #endregion
+        //--------------------------------------- 4 DISPATCH OVERLOADS --------------------------------------
+        //--------------------------------------- 4 DISPATCH OVERLOADS --------------------------------------
+			
+    }
+
+
+
+
+
+
+
+
+
+    //--------------------------------------- HELPER GAME OBJECT WITH COMPONENT --------------------------------------
+    //--------------------------------------- HELPER GAME OBJECT WITH COMPONENT --------------------------------------
+    #region HELPER GAME OBJECT WITH COMPONENT
+
+
+    public class MainThreadDispatchHelper : MonoBehaviour
+    {
+        private float WaitForSecondsTime = 0.005f;
+
+        private void Awake()
+        {
+            MainThreadWatchdog.Init();
+            UnityActivityWatchdog.Init();
+            InvokeRepeating("UpdateMainThreadDispatcher", WaitForSecondsTime, WaitForSecondsTime);
+        }
+
+
+        private void Update()
+        {
+            MainThreadDispatcher.currentFrame = Time.frameCount;
+        }
+        private void UpdateMainThreadDispatcher()
+        {
+            MainThreadDispatcher.Update();
+        }
+    } 
+    #endregion
+    //--------------------------------------- HELPER GAME OBJECT WITH COMPONENT --------------------------------------
+    //--------------------------------------- HELPER GAME OBJECT WITH COMPONENT --------------------------------------
+			
+}﻿using System;
+using System.Threading;
+using UnityEngine;
+
+namespace Frankfort.Threading.Internal
+{
+    /// <summary>
+    /// Keeps track of the MainThread. This is needed to handle the MainThread-edispatcher, WaitForNextFrame & WaitForSeconds safely.
+    /// </summary>
+    public class MainThreadWatchdog
+	{
+
+        //--------------------------------------- MANAGE MAIN THREAD VALIDATION --------------------------------------
+        //--------------------------------------- MANAGE MAIN THREAD VALIDATION --------------------------------------
+        #region MANAGE MAIN THREAD VALIDATION
+        private static Thread mainThread = null;
+
+        /// <summary>
+        /// Set the CurrentThread to be the MainThread, if the CurrentThread happens NOT to be MultiThreadedApartment, NOT a ThreadPoolThread, and with an ID of <= 1; 
+        /// </summary>
+        public static void Init()
+        {
+            if (mainThread == null)
+            {
+                Thread currentThread = Thread.CurrentThread;
+                if(currentThread.GetApartmentState() == ApartmentState.MTA || currentThread.ManagedThreadId > 1 || currentThread.IsThreadPoolThread)
+                {
+                    Debug.Log("Trying to Init a WorkerThread as the MainThread! ");
+                }
+                else
+                {
+                    mainThread = currentThread;
+                }
+            }
+        }
+
+
+
+        /// <summary>
+        /// If you need your current code to be running on the MainThread, you can always call this method to check if its the MainThread or not...
+        /// </summary>
+        /// <returns>Returns TRUE if its the MainThread</returns>
+        public static bool CheckIfMainThread()
+        {
+            Init(); //Just to be sure....
+            return Thread.CurrentThread == mainThread;
+        }
+        #endregion
+
+        //--------------------------------------- MANAGE MAIN THREAD VALIDATION --------------------------------------
+        //--------------------------------------- MANAGE MAIN THREAD VALIDATION --------------------------------------
+			
+	}
+}
+﻿using System;
+using Frankfort.Threading;
+using UnityEngine;
+
+namespace Frankfort.Threading
+{
+    public delegate void MultithreadedWorkloadComplete<T>(T[] workLoad);
+    public delegate void MultithreadedWorkloadPackageComplete<T>(T[] workLoad, int firstIndex, int lastIndex);
+}
+
+
+
+
+namespace Frankfort.Threading.Internal
+{
+    public delegate void ThreadWorkloadExecutor<T>(T workload);
+    public delegate void ThreadWorkloadExecutorIndexed<T>(T workload, int workloadIndex);
+    public delegate void ThreadWorkloadExecutorArg<T>(T workload, object extraArgument);
+    public delegate void ThreadWorkloadExecutorArgIndexed<T>(T workload, int workloadIndex, object extraArgument);
+
+
+
+    /// <summary>
+    /// Helps making use of the IThreadWorkerObject-interface and helps you distribute the workload evenly to multiple-cores the easy way.
+    /// This class divides your workload into smaller pieces, feeds them to the ThreadPool.
+    /// </summary>
+    public static class MultithreadedWorkloadHelper
+	{
+
+
+        /// <summary>
+        /// Helps spreading the same repetetive workload over multiple threads/cores in an easy way.
+        /// </summary>
+        /// <typeparam name="D">Generic-Type of the delegate that will be executed and compute the workload</typeparam>
+        /// <typeparam name="T">Generic-Type of the object you want to be computed by the executor</typeparam>
+        /// <param name="executor">A (static) method that computes one workLoad-object at a time</param>
+        /// <param name="workLoad">An array with objects you want to get computed by the executor</param>
+        /// <param name="onComplete">Fired when all re-packaged workLoad-objects are finished computing</param>
+        /// <param name="onPackageComplete">Fires foreach finished re-packaged set of workLoad-object</param>
+        /// <param name="maxThreads"> Lets you choose how many threads will be run simultaneously by the threadpool. Default: -1 == number of cores minus one, to make sure the MainThread has at least one Core to run on. (quadcore == 1 Core Mainthread, 3 cores used by the ThreadPoolScheduler)</param>
+        /// <param name="scheduler">If Null, a new ThreadPoolScheduler will be instantiated.</param>
+        /// <param name="safeMode">Executes all the computations within try-catch events, logging it the message + stacktrace</param>
+        /// <returns>A ThreadPoolScheduler that handles all the repackaged workLoad-Objects =</returns>
+        public static ThreadPoolScheduler StartMultithreadedWorkloadExecution<D, T>(D executor, T[] workLoad, object extraArgument, MultithreadedWorkloadComplete<T> onComplete, MultithreadedWorkloadPackageComplete<T> onPackageComplete, int maxThreads = -1, ThreadPoolScheduler scheduler = null, bool safeMode = true)
+        {
+            if (scheduler == null)
+            {
+                scheduler = Loom.CreateThreadPoolScheduler();
+            }
+            else if (scheduler.isBusy)
+            {
+                Debug.LogError("Provided Scheduler stil busy!!!");
+            }
+
+            if (maxThreads <= 0)
+                maxThreads = Mathf.Max(SystemInfo.processorCount - 1, 1);
+
+            int packagesPerThread = 1;
+            if (maxThreads > 1) //If we are running in just one thread at a time, just use one, if more, for sake of better cpu-saturation, subdive into smaller packages per Core.
+                packagesPerThread = 2;
+
+            int packages = Mathf.Min(maxThreads * packagesPerThread, workLoad.Length);
+            int objectsPerPackage = (int)Mathf.Ceil((float)workLoad.Length / (float)packages);
+
+            ThreadWorkDistribution<T>[] workerPackages = new ThreadWorkDistribution<T>[packages];
+            Type delegateType = typeof(D);
+            //Debug.Log(delegateType.FullName);
+
+            int count = 0;
+            for (int i = 0; i < packages; i++)
+            {
+                int packagedSize = Mathf.Min(workLoad.Length - count, objectsPerPackage);
+                if (delegateType == typeof(ThreadWorkloadExecutor<T>))
+                {
+                    workerPackages[i] = new ThreadWorkDistribution<T>((executor as ThreadWorkloadExecutor<T>), workLoad, count, count + packagedSize);
+                }
+                else if (delegateType == typeof(ThreadWorkloadExecutorIndexed<T>))
+                {
+                    workerPackages[i] = new ThreadWorkDistribution<T>((executor as ThreadWorkloadExecutorIndexed<T>), workLoad, count, count + packagedSize);
+                }
+                else if (delegateType == typeof(ThreadWorkloadExecutorArg<T>))
+                {
+                    workerPackages[i] = new ThreadWorkDistribution<T>((executor as ThreadWorkloadExecutorArg<T>), workLoad, extraArgument, count, count + packagedSize);
+                }
+                else if (delegateType == typeof(ThreadWorkloadExecutorArgIndexed<T>))
+                {
+                    workerPackages[i] = new ThreadWorkDistribution<T>((executor as ThreadWorkloadExecutorArgIndexed<T>), workLoad, extraArgument, count, count + packagedSize);
+                }
+
+                workerPackages[i].ID = i;
+                count += objectsPerPackage;
+            }
+
+
+
+            //--------------- Store session data --------------------
+            ThreadWorkDistributionSession<T> sessionData = new ThreadWorkDistributionSession<T>();
+            sessionData.workLoad = workLoad;
+            sessionData.onComplete = onComplete;
+            sessionData.onPackageComplete = onPackageComplete;
+            sessionData.packages = workerPackages;
+            //--------------- Store session data --------------------
+			
+
+            scheduler.StartASyncThreads(workerPackages, sessionData.onCompleteBubble, sessionData.onPackageCompleteBubble, maxThreads, safeMode);
+            return scheduler;
+        }
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /// <summary>
+    /// Generic class to store temporary divideed Threadwork data for internal usage
+    /// </summary>
+    /// <typeparam name="T">The generic Type of the object being processed by the Executor </typeparam>
+    public class ThreadWorkDistributionSession<T>
+    {
+        public MultithreadedWorkloadComplete<T> onComplete;
+        public MultithreadedWorkloadPackageComplete<T> onPackageComplete;
+        public T[] workLoad;
+        public ThreadWorkDistribution<T>[] packages;
+
+
+        public void onCompleteBubble(IThreadWorkerObject[] finishedObjects)
+        {
+            if (onComplete != null)
+                onComplete(workLoad);
+        }
+        public void onPackageCompleteBubble(IThreadWorkerObject finishedObject)
+        {
+            if (onPackageComplete != null)
+            {
+                ThreadWorkDistribution<T> fCast = (ThreadWorkDistribution<T>)finishedObject;
+
+                if (fCast != null)
+                    onPackageComplete(fCast.workLoad, fCast.startIndex, fCast.endIndex - 1);
+            }
+        }
+    }
+
+
+
+    /// <summary>
+    /// Simple IThreadWorkerObject implementation that spreads the workload-objects for you. This saves you the efford to subdive your workload into multiple packages yourself.
+    /// </summary>
+    /// <typeparam name="T">Generic-Type of the object you want to be computed by the executor</typeparam>
+    public class ThreadWorkDistribution<T> : IThreadWorkerObject
+    {
+        public int ID;
+        public ThreadWorkloadExecutor<T> workloadExecutor;
+        public ThreadWorkloadExecutorIndexed<T> workloadExecutorIndexed;
+        public ThreadWorkloadExecutorArg<T> workloadExecutorArg;
+        public ThreadWorkloadExecutorArgIndexed<T> workloadExecutorArgIndexed;
+
+        public int startIndex;
+        public int endIndex;
+        public T[] workLoad;
+        public object extraArgument;
+        private bool _isAborted = false;
+
+
+        /// <summary>
+        /// ThreadWorkDistribion is a workload-packages containing a subdived segment of work based on the workload divided by the amount of packages
+        /// </summary>
+        /// <param name="staticWorkloadExecutor">A (static) method that computes one workLoad-object at a time</param>
+        /// <param name="workLoad">An array with objects you want to get computed by the executor</param>
+        public ThreadWorkDistribution(ThreadWorkloadExecutor<T> workloadExecutor, T[] workLoad, int startIndex, int endIndex)
+        {
+            this.workloadExecutor = workloadExecutor;
+            this.workLoad = workLoad;
+            this.startIndex = startIndex;
+            this.endIndex = endIndex;
+        }
+
+        /// <summary>
+        /// ThreadWorkDistribion is a workload-packages containing a subdived segment of work based on the workload divided by the amount of packages
+        /// </summary>
+        /// <param name="staticWorkloadExecutorIndexed">A (static) method that computes one workLoad-object at a time and provides the index of the array it origionally came from</param>
+        /// <param name="workLoad">An array with objects you want to get computed by the executor</param>
+        public ThreadWorkDistribution(ThreadWorkloadExecutorIndexed<T> workloadExecutorIndexed, T[] workLoad, int startIndex, int endIndex)
+        {
+            this.workloadExecutorIndexed = workloadExecutorIndexed;
+            this.workLoad = workLoad;
+            this.startIndex = startIndex;
+            this.endIndex = endIndex;
+        }
+
+
+        /// <summary>
+        /// ThreadWorkDistribion is a workload-packages containing a subdived segment of work based on the workload divided by the amount of packages
+        /// </summary>
+        /// <param name="staticWorkloadExecutorIndexed">A (static) method that computes one workLoad-object at a time and provides the index of the array it origionally came from</param>
+        /// <param name="workLoad">An array with objects you want to get computed by the executor</param>
+        /// <param name="extraArgument">An extra Argument will be passed to the Executor if present</param>
+        public ThreadWorkDistribution(ThreadWorkloadExecutorArg<T> workloadExecutorArg, T[] workLoad, object extraArgument, int startIndex, int endIndex)
+        {
+            this.workloadExecutorArg = workloadExecutorArg;
+            this.workLoad = workLoad;
+            this.startIndex = startIndex;
+            this.endIndex = endIndex;
+            this.extraArgument = extraArgument;
+        }
+
+        /// <summary>
+        /// ThreadWorkDistribion is a workload-packages containing a subdived segment of work based on the workload divided by the amount of packages
+        /// </summary>
+        /// <param name="staticWorkloadExecutorIndexed">A (static) method that computes one workLoad-object at a time and provides the index of the array it origionally came from</param>
+        /// <param name="workLoad">An array with objects you want to get computed by the executor</param>
+        /// <param name="extraArgument">An extra Argument will be passed to the Executor if present</param>
+        public ThreadWorkDistribution(ThreadWorkloadExecutorArgIndexed<T> workloadExecutorArgIndexed, T[] workLoad, object extraArgument, int startIndex, int endIndex)
+        {
+            this.workloadExecutorArgIndexed = workloadExecutorArgIndexed;
+            this.workLoad = workLoad;
+            this.startIndex = startIndex;
+            this.endIndex = endIndex;
+            this.extraArgument = extraArgument;
+        }
+
+
+
+
+
+        /// <summary>
+        /// IThreadWorkerObject implementation: This method computes all the work.
+        /// </summary>
+        public void ExecuteThreadedWork()
+        {
+            if (workLoad == null || workLoad.Length == 0)
+                return;
+
+            //Debug.Log("Execute ID: " + ID + ", startIndex: " + startIndex  + ", endIndex: " + endIndex);
+            if (workloadExecutor != null)
+            {
+                for (int i = startIndex; i < endIndex && !_isAborted; i++)
+                {
+                    UnityActivityWatchdog.SleepOrAbortIfUnityInactive();
+                    workloadExecutor(workLoad[i]);
+                }
+            }
+            else if (workloadExecutorIndexed != null)
+            {
+                for (int i = startIndex; i < endIndex && !_isAborted; i++)
+                {
+                    UnityActivityWatchdog.SleepOrAbortIfUnityInactive();
+                    workloadExecutorIndexed(workLoad[i], i);
+                }
+            }
+            else if (workloadExecutorArg != null)
+            {
+                for (int i = startIndex; i < endIndex && !_isAborted; i++)
+                {
+                    UnityActivityWatchdog.SleepOrAbortIfUnityInactive();
+                    workloadExecutorArg(workLoad[i], extraArgument);
+                }
+            }
+            else if (workloadExecutorArgIndexed != null)
+            {
+                for (int i = startIndex; i < endIndex && !_isAborted; i++)
+                {
+                    UnityActivityWatchdog.SleepOrAbortIfUnityInactive();
+                    workloadExecutorArgIndexed(workLoad[i], i, extraArgument);
+                }
+            }
+        }
+
+        public void AbortThreadedWork()
+        {
+            _isAborted = true;
+        }
+    }
+
+}
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using Frankfort.Threading;
+using UnityEngine;
+
+
+namespace Frankfort.Threading.Internal
+{
+
+    /// <summary>
+    /// The SingleThreadStarter is a safe/managed wrapper around the normal new Thread() & Thread.Start();
+    /// It also initiates all the helpers such as the MainThreadDispatcher, WaitForSeconds & WaitForSeconds commands.
+    /// </summary>
+	public static class SingleThreadStarter
+    {
+        
+        //--------------------------------------- SAFEMODE WRAPPERS --------------------------------------
+        //--------------------------------------- SAFEMODE WRAPPERS --------------------------------------
+        #region SAFEMODE WRAPPERS
+
+        /// <summary>
+        /// Internal temporary session data needed to fire a Singele-thread safely.
+        /// </summary>
+        private class SafeSingleThreadSession
+        {
+            private ThreadStart targetMethod;
+            private ParameterizedThreadStart paramTargetMethod;
+            
+            public SafeSingleThreadSession(ThreadStart targetMethod)
+            {
+                this.targetMethod = targetMethod;
+            }
+            public SafeSingleThreadSession(ParameterizedThreadStart targetMethod)
+            {
+                this.paramTargetMethod = targetMethod;
+            }
+
+
+
+            public void SafeExecte_ThreadStart()
+            {
+                try
+                {
+                    targetMethod();
+                }
+                catch (Exception e)
+                {
+                    Loom.DispatchToMainThread(() => Debug.LogError(e.Message + e.StackTrace + "\n\n"), true);
+                }
+            }
+
+            public void SafeExecte_ParamThreadStart(object argument)
+            {
+                try
+                {
+                    paramTargetMethod(argument);
+                }
+                catch (Exception e)
+                {
+                    Loom.DispatchToMainThread(() => Debug.LogError(e.Message + e.StackTrace + "\n\n"), true);
+                }
+            }
+        }
+
+        #endregion
+        //--------------------------------------- SAFEMODE WRAPPERS --------------------------------------
+        //--------------------------------------- SAFEMODE WRAPPERS --------------------------------------
+			
+
+
+
+
+
+
+        
+
+
+
+
+
+
+        //--------------------------------------- 2 START SINGLE THREAD OVERLOADS --------------------------------------
+        //--------------------------------------- 2 START SINGLE THREAD OVERLOADS --------------------------------------
+        #region 2 START SINGLE THREAD OVERLOADS
+        
+        
+        private static bool helperCreated;
+        private static List<Thread> startedThreads = new List<Thread>();
+
+
+
+        /// <summary>
+        /// Starts an method running on a new thread. The Thread dies when the method has stopped running.
+        /// You can now make use of the DispatchToMainThread-actions & WaitForNextFrame
+        /// </summary>
+        /// <param name="targetMethod">The method that will be executed by the thread</param>
+        /// <param name="priority">Thread priority</param>
+        /// <returns>Newly instantiated Thread</returns>
+        public static Thread StartSingleThread(ThreadStart targetMethod, System.Threading.ThreadPriority priority = System.Threading.ThreadPriority.Normal, bool safeMode = true)
+        {
+            Init();
+            MainThreadWatchdog.Init();
+            MainThreadDispatcher.Init();
+            UnityActivityWatchdog.Init();
+
+            Thread result = null;
+            if(safeMode)
+            {
+                SafeSingleThreadSession sessionData = new SafeSingleThreadSession(targetMethod);
+                result = new Thread(sessionData.SafeExecte_ThreadStart);
+            }
+            else
+            {
+                result = new Thread(targetMethod);
+            }
+
+            result.Priority = priority;
+            startedThreads.Add(result);
+            result.Start();
+            return result;
+        }
+
+
+
+        /// <summary>
+        /// Starts an method running on a new thread. The Thread dies when the method has stopped running.
+        /// You can now make use of the DispatchToMainThread-actions & WaitForNextFrame
+        /// </summary>
+        /// <param name="targetMethod">The method that will be executed by the thread</param>
+        /// <param name="argument">Object to pass to the targetMethod as soon as the Thread is started</param>
+        /// <param name="priority">Thread priority</param>
+        /// <returns>Newly instantiated Thread</returns>
+        public static Thread StartSingleThread(ParameterizedThreadStart targetMethod, object argument, System.Threading.ThreadPriority priority = System.Threading.ThreadPriority.Normal, bool safeMode = true)
+        {
+            Init();
+            MainThreadWatchdog.Init();
+            MainThreadDispatcher.Init();
+            UnityActivityWatchdog.Init();
+            
+            Thread result = null;
+            if (safeMode)
+            {
+                SafeSingleThreadSession sessionData = new SafeSingleThreadSession(targetMethod);
+                result = new Thread(sessionData.SafeExecte_ParamThreadStart);
+            }
+            else
+            {
+                result = new Thread(targetMethod);
+            }
+
+            result.Priority = priority;
+            startedThreads.Add(result);
+
+            result.Start(argument);
+            return result;
+        }
+
+        #endregion
+        //--------------------------------------- 2 START SINGLE THREAD OVERLOADS --------------------------------------
+        //--------------------------------------- 2 START SINGLE THREAD OVERLOADS --------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //--------------------------------------- INIT --------------------------------------
+        //--------------------------------------- INIT --------------------------------------
+        #region INIT
+
+        /// <summary>
+        /// Starts the Helper & validates the running Threads.
+        /// </summary>
+        private static void Init()
+        {
+            ValidateThreadStates();
+            if (!helperCreated)
+                CreateHelperGameObject();
+        }
+
+
+        private static void CreateHelperGameObject()
+        {
+            GameObject helperGO = new GameObject("SingleThreadHelper");
+            SingleThreadHelper helper = helperGO.AddComponent<SingleThreadHelper>();
+            helperGO.hideFlags = helper.hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
+            GameObject.DontDestroyOnLoad(helperGO);
+            helperCreated = true;
+        }
+        #endregion
+        //--------------------------------------- INIT --------------------------------------
+        //--------------------------------------- INIT --------------------------------------
+			
+
+
+
+
+
+
+
+
+
+
+
+        //--------------------------------------- MANAGE THREADS --------------------------------------
+        //--------------------------------------- MANAGE THREADS --------------------------------------
+        #region MANAGE THREADS
+
+        /// <summary>
+        /// Aborts all running threads.
+        /// </summary>
+        public static void AbortRunningThreads()
+        {
+            ValidateThreadStates();
+            Debug.Log("Abort running Threads: " + startedThreads.Count);
+            foreach (Thread thread in startedThreads)
+			{
+				thread.Interrupt();
+                thread.Join(100);
+			}
+			startedThreads.Clear();
+        }
+
+        /// <summary>
+        /// Thread-state validation.
+        /// </summary>
+        private static void ValidateThreadStates()
+        {
+            int i = startedThreads.Count;
+            while (--i > -1)
+            {
+                Thread thread = startedThreads[i];
+                if( thread.ThreadState == ThreadState.Aborted ||
+                    thread.ThreadState == ThreadState.AbortRequested ||
+                    thread.ThreadState == ThreadState.Stopped ||
+                    thread.ThreadState == ThreadState.StopRequested ||
+                    thread.ThreadState == ThreadState.Unstarted )
+                {
+                    startedThreads.RemoveAt(i);
+                }
+            }
+        }
+
+        #endregion
+        //--------------------------------------- MANAGE THREADS --------------------------------------
+        //--------------------------------------- MANAGE THREADS --------------------------------------
+	}
+
+
+
+
+
+
+
+
+
+
+
+    //--------------------------------------- SINGLE THREAD HELPER COMPONENT --------------------------------------
+    //--------------------------------------- SINGLE THREAD HELPER COMPONENT --------------------------------------
+    #region SINGLE THREAD HELPER COMPONENT
+
+    public class SingleThreadHelper : MonoBehaviour
+    {	
+        private void OnApplicationQuit()
+        {
+            SingleThreadStarter.AbortRunningThreads();
+        }
+    }
+
+    #endregion
+    //--------------------------------------- SINGLE THREAD HELPER COMPONENT --------------------------------------
+    //--------------------------------------- SINGLE THREAD HELPER COMPONENT --------------------------------------
+			
+}
+﻿using System;
+using System.Threading;
+
+namespace Frankfort.Threading.Internal
+{
+    public class ThreadDispatchAction
+    {
+        public bool executed = false;
+        public object dispatchExecutionResult = null;
+
+        private ThreadDispatchDelegate          dispatchCallClean;
+        private ThreadDispatchDelegateArg       dispatchCallArg;
+        private ThreadDispatchDelegateArgReturn dispatchCallArgReturn;
+        private ThreadDispatchDelegateReturn    dispatchCallReturn;
+        
+        private object dispatchArgParam;
+        private bool safeMode;
+        
+
+        public ThreadDispatchAction()
+        {
+            //Do nothing...
+        }
+
+
+
+        //--------------------------------------- 4 DIFFERENT OVERLOADS --------------------------------------
+        //--------------------------------------- 4 DIFFERENT OVERLOADS --------------------------------------
+        #region 4 DIFFERENT OVERLOADS
+
+        public void Init(ThreadDispatchDelegate dispatchCall, bool waitForExecution, bool safeMode)
+        {
+            this.safeMode = safeMode;
+            this.dispatchCallClean = dispatchCall;
+            ValidateExecutionOnInit(waitForExecution);
+        }
+
+        public void Init(ThreadDispatchDelegateArg dispatchCall, object dispatchArgumentParameter, bool waitForExecution, bool safeMode)
+        {
+            this.safeMode = safeMode;
+            this.dispatchCallArg = dispatchCall;
+            this.dispatchArgParam = dispatchArgumentParameter;
+            ValidateExecutionOnInit(waitForExecution);
+        }
+
+        public void Init(ThreadDispatchDelegateArgReturn dispatchCall, object dispatchArgumentParameter, bool safeMode)
+        {
+            this.safeMode = safeMode;
+            this.dispatchCallArgReturn = dispatchCall;
+            this.dispatchArgParam = dispatchArgumentParameter;
+            ValidateExecutionOnInit(true); //Forced to wait, the return-result should always be available after execution
+        }
+
+        public void Init(ThreadDispatchDelegateReturn dispatchCall, bool safeMode)
+        {
+            this.safeMode = safeMode;
+            this.dispatchCallReturn = dispatchCall;
+            ValidateExecutionOnInit(true); //Forced to wait, the return-result should always be available after execution
+        } 
+        #endregion
+        //--------------------------------------- 4 DIFFERENT OVERLOADS --------------------------------------
+        //--------------------------------------- 4 DIFFERENT OVERLOADS --------------------------------------
+			
+
+
+
+
+
+        private void ValidateExecutionOnInit(bool waitForExecution)
+        {
+            if (waitForExecution)
+            {
+                if (!MainThreadWatchdog.CheckIfMainThread())
+                {
+                    while (!executed && Loom.CheckUnityActive())
+                        Thread.Sleep(5);
+                }
+                else
+                {
+                    ExecuteDispatch();
+                }
+            }
+        }
+
+        public void ExecuteDispatch()
+        {
+            if (safeMode)
+            {
+                try
+                {
+                    if (dispatchCallClean != null)
+                    {
+                        dispatchCallClean();
+                    }
+                    else if (dispatchCallArg != null)
+                    {
+                        dispatchCallArg(dispatchArgParam);
+                    }
+                    else if (dispatchCallArgReturn != null)
+                    {
+                        dispatchExecutionResult = dispatchCallArgReturn(dispatchArgParam);
+                    }
+                    else if (dispatchCallReturn != null)
+                    {
+                        dispatchExecutionResult = dispatchCallReturn();
+                    }
+                }
+                catch (Exception e)
+                {
+                    //At this point, we should always be in the MainThread anyways...
+                    UnityEngine.Debug.Log(e.Message + e.StackTrace);
+                }
+            }
+            else
+            {
+                if (dispatchCallClean != null)
+                {
+                    dispatchCallClean();
+                }
+                else if (dispatchCallArg != null)
+                {
+                    dispatchCallArg(dispatchArgParam);
+                }
+                else if (dispatchCallArgReturn != null)
+                {
+                    dispatchExecutionResult = dispatchCallArgReturn(dispatchArgParam);
+                }
+                else if (dispatchCallReturn != null)
+                {
+                    dispatchExecutionResult = dispatchCallReturn();
+                }
+            }
+
+            executed = true;
+        }
+    }
+}
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using UnityEngine;
+
+
+
+namespace Frankfort.Threading.Internal
+{
+    public class ThreadWorkStatePackage
+    {
+        public bool safeMode = true;
+        //public bool safeModeErrorFound;
+        //public List<string> safeModeErrorLog = new List<string>();
+        
+        public bool started;
+        public bool running;
+        public bool finishedWorking;
+        public bool eventFired;
+
+        public IThreadWorkerObject workerObject;
+        public AutoResetEvent waitHandle;
+
+
+        public void ExecuteThreadWork(object obj)
+        {
+            running = true;
+
+            if (workerObject == null || waitHandle == null)
+                return;
+
+            //Thread.CurrentThread.Priority = System.Threading.ThreadPriority.AboveNormal;
+
+            if (safeMode)
+            {
+                try
+                {
+                    workerObject.ExecuteThreadedWork();
+                }
+                catch (Exception e)
+                {
+                    //safeModeErrorFound = true;
+                    //safeModeErrorLog.Add(e.Message + e.StackTrace);
+                    Loom.DispatchToMainThread(() => Debug.LogError(e.Message + e.StackTrace + "\n\n"), true);
+                }
+            }
+            else
+            {
+                workerObject.ExecuteThreadedWork();
+            }
+
+            running = false;
+            finishedWorking = true;
+            waitHandle.Set(); //Fire back to the MainThread!
+        }
+    }
+
+
+
+
+    /// <summary>
+    /// Used as packaged set of variables to be fed to the WorkProvider-Thread.
+    /// </summary>
+    public class ASyncThreadWorkData
+    {
+        public ThreadWorkStatePackage[] workerPackages;
+        public int maxWorkingThreads;
+
+        public ASyncThreadWorkData(IThreadWorkerObject[] workerObjects, bool safeMode, int maxWorkingThreads = -1)
+        {
+            if (workerObjects == null)
+                return;
+
+            workerPackages = new ThreadWorkStatePackage[workerObjects.Length];
+            
+            int i = workerObjects.Length;
+            while (--i > -1)
+            {
+                ThreadWorkStatePackage package = new ThreadWorkStatePackage();
+                package.waitHandle = new AutoResetEvent(false);
+                package.workerObject = workerObjects[i];
+                package.safeMode = safeMode;
+                workerPackages[i] = package;
+            }
+
+            if (maxWorkingThreads <= 0)
+            {
+                maxWorkingThreads = Mathf.Max(SystemInfo.processorCount - 1, 1);
+            }
+            else
+            {
+                this.maxWorkingThreads = maxWorkingThreads;
+            }
+        }
+
+
+        public void Dispose()
+        {
+            if (workerPackages != null)
+            {
+                foreach (ThreadWorkStatePackage package in workerPackages)
+                {
+                    if (package.waitHandle != null)
+                        package.waitHandle.Close();
+
+                    package.waitHandle = null;
+                    package.workerObject = null;
+                }
+            }
+            workerPackages = null;
+        }
+    }
+}﻿using System;
+using System.Threading;
+using UnityEngine;
+
+namespace Frankfort.Threading.Internal
+{
+    public class ThreadWaitForSeconds
+    {
+        public ThreadWaitForSeconds(float seconds)
+        {
+            if (MainThreadWatchdog.CheckIfMainThread())
+            {
+                Debug.Log("Its not allowed to put the MainThread to sleep!");
+                return;
+            }
+			
+			if(!UnityActivityWatchdog.CheckUnityRunning())
+				return;
+
+            Thread.Sleep((int)Mathf.Max( 1, Mathf.Round(seconds * 1000f)));
+            while (!UnityActivityWatchdog.CheckUnityActive())
+                Thread.Sleep(5);
+        }
+    }
+
+
+    public class ThreadWaitForNextFrame
+    {
+        public ThreadWaitForNextFrame(int waitFrames = 1, int sleepTime = 5)
+        {
+            if (waitFrames > 0)
+            {
+                if (MainThreadWatchdog.CheckIfMainThread())
+                {
+                    Debug.Log("Its not allowed to put the MainThread to sleep!");
+                    return;
+                }
+
+                int startFrame = MainThreadDispatcher.currentFrame;
+
+				if(!UnityActivityWatchdog.CheckUnityRunning())
+					return;
+
+                Thread.Sleep(sleepTime);
+				while (!UnityActivityWatchdog.CheckUnityActive() || startFrame + waitFrames >= MainThreadDispatcher.currentFrame)
+                    Thread.Sleep(sleepTime);
+            }
+        }
+    }
+}
+﻿using System;
+using UnityEngine;
+using System.Threading;
+
+
+namespace Frankfort.Threading.Internal
+{
+    public class UnityActivityWatchdog : MonoBehaviour
+    {
+        private static bool helperCreated = false;
+        private static bool unityRunning = true;
+        private static bool unityPaused = false;
+        private static bool unityFocused = true;
+        private static bool combinedActive = true;
+
+
+
+
+        //--------------------------------------- CHECK UNTIY ACTIVE --------------------------------------
+        //--------------------------------------- CHECK UNTIY ACTIVE --------------------------------------
+        #region CHECK UNTIY ACTIVE
+		public static bool CheckUnityRunning()
+		{
+			return unityRunning;
+		}
+
+
+        /// <summary>
+        /// A easy way to check if Unity is still running, focused and not pauzed.
+        /// This comes in handy if threads keep running heavy workloads on seperate threads while IOS for example tries to puch the Application to the background.
+        /// If you are executing a giant routine on a seperate thread that takes several seconds per cycle, you might want to check regularly if unity is still active by using this check.
+        /// </summary>
+        /// <returns>Returns TRUE if Unity is still running, not pauzed and has focus. </returns>
+        public static bool CheckUnityActive()
+        {
+            Init();
+            return combinedActive;
+        }
+
+
+
+        /// <summary>
+        /// !IMPORTANT! This method should be called regularly within routines that take more then half a second to complete, to make sure IOS for example is able to force an application to sleep when it looses focus or gets puched to the background.
+        /// This is a very light-weight check, internally it only needs to check two static booleans once everything is Initialized and running.
+        /// You can use this without causing any serious overhead.
+        /// Motivation: Sins Threads cannot be put asleep from the outside, it needs the be managed from within the thread itself, thats why this method was build.
+        /// 
+        /// Example:
+        /// for(int i = 0; i < 999999999; i++)
+        /// {
+        ///     Loom.SleepOrAbortIfUnityInactive(); //Prevents IOS for example of killing this app because the threads won't sleep once your unity-app is puched to the background.
+        ///     //Do something heavy that will cause this routine to run more then 0.5 seconds.
+        /// }
+        /// </summary>
+        public static void SleepOrAbortIfUnityInactive()
+        {
+            Init();
+            while (!combinedActive && !MainThreadWatchdog.CheckIfMainThread())
+            {
+                if (unityRunning)
+                {
+                    //Debug.Log("UNITY INACTIVE: About to sleep for 100 ms: " + Thread.CurrentThread.ManagedThreadId);
+                    Thread.Sleep(100);
+                }
+                else
+                {
+                    //Debug.Log("UNITY NOT RUNNING: About to abort: " + Thread.CurrentThread.ManagedThreadId);
+                    Thread.CurrentThread.Interrupt();
+					Thread.CurrentThread.Join();
+                }
+            }
+        }
+
+        #endregion
+        //--------------------------------------- CHECK UNTIY ACTIVE --------------------------------------
+        //--------------------------------------- CHECK UNTIY ACTIVE --------------------------------------
+		
+	
+
+
+
+
+
+
+
+
+
+        //--------------------------------------- INIT --------------------------------------
+        //--------------------------------------- INIT --------------------------------------
+        #region INIT
+
+        /// <summary>
+        /// Starts the Helper & validates the running Threads.
+        /// </summary>
+        public static void Init()
+        {
+            if (!helperCreated)
+                CreateHelperGameObject();
+        }
+
+
+        private static void CreateHelperGameObject()
+        {
+            GameObject helperGO = new GameObject("UnityActivityHelper");
+            UnityActivityWatchdog helper = helperGO.AddComponent<UnityActivityWatchdog>();
+            helperGO.hideFlags = helper.hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
+            GameObject.DontDestroyOnLoad(helperGO);
+            helperCreated = true;
+        }
+
+        #endregion
+        //--------------------------------------- INIT --------------------------------------
+        //--------------------------------------- INIT --------------------------------------
+
+
+
+
+
+
+
+
+
+
+        //--------------------------------------- LISTEN TO UNITY CALLS --------------------------------------
+        //--------------------------------------- LISTEN TO UNITY CALLS --------------------------------------
+        #region LISTEN TO UNITY CALLS
+
+        private void OnApplicationQuit()
+        {
+            unityRunning = false;
+            UpdateStatus();
+            Debug.Log("UnityActivityWatchdog: OnApplicationQuit");
+        }
+        private void OnApplicationPause(bool pause)
+        {
+            unityPaused = pause;
+            UpdateStatus();
+            Debug.Log("UnityActivityWatchdog: OnApplicationPauze [" + pause + "]");
+        }
+        private void OnApplicationFocus(bool focus)
+        {
+            unityFocused = focus;
+            UpdateStatus();
+            Debug.Log("UnityActivityWatchdog: OnApplicationFocus [" + focus + "]");
+        }
+
+        private static void UpdateStatus()
+        {
+            #if UNITY_IPHONE
+                combinedActive = unityRunning && unityFocused && !unityPaused;
+            #elif UNITY_ANDROID
+                combinedActive = unityRunning && unityFocused && !unityPaused;
+            #else
+                combinedActive = unityRunning && !unityPaused;
+            #endif
+        }
+        #endregion
+        //--------------------------------------- LISTEN TO UNITY CALLS --------------------------------------
+        //--------------------------------------- LISTEN TO UNITY CALLS --------------------------------------
+			
+
+
+
+
+
+
+   }				
+}{
+    "dir": "H:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Multithreading@v1.0.0",
+    "fileBytesLength": 102082,
+    "fileCount": 12,
+    "fileIndexList": [
+        {
+            "fileName": "kitPackageConfig.json",
+            "relativeFilePath": "kitPackageConfig.json",
+            "fileBytesLength": 389,
+            "filePosition": 0
+        },
+        {
+            "fileName": "IThreadWorkerObject.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/IThreadWorkerObject.cs",
+            "fileBytesLength": 2272,
+            "filePosition": 389
+        },
+        {
+            "fileName": "Loom.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Loom.cs",
+            "fileBytesLength": 27158,
+            "filePosition": 2661
+        },
+        {
+            "fileName": "ThreadPoolScheduler.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/ThreadPoolScheduler.cs",
+            "fileBytesLength": 18300,
+            "filePosition": 29819
+        },
+        {
+            "fileName": "MainThreadDispatcher.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal/MainThreadDispatcher.cs",
+            "fileBytesLength": 12932,
+            "filePosition": 48119
+        },
+        {
+            "fileName": "MainThreadWatchdog.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal/MainThreadWatchdog.cs",
+            "fileBytesLength": 2160,
+            "filePosition": 61051
+        },
+        {
+            "fileName": "MultithreadedWorkloadHelper.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal/MultithreadedWorkloadHelper.cs",
+            "fileBytesLength": 13453,
+            "filePosition": 63211
+        },
+        {
+            "fileName": "SingleThreadStarter.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal/SingleThreadStarter.cs",
+            "fileBytesLength": 9540,
+            "filePosition": 76664
+        },
+        {
+            "fileName": "ThreadDispatchAction.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal/ThreadDispatchAction.cs",
+            "fileBytesLength": 4876,
+            "filePosition": 86204
+        },
+        {
+            "fileName": "ThreadPoolSchedulerWorkerObjects.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal/ThreadPoolSchedulerWorkerObjects.cs",
+            "fileBytesLength": 3315,
+            "filePosition": 91080
+        },
+        {
+            "fileName": "ThreadWaitCommands.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal/ThreadWaitCommands.cs",
+            "fileBytesLength": 1455,
+            "filePosition": 94395
+        },
+        {
+            "fileName": "UnityActivityWatchdog.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal/UnityActivityWatchdog.cs",
+            "fileBytesLength": 6232,
+            "filePosition": 95850
+        }
+    ]
+}     M  kkp@v1.0.0

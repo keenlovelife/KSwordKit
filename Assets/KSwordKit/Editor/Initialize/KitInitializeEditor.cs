@@ -56,9 +56,10 @@ namespace KSwordKit.Editor
                 }
             }
 
-            EditorApplication.projectChanged += OnProjectChanged;
 
+            EditorApplication.projectChanged += OnProjectChanged;
             EditorApplication.update += EditorApplication_update;
+
             DateTime = System.DateTime.Now;
 
         }

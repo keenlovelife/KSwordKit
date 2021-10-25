@@ -21,7 +21,7 @@ namespace KSwordKit.Editor.PackageManager
         {
             windowTitle = KitConst.KitName + "：" + subtitle;
             window = GetWindow<KitPackageManagerEditorMakeNewWindow>(true, windowTitle);
-            window.minSize = new Vector2(600, 500);
+            window.minSize = new Vector2(600, 800);
             window.blod = new GUIStyle();
             window.Show();
         }
@@ -92,6 +92,8 @@ namespace KSwordKit.Editor.PackageManager
         int space = 60;
         bool foldout = false;
         bool exportJsonFile = true;
+        bool exportConfigFile = true;
+
         private void OnGUI()
         {
             if(window == null)
@@ -312,25 +314,26 @@ namespace KSwordKit.Editor.PackageManager
                 blod.fontSize = 11;
                 EditorGUILayout.LabelField("可用包列表 -> ", blod, GUILayout.Width(80));
                 scorllPos_dependencies = EditorGUILayout.BeginScrollView(scorllPos_dependencies, false, false, GUILayout.Height(120));
-                foreach (var packageConfig in KitInitializeEditor.KitOriginConfig.PackageList)
-                {
-                    GUILayout.Button("", GUILayout.Height(1));
-                    GUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField(packageConfig.ID, blod);
-                    var dslist = new List<string>();
-                    dslist.AddRange(ds);
-                    if (dslist.Contains(packageConfig.ID))
-                        GUI.enabled = false;
-                    if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
+                if (KitInitializeEditor.KitOriginConfig != null && KitInitializeEditor.KitOriginConfig.PackageList != null)
+                    foreach (var packageConfig in KitInitializeEditor.KitOriginConfig.PackageList)
                     {
-                        if (Dependencies == "以';'号分割依赖")
-                            Dependencies = packageConfig.ID + ";";
-                        else
-                            Dependencies += "\n" + packageConfig.ID + ";";
+                        GUILayout.Button("", GUILayout.Height(1));
+                        GUILayout.BeginHorizontal();
+                        EditorGUILayout.LabelField(packageConfig.ID, blod);
+                        var dslist = new List<string>();
+                        dslist.AddRange(ds);
+                        if (dslist.Contains(packageConfig.ID))
+                            GUI.enabled = false;
+                        if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
+                        {
+                            if (Dependencies == "以';'号分割依赖")
+                                Dependencies = packageConfig.ID + ";";
+                            else
+                                Dependencies += "\n" + packageConfig.ID + ";";
+                        }
+                        GUI.enabled = true;
+                        GUILayout.EndHorizontal();
                     }
-                    GUI.enabled = true;
-                    GUILayout.EndHorizontal();
-                }
                 GUILayout.Button("", GUILayout.Height(1));
                 EditorGUILayout.EndScrollView();
                 GUILayout.EndHorizontal();
@@ -423,6 +426,7 @@ namespace KSwordKit.Editor.PackageManager
                     saveFile();
                 }
                 exportJsonFile = EditorGUILayout.Toggle("同时导出json文件", exportJsonFile);
+                exportConfigFile = EditorGUILayout.Toggle("同时导出配置文件", exportConfigFile);
 
             }
 
@@ -446,6 +450,16 @@ namespace KSwordKit.Editor.PackageManager
                     if (System.IO.File.Exists(configPath))
                         System.IO.File.Delete(configPath);
                     System.IO.File.WriteAllText(configPath, json);
+                    if (exportConfigFile)
+                    {
+                        var outdir = System.IO.Path.GetDirectoryName(savepath);
+                        if (!System.IO.Directory.Exists(outdir))
+                            System.IO.Directory.CreateDirectory(outdir);
+                        configPath = System.IO.Path.Combine(outdir, newConfig.ID + "."  + KitConst.KitPackageConfigFilename);
+                        if (System.IO.File.Exists(configPath))
+                            System.IO.File.Delete(configPath);
+                        System.IO.File.WriteAllText(configPath, json);
+                    }
 
                     KitPacker.Pack(packageDir, savepath, exportJsonFile , (filename, progress, done, error) =>
                     {
