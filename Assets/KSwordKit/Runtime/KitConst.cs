@@ -49,7 +49,7 @@ namespace KSwordKit
         /// <summary>
         /// KSwordKit检查更新地址
         /// </summary>
-        public const string KitCheckForUpdates = "https://raw.githubusercontent.com/keenlovelife/KSwordKit/master/.KitConfig.json";
+        public const string KitCheckForUpdates = "https://raw.githubusercontent.com/keenlovelife/KSwordKit/kkp/.KitConfig.json";
         /// <summary>
         /// KSwordKit框架更新时使用的URL前缀
         /// </summary>
