@@ -37,11 +37,14 @@ namespace KSwordKit.Editor
                     {
                         if(config == null)
                             config = Resources.Load<KSwordKit.KSwordKitConfig>(configName);
-                        config.KitInstallationPath = KitInstallationPath;
-                        config.KitVersion = KitVersion;
-                        EditorUtility.SetDirty(config);
-                        AssetDatabase.SaveAssets();
-                        AssetDatabase.Refresh();
+                        if(config != null)
+                        {
+                            config.KitInstallationPath = KitInstallationPath;
+                            config.KitVersion = KitVersion;
+                            EditorUtility.SetDirty(config);
+                            AssetDatabase.SaveAssets();
+                            AssetDatabase.Refresh();
+                        }
                     }
                     else
                     {
