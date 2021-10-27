@@ -91,7 +91,15 @@ namespace KSwordKit.Editor
                 if (checkWWW.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
                 {
                     Debug.Log(KitConst.KitName + ": 请求结果：" + checkWWW.downloadHandler.text);
-                    originConfig = JsonUtility.FromJson<PackageManager.KitOriginConfig>(checkWWW.downloadHandler.text);
+                    var _originConfig = JsonUtility.FromJson<PackageManager.KitOriginConfig>(checkWWW.downloadHandler.text);
+                    if (originConfig == null)
+                        originConfig = _originConfig;
+                    else
+                    {
+                        originConfig.Version = _originConfig.Version;
+                        originConfig.PackageCount = _originConfig.PackageCount;
+                        originConfig.PackageList = _originConfig.PackageList;
+                    }
                     if (originConfig.PackageCount > 0 && originConfig.PackageList != null)
                         Rqquest_packages();
 
@@ -114,44 +122,61 @@ namespace KSwordKit.Editor
             foreach (var id in originConfig.PackageList)
             {
                 var ID = id;
-                PackageManager.KitOriginPackageConfig opconfig = null;
-                if (originConfig.OriginPackageConfigList == null) originConfig.OriginPackageConfigList = new List<PackageManager.KitOriginPackageConfig>();
-                foreach (var _config in originConfig.OriginPackageConfigList)
-                    if (_config.ID == ID)
+                KitToolEditor.WaitNextFrame(() => {
+                    PackageManager.KitOriginPackageConfig opconfig = null;
+                    if (originConfig.OriginPackageConfigList == null) originConfig.OriginPackageConfigList = new List<PackageManager.KitOriginPackageConfig>();
+                    foreach (var _config in originConfig.OriginPackageConfigList)
                     {
-                        opconfig = _config;
-                        break;
+                        if (_config.ID == ID)
+                        {
+                            opconfig = _config;
+                            break;
+                        }
                     }
-                var url = KitConst.KitOriginPackagesURL + "/" + URL(ID) + ".kitPackageConfig.json";
-                var kkpurl = KitConst.KitOriginPackagesURL + "/" + URL(ID) + ".kkp";
-                if (opconfig == null)
-                {
-                    opconfig = new PackageManager.KitOriginPackageConfig();
-                    originConfig.OriginPackageConfigList.Add(opconfig);
-                }
-                opconfig.ID = ID;
-                opconfig.configurl = url;
-                opconfig.kkpurl = kkpurl;
-                var webq = new KitToolEditor.WebRequest();
-                webq.www = UnityEngine.Networking.UnityWebRequest.Get(url);
-                webq.ResultAction = (uwq) =>
-                {
-                    if (uwq.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
+                    if (opconfig == null)
                     {
-                        Debug.Log("下载：" + ID + " 成功！\n" + uwq.downloadHandler.text);
-                        foreach (var config in originConfig.OriginPackageConfigList)
-                            if (config.ID == ID)
+                        opconfig = new PackageManager.KitOriginPackageConfig();
+                        originConfig.OriginPackageConfigList.Add(opconfig);
+                    }
+                    opconfig.ID = ID;
+                    if (string.IsNullOrEmpty(opconfig.configurl))
+                        opconfig.configurl = KitConst.KitOriginPackagesURL + "/" + URL(ID) + ".kitPackageConfig.json";
+                    if (string.IsNullOrEmpty(opconfig.kkpurl))
+                        opconfig.kkpurl = KitConst.KitOriginPackagesURL + "/" + URL(ID) + ".kkp";
+                    if (string.IsNullOrEmpty(opconfig.configfilepath))
+                        opconfig.configfilepath = KitConst.KitPackagesRootDirectory + "/" + ID + ".kitPackageConfig.json";
+                    if (System.IO.File.Exists(opconfig.configfilepath))
+                        opconfig.KitPackageConfig = JsonUtility.FromJson<PackageManager.KitPackageConfig>(System.IO.File.ReadAllText(opconfig.configfilepath, System.Text.Encoding.UTF8));
+
+                    var webq = new KitToolEditor.WebRequest();
+                    webq.www = UnityEngine.Networking.UnityWebRequest.Get(opconfig.configurl);
+                    webq.ResultAction = (uwq) =>
+                    {
+                        if (uwq.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
+                        {
+                            Debug.Log("获取：" + ID + " 配置文件成功！\n" + uwq.downloadHandler.text);
+                            foreach (var config in originConfig.OriginPackageConfigList)
                             {
-                                config.KitPackageConfig = JsonUtility.FromJson<PackageManager.KitPackageConfig>(uwq.downloadHandler.text);
-                                break;
+                                if (config.ID == ID)
+                                {
+                                    config.KitPackageConfig = JsonUtility.FromJson<PackageManager.KitPackageConfig>(uwq.downloadHandler.text);
+                                    if (System.IO.File.Exists(opconfig.configfilepath))
+                                        System.IO.File.Delete(opconfig.configfilepath);
+                                    if (!System.IO.Directory.Exists(KitConst.KitPackagesRootDirectory))
+                                        System.IO.Directory.CreateDirectory(KitConst.KitPackagesRootDirectory);
+                                    System.IO.File.WriteAllText(opconfig.configfilepath, uwq.downloadHandler.text);
+                                    break;
+                                }
                             }
-                    }
-                    else
-                    {
-                        Debug.LogError("下载：" + ID + " 失败！" + uwq.error);
-                    }
-                };
-                KitToolEditor.AddWebRequest(webq);
+                        }
+                        else
+                        {
+                            Debug.LogError("获取：" + ID + " 配置文件失败！" + uwq.error);
+                        }
+                    };
+                    KitToolEditor.AddWebRequest(webq);
+                });
+
             }
         }
         public static void ShowUpdateKitDialog()

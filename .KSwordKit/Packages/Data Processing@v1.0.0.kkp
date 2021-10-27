@@ -1,3142 +1,0 @@
-{
-    "ID": "Data Processing@v1.0.0",
-    "Name": "Data Processing",
-    "Version": "v1.0.0",
-    "Author": "ks",
-    "Contact": "ks@keenlove.com",
-    "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-10-25 15:16:36",
-    "Description": "Êï∞ÊçÆÂ§ÑÁêÜÂ∫ìÔºåÊèê‰æõÂ§öÁßçjson„ÄÅxmlÁ≠âÂ§öÁßçÊï∞ÊçÆÊ†ºÂºèËß£Êûêapi„ÄÇ",
-    "Dependencies": [],
-    "Tags": [
-        "json",
-        "xml",
-        "Êï∞ÊçÆÂ§ÑÁêÜ"
-    ],
-    "FileSettings": []
-}%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!29 &1
-OcclusionCullingSettings:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_OcclusionBakeSettings:
-    smallestOccluder: 5
-    smallestHole: 0.25
-    backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
---- !u!104 &2
-RenderSettings:
-  m_ObjectHideFlags: 0
-  serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
-  m_FogDensity: 0.01
-  m_LinearFogStart: 0
-  m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
-  m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
-  m_HaloStrength: 0.5
-  m_FlareStrength: 1
-  m_FlareFadeSpeed: 3
-  m_HaloTexture: {fileID: 0}
-  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
-  m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
-  m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
-  m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
-  m_UseRadianceAmbientProbe: 0
---- !u!157 &3
-LightmapSettings:
-  m_ObjectHideFlags: 0
-  serializedVersion: 11
-  m_GIWorkflowMode: 1
-  m_GISettings:
-    serializedVersion: 2
-    m_BounceScale: 1
-    m_IndirectOutputScale: 1
-    m_AlbedoBoost: 1
-    m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 1
-    m_EnableRealtimeLightmaps: 0
-  m_LightmapEditorSettings:
-    serializedVersion: 12
-    m_Resolution: 2
-    m_BakeResolution: 40
-    m_AtlasSize: 1024
-    m_AO: 0
-    m_AOMaxDistance: 1
-    m_CompAOExponent: 1
-    m_CompAOExponentDirect: 0
-    m_ExtractAmbientOcclusion: 0
-    m_Padding: 2
-    m_LightmapParameters: {fileID: 0}
-    m_LightmapsBakeMode: 1
-    m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
-    m_ReflectionCompression: 2
-    m_MixedBakeMode: 2
-    m_BakeBackend: 1
-    m_PVRSampling: 1
-    m_PVRDirectSampleCount: 32
-    m_PVRSampleCount: 512
-    m_PVRBounces: 2
-    m_PVREnvironmentSampleCount: 256
-    m_PVREnvironmentReferencePointCount: 2048
-    m_PVRFilteringMode: 1
-    m_PVRDenoiserTypeDirect: 1
-    m_PVRDenoiserTypeIndirect: 1
-    m_PVRDenoiserTypeAO: 1
-    m_PVRFilterTypeDirect: 0
-    m_PVRFilterTypeIndirect: 0
-    m_PVRFilterTypeAO: 0
-    m_PVREnvironmentMIS: 1
-    m_PVRCulling: 1
-    m_PVRFilteringGaussRadiusDirect: 1
-    m_PVRFilteringGaussRadiusIndirect: 5
-    m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
-    m_PVRFilteringAtrousPositionSigmaIndirect: 2
-    m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ExportTrainingData: 0
-    m_TrainingDataDestination: TrainingData
-    m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
---- !u!196 &4
-NavMeshSettings:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_BuildSettings:
-    serializedVersion: 2
-    agentTypeID: 0
-    agentRadius: 0.5
-    agentHeight: 2
-    agentSlope: 45
-    agentClimb: 0.4
-    ledgeDropHeight: 0
-    maxJumpAcrossDistance: 0
-    minRegionArea: 2
-    manualCellSize: 0
-    cellSize: 0.16666667
-    manualTileSize: 0
-    tileSize: 256
-    accuratePlacement: 0
-    debug:
-      m_Flags: 0
-  m_NavMeshData: {fileID: 0}
---- !u!1 &1012991748
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1012991750}
-  - component: {fileID: 1012991749}
-  m_Layer: 0
-  m_Name: Directional Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &1012991749
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1012991748}
-  m_Enabled: 1
-  serializedVersion: 10
-  m_Type: 1
-  m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &1012991750
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1012991748}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1558489338
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1558489341}
-  - component: {fileID: 1558489340}
-  - component: {fileID: 1558489339}
-  - component: {fileID: 1558489342}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &1558489339
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1558489338}
-  m_Enabled: 1
---- !u!20 &1558489340
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1558489338}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &1558489341
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1558489338}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1558489342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1558489338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49766eaf85a4a0b489fb26adc0e0c256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-Ôªøusing LitJson;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.Http;
-using UnityEngine;
-
-public class Person
-{
-    public string Name { get; set; }
-    public int Age { get; set; }
-    public DateTime Birthdaty { get; set; }
-}
-
-
-public class LitJsonTest : MonoBehaviour
-{
-
-    void Start()
-    {
-        PersonToJson();
-        JsonToPerson();
-    }
-
-    void PersonToJson()
-    {
-        Person bill = new Person();
-        bill.Name = "William Shakespeare";
-        bill.Age = 51;
-        bill.Birthdaty = new DateTime(1564, 4, 26);
-
-        string json_bill = JsonMapper.ToJson(bill);
-        Debug.Log(json_bill);
-    }
-    
-    void JsonToPerson()
-    {
-        string json = @"
-            {
-                ""Name"" : ""Thomas More"",
-                ""Age"" : 57,
-                ""Birthday"" :""02/07/1478 00:00:00""
-            }
-        ";
-
-        Person thomas = JsonMapper.ToObject<Person>(json);
-        Debug.Log("Thomas age: " + thomas.Age);
-    }
-
-    void Update()
-    {
-        
-    }
-
-
-}
-%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!29 &1
-OcclusionCullingSettings:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_OcclusionBakeSettings:
-    smallestOccluder: 5
-    smallestHole: 0.25
-    backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
---- !u!104 &2
-RenderSettings:
-  m_ObjectHideFlags: 0
-  serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
-  m_FogDensity: 0.01
-  m_LinearFogStart: 0
-  m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
-  m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
-  m_HaloStrength: 0.5
-  m_FlareStrength: 1
-  m_FlareFadeSpeed: 3
-  m_HaloTexture: {fileID: 0}
-  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
-  m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
-  m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
-  m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
-  m_UseRadianceAmbientProbe: 0
---- !u!157 &3
-LightmapSettings:
-  m_ObjectHideFlags: 0
-  serializedVersion: 11
-  m_GIWorkflowMode: 1
-  m_GISettings:
-    serializedVersion: 2
-    m_BounceScale: 1
-    m_IndirectOutputScale: 1
-    m_AlbedoBoost: 1
-    m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 1
-    m_EnableRealtimeLightmaps: 0
-  m_LightmapEditorSettings:
-    serializedVersion: 12
-    m_Resolution: 2
-    m_BakeResolution: 40
-    m_AtlasSize: 1024
-    m_AO: 0
-    m_AOMaxDistance: 1
-    m_CompAOExponent: 1
-    m_CompAOExponentDirect: 0
-    m_ExtractAmbientOcclusion: 0
-    m_Padding: 2
-    m_LightmapParameters: {fileID: 0}
-    m_LightmapsBakeMode: 1
-    m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
-    m_ReflectionCompression: 2
-    m_MixedBakeMode: 2
-    m_BakeBackend: 1
-    m_PVRSampling: 1
-    m_PVRDirectSampleCount: 32
-    m_PVRSampleCount: 512
-    m_PVRBounces: 2
-    m_PVREnvironmentSampleCount: 256
-    m_PVREnvironmentReferencePointCount: 2048
-    m_PVRFilteringMode: 1
-    m_PVRDenoiserTypeDirect: 1
-    m_PVRDenoiserTypeIndirect: 1
-    m_PVRDenoiserTypeAO: 1
-    m_PVRFilterTypeDirect: 0
-    m_PVRFilterTypeIndirect: 0
-    m_PVRFilterTypeAO: 0
-    m_PVREnvironmentMIS: 1
-    m_PVRCulling: 1
-    m_PVRFilteringGaussRadiusDirect: 1
-    m_PVRFilteringGaussRadiusIndirect: 5
-    m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
-    m_PVRFilteringAtrousPositionSigmaIndirect: 2
-    m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ExportTrainingData: 0
-    m_TrainingDataDestination: TrainingData
-    m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
---- !u!196 &4
-NavMeshSettings:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_BuildSettings:
-    serializedVersion: 2
-    agentTypeID: 0
-    agentRadius: 0.5
-    agentHeight: 2
-    agentSlope: 45
-    agentClimb: 0.4
-    ledgeDropHeight: 0
-    maxJumpAcrossDistance: 0
-    minRegionArea: 2
-    manualCellSize: 0
-    cellSize: 0.16666667
-    manualTileSize: 0
-    tileSize: 256
-    accuratePlacement: 0
-    debug:
-      m_Flags: 0
-  m_NavMeshData: {fileID: 0}
---- !u!1 &767105286
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 767105288}
-  - component: {fileID: 767105287}
-  m_Layer: 0
-  m_Name: Directional Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &767105287
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 767105286}
-  m_Enabled: 1
-  serializedVersion: 10
-  m_Type: 1
-  m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &767105288
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 767105286}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1490111138
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1490111141}
-  - component: {fileID: 1490111140}
-  - component: {fileID: 1490111139}
-  - component: {fileID: 1490111142}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &1490111139
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1490111138}
-  m_Enabled: 1
---- !u!20 &1490111140
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1490111138}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &1490111141
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1490111138}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1490111142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1490111138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 099fc67e545d28c43adea1c3c8988b84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-Ôªøusing System.Collections;
-using System.Collections.Generic;
-using System.Security;
-using UnityEngine;
-
-public class MonoXmlTest : MonoBehaviour
-{
-    void Start()
-    {
-        var parser = new Mono.Xml.SecurityParser();
-        parser.LoadXml(Resources.Load("Tutorial").ToString());
-        var element = parser.ToXml();
-        foreach(SecurityElement node in element.Children)
-        {
-            Debug.Log("node: tag=" + node.Tag + " ID=" + node.Attribute("ID") + " text=" + node.Attribute("text") + " people=" + node.Attribute("people"));
-        }
-    }
-
-    void Update()
-    {
-        
-    }
-}
-<!--
-ID="1"
-Ë°®Á§∫Â§ßÂéÖÁöÑÊïôÁ®ã
-2 Ë°®Á§∫Êµ∑Â§©ÁõõÁ≠µÁöÑÊñ∞ÊâãÊïôÁ®ã
-3 Ë°®Á§∫Â∫¶ÂÅáÊùëÁöÑÊñ∞ÊâãÊïôÁ®ã
-
-people="0"
-0 Ë°®Á§∫Â∑•‰Ωú‰∫∫Âëò
-1Ë°®Á§∫Áé©ÂÆ∂
-2Ë°®Á§∫Ë¥•ÂÆ∂Â§ßÁéã
--1Ë°®Á§∫‰ªÖÊóÅÁôΩ-->
-<obj>
-  <tutorial ID="1" text="ÈÇ£ËæπÁöÑÂØå‰∫å‰ª£ÔºÅÊ≤°ÈîôÔºåÂ∞±ÊòØ‰Ω†ÔºÅÊâæ‰∫Ü‰Ω†Â•Ω‰πÖ" people="0"/>
-  <tutorial ID="1" text="Ôºü" people="1"/>
-  <tutorial ID="1" text="ÊàëÊòØÂõΩÈôÖË¥•ÂÆ∂ËÅîÂêàÂçè‰ºöÁöÑÂ∑•‰Ωú‰∫∫ÂëòÔºÅ‰Ω†ÁöÑË¥•ÂÆ∂Ë°å‰∏∫Â∑≤ÁªèÂæóÂà∞‰∫ÜÊàë‰ª¨ÁöÑËÆ§ÂèØÔºÅ" people="0"/>
-  <tutorial ID="1" text="‰∏Ä‰∏™ÊàêÁÜüÁöÑÂØå‰∫å‰ª£ËØ•ÊáÇÁöÑÂ¶Ç‰ΩïÂêëÂÖ®‰∏ñÁïåÂ±ïÁ§∫ÂÆ∂ÊóèÁöÑÂÆûÂäõÔºÅ" people="0"/>
-  <tutorial ID="1" text="Êàë‰ª¨Áé∞Âú®Ê≠£ÂºèÂØπ‰Ω†ÂèëËµ∑Á¨¨‰∏ÄÂ±äÂõΩÈôÖË¥•ÂÆ∂Â§ßËµõÁöÑÂèÇËµõÈÇÄËØ∑ÔºÅ" people="0"/>
-  <!---->
-  <tutorial ID="4" text="ÂºÄÁé©Á¨ëÔºåËÆ∫Ë¥•ÂÆ∂ÊàëËøòÊ≤°ÊÄïËøáË∞ÅÔºÅ" people="1"/>
-  <!---->
-  <tutorial ID="5" text="ËøôÈáåÊòØÁî±ÂÖ®ÁêÉË¥•ÂÆ∂Âçè‰ºöÁªÑÁªáÁöÑÁ¨¨‰∏ÄÂ±äË¥•ÂÆ∂Â§ßËµõ„ÄÇ" people="-1"/>
-  <tutorial ID="5" text="Âú®ËøôÈáå‰Ω†Â∞ÜÂíåÂÖ®‰∏ñÁïåÊúÄÊå•ÈáëÂ¶ÇÂúüÁöÑË¥•ÂÆ∂Â≠ê‰ª¨ËøõË°åÈíûËÉΩÂäõPK„ÄÇ" people="-1"/>
-  <tutorial ID="5" text="Áé∞Âú®Ëß£ÈîÅ‰Ω†ÁöÑÁ¨¨‰∏Ä‰∏™‰∏çÈù†Ë∞±‰∫ß‰∏öÂêßÔºÅ" people="-1"/>
-  <tutorial ID="5" text="ÁêÜÂèëÂ∫óÂ∑≤ÁªèÂú®ÁÉßÈí±‰∫Ü~Â∫óÈì∫Á≠âÁ∫ßË∂äÈ´òÔºåÁÉßÈí±ÈÄüÂ∫¶Â∞±Ë∂äÂø´ÔºÅ" people="-1"/>
-  <tutorial ID="5" text="Áé∞Âú®ËØïËØïÂçáÁ∫ßÁêÜÂèëÂ∫óÂà∞5Á∫ßËÆ©ÂÆÉÁÉßÂæóÊõ¥Âø´ÔºÅ" people="-1"/>
-  <tutorial ID="5" text="ÊÅ≠Âñú‰Ω†ÔºÅÊàë‰ª¨ÁöÑÁ¨¨‰∫å‰∏™‰∏çÈù†Ë∞±ÂÖ¨Âè∏‰πüÂèØ‰ª•Ëß£ÈîÅ‰∫ÜÔºÅ" people="-1"/>
-  <tutorial ID="5" text="ÂØπ‰∫Ü„ÄÇËøô‰∏™ÊàëÁü•ÈÅìÊòØË¢´ÊàëÁÉßÊéâÁöÑÈí±Êï∞„ÄÇ" people="1"/>
-  <tutorial ID="5" text="ÈÇ£Ëøô‰∏™ÊòØ‰ªÄ‰πàÂïäÔºü" people="1"/>
-  <tutorial ID="5" text="ËøôÊòØË¥•ÂÆ∂Â∏ÅÔºåÊòØÂõΩÈôÖË¥•ÂÆ∂ËÅîÁõüÂèëË°åÁöÑË¥ßÂ∏ÅÔºåÊòØ‰Ω†Âä™ÂäõË¥•ÂÆ∂ÁÉßÈí±ÁöÑËØÅÊòéÔºÅ" people="0"/>
-  <tutorial ID="5" text="ÂçáÁ∫ß‰∫ß‰∏öÔºåËß£ÈîÅÊñ∞ÁöÑ‰∫ß‰∏ö‰πüÊòØÈúÄË¶ÅÁî®Âà∞Ë¥•ÂÆ∂Â∏ÅÁöÑÔºÅ" people="0"/>
-  <tutorial ID="5" text="Âì¶‚Ä¶Ëøô‰πàÊñπ‰æøÁöÑ„ÄÇ" people="1"/>
-  <tutorial ID="5" text="Ë¥•ÂÆ∂Â∏Å‰πüÊòØÂà§Êñ≠Ë¥•ÂÆ∂ËÉΩÂäõÁöÑÊ†áÂáÜÔºåÊã•ÊúâÊúÄÂ§öË¥•ÂÆ∂Â∏ÅÁöÑ‰∫∫Â∞±‰ºöÊàê‰∏∫Ë¥•ÂÆ∂Â§ßËµõÁöÑÂÜ†ÂÜõÔºÅ" people="0"/>
-  <tutorial ID="5" text="ÈÇ£Ë¶ÅÊÄé‰πàÁü•ÈÅìÊàëÁöÑÂêçÊ¨°Âë¢Ôºü" people="1"/>
-  <tutorial ID="5" text="ÂèØ‰ª•ÂèÇËÄÉÊúç‰∏çÊúçÊ¶úÔºÅ" people="0"/>
-  <tutorial ID="5" text="‰ªÄ‰πàÊ¶úÔºü" people="1"/>
-  <tutorial ID="5" text="Ëøô‰∏™Ê¶ú‰∏äÁöÑÈÉΩÊòØË¥•ÂÆ∂ÂúàÈáåÊï∞Âæó‰∏äÂè∑ÁöÑÂØå‰∫å‰ª£ÔºåÊù•ÁúãÁúã‰Ω†ÊéíÂ§öÂ∞ëÂêç‚Ä¶‚Ä¶" people="0"/>
-  <tutorial ID="5" text="Âä™ÂäõË¥•ÂÆ∂Â∞±ËÉΩËé∑ÂæóÊõ¥È´òÁöÑÂêçÊ¨°ÔºåÁªßÁª≠Âä™ÂäõË¥•ÂÆ∂ÂêßÔºÅ" people="0"/>
-  <!---->
-  <tutorial ID="6" text="HeyÔºÅMeÂ∞±ÊòØÂõΩÈôÖË¥•ËÅîÁöÑÁßò‰π¶ÈïøÔºÅË¥•ÂÆ∂Â§ßÁéãÔºÅ" people="2"/>
-  <tutorial ID="6" text="‚Ä¶‚Ä¶Êúâ‰∫ãÂêóÔºü" people="1"/>
-  <tutorial ID="6" text="YeahÔºÅMeÊòØÊù•Â∏ÆÂä©‰Ω†ÁöÑÔºÅHelp youÔºÅ" people="2"/>
-  <tutorial ID="6" text="Â∏ÆÊàëÔºü" people="1"/>
-  <tutorial ID="6" text="Don'tËØ¥ËØùÔºÅJustÂè¨Âî§MeÔºÅ" people="2"/>
-  <tutorial ID="6" text="OKÔºÅÊé•‰∏ãÊù•Â∞±Áî®ÂøÉFeelËøôË¥•ÂÆ∂ÁöÑHappy timeÂêßÔºÅ" people="2"/>
-  <tutorial ID="6" text="ÊÑüËßâÊòØÂø´‰∫Ü‰∏Ä‰∫õÔºå‰∏çËøáÊÑüËßâËøòÂ∑ÆÁÇπÊÑèÊÄùÔºåËøòÊúâÊ≤°ÊúâÂÖ∂‰ªñËä±Ê†∑ÂïäÔºü" people="1"/>
-  <tutorial ID="6" text="‰∏çÂ¶ÇËØïËØïÊäïËµÑÂêßÔºü" people="0"/>
-  <tutorial ID="6" text="‰∏çÈîôÔºÅÂ•ΩÂÉèÊúâÁÇπÊÑèÊÄù‰∫ÜÔºÅ" people="1"/>
-  <tutorial ID="6" text="ÂçáÁ∫ßÂÖ¨Âè∏Ëé∑ÂæóÊõ¥Â§öË¥•ÂÆ∂Â∏ÅÂêßÔºÅ" people="0"/>
-  <!---->
-  <tutorial ID="2" text="ÂëäËØâ‰Ω†‰∏Ä‰∏™Â•ΩÊ∂àÊÅØÔºÅ" people="0"/>
-  <tutorial ID="2" text="‰ªÄ‰πàÂ•ΩÊ∂àÊÅØÔºü" people="1"/>
-  <tutorial ID="2" text="Áî±‰∫é‰Ω†ÁöÑÁ≤æÂΩ©Ë°®Áé∞ÔºåÂõΩÈôÖË¥•ËÅîÊéà‰∫à‰∫Ü‰Ω†‰∏æÂäûÊµ∑Â§©ÁõõÁ≠µÁöÑËµÑÊ†º~" people="0"/>
-  <tutorial ID="2" text="‰ªÄ‰πàÁõõÁ≠µÔºü" people="1"/>
-  <tutorial ID="2" text="ÂΩì‰Ω†Ë¥•ÂÆ∂Âà∞‰∫Ü‰∏ÄÂÆöÁ®ãÂ∫¶ÔºåÂ∞±ÊúâËµÑÊ†º‰∏æÂäûÊµ∑Â§©ÁõõÁ≠µÔºåÂú®ÈÇ£ÈáåÂèØ‰ª•ÁªìËØÜÊõ¥Â§öÁöÑÂ§ßË¥•ÂÆ∂Â≠êÔºÅ" people="0"/>
-  <tutorial ID="2" text="ËÆ§ËØÜ‰∫ÜÂèàÊÄé‰πàÊ†∑Âë¢Ôºü" people="1"/>
-  <tutorial ID="2" text="ÈÇ£Â∞±‰ºöÊèêÂçá‰∫∫Ê∞îÂïäÔºÅÊúâ‰∫Ü‰∫∫Ê∞îÂ∞±‰ºöÊèêÂçá‰Ω†ÁöÑÁÉßÈí±powerÔºÅ" people="0"/>
-  <tutorial ID="2" text="ÈÇ£ÊàëË¶ÅËµ∂Á¥ßÂäûËµ∑Êù•‰∫ÜÔºÅ" people="1"/>
-  <tutorial ID="2" text="Ë¶ÅËÆ∞Âæó‰πüÂ∏¶‰∏äÊàëÂëÄÔºÅ" people="0"/>
-  <!---->
-  <tutorial ID="3" text="ÂìáÔºåÂ•ΩÂ§ß‰∏ÄÂùóÂú∞ÂïäÔºÅ" people="0"/>
-  <tutorial ID="3" text="ÊÄé‰πà‰ªÄ‰πàÈÉΩÊ≤°ÊúâÂïäÔºå‰∏çÊòØÂ∑≤ÁªèÂèØ‰ª•ÂºÄÂ∑•‰∫ÜÂêóÔºü" people="0"/>
-  <tutorial ID="3" text="‚Ä¶‚Ä¶" people="1"/>
-  <tutorial ID="3" text="‰Ω†ËØ•‰∏çÊòØ‰∏çÁü•ÈÅìÊÄé‰πàÊêûÂêßÔºü" people="0"/>
-  <tutorial ID="3" text="Âè™Ë¶ÅÁÇπ‰∏ãÈù¢ÁöÑÂª∫ËÆæÊåâÈíÆÂ∞±ÂèØ‰ª•‰∫ÜÂëÄÔºÅ" people="0"/>
-  <tutorial ID="3" text="Âª∫ÈÄ†ËÆæÊñΩÈúÄË¶ÅÁî®Âà∞ËÆ∏ÂèØËØÅÔºåÊÉ≥Ë¶ÅÂ∞ΩÊó©ÂÆåÂ∑•ËÆ∏ÂèØËØÅÊòØË∂äÂ§öË∂äÂ•Ω~" people="0"/>
-  <tutorial ID="3" text="Âì¶ÔºÅÂ≠¶Âà∞‰∫ÜÔºÅ" people="1"/>
-  <!---->
-  <tutorial ID="7" text="ËøôÂèàÊòØ‰ªÄ‰πà‰∏úË•øÔºü" people="1"/>
-  <tutorial ID="7" text="ËøôÊòØÊúç‰∏çÊúçÊ¶úÔºÅ" people="0"/>
-  <tutorial ID="7" text="‰ªÄ‰πàÊ¶úÔºü" people="1"/>
-  <tutorial ID="7" text="Ëøô‰∏™Ê¶ú‰∏äÁöÑÈÉΩÊòØË¥•ÂÆ∂ÂúàÈáåÊï∞Âæó‰∏äÂè∑ÁöÑÂØå‰∫å‰ª£ÔºåÊù•ÁúãÁúã‰Ω†ÊéíÂ§öÂ∞ëÂêç‚Ä¶‚Ä¶" people="0"/>
-  <tutorial ID="7" text="ÂóØ‚Ä¶Âä™ÂäõË¥•ÂÆ∂Â∞±ËÉΩËé∑ÂæóÊõ¥È´òÁöÑÂêçÊ¨°ÔºåÂä†Ê≤πÂì¶ÔºÅ" people="0"/>
-  <!---->
-  <tutorial ID="8" text="ÂóØÔºüËøôÊòØ‰ªÄ‰πàÔºü" people="0"/>
-  <tutorial ID="8" text="Âì¶ÔºåËøôÊòØÊàëÁöÑÊííÂ∏ÅÊû™„ÄÇ" people="1"/>
-  <tutorial ID="8" text="ÊÄé‰πàÁé©ÁöÑÔºü" people="0"/>
-  <tutorial ID="8" text="Áé∞Âú®Ê≤°Áîµ‰∫ÜÔºåË¶ÅÂÖÖ‰∏ãÁîµÊâçËÉΩÁî®‚Ä¶‚Ä¶" people="1"/>
-  <tutorial ID="8" text="ÂÖÖÂ•ΩÁîµÂÖàÊääÈí±ÊîæÂà∞ÈáåÈù¢Âéª‚Ä¶‚Ä¶ÁÑ∂ÂêéÁÇπËøôÈáåÂ∞±ÂèØ‰ª•‰∫Ü„ÄÇ" people="1"/>
-</obj>MZê       ˇˇ  ∏       @                                   Ä   ∫ ¥	Õ!∏LÕ!This program cannot be run in DOS mode.
-$       PE  L .Xkö        ‡ " 0  ‰         ∂                                 `         `Ö                           a O      X                   @    0‡  p                                                             H           .text   å„       ‰                    `.rsrc   X         Ê              @  @.reloc      @     Ï              @  B                ï     H     Dn  Ïq                                                         2(h  o  
-**{  ˛**{  ˛**{  ˛**{  ˛**{  ˛**{  ˛**{  ˛*N(i  &{  o2  
-*f(i  &{  o2  
-o3  
-*(  *2(h  o  
-*2(h  o  
-*2(i  o  
-*2(i  o  
-*0 J     (i  &s4  
-
-{  o5  
-+o6  
-(7  
-o8  
-o9  
--‰ﬁ
-,o:  
-‹t  *       9 
-    0 J     (i  &s;  
-
-{  o5  
-+o6  
-(<  
-o=  
-o9  
--‰ﬁ
-,o:  
-‹t  *       9 
-    (  *(  *(  *(  *(  *(  *(  *2(j  o  
-*2(j  o  
-*6(i  o  
-*0 )     u>  -r  ps>  
-z(k  
-t>  (7  *   0      (i  &{  o?  
-
- (<  
-*0 L     (i  &(k  
-{  o?  
-{  (7  
-o@  
-(7  
-(A  
-{  oB  
-*6(j  o  
-*  0      (j  &(k  
-(9  *R(i  &{  oC  
-*   0 Ç     (i  & (A  
-{  oD  
-,C+/{  o?  
-(7  
-(E  
-,{  oB  
-+ X{  oF  
-2√+{  oG  
-{  o@  
-}  *  0 2     (h  &{  3{
-  oH  
-*{  o?  
-
- (<  
-*  0 c     (h  &{  3{
-  oI  
-+<{  o?  
-
- (7  
-(A  
-{  oB  
-{   (7  
-o@  
-}  *(J  
-*V(J  
-}  }  *V(J  
-}  }  *V(J  
-}  }  *V(J  
-}  }  * 0 ù       (J  
-u?  ,}  •?  }  *u@  ,}  •@  }  *uA  ,}  •A  }  *uB  ,}  •B  }  *u>  ,}  t>  }  *r7  ps>  
-zV(J  
-}  }  *s;  *s<  *s=  *s>  *s@  *n{  .rì  psK  
-z{  *n{  .rì  psK  
-z{  *÷{  .{  .rÈ  psK  
-z{  .{  i*{  *÷{  .{  .r; psK  
-z{  .{  j*{  *n{  .rç psK  
-z{  *:(h  o  
-*  0 7     (k  
-(i  o   
-t>  (A  
-{  oG  
-}  *z(i  o!  
-{  oL  
-}  *6(i  o"  
-*o-  
-*0 Y   	  (i  o$  
-
-+3{  o?  
-(7  
-t>  (E  
-,{  oM  
-+X
-{  oF  
-2ø}  *2(h  o%  
-*n{  .r„ psN  
-z{  *n{  .r5 psN  
-z{  *n{  .rÖ psN  
-z{  *n{  .r— psN  
-z{  *n{  .r psN  
-z{  *Z}  }  }  *Z}  }  }  *Z}  }  }  *Z}  }  }  *Z}  }  }  *(s  *"(t  *"(m  *N(j  o'  
-}  *6(j  o(  
-*6(j  o)  
-*V(j  o*  
-}  *R(j  o+  
-}  *R(j  o,  
-}  *b(i  &{  o5  
-sz  *0 .   
-  t>  
-(k  (7  (A  
-{  oO  
-*  0 4     (i  &{  {  o?  
-
- (7  
-oP  
-&{  oM  
-*÷{  3{
-  t  *{  3{  t  *rm psN  
-z  0 Q       {  3{  t  *{  ,r— psN  
-z}  sQ  
-}  sR  
-}  {  t  *   0 F       {  3{
-  t  *{  ,r# psN  
-z}  s;  
-}
-  {
-  t  *n-*u  ,t  *s?  *  0 (    -o* *o  ,o  o* *o  ,o  o% *o  ,o	  o' *o  ,o
-  o( *o  ,o  o) *o  ,Bo- o%  
-
-+oS  
-t  (l  o9  
--Áﬁu!  ,o:  
-‹o, *o  ,ao/ o#  
-+0oS  
-•"  (T  
-t>  o0 (U  
-t  (l  o9  
--»ﬁu!  ,o:  
-‹o. **   â ¶      ” <    0      (k  
-}  (j  o&  
-*0 Ñ     }  (  ,O
-{  t>   oV  
-,-{  t>  oP  
-,{  t>  sA  
-oW  
-**ri psX  
-z(  ,{
-  (k  oY  
-*rŸ psN  
-z~(  ,o!  
-*(  ,o'  
-**0 _    -*{  {  .&{  .	{  3{  .{  .*{  
-E            +   =   à   ”   Â   8Ú   *{  {  oZ  
-*{
-  {
-  oZ  
-*{  {  o[  
-*o  ,1{      Äj2{   ˇˇˇj1*|  {  i(\  
-*|  {  (\  
-*o  ,1{      Äj2{   ˇˇˇj1*|  {  i(\  
-*|  {  (]  
-*|  {  (^  
-*|  {  (_  
-**{  * 0 ì       {  3*E   [         '   0   9   C   T   +YsQ  
-}  sR  
-}  +As;  
-}
-  +4}  ++}  +"j}  +#        }  +}  }  * 0 =     {  ,{  *s`  
-
-s o (l  oa  
-}  {  *   0      o 
-o (l  o *   0 v     {  
-YE   8      >       ,         +Cr; p*|  (b  
-*|  (c  
-*|  (d  
-*|  (e  
-*rY p*{  *ry p*2(w  å"  * 0       {  o6  
-
- (7  
- (<  
-sf  
-*0      {  o6  
-
- (7  
-*0      {  o6  
-
- (<  
-*:(J  
-}  *2{  o9  
-*2{  og  
-*(h  
-*^rß på  (i  
-(j  
-*brß på  (i  
-(k  
-*brÔ p—åF  (i  
-(j  
-*frÔ p—åF  (i  
-(k  
-*"(j  
-*&(k  
-*Ç{  (l  
-,–  (m  
-*{  *"}  *{  *"}  *{  *"}  *Ç{  (l  
-,–  (m  
-*{  *"}  *{  *"}  *{  *"}  *0 ®       sJ  
-Ä%  sJ  
-Ä'  sJ  
-Ä)  sJ  
-Ä+  sJ  
-Ä-  dÄ  sn  
-Ä$  so  
-Ä&  sp  
-Ä(  sq  
-Ä*  s Ä,  (r  
-Ä  ss  
-Ä   ss  
-Ä!  st  
-Ä"  st  
-Ä#  (¨  (≠  *0 –     ~$  ou  
-,* ˛   ov  
-(á  r? pow  
-(x  
-, (â  oy  
-+Pö	oz  
-rq p({  
--6	o|  
-éi3'öo}  
-–A  (m  
-(l  
-, 	o~  
-(Ö  Xéi2™~%  (  
-~$  oÄ  
-ﬁ&ﬁ,(Å  
-‹*    ≤ ¿ 0   © √     0 a    ~(  oÇ  
-,* ˛	  r{ pow  
-(x  
-, (ç   sÉ  
-(è  oy  
-8É   ö	oz  
-rq p(E  
-,8	o|  
-éi3Zöo}  
-–>  (m  
-(l  
-,@ 	o~  
-(ã  +1˛  	}  	o~  
-}   (é  	oz  
-oÑ  
-Xéi?tˇˇˇoÖ  
-+Fö˛  }  }  oÜ  
-}   (é  oz  
-oÑ  
-Xéi2≥~)  	
-	
-(  
-~(  oá  
-ﬁ&ﬁ
-,	(Å  
-‹*       CQ0   :T    0 Œ     ~*  oà  
-,*sâ  
-
-oy  
-+:ö	oz  
-rq p(E  
-- ˛  	}  }  oä  
-Xéi2¿oÖ  
-++ö˛  }  }  oä  
-Xéi2Œ~+  		(  
-~*  oã  
-ﬁ&ﬁ	,(Å  
-‹*      ∞ æ 0   ß ¡     0 ª     ~'  (  
-~&  oå  
--~&  sç  
-oé  
-ﬁ
-,(Å  
-‹~&  oè  
-oê  
-,~&  oè  
-oë  
-*rπ pç(  %¢oí  
-
-~'  (  
-~&  oè  
-oì  
-ﬁ&~&  oè  
-oë  
-ﬁ,(Å  
-‹*	* (    '/ 
-      Ñ ò 0   | 1≠ 
-    0 Å    o &o˛  3*(î  
-
-%-&o˛  3$oï  
--	(x  
-,*r— p(i  
-sÇ  zo˛  .)o˛  . o˛  .o˛  	.o˛  
-@Ó   oˇ  oñ  
-	oó  
-,oˇ  *~#  	oò  
-,0~#  	oô  
-oö  
-,~#  	oô  
-oõ  
-oˇ  oô  *~"  	oò  
-,0~"  	oô  
-oö  
-,~"  	oô  
-oõ  
-oˇ  oô  *oú  
-,oˇ  (ù  
-*	(®  (û  
-,ç  %oˇ  ¢oü  
-*r+ poˇ  	(†  
-sÇ  zo˛  @‡   (•  ~$  o°  
-(Ü  -(à  -rã p(i  
-sÇ  z(Ü  -(¢  
-t  (Ñ  +s£  
-o§  
-o'  
-(©  -	o˛  .o&  
-&+›(Ü  ,?o  
-		(•  
-
-+t  
-o  
-
-o¶  
-
-X
-
-	2ﬁ8+  8#  o˛  @  (¶  ~(  oß  
-(¢  
-o &o˛  ;Í   oˇ  t>  (é  o®  
-,(é  o©  
-{  ,!{  t1  {  (©  o™  
-+ñ{  t.  o´  
-,{  (©  o¨  
-8dˇˇˇ{  (©  &8Qˇˇˇ(å  -&o˙  -r… p(≠  
-sÇ  z(´  8"ˇˇˇt  (ä  (©  o   
-8ˇˇˇ*   0     o &o˛  .
-o˛  3*o°  
-o˛  	3oˇ  t>  o  *o˛  3oˇ  •@  o  *o˛  3oˇ  •A  o  *o˛  3oˇ  •B  o  *o˛  
-3oˇ  •?  o  *o˛  3%o  (™  -	o˛  .Fo&  
-&+‚o˛  33o  o &o˛  .oˇ  t>  (™  o  
-+‘*û~è  %-&~é  ˛` s†  %Äè  (π  &*   0 ˇ      ~   –N  (m  
-~ê  %-&~é  ˛a sê  %Äê  oÆ  
-~   –F  (m  
-~ë  %-&~é  ˛b sê  %Äë  oÆ  
-~   –O  (m  
-~í  %-&~é  ˛c sê  %Äí  oÆ  
-~   –;  (m  
-~ì  %-&~é  ˛d sê  %Äì  oÆ  
-~   –P  (m  
-~î  %-&~é  ˛e sê  %Äî  oÆ  
-~   –Q  (m  
-~ï  %-&~é  ˛f sê  %Äï  oÆ  
-~   –R  (m  
-~ñ  %-&~é  ˛g sê  %Äñ  oÆ  
-~   –S  (m  
-~ó  %-&~é  ˛h sê  %Äó  oÆ  
-~   –T  (m  
-~ò  %-&~é  ˛i sê  %Äò  oÆ  
-~   –4  (m  
-~ô  %-&~é  ˛j sê  %Äô  oÆ  
-* 0 s    ~ö  %-&~é  ˛k sò  %Äö  
-~"  –A  (m  
-–N  (m  
-(Æ  ~õ  %-&~é  ˛l sò  %Äõ  
-~"  –A  (m  
-–T  (m  
-(Æ  ~ú  %-&~é  ˛m sò  %Äú  
-~"  –A  (m  
-–B  (m  
-(Æ  ~ù  %-&~é  ˛n sò  %Äù  
-~"  –A  (m  
-–P  (m  
-(Æ  ~û  %-&~é  ˛o sò  %Äû  
-~"  –A  (m  
-–Q  (m  
-(Æ  ~ü  %-&~é  ˛p sò  %Äü  
-~"  –A  (m  
-–R  (m  
-(Æ  ~†  %-&~é  ˛q sò  %Ä†  
-~"  –A  (m  
-–S  (m  
-(Æ  ~°  %-&~é  ˛r sò  %Ä°  
-~"  –A  (m  
-–U  (m  
-(Æ  ~¢  %-&~é  ˛s sò  %Ä¢  
-~"  –A  (m  
-–@  (m  
-(Æ  ~£  %-&~é  ˛t sò  %Ä£  
-~"  –@  (m  
-–;  (m  
-(Æ  ~§  %-&~é  ˛u sò  %Ä§  
-~"  –B  (m  
-–S  (m  
-(Æ  ~•  %-&~é  ˛v sò  %Ä•  
-~"  –>  (m  
-–F  (m  
-(Æ  ~¶  %-&~é  ˛w sò  %Ä¶  
-~"  –>  (m  
-–O  (m  
-(Æ  ~ß  %-&~é  ˛x sò  %Äß  
-~"  –>  (m  
-–4  (m  
-(Æ  *íoò  
--sØ  
-o∞  
-oô  
-o±  
-*0 W    ~  1r# poñ  
-(i  
-sÇ  z-o* *u  ,',o t  o  o≤  
-*t  o  *u>  ,t>  o* *u@  ,•@  o' *uA  ,•A  o( *u?  ,•?  o% *uB  ,•B  o) *u  ,Fo- t  o≥  
-+oS  
-X(Ø  o9  
--Ëﬁu!  	,	o:  
-‹o, *u  ,Fo- t  o%  
-+oS  
-X(Ø  o9  
--Ëﬁu!  	,	o:  
-‹o, *u  
-9Ñ   o/ o#  
-+PoS  
-•"  (T  
-u>  -(T  
-(¥  
-(µ  
-+o0 (U  
-X(Ø  o9  
--ßﬁu!  	,	o:  
-‹o. *oñ  
-~!  o∂  
-,~!  o∑  
-oë  *~   o∂  
-,~   o∑  
-oë  *u  ,[(∏  
-–B  (m  
-(l  
--&–S  (m  
-(l  
--–T  (m  
-(l  
-,•T  o+ *•A  o( *(ß  ~*  oπ  
-o/ o∫  
-	+~	oª  
-
-
-{  ,0
-{  oz  
-o0 
-{  t1  oº  
-X(Ø  +<
-{  t.  oΩ  
-,%
-{  oz  
-o0 oæ  
-X(Ø  	o9  
-:vˇˇˇﬁ	,	o:  
-‹o. * 4   € ˜      )E     x]’     ∂éD    0 @     ~-  
-(  
-~,  o$ ~,  (Ø  ~,  oa  
-ﬁ
-,(Å  
-‹*    ,4 
-    *(Ø  *Æ~®  %-&~é  ˛y s†  %Ä®  (π  t  * 0 2     s 
-~©  %-&~é  ˛z s†  %Ä©  (π  t  *Æ~™  %-&~é  ˛{ s†  %Ä™  (∫  t  *Z–%  (m  
-(©  •%  *   0      s 
-–%  (m  
-(©  •%  *   0      s 
-–%  (m  
-(©  •%  *   0      s 
-(©  *"(™  *0      s 
-(™  * 0 .     sø  
-%}¿  
-˛¡  
-sê  
-~!  –%  (m  
-oÆ  
-*  0 8     s¬  
-%}√  
-˛ƒ  
-sò  
-~#  –%  (m  
-–(  (m  
-(Æ  *.~!  o≈  
-*.~#  o∆  
-*(J  
-*
-*
-*
-*
-*
-*
-*
-*
-**#        *
-*
-*j*r∞ p*******r∞ p**
-*
-*
-**
-**
-*
-****
-*
-*
-**
-*
-*
-*
-*
-*
-****
-**
-*
-**
-***(J  
-*2{A  o2 *6{A  o3 *2{A  o4 *6{A  o5 *{G  *"}G  *{@  *{?  *{I  *{H  *.( Ä;  *:s«  
-( *&( *0 Ñ       (J  
--r≤ ps»  
-z}B  }C  }D  s…  
-}<  {<     o   
-{<     o   
-s: }A  }@  }?  }G  }E  }F  *0 è    sÀ  
-
-   (    [çA  %[û%   û(    (    "çA  %–á  (Ã  
-(    [çA  %–á  (Ã  
-(    ]çA  %]û(    {çA  %–á  (Ã  
-(       çA  %–á  (Ã  
-(       çA  %–á  (Ã  
-(       çA  %–á  (Ã  
-(       çA  %–á  (Ã  
-(    (    {çA  %{û% 	  û(  	  (  	  "çA  %–ä  (Ã  
-(  	  }çA  %}û(  
-  (  
-  "çA  %–â  (Ã  
-(    (    ,çA  %–ã  (Ã  
-(    }çA  %   û(    (    "çA  %–å  (Ã  
-(    (    [çA  %   û(    {çA  %   û(    (    "çA  %   û(    [çA  %   û(    {çA  %   û(       çA  %   û(       çA  %   û(       çA  %   û(       çA  %   û(    (    ,çA  %–ç  (Ã  
-(    ]çA  %   û( *>oÕ  
-oŒ  
-*6sœ  
-o–  
-*   0 …     .o—  
-3eo—  
-3Eo—  
-.( ˇ  (¥  
-(“  
-,}I  	å@  }H  *(¥  
- (”  
-,}I  åA  }H  *(¥  
-(‘  
-,}I  åB  }H  *(¥  
-(’  
-,}I  åT  }H  *}I  åA  }H  *   0 f      {>  [3}I  }C  *{>  ]3}I  }C  *{>  {3}I  }C  *{>  }3}I  }C  *{>  "3/{B  ,}B  }C  *{I  -	}I  }B  *{>     3{A  o8 }H  *{>     3
-}I  å?  }H  }C  *{>     3}I  }C  *{>     3{A  o8 ( }C  *{>   
-  3}I  *{>     3
-}I  å?  }H  }C  *˙{@  ,*{A  o\ &{A  o6 ,(
- *{A  o7 }=  *   0 :     {@  ,*}@  }?  {F  ,{E  
-ﬁ
-,o:  
-‹}E  *     & ( 
-    0 O    {@  ,*{?  ,2}?  {<  o÷  
-{<     o   
-{<     o   
-}B  }C  }I  }H  {D  -}D  (	 -*{C  ,{<  o◊  
-   3}?  *{<  oÿ  
-}>  ( {>  {=  31(	 -∞{<  o◊  
-   .r¿ psÇ  z{C  ,** ~;  {>  oÕ  
-{=  oŸ  
-
-ﬁ{=  s  zî   ;MˇˇˇéiY+{<  îo   
-Y/Í8*ˇˇˇ     Û 7  (J  
-*{[  *v{Z  {[  [Z}Z  }[  *{]  *"}]  *{`  *{^  *"}^  *{_  *"}_  *.(⁄  
-ÄU  *¶(J  
-s€  
-}\  {\  s‹  
-}`  ( *6s‹  
-( *ä(J  
--r	 ps»  
-z}`  ( *0       {V  {S  -{V  %{P  X}P  {^  -*{X  ,r$	 psÇ  zE         D   i   é   *{V  {Q  :Ø   rÑ	 psÇ  z{V  {R  ,{V  {S  9á   r∏	 psÇ  z{V  {R  ,o{V  {S  -brÓ	 psÇ  z{V  {R  ,{V  {S  ,=r
- psÇ  z{V  {Q  -%{V  {R  ,{V  {S  -rJ
- psÇ  z* 0 ^       }X  çF  }Y  }Z  }[  }]  }^  }_  s›  
-}W  s }V  {W  {V  oﬁ  
-*  0 5     +,]
-
-/Y0X—ù+YA
-YX—ùc X2–*r{]  ,{Z  {[  X}Z  *  0 @     {]  ,+{V  {S  -
-+{`   oﬂ  
-X
-{Z  2Ê{`  o≤  
-*"(  *   0 Q       ,({V  {S  -{V  {P  1{`  ,oﬂ  
-{]  ,{V  {S  -{`  (‡  
-o≤  
-*   0 Z     ~·  
-( {`  "oﬂ  
-o‚  
-
-8  o„  
-YE   Ñ   9      ñ   r   $   ".I\.D8á   {`  rx
- po≤  
-8œ   {`  r~
- po≤  
-8∫   {`  rÑ
- po≤  
-8•   {`  \oﬂ  
-{`  o„  
-oﬂ  
-8Å   {`  rä
- po≤  
-+o{`  rê
- po≤  
-+]o„  
- 2o„  
-~0{`  o„  
-oﬂ  
-+3o„  
-{Y  ( {`  rñ
- po≤  
-{`  {Y  o‰  
-X?⁄˛ˇˇ{`  "oﬂ  
-*r{]  ,{Z  {[  Y}Z  *j{\  -~·  
-*{\  oa  
-*  0 O       }X  {W  oÂ  
-s }V  {W  {V  oﬁ  
-{\  ,{\  {\  oÊ  
-oÁ  
-&*æ( ( -rú
- p+r®
- p( {V  }S  *Æ( ( ~U  (Ë  
-( {V  }S  * 0 S   !  ( ( ~U  (È  
-
-( .o—  
-3Eo—  
-3{`  r≤
- po≤  
-{V  }S  *Æ( ( ~U  (Í  
-( {V  }S  *Æ( ( ~U  (Î  
-( {V  }S  *∆( ( -r∏
- p( +(! {V  }S  *Æ( ( ~U  (Ï  
-( {V  }S  *   0 `       ( (  {W  oÌ  
-&{W  oÓ  
-3	}X  +{W  oÔ  
-}V  {V  }S  (" r¬
- p( *0 G       ( ( r∆
- p( s }V  {V  }Q  {W  {V  oﬁ  
-( * 0 `       ( (  {W  oÌ  
-&{W  oÓ  
-3	}X  +{W  oÔ  
-}V  {V  }S  (" r 
- p( *0 G       ( ( rŒ
- p( s }V  {V  }R  {W  {V  oﬁ  
-( * 0 ´   "  ( ( ,{_  ,o  
-+
-(! {]  ,`o‚  
-{V  {T  1{V  o‚  
-}T  {V  {T  o‚  
-Y+{`   oﬂ  
-Y/Î{`  r“
- po≤  
-+{`  :oﬂ  
-{V  }S  *(J  
-*{g  *"}g  *{h  *"}h  *{i  *{q  *{p  *Bf  e  (< *  0 X       (J  
-}g  }h  }k   Ä   sÒ  
-}o  }n  }i  }m  s1 }j  {j  }c  *0 [       AYE   #   &   )   ,   /   2   aYE                     +
-******0Y* 0 ’      ç  %˛> sÄ ¢%˛? sÄ ¢%˛@ sÄ ¢%˛A sÄ ¢%˛B sÄ ¢%˛C sÄ ¢%˛D sÄ ¢%˛E sÄ ¢%˛F sÄ ¢%	˛G sÄ ¢%
-˛H sÄ ¢%˛I sÄ ¢%˛J sÄ ¢%˛K sÄ ¢%˛L sÄ ¢%˛M sÄ ¢%˛N sÄ ¢%˛O sÄ ¢%˛P sÄ ¢%˛Q sÄ ¢%˛R sÄ ¢%˛S sÄ ¢%˛T sÄ ¢%˛U sÄ ¢%˛V sÄ ¢%˛W sÄ ¢%˛X sÄ ¢%˛Y sÄ ¢QçA  %–à  (Ã  
-Q*   0 \       \0'0".5'.0+C/.)\.$+7f0b.(f.%+&n.r.t.+(Ú  
-*
-*	****?*0 Î    8‘  {c  {l   ;¬  {c  {l  	2{c  {l  >°  {c  {l  125{c  {l  90&{c  {o  {c  {l  —oÛ  
-&}b  *{c  {l  
-[0C'0".o';Ú   83  ,YE   V   f     ˝   å   :.Q[.L8  n0].=f;ë   n;ì   8Ë   t;ê   {.}.8—   }b  }a  *}b  }a  *{c  {o  {c  {l  —oÛ  
-&}b  *{c  {o  {c  {l  —oÛ  
-&}b  *}b  *}b  *	}b  *{c  {h  -*{c  "}l  }b  }a  *{c  {g  -*}b  **{c  oZ :˛ˇˇ* 0 á       {c  oZ &{c  {l  125{c  {l  90&{c  {o  {c  {l  —oÛ  
-&}b  *{c  {l  03&{c  {o  {c  {l  —oÛ  
-&}b  ** 0 .    8  {c  {l  021{c  {l  90"{c  {o  {c  {l  —oÛ  
-&8◊   {c  {l   .{c  {l  	2{c  {l  0}a  }b  *{c  {l  
-E0,...1E.R+v].
-e.F}3g{c  o] }a  }b  *{c  {o  {c  {l  —oÛ  
-&}b  *{c  {o  {c  {l  —oÛ  
-&}b  **{c  oZ :Ÿ˛ˇˇ*  0 „     {c  oZ &{c  {l   .{c  {l  	2{c  {l  0}a  }b  *{c  {l  
-E0,...1E.R+v].
-e.F}3g{c  o] }a  }b  *{c  {o  {c  {l  —oÛ  
-&}b  *{c  {o  {c  {l  —oÛ  
-&}b  ** 0 R       {c  oZ &{c  {l  025{c  {l  90&{c  {o  {c  {l  —oÛ  
-&}b  **  0     8Ï   {c  {l  021{c  {l  90"{c  {o  {c  {l  —oÛ  
-&8¨   {c  {l   .{c  {l  	2{c  {l  0}a  }b  *{c  {l  
-E0,.E.,+P].
-e. }3A{c  o] }a  }b  *{c  {o  {c  {l  —oÛ  
-&}b  **{c  oZ :ˇˇˇ* 0 é     {c  oZ &{c  {l  025{c  {l  90&{c  {o  {c  {l  —oÛ  
-&}b  *{c  {l  
-+.-3&{c  {o  {c  {l  —oÛ  
-&}b  **  0 …     8≤   {c  {l  02.{c  {l  90{c  {o  {c  {l  —oÛ  
-&+u{c  {l   .{c  {l  	2{c  {l  0}a  }b  *{c  {l  
-,.
-].}3{c  o] }a  }b  **{c  oZ :>ˇˇˇ*û{c  oZ &{c  {l  r3
-
-}b  **û{c  oZ &{c  {l  u3
-}b  **∂{c  oZ &{c  {l  e3}a  }b  **û{c  oZ &{c  {l  a3
-}b  **û{c  oZ &{c  {l  l3
-}b  **û{c  oZ &{c  {l  s3
-}b  **∂{c  oZ &{c  {l  e3}a  }b  **û{c  oZ &{c  {l  u3
-}b  **û{c  oZ &{c  {l  l3
-}b  **∂{c  oZ &{c  {l  l3}a  }b  ** 0 t     +c{c  {l  
-".\.+.{c  o] }a  }b  *}d  }b  *{c  {o  {c  {l  —oÛ  
-&{c  oZ -ê*∂{c  oZ &{c  {l  "3}a  }b  **  0 ¶     {c  oZ &{c  {l  
-\0'0".N'.I+v/.B\.=+jf0b.1f.,+Yn.%rYE      ;         +9}b  *{c  {o  {c  {l  (= oÛ  
-&{d  }b  **  0 Á     
-    {c  }r  8º   {c  {l  02{c  {l  91<{c  {l  A2{c  {l  F1{c  {l  a2o{c  {l  f0`{c  %{r  {c  {l  (; ZX}r  X
-[31{c  {o  {c  {r  (Ú  
-oÛ  
-&{d  }b  **{c  oZ :4ˇˇˇ* 0 t     +c{c  {l  
-'.\.+.{c  o] }a  }b  *}d  }b  *{c  {o  {c  {l  —oÛ  
-&{c  oZ -ê*Í{c  oZ &{c  {l  '3{c  "}l  }a  }b  ** 0 :     {c  oZ &{c  {l  
-*./.+}b  *}b  **¶+{c  {l  
-3	}b  *{c  oZ -€*™+{c  {l  *3
-}b  *{c  oZ -⁄* 0 B       +1{c  {l  *."{c  {l  /3	}b  *}b  *{c  oZ -¬*  0      ([ %
-}l  .*}i  *ä{k  ,{k  }k  *{m  oÙ  
-*0 …       {j  }a  ~f  {n  Yö{j  oÅ -{l  sÄ  z{i  ,*{j  {a  ,i{o  oa  
-}p  {o  {o  oÊ  
-oÁ  
-&~e  {n  Yî}q  {q     3{l  }q  {j  {b  }n  *{j  {b  }n  8Cˇˇˇ6{l  }k  *.s_ Äé  *(J  
-*sı  *J•N  (ı  
-o( *J•F  (ˆ  
-o* *^•O  ~  (˜  
-o* *6•;  o& *J•P  (¯  
-o( *J•Q  (˘  
-o( *J•R  (˙  
-o( *J•S  (˚  
-o+ *6•T  o+ *0    #  •4  
- rÿ
- p~  (¸  
-o* *F•A  (˝  
-åN  *F•A  (˛  
-åT  *F•A  (ˇ  
-åB  *F•A  (  
-åP  *F•A  ( 
-åQ  *F•A  ( 
-åR  *F•A  ( 
-åS  *F•A  ( 
-åU  *F•A  ( 
-å@  *F•@  ( 
-å;  *F•B  ( 
-åS  *Ft>  ( 
-åF  *Zt>  ~  (	 
-åO  *Zt>  ~  (
- 
-å4  *s:  *s:  *s:  *(J  
-*N{ 
-•2  o 
-*(J  
-*^{ 
-•2  o 
-å6  *  BSJB         v4.0.30319     l    5  #~  l5  ê$  #Strings    ¸Y    #US e     #GUID   $e  »  #Blob         Wü¢+	   ˙3      ]      ¨   É  0       ,         #   	   S   j   S   6                    G      è3 &3 ö S   „ Æ" [" <" " Ø" »" ≈" ˘" " ‡) & ª! 4 "
-
- ›#˚ —# x" ? ] ] 1] ˚" ±  Ó @] ] .
- R$ ã— Ü ‡  ¨" ≠ > è ô ˇ ï" ˚" ∑" √ ã" Ì— 3 X
- ˚] ˘ [] ÿ 7" ß— ;  ] ‡] Õ • A ≤ Ç ’ õ A] ü g ≈ 
- 
- Û" Û ‚! N Œ F ] T © y ç † †! ’— p q3 T  6     v        C<A   °   t<  
-    Ò<] 
-     «<]  v   µ<ë  }  <ô  Ñ  <ô  Ñ  ˝<ô  ä    Ö<•  ê   —<•  î    x<•  ò   "<•  ú   1$<•  †    Y<]  §   d<] . ¿   Œ<A . ˆ    ‚<] ; ˆ    Q<A J    X"<] P    ò<] U    M"<] a 1    ˙<] e 2   ÿ<A s ^     ] á ^! Y  ] é ^ π  ] ´ | 
-  ] ¨ ~  L  • ≠ Ä  O  ô ≠ Ñ  1  ô ≠ Ñ›bVÄeVÄ?eVÄ˚"eVÄÕeVÄ eVÄbeVÄAeVÄ•e 
-#i ≠q Ht N b gw Fz Â≥ K≥ Ÿe Ù!É „ê ù z	q ≠¢ «¢ #q Ï!q «¢ #$q Îß1 Åb1 ÷∞1 ï
-µ1 ™
-µ1 i
-¿1 ~
-¿1 >“1 Í›1 '‡1 &›1 .Û1 ’›1 –˛1 ›1 ≤1 ˛››bVÄVÄ+!VÄßVÄá	VÄ<!VÄñ	VÄ VÄbVÄAVÄÕVÄ•VÄS1 :
- ª#  "b rb Dq "q  + ‘q Wq Óq ¯/ ﬁq `q „› Ó›bVÄØ"4VÄÙ4VÄÇ$4VÄÜ$4VÄ–4 Ã b Ø"q Ùq âq !b1 Ê8 j"= ÀA ü	q 'J b Ôb N w q 5q ‡q πS Pq Pb «+ ∞b1 F
-X1 W
-\ q üq "q f"a ?b ≠b ¯/ Zb 1N ÷≥ Ób ∏b›bVÄeVÄ«eVÄ¸eVÄ˛eVÄSeVÄeVÄüeVÄ>"eVÄ?eVÄ◊eVÄeVÄ≤!eVÄ˚"eVÄ„eVÄ–eVÄ®!eVÄÕeVÄõ	eVÄ˙e3i3ƒm3ºi3«i3ìi3ûi3Ni6 q ê u ¨ y gy ∏y Ây ày Òy ky ˝y fy y ’ } ê} ·} } ±} } î} &} è} F}  } ,} l} X} < u X u t u Ò¢ ◊∫      ∆È"        ∆_        ∆˝
-        ∆”        ∆"        ∆9        ∆        ∆Ç        ∆Å       ∆Ú        ∆4Ö       ∆Bä       ∆°       ∆¢        ∆>é       ∆         ∆@ì       ∆_ô       ∆¿        ∆5       ∆5û P     Ü»   ]     ÜÈ"  h     Ü_  s     Ü˝
-  ~     Ü”  â     Ü"  î     Ü9  ü     Ü  ™     Üi§ æ     Ü # ÿ     ·	©  	 ‡     ·	H	 	 Ì     ·	˙ " 	 ˙     ·	¿ 	 !    ·	£# 	 !    ·	J& 	 |!    ·	;& 	 ‰!    ·	‘" 	 Ï!    ·	J 	 Ù!    ·	Ë
- 	 ¸!    ·	æ 	 "    ·	 	 "    ·	$ 	 "    ·	j 	 "    ·	ó 	 )"    ·	{# 	 6"    ·	 + 	 D"    ·	•0 
- |"    ·	H6  §"    ·	Õ;  ¸"    ·	˛6  #    ·	É;  0#    Üz≠ H#    Üˇ≥ ÿ#    Üz∫ $    Üˇ¿ á$    Ü˝  è$    Ü˝  •$    Ü˝é ª$    Ü˝  —$    Ü˝ô Ë$    Ü˝R  ë%    Ü˝  ß%    ñg« Ø%    ñgÕ ∑%    ñg”  ø%    ñgŸ! «%    ñgﬂ" œ%    ñsÂ# Î%    ñsÎ$ &    ñsÒ% =&    ñs˜& s&    ñs˝' è&    ·eA ( †&    ·ª0 * „&    ·N , '    ·ÏH , '    ·DM - '    ·!R - }'    ·W . ä'    ·m . ¶'    ·
-Å. ¬'    ·› . ﬁ'    ·-ä. ˙'    ·å. (    ·ç . -(    ·)é/ D(    ·˘ 0 [(    ·Jô1 r(    ·´ 2 â(    · 3 ë(    · û3 ö(    ·û\ 4 £(    ·/ 5 ∑(    · H 5 ≈(    ·Ô\ 6 ”(    ·G!; 7 È(    ·R 9 ˛(    ·r : )    ·qM ; ,)    ·g!a ; h)    ·î > ®)    Å @& ? ‡)    Å #	? @*    Å ¡!	? í*    Å Ô	? ∞*    ë 	@  ,    Ü ⁄\ B (,    Ü @H C ∏,    Ü m D ÿ,    Êª	D C.    Ê4ÖE L.    Ê@ìE Ï.    Ü 5F 8/    Ü 5ûF d/    ∆ CG Ê/    Ê	B " G Ù/    Ê	H$!	G  0    Ê	#" G @0    Ê	Z" G `0    Ü˝'	G o0    Ê." H |0    ÊR H â0    Ü˝ H ë0    É˝6	H ©0    É˝<	I ¬0    É˝ K €0    É˝E	L ı0    Ü˝ N ˛0    Ü˝O 1    Üf«Q )1    ÜvM	Q 21    ÜÈ" R :1    Üı" R C1    ÜÃ! S K1    Ü◊! S T1    Üf«T u1    ÜvM	T ~1    Ü$ U Ü1    Ü$ U è1    ÜbT	V ó1    Üq^	V      Ü˝i	W      ∆ˇ	™Y      ∆˙	o	[      ∆	|	_      Ü˝i	`      ∆ˇ	°b      ∆˙	É	d      ∆	|	h      Ü˝i	i      ∆ˇ	+ k      ∆˙	ë	l      ∆	ú	o      Ü˝i	p      ∆ˇ	Wr      ∆˙	£	s      ∆	Ø	v      Ü˝i	w      ∆ˇ	∑	y      ∆˙	º	y      ∆	∆	{ †1    ëŒ	| T2    ë “	| L3    ë ˙“	} ÿ4    ë Ä“	~ –5    ë Ÿ	 ¿6    ë dÂ	Å P:    ë dÓ	É y;    ë ˜	Ö §;    ë ΩŒ	Ü ∞=    ë ìŒ	Ü /A    ë ∆˝	Ü TA    ë n
-ä ÏD    ñ 5"
-é HE    ñ 5'
-è SE    ñ ˝.
-ë ÄE    ñ ˝5
-í æE    ñ ˝ﬂì ÍE    ñ ˝=
-î F    ñ ˝E
-ï 0F    ñ ˝N
-ñ \F    ñ ˝U
-ó wF    ñ ÅÓ	ô ÄF    ñ Å]
-õ úF    ñ ‡e
-ù ÿF    ñ ∆p
-û G    ñ ”Œ	ü (G    ñ ©Œ	ü 4G    Ü˝ ü <G    Ê	È" ü ?G    Ê	_ ü BG    Ê	˝
- ü EG    Ê	” ü HG    Ê	" ü KG    Ê	9 ü NG    Ê	 ü QG    ÊÇ ü TG    ÊÅü _G    ÊÚ ü bG    Ê4Öü eG    ÊBäü iG    Ê°ü pG    Ê¢ ü rG    Ê>é† tG    Ê  ° vG    Ê@ì¢ xG    Ê_ô£ zG    Ê¿ § |G    Ê5• ÉG    Ê5û• ÖG    ·	ó ¶ àG    ·	{# ¶ ãG    ·	˛6 ¶ éG    ·	É; ß êG    ·û\ © ìG    ·/ ™ ïG    · H ™ òG    ·Ô\ ´ õG    ·G!; ¨ ùG    ·R Æ üG    ·r Ø °G    ·	©  ∞ §G    ·	H	 ∞ ßG    ·	˙ " ∞ ™G    ·eA ∞ ¨G    ·W ≤ ØG    ·	¿ ≤ ≤G    ·	£# ≤ µG    ·	J& ≤ ∏G    ·	;& ≤ ªG    ·	 + ≤ æG    ·	•0 ≥ ¿G    ·ª0 µ ¬G    ·N ∑ ƒG    ·ÏH ∑ «G    ·!R ∏ …G    ·DM π ÃG    ·	H6 π œG    ·	Õ; ∫ —G    ·qM º ‘G    ·g!a º ÷G    ·î ø ÿG    Ü˝ ¿ ‡G    ÜÛ ¿ ÌG    Ü ¿ ˚G    Üe ¡ H    ÜÇ ¡ H    Ü: ¬ H    ÜM ¬ 'H    Ü" √ /H    Ü √ 7H    Ü∫}
-√ ?H    ÜZ" √ GH    ëŒ	√ SH    Ü˝ √ bH    Ü˝Ç
-ƒ lH    Å˝â
-≈ ¸H    ë 
-ë
-« óL    ë X†
-« ßL    ë t"µ
-À ∏L    Å ¿ Õ êM    Å d Œ O    Å ƒ Œ DO    Ü  Œ úO    Ü ô Œ Q    Ü˝ Œ Q    Ü≠ Œ Q    ÜΩ Œ 6Q    ÜW  œ >Q    Üg  œ GQ    Ü£«
-– OQ    Ü – WQ    Ü( – `Q    Üí — hQ    Ü™ — qQ    ëŒ	“ }Q    Ü˝ “ ßQ    Ü˝å“ µQ    Ü˝Õ
-” ÿQ    Å Ù‘
-‘ ¸R    Å Ö ’ hS    ë à"⁄
-’ ©S    Å &  ◊ »S    Å  " ◊ T    Å ˙ ÿ  T    Å ˙ ÿ ÄT    Å   Ÿ ÊU    Å -  ⁄ V    ∆ C⁄  V    Ü R ⁄ {V    Ü y ⁄ ´V    Ü y·
-€ ÿV    Ü yé‹ 7W    Ü y › cW    Ü yôﬁ èW    Ü y ﬂ ¡W    Ü yË
-‡ W    Ü ë	 · \X    Ü 7! · ∞X    Ü Ç	 · Y    Ü &! · pY    Ü ¢ · 'Z    Ü˝ ‚ /Z    ÜÛ ‚ 7Z    Ü ‚ @Z    Üe „ HZ    ÜÇ „ QZ    Ü" ‰ YZ    Ü∫ ‰ aZ    Üy‰ iZ    ëŒ	‰ |Z    Ü˝Ç
-‰ ‡Z    ë ÕÌ
-Â H[    ë ˆÚ
-Ê ,]    ë s¸Ë î]    ë '˝
-È å_    ë N˝
-Í  `    ë 7˝
-Î \a    ë ⁄˝
-Ï Lb    ë C˝
-Ì ¨b    ë Ω˝
-Ó ºc    ë O˝
-Ô Xd    ë ∏˝
- -e    ë o˝
-Ò Ue    ë , ˝
-Ú }e    ë W˝
-Û ´e    ë ó˝
-Ù ”e    ë É˝
-ı ˚e    ë >˝
-ˆ #f    ë ·˝
-˜ Qf    ë J˝
-¯ yf    ë Ì˝
-˘ °f    ë V˝
-˙ –f    ë ø˝
-˚ Pg    ë 4 ˝
-¸ Äg    ë _˝
-˝ 4h    ë ü˝
-˛ (i    ë ã˝
-ˇ ®i    ë F˝
- ‰i    ë È˝
-*j    ë c˝
-Tj    ë ı˝
-Äj    ë ^˝
-–j    Å â ˘j    Å õ k    Ü ‰ Òk    Å ë ˇk    ëŒ	l    Ü˝ l    É ö ∑	l    É ∂ ™-l    É q™@l    É ¬™	Xl    É Ô™fl    É í™yl    É ˚™ål    É u™ül    É ™≤l    É p™¿l    É '™Îl    É ﬂ + ˝l    É ö+ m    É Î+ !m    É + 3m    É ª+ Em    É $+ Wm    É û+ im    É 0+  {m    É ô+ !çm    É P+ "üm    É  + #±m    É 7+ $√m    É w+ %⁄m    É c+ &Òm    É F ∑	'¯m    É b ∑	'ˇm    É ~ ∑	'n    Ü˝ 'n    É ™'"n    Ü˝ )*n    É ˛ + )     Ü˝i	*     ∆ˇ	,     ∆˙		-     ∆	0   C   C   C   Ÿ   C   C   π   )#   )#   )#   ˆ   Ñ"   Ñ"   ˆ   ë"   ë"   ˆ   ¥   ¥   ˆ   ë"   ë"   ˆ   ≤   Œ   Œ   Œ   ï      H   H   H   H   H   H   H   H   H   H   #   ë"   )#   ˆ   )#   )#   C   C   C   C   C   π   ˆ   ˆ   ˆ   ë"   ˆ   ˆ   ë"   Ñ"   )#   ˆ   Ñ"   ï   ï   π   ˆ   ï   ù"   Ÿ   π   Ë   Ó   Ó   Í   ê   ê   Í   Ë	   Ë	   Í   ˆ   ˆ   ˆ   ˆ   ˆ   ˆ   K   ≈	   ï   π   ï   π   ß   K   ú   K   ≈	   ï   π   ï   π   ß   K   ú   K   ≈	   ("   ("   ß   K   ú   K   ≈	   ("   ("   ß   K   ú   K   ≈	   ß   K   ú   Ÿ   Ÿ   Ÿ   .   U   ‘   ¯   @$   ¯   ¯   ª
-   Ω   ≤   ◊   ï   π   `   ç   ï   ï   π   ¯   ¯   K   ¯   ¯   K   K   ï   @$   ¯   @$   K   Ò   ◊   C   C   C   Ÿ   C   C   π   ë"   ë"   ˆ   ˆ   ˆ   ˆ   ì   r"   ˆ   ë"   #   ë"   )#   )#   ˆ   7   r"   )#   )#   Ñ"   Ñ"   ˆ   ì   7   r"   ì   ˆ   ˆ   ˆ   C"   ¯   ¯   Ë   :
-   Ä"   Å   ¬   :
-   î   Œ   ˆ   ˆ   ˆ   ˆ   V   π   ∂	   c   ó"      Â      ≤   Œ   Œ   Œ   Œ      Œ   æ   ˆ   ˆ   ¯     W
-  F
-   §   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   õ"   ï   π   ï   π   ï   π   ï   π   ï   π   ï   π   ï   π   ï   π   ï   π   ï   π   ("   ("   ("   ("   ("   ("   ("   ("   ("   ("   ("   ("   ("   ("   ï   π   ("   K   ≈	   õ"   õ"   ß   K   ú E  I  M  Q  U    E  I  M  Q  U    q  u    E  I  M  Q  U 	 ˝  ˝  ˝
- ) ˝ 1 ˝ 9 ˝ A ˝ I ˝ Q ˝ Y ˝ a ˝ i ˝ q ˝ y ˝ ± ˝ ë »  ë g	 ë !" © ﬂ © ¬# © i& © Z& â ﬂ â ¬# © z+ © ˇ0 ° z6 ° ˇ; â z6 â ˇ; ë ÑA © ⁄0 © m © H © £M © @R ô £W â ⁄\ â m â H â \ â ô!; â @R â ∆ ° £M ° ô!a ° ∆ ô˝ ±˝  iw  à $ ˝ , £º 4 B — < #—  ⁄ﬁ È ." 	
- D ˝ < ZL ⁄ﬁ Å˝ T z/ ˇH< ˝HT ˇP zW #à Òb$p\ »  \ ⁄ﬁ d z/d ˇPπ ˝ ˝ \ m T ∆ !˝ T ô!P @à l ˝ t ˝ È B " #" Z"  ò‚\ @à π˝ L @à π ªH Òª	ªıª˙ªˇ˘ª˝ π C˘CC	CC˝0 È R !˝ Òœ!˝ !˝Ab$'Ay1| ˝ Ñ ˝ å ˝ î ˝ AÈrú ˝ § ˝ ¨ #à AÈ" AÃ	≤An$'A¬π9ôÒn$pqÄ¿yL«q°«I¿Õ¨ ⁄HIä‘¥ #à º ˝ ƒ ⁄HA)â
-«¥ ⁄HÃ #à ‘ ˝ ‹ ⁄ﬁ Ã ⁄H‰ #à Ï ˝ ‰ ⁄H‰ zWÙ #à Ù zWAª	âÙ ⁄HQ"∂AÁ π ^«Aø¸ #à ¸ zW#à zWA  Å ˝·in$ÈYˇ	ÛÒœ˙¨ zWaŸ	i˝ AÜ«Ÿ Ÿ		Ÿ §¥ zWƒ #à ƒ zWâ§0 qr q§Òœ ˇH˝ ¸ ⁄HˇH—y Ÿ £W ±ﬁkπCq#à zWÅ "∂Ã zW£º $B — âõ+ qí qõÛ4˝ 4Ò¢4™<˝ <◊∫<˛ + Lm Tm ¡˝ …˝ \˝ \qﬁ d˝ —ü"lzWt⁄H|˝ l⁄HÒ>C	P]°j\m \4— \— tzW¡ÈÜ…˝ ˝åÑ˝ Ñqﬁ —y§ÈÓ©Ò|$≥Òv Ò0∂—yªÑm …v …@¡πC…πC◊πCﬂπCÁπCÔÑ— Ñ»  Ñ4— Ò …˝ πÇ¸…Ø	ëô π∞πCπCπ∞π∞!π∞&πw+°C6πL>πwCπÄHπDMπ[RπRWπß\πãaπ¡
-fπ9kπßrπÇwπÃ|°ÜåÒ¢úˇ	°§◊∫¨ˇ	W  «  Ã  —  ÷  €  ‡   Â $ Í º « ¿ Ã ƒ — » ÷ Ã € – ‡ ‘ Â ÿ Í ‹ Ô ‡ Ù ‰ ˘ Ë ˛ ,« 0Ã 4— 8÷ <€ – ‘ ÿ ‹ ‡ ‰ Ë! Ï& + Ù0 ¯5 ¸:  ? D I N S X ].  q.  z.  ô. # ¢. + ®. 3 µ. ;  . C  . K –. S ›. [  . c . k #. s sÉ { Ω#ÉÃCÉÃcÉÃÉÉÃDãÃ`%#        p    é ‰ 5^äõß≤’Î	ïŸUî'9IàéñÛ7w}õ†≠”˜0     &  * 	 -  0  C  J  O   ˘"  c    ◊  &  =  É  Ã    ˘"  c    ◊  &  =  É  m$  Ñ    	  “ -  l  Q#  &1  1  ∑"  +   
-  £  Ò    L  G  -#  £6  «;  Ö;  @  F  F -  \$L  %#-  –-  âR  ˘"  €!  âR  $  ≈X  ˘"  c    ◊  &  =  É  G  -#  Ö;  Ñ    	  “ -  l  Q#  &1  1  £6  «;  	  Ü  Q  "    Ëb  –-  ¡   k   ßg  ,  Æ  	  Ü  "  Ë   }m           	                                    !    #  ! %  " '  # )  $ +  % -  & /  ' 1  ( 3  ) 5  * 7  + 9  , ;  - =  . ?  / A  0 C  1 C  2 E  3 E  4 G  5 G  6 I  7 I  8 K  9 K  v M  w O  x Q  y S  Ñ U  Ö U  Ü W  á W  à Y  â Y  ä [  ã [  å ]  ç ]  é _  è _  ¿ a  ¡ c  ¬ e  √ g  ƒ i  ≈ k  ∆ m  ’ o  ÷ q  ◊ s  ÿ s  ‡ u  · w  ‚ y  Â {  Ê }  Á   Ë Å  È É  Í É   Ö  Ò Ö  ˆ á  ˜ á  ¯ â  ˘ â  ˙ ã  ˚ ã  ¸ ç  ˝ è  ˛ ë  ˇ ì  ï  ï  ó  ó  ô  õ  õ  ù  ù  2ü  3ü  4°  5°  6£  7•  8ß  @ !  B #  D %  F '  H )  J +  L -  N   P   R   T   V 
-  X   Z   \ /  ^ 1  ` 3  b 5  d 7  f 9  h ;  j =  ñ ?  ò A  ö C  ú E  û G  † I  ¢ K  §   ¶   ®   ™   ¨   Æ   ∞   ≤    ¥ $  ∂ &  ∏ (  ∫ *  º M  æ O  ¿ Q  ¬ S  ƒ U  ∆ W  » Y    [  Ã ]  Œ _  ™/  ¨1  Æ;  ∞=  ≤M  ¥O  ∂Q  ∏S  ∫U  ºW  æY  ¿!  ¬#  ƒ%  ∆?  »K   '  Ã)  Œ+  –-  “3  ‘5  ÷A  ÿC  ⁄E  ‹I  ﬁG  ‡7  ‚9  ‰[  Ê]  Ë_ h o Å ® Ø ≈ ÷ ˇ #vÉø»:EXcxÉ®˜
-7EM`r~∆◊/>yÅìõ±ƒ«÷Ï&.ìêóö©≤ªº á Ã à < â L ä \ ã l å | ç Ä               …             æM               æ                     €         S    6 €    8    8 S    k€    m€    o€    w€    y   yS     <>9__25_10 <RegisterBaseImporters>b__25_10 State10 State20 <>9__30_0 <ToObject>b__30_0 <>9__31_0 <ToObject>b__31_0 <>9__32_0 <ToObject>b__32_0 <>9__23_0 <ReadSkip>b__23_0 <>9__24_0 <RegisterBaseExporters>b__24_0 <>9__25_0 <RegisterBaseImporters>b__25_0 <RegisterImporter>b__0 <RegisterExporter>b__0 <>9__25_11 <RegisterBaseImporters>b__25_11 State11 State21 <>9__24_1 <RegisterBaseExporters>b__24_1 <>9__25_1 <RegisterBaseImporters>b__25_1 <>c__DisplayClass39_0`1 ExporterFunc`1 IEnumerable`1 IEquatable`1 Stack`1 ICollection`1 IEnumerator`1 IList`1 State1 t1 __StaticArrayInitTypeSize=112 __StaticArrayInitTypeSize=12 <>9__25_12 <RegisterBaseImporters>b__25_12 State12 State22 ToUInt32 ToInt32 <>9__24_2 <RegisterBaseExporters>b__24_2 <>9__25_2 <RegisterBaseImporters>b__25_2 <>c__DisplayClass40_0`2 ImporterFunc`2 KeyValuePair`2 IDictionary`2 State2 t2 <>9__25_13 <RegisterBaseImporters>b__25_13 State13 State23 B67A7FB4648C62F6A1337CA473436D0E787E8633 5CF7299F6558A8AC3F821B4F2F65F23798D319D3 <>9__24_3 <RegisterBaseExporters>b__24_3 <>9__25_3 <RegisterBaseImporters>b__25_3 State3 State14 State24 FAD52931F5B79811D31566BB18B6E0B5D2E2A164 ToUInt64 ToInt64 <>9__24_4 <RegisterBaseExporters>b__24_4 <>9__25_4 <RegisterBaseImporters>b__25_4 State4 State15 State25 <>9__24_5 <RegisterBaseExporters>b__24_5 <>9__25_5 <RegisterBaseImporters>b__25_5 State5 State16 ToUInt16 ToInt16 State26 <>9__24_6 <RegisterBaseExporters>b__24_6 <>9__25_6 <RegisterBaseImporters>b__25_6 State6 50B1635D1FB2907A171B71751E1A3FA79423CA17 State17 State27 <>9__24_7 <RegisterBaseExporters>b__24_7 <>9__25_7 <RegisterBaseImporters>b__25_7 State7 State18 State28 <>9__24_8 <RegisterBaseExporters>b__24_8 <>9__25_8 <RegisterBaseImporters>b__25_8 State8 State19 AAF72C1002FDBCAE040DAE16A10D82184CE83679 148E9E3E864CD628C70D3DC1D8309483BD8C0E89 <>9 <>9__24_9 <RegisterBaseExporters>b__24_9 <>9__25_9 <RegisterBaseImporters>b__25_9 State9 <Module> <PrivateImplementationDetails> C69BF4F300AD2C2E49A8072C2FE6B712FA73EA8F L LitJSON System.IO T value__ add_comma ToJsonData AddObjectMetadata AddArrayMetadata PropertyMetadata object_metadata array_metadata mscorlib sb <>c System.Collections.Generic ImporterFunc ExporterFunc get_CanRead System.Collections.IList.Add System.Collections.IDictionary.Add reader_is_owned read_started System.Collections.Specialized System.Collections.ICollection.IsSynchronized System.Collections.ICollection.get_IsSynchronized IsField WriteObjectEnd WriteArrayEnd has_reached_end Append cond GetMethod method GetInterface CreateInstance message EndInvoke BeginInvoke PopulateParseTable Nullable IEnumerable IDisposable parse_table fsm_return_table fsm_handler_table base_importers_table custom_importers_table base_exporters_table custom_exporters_table ToDouble LitJson.IJsonWrapper.IsDouble LitJson.IJsonWrapper.get_IsDouble LitJson.IJsonWrapper.GetDouble LitJson.IJsonWrapper.SetDouble inst_double RuntimeFieldHandle RuntimeTypeHandle GetTypeFromHandle ToSingle rule get_Name WritePropertyName prop_name property_name ToDateTime ObjectPrime ArrayPrime get_NewLine PutNewline None get_FieldType ValueType GetUnderlyingType GetJsonType SetJsonType get_ParameterType GetType get_ElementType set_ElementType GetElementType ConvertType get_PropertyType value_type json_type element_type inst_type get_InvariantCulture MethodBase False Close Dispose TryParse get_Validate set_Validate validate MulticastDelegate NextState state writer_is_private get_CanWrite CompilerGeneratedAttribute DebuggableAttribute AssemblyTitleAttribute AssemblyTrademarkAttribute TargetFrameworkAttribute AssemblyFileVersionAttribute AssemblyInformationalVersionAttribute AssemblyConfigurationAttribute AssemblyDescriptionAttribute DefaultMemberAttribute CompilationRelaxationsAttribute AssemblyProductAttribute AssemblyCopyrightAttribute CLSCompliantAttribute ParamArrayAttribute AssemblyCompanyAttribute RuntimeCompatibilityAttribute ToSByte ToByte TValue get_Value ReadValue WriteValue get_StringValue ExpectingValue TryGetValue SetValue get_IndentValue set_IndentValue HexValue string_value token_value indent_value True System.Collections.IList.Remove System.Collections.IDictionary.Remove System.Collections.IList.IsFixedSize System.Collections.IDictionary.IsFixedSize System.Collections.IList.get_IsFixedSize System.Collections.IDictionary.get_IsFixedSize System.Collections.IList.IndexOf System.Threading Padding System.Runtime.Versioning ToString LitJson.IJsonWrapper.IsString LitJson.IJsonWrapper.get_IsString LitJson.IJsonWrapper.GetString LitJson.IJsonWrapper.SetString PutString parser_in_string inst_string LitJson.IJsonWrapper.IsLong LitJson.IJsonWrapper.get_IsLong LitJson.IJsonWrapper.GetLong LitJson.IJsonWrapper.SetLong inst_long Push get_Length max_nesting_depth i obj AsyncCallback callback StateStack automaton_stack ctx_stack object_metadata_lock array_metadata_lock static_writer_lock type_properties_lock conv_ops_lock Peek ToDecimal val LitJSON.dll Null TableAddCol ProcessSymbol current_symbol col System.Collections.IList.Item System.Collections.IDictionary.Item System.Collections.Specialized.IOrderedDictionary.Item System.Collections.IList.get_Item System.Collections.IDictionary.get_Item System.Collections.Specialized.IOrderedDictionary.get_Item System.Collections.IList.set_Item System.Collections.IDictionary.set_Item System.Collections.Specialized.IOrderedDictionary.set_Item System IsAssignableFrom get_IsEnum LitJson.IJsonWrapper.IsBoolean LitJson.IJsonWrapper.get_IsBoolean LitJson.IJsonWrapper.GetBoolean LitJson.IJsonWrapper.SetBoolean inst_boolean get_Token ReadToken JsonToken ParserToken NextToken token DoValidation indentation System.Globalization System.Reflection ICollection EnsureCollection Condition KeyNotFoundException ArgumentNullException ApplicationException InvalidOperationException JsonException ArgumentException InvalidCastException inner_exception Epsilon TJson WriteJson get_EndOfJson LitJson.IJsonWrapper.ToJson LitJson end_of_json Return parser_return System.Collections.ICollection.CopyTo FieldInfo MethodInfo CultureInfo MemberInfo ParameterInfo DateTimeFormatInfo NumberFormatInfo get_InvariantInfo PropertyInfo GetConvOp ReadSkip Pop CharSeq hex_seq System.Collections.IList.Clear System.Collections.IDictionary.Clear ProcessEscChar ToChar GetChar UngetChar NextChar esc_char input_char unichar ProcessNumber number StringReader JsonReader TextReader reader IFormatProvider StringBuilder inst_string_builder string_buffer input_buffer StateHandler JsonMapper JsonMockWrapper IJsonWrapper ToWrapper StringWriter JsonWriter get_TextWriter static_writer Enter RegisterImporter importer RegisterExporter exporter Lexer lexer Pair IEnumerator System.Collections.IEnumerable.GetEnumerator System.Collections.IDictionary.GetEnumerator System.Collections.Specialized.IOrderedDictionary.GetEnumerator IDictionaryEnumerator OrderedDictionaryEnumerator list_enumerator Activator .ctor .cctor Monitor str System.Diagnostics GetFields System.Runtime.CompilerServices DebuggingModes get_Properties set_Properties AddTypeProperties get_LowerCaseProperties set_LowerCaseProperties GetProperties type_properties lower_case_properties PopulateFsmTables NumberStyles System.Collections.IDictionary.Values System.Collections.IDictionary.get_Values get_AllowSingleQuotedStrings set_AllowSingleQuotedStrings allow_single_quoted_strings Equals symbols System.Collections.IList.Contains System.Collections.IDictionary.Contains System.Collections conv_ops get_Chars get_SkipNonMembers set_SkipNonMembers skip_non_members RuntimeHelpers GetIndexParameters RegisterBaseImporters UnregisterImporters RegisterBaseExporters UnregisterExporters get_IsClass get_AllowComments set_AllowComments allow_comments System.Collections.IDictionary.Keys System.Collections.IDictionary.get_Keys System.Collections.IList.RemoveAt System.Collections.Specialized.IOrderedDictionary.RemoveAt Format datetime_format number_format InObject ToObject LitJson.IJsonWrapper.IsObject LitJson.IJsonWrapper.get_IsObject inst_object Reset DateTimeOffset op_Implicit op_Explicit digit Init Exit IAsyncResult result LitJson.IJsonWrapper.IsInt LitJson.IJsonWrapper.get_IsInt LitJson.IJsonWrapper.GetInt LitJson.IJsonWrapper.SetInt ToLowerInvariant Indent Unindent Environment get_Current inst_int get_PrettyPrint set_PrettyPrint pretty_print System.Collections.ICollection.Count System.Collections.ICollection.get_Count System.Collections.ICollection.SyncRoot System.Collections.ICollection.get_SyncRoot WriteObjectStart WriteArrayStart System.Collections.IList.Insert System.Collections.Specialized.IOrderedDictionary.Insert Convert ValueRest PairRest IList EnsureList get_IsList set_IsList ArrayList is_list object_list Put get_EndOfInput end_of_input current_input MoveNext System.Text json_text FsmContext WriterContext fsm_context v TableAddRow row idx IntToHex index hex ctx InitializeArray InArray LitJson.IJsonWrapper.IsArray LitJson.IJsonWrapper.get_IsArray set_IsArray is_array inst_array get_Key ContainsKey key System.Collections.IList.IsReadOnly System.Collections.IDictionary.IsReadOnly System.Collections.IList.get_IsReadOnly System.Collections.IDictionary.get_IsReadOnly IDictionary IOrderedDictionary EnsureDictionary get_IsDictionary set_IsDictionary is_dictionary WrapperFactory factory get_Entry DictionaryEntry op_Equality op_Inequality Empty NotAProperty   5T h e   k e y   h a s   t o   b e   a   s t r i n g  [U n a b l e   t o   w r a p   t h e   g i v e n   o b j e c t   w i t h   J s o n D a t a  UI n s t a n c e   o f   J s o n D a t a   d o e s n ' t   h o l d   a   d o u b l e QI n s t a n c e   o f   J s o n D a t a   d o e s n ' t   h o l d   a n   i n t QI n s t a n c e   o f   J s o n D a t a   d o e s n ' t   h o l d   a   l o n g UI n s t a n c e   o f   J s o n D a t a   d o e s n ' t   h o l d   a   s t r i n g QJ s o n D a t a   i n s t a n c e   d o e s n ' t   h o l d   a   b o o l e a n OJ s o n D a t a   i n s t a n c e   d o e s n ' t   h o l d   a   d o u b l e KJ s o n D a t a   i n s t a n c e   d o e s n ' t   h o l d   a n   i n t KJ s o n D a t a   i n s t a n c e   d o e s n ' t   h o l d   a   l o n g OJ s o n D a t a   i n s t a n c e   d o e s n ' t   h o l d   a   s t r i n g cT h e   J s o n D a t a   i n s t a n c e   h a s   t o   b e   i n i t i a l i z e d   f i r s t  QI n s t a n c e   o f   J s o n D a t a   i s   n o t   a   d i c t i o n a r y  EI n s t a n c e   o f   J s o n D a t a   i s   n o t   a   l i s t  oT h e   s p e c i f i e d   k e y   w a s   n o t   f o u n d   i n   t h e   J s o n D a t a   o b j e c t .  aI n s t a n c e   o f   J s o n D a t a   i s   n o t   a n   o b j e c t   o r   a   l i s t .  J s o n D a t a   a r r a y  J s o n D a t a   o b j e c t  -U n i n i t i a l i z e d   J s o n D a t a  GI n v a l i d   t o k e n   ' { 0 } '   i n   i n p u t   s t r i n g OI n v a l i d   c h a r a c t e r   ' { 0 } '   i n   i n p u t   s t r i n g 1S y s t e m . C o l l e c t i o n s . I L i s t  	I t e m  =S y s t e m . C o l l e c t i o n s . I D i c t i o n a r y  o p _ I m p l i c i t  YC a n ' t   a s s i g n   n u l l   t o   a n   i n s t a n c e   o f   t y p e   { 0 } _C a n ' t   a s s i g n   v a l u e   ' { 0 } '   ( t y p e   { 1 } )   t o   t y p e   { 2 } =T y p e   { 0 }   c a n ' t   a c t   a s   a n   a r r a y YT h e   t y p e   { 0 }   d o e s n ' t   h a v e   t h e   p r o p e r t y   ' { 1 } ' ÄãM a x   a l l o w e d   o b j e c t   d e p t h   r e a c h e d   w h i l e   t r y i n g   t o   e x p o r t   f r o m   t y p e   { 0 }   r e a d e r  UI n p u t   d o e s n ' t   e v a l u a t e   t o   p r o p e r   J S O N   t e x t w r i t e r  _A   c o m p l e t e   J S O N   s y m b o l   h a s   a l r e a d y   b e e n   w r i t t e n  3C a n ' t   c l o s e   a n   a r r a y   h e r e 5C a n ' t   c l o s e   a n   o b j e c t   h e r e 'E x p e c t e d   a   p r o p e r t y  3C a n ' t   a d d   a   p r o p e r t y   h e r e -C a n ' t   a d d   a   v a l u e   h e r e \ n  \ r  \ t  \ f  \ b  \ u  f a l s e  	t r u e  . 0  	n u l l  ]  [  }  {  :    =y y y y - M M - d d T H H : m m : s s . f f f f f f f z z z   k}Á≠ÀFáÛ<z[º’               I     m   q   u  y}	  ÄÅ ÄÅ  aeiiÄÒÄıi  e ei   i  aeiiÄÒ  ÄÅ	iai  ii      ii ÄÅiaiii
-iiÅÄÒiuÄÖqÄâ     
-  ÄçT    Äï	 Ä°Ä° Ä°Å
-ÅÄ° ÅÄ°}Ä°Äµ
-ÅÄ°$ÅÄ°a  Å!
-ÅÄ°(ÅÄ°}Ä°0 ÄπÄπÄΩ	}Ä°  Ä°  Äπ  ÄΩ  Ä°  $ÄπÄπÄΩÄ≈Ä≈	}Ä°$Å}  Ä≈
-aÄπÄπÄ≈Ä≈}Ä°aÄÒÄÅ
-ÄµÄµ}Ä°}Ä°ÄµÅÄ°Äµ
-}Ä°Äµ
- ÄµÄ°!Ä°Ä°Ä°Äµ EÄ°$Äπ Ä°Ä° Ä°}Ä°}Ä°0	}Ä°0 Ä°	 ÄµÄµ   Ä° mÄ°   	}Ä°(0
-ÅÄ°0!UÄ°uÄÖqÄâÄ°eÄπ  ÅY Ä±ÄıeH (l ,  Tp 	4 ÄÅiÄ°(ÄÅiÄ°}Ä°0Ä’}}Å} mÅm}}}Å
-  ÅqÄ± ÅqÄ± ÅqÄ±
- ÅqÄ±Ä…Ä›  Ä· ÄÂÄ’P      ÄÂ	 ÄÌÄ± Ä± Ä± 
-Ä± Ä±  ÄÂ  	 Å=Ä±    	Ä— Ä±   
-    	   ÄÌ 	
- 	 Å=Ä±	 Ä—Ä±l  ,   Tp 4 ∑z\V4‡â                            	   
-                         	  
-                  a
-}aieiÄùÄ°}Ä±
-}Ä°(}Ä°}Ä°0
-}Ä° }Ä°}Ä°Äµ
-}Ä°$}Ä°aTD}}Ä’\Ä…LÄ·PÄ’PÄÂÄÈtX`x|h8(0      
-   
- T  ÄÅ        
-     
-   U  E  T   Äâ ei ` `Äï Äï Ä°	  }
- }  Ä©TÄ≠ Ä© Ä© TÄ≠
- Ä©Ä≠ Ä© Ä© Ä≠ Ä©  	 Ä©Ä≠ Ä©   Ä° ÄµÄ°Ä° Ä°H 8H H }Ä°}Ä°0Ä°Ä°0 T  T H Ä… H Ä…  Ä° 8
-, 4   D Ä… Ä…  }} }}` }}`  ÄÈ ÄÈ L  ÄÌ  
- t X X Ä©XÄ≠ Ä©( ( ( ÄÅ( ( I((((( Äâ( Ä°	( }( D( ÄÈ(         TWrapNonExceptionThrows          LitJson   LitJSON library       LitJSON  7 2The authors disclaim copyright to this source code   0.17.0.0  O J0.17.0-alpha.0+Branch.develop.Sha.33985917eb507c6cd8c519349afcf2508d006c07  I .NETFramework,Version=v4.5 TFrameworkDisplayName.NET Framework 4.5	 Item       –ô˚‹ MP   $   †‡  †¬                '   ƒ‡  ƒ¬                                          v!  Î‡  Î¬  RSDSá—Ér0Ø.Eµ&á∑„:u   LitJSON.pdb SHA256 á—Ér0Ø.Öu&á∑„:u–ô˚\sR:3‚we6ﬁMPDBËK  ≠|	t\≈ïvΩ◊O›O≠~-µ∫[˚“⁄eYõ%KñÂ›ñ˜MXﬁ-/Z⁄ [÷“í,∑çQ/&NÄÑ	I¯B êqH¬B¬÷	∂ê	!0&+I ÑaKÄ˘nΩ◊≠Ra¸œôüÛu’W{’´∫uÎV…Àª÷-Wò¬ËüËÏX8:ßæë0;ªø«Ä≤Œ˛^
-yì“¿/b¨£q»Z÷5:å‚Ô)eL£Ù€∫ÿ}SAe´∑≠ÌÄ˚:¯;’‡Àá©∞”O≈CçgÍWﬁÓÆ<}Á+ÌO^˚˜_Q;æ¸’Ÿ©v∆[µ(n‚h|ª·÷¬ı*’§]¿!ÀmÃ,á“ÿ≠>2ì+¶Ôåräß•:&≥^√ ˚	Ee_QlÏØNï••Ÿÿ£i*{Ó3>ï˝Ÿgc∑d©Ï°,õïØ≤˘6VPŸ¢ÄÕ*˜ü˚Oa˜+
-{x¯9_¿´¿¿ª@ä™0êï@0ËÆÆÆnnæ‹<<<¸xp⁄÷¥õÅn‡&‡^‡5‡ÄWSX∞ÿ	<º¸xx`)
-”Å<†XtΩ¿0p‡p'G‡@≥+,®⁄Å@p∏∏	∏x¯+‡/¿[¿@ÜCa•¿\`–ÑÅœ˜øT]aè/ÓT§˛∏»r"∞∏¯<u‡[¿Ì¿#¿òµòm@–	t „ò-6óç˘Ä P4Ì¿*`–é'”Ùüˆœ∆>ÖrˇÏ5l,«mc7‚6VÎ±±˘¿†g⁄X1≤◊∆4ÃnêTı@+∞ËˆA úæ‹LÀ2¿Ì◊ò(  Ä`–,VÅ≠¿† FÄI‡"‡b‡2‡*‡¿ı¿M¿‡‡á¿É¿OÄßÅÁÄóÄﬂ˛¯`À“ò 9@1P	‘sÅ¿r`-–	Ï ˆA`égQøRÿo≥RÿüÅwñù¬\Ä(*Å:`.∞ Xt˚Å€Äc9)Ïb‡≥¿ª¿π)¨0iÚ®l;Îœ∑≥√¿Ö@∏∏∏∏¯6p(
-ê^`g¿◊Äüø<ÖvV¥O/oyEv÷
-lN◊∑œoµ≈v∂∏∏ìƒ.d‚æÄÉÅQ‡p
-∏¯,p-u‡E¿^‚`π¿r¿QÍ`KÄ€ WôÉ’W èÂ∂ ÿ\\‹<|U8ÿ"†∏x¯∞§“¡¶ÄõÄßÄ◊ÅÙ*§∂#¿è´¶Á˚ìU6ˆ‡7¿¿áÄ´s®öÅ•¿F`7–B¿q \|¯U‡õ¿wÄªÅÄû~Ym÷˘≤Âæ∆]Ò_B≈}6[‡N G‚πœìxæƒ$^(Ò"Å{ÅbÅÁÅ”>X"µ∑T‚e/óxÖ¿◊Y\œáüD%∏Mà'Æ	ÒU‡)B{™%>K‚5ü-ÒZâ◊Iº^‡‘˛â7
-úÙÇ9ü4Å€-^ 4|0<U»ﬂ"†‹iqÍˇ<Å«,û^ˇ2†‹e≈7Ûﬁ'pZƒÅvp∑–ﬂ'j°ƒI|±ƒó¸:`©øL™oπƒWHºC‚+%æJ‡4GVK|ç¿[Äµ_'•_/p7ˇF”|∞<√‚4ÊõNﬂo≥¿©}ùﬂ%pö;+ÅÛ¿=¬|⁄"pjOóƒ∑J|õƒ∑K|á¿i£⁄)Ò]ﬂ-Ò=Ô8ıoØ¿u`üƒ˜ú‰ÀÅ”xıHºW‡4_˙NÛø_‚AÅ”z9(z‡|pü≈ÁúæˇÄ¿œ	|pX‡4ûÉØV¶˘≥Ã<”˜Î}<À‚ßûˇf`<€äß59"˝pFN„¯U¿ò¿„‡π/&¿Û,~îcö”|õxÄüÈlËÁÙ¯Ü%~\‡¥>Nú ªP‚'!ÛÖˆ_$l`J‡Ù˝"è
-úˆ£ò¿i~≈ûjù÷ÚÖ˛\,pJˇ	ÅS{NKÒüî‚?%≈_"ï©ôîˇ”R¸g§¯À•¯~uÅ?iÒµ÷˛Aº|#¸kÄ¡ã¨Ù=ä…ã¡◊Û±6y úÊﬁ	ãóÄ˜¿ﬂfÒRW‡_nÒ2?X˚≈7¿À≠Úˇ›‚÷~“jÒJ2kˇ!^~˛*ãWÉè¬_¬˚Ë¿>iñ˜‡fãGm&ØèÄˇ≈äo øIû∑xµO1À#ﬁÓ«Aæ›‚s¡´U≥~‚-‡Äg+&oèÅøc≈œˇ¯qã∑Åˇ	|)¯7¡Á'÷óbÚv˚≠ıN|¯k◊ ∑Ä/¥“S˝∑
-¸C8ﬂ¯˙˚Ø‡ã,^ú¯õ…óÄGPßø¸ìä˘Ωà/_ÑˆÓ±¯
-ª¿/≤x¯{™˘=øæ“*ü˙wõ¿I?¸é¿gﬂ8}ﬂÔÅØ‚o8Ìwú‰—ù‡´~¯ãìL¸>¯Za=‹-päˇ¯:Aæﬂæﬁ‚4æ¡‚i¿è$~§DÇìÌÁ~â? ÒK¸Aâ?$Òá%˛àƒ8çÔcR¸øI¸''À—„'ª’ONøˇ.Ò'$˛§ƒüí¯”F™ÔgR¸≥R{.Òˇê¯/§¸œIÒøî‚üó‚%Ò§Ù/J¸?%˛íîˇ◊Y‚ØH˘ˇKäˇçƒ+ÒﬂI¸˜ˇÉƒˇ(’˜™ƒˇ$Ò?K˘ˇ"≈ø&≈ø.ÒøJÈﬂê‚ˇ&≈ø)Ò∑∞™6˚˝€'}Ó)˛])˛=Å”~¯wÅ”˙ˇáˇæƒ?ê¯ágJ⁄åıØúÙU‡§?ÿN˙ö&À± S¿7
-Ú».pÍèC‡èYºúˆ&:¸Î‡ÁYÒ·§
-|1‡8Ì_iﬂ¨ò|∏G1€OººV1œ#¯V°ˇnÅìºMó‚3N„Ìë‚3%Óï“˚§xøü%pˇlÅ”˘8G‡4~π«µ À8Ì◊˘ﬂº≈‚€}ø|ª≈i.¯RÅ”YÉ∆Ø|á–˛Ä¿È|P"›ä…wZ˙Ox)¯.°æ2Åì1Ø\‡§ÉUº®8ÌßUßªãj›B¸,â◊|ÖIÒµ?¿€<ÕWıR|Éﬂ([,æ|’4)Œà”Û°Y‡4ûs•¯)æUäü'Ò6âœx–.ù¿Åì>¥P‡œ¬Y$n`±¿_Ö≥D‡ßÅ•Øá≥L‡\g¯`Ö¿q¬:˛`•¿I^¨8Èã´%æF‡u¿Z)~ùƒ◊K|Éî£øI‚õ•ÙùŒì‚∑¸F†K‡ø∂ÇÔÚo8…ªÌﬂ!pí;NÛmó¿Iˇ›-píw{NÚ§[‡4ﬁ{NÚÁÄ‚Hr“wzû	ÙJºO‡tûÌ8ïî“î¯˘ø@‚RyáN2Á∞¿=¿†ƒèH|H‚√ë¯®ƒCì¯∏ƒ'$~T‚ìßÛ¬1âá•Ôq\‚'$~R‡doöíæ˝õä˚7Ë¸ï<∂P∏lüN~‹å
-˛˛d,Œì‹o∆ÒX
-7K∞Õ(Áã¸wOÛFR–ŒüHc√)än HæÃ°ù¬√8)íƒ,LZ¢ƒ4vKñ˙GgS≤¥Qç€y´h'∞ô˙NPT&ù5ÌêVπË‹´≥Ø·7ïﬂØ;yø“xÔù¡˜27Ø—‹Wû^Â±§e1K_1O˙)|Ï‹jÅÛ¸:v*ôZòfïÛ†KksÊÔØì6sg7ıOÖkm*üK∏∑··yºﬁ/ÛÎìñîƒ∑3oB“yk◊
-!Ôrˇb≥/–!H∆Ì±ì^0‡&:çfnÄ}¥c)Ï”YtíSò ó¨Ê|cC˚Ü∆õõL∑u.‹	”3Ÿﬂﬂ3ﬁ√∆Mg`hlºg®/»FzBc¡˝„=ΩÉA$Ôû %Ü∆√õzéŸ—û¡	§èŸƒP04∆ì˜2=¡¡‡”whlx»äÏﬂèº®œ*∆œÅÒ‡64∞Éh‰¡a6b:}√CG˜èò˘C¡Tƒéåá∆É°˝ì°û4àèIì!BÊâ°q!ÎõÖÿÿx»¨wåá∆C·˝c·#Ω√Écº{¯Ì	°{H=∆√cÏ»ƒ‡8gcì¬˙˙∆ÜázBaﬁ^
-NZæƒ ôCø=≈Û¯ï_i€¯Â?U‹ÚÖñºCÈOŒ˙‰]ÔÚ”óN∫/˛ó[≥ﬁÈ=o…√ég<W‡9 ÊØ©◊≥»='J˚á˚&é†¥±“ˆ•Ì››°‡»pw˜˘„››á«∫ªQ≈°`ﬂ8˜≈8vwØÔöıØ¢¶√s∏ª{ZºÉ÷›=80N£◊›]S⁄^z¡¯¯»X{CC®g≤Â]0—;1aî«Q_}ﬂëÜ„Î∫6oj∞≤547œokô?g^∞∑•q^_k_[_Àú˘ÕsÁ˜Ï;ÿ‘“ÿ÷ﬂÿÿ⁄◊8Ø°¶Ù‰I{Wxü2”tÍW˘hçÂ}4®~up(Ë+:KT◊H∞o ≥‰x∞?’ä^ª9]â‹´DV"œ)ë7ï®WÌh◊hhlËâzxLOåã√ñtiTÙƒ†8¨ŒŸ∆B}Í0¸iÙ”ÅEPﬂ7ñ€≠ã6F[¢Û££+££{££C—PÙx`ˇkvﬁı√◊ﬂ;uÀ’{\∑>5u˝ÁÔ˝‡Åﬂ˛hÈ;◊™gÓ<Ò˙-…í/9Eı‹	4qß∏ï;Ì‹)\l.7ùU^:î¯÷y∞6◊êﬂ€e8ÿlïo&F∑áúö^Óî_¿ù™QÓTNzHﬂ˜ùÙ¿ÄI…”ÏôX˛*+üÇàÛkìSOnÖ`Ä|¬√gE=Ñà/r)í7|$yÆîº¿âãm¶»ó–0lîëØp7#rwç»M‹uGnµ¬ømπﬂ„nI‰TÉà<`π?Ò‡˝Àä<·—ïUOceˆ∞ŒÚ4HrEª ◊|ëë∂Hexæ‡ãºR¶BL/§4•6 „Nºπv3[yÀÉÁMh∆{â‘^?T"çj‘nñ∏„Âã¶y ∏Ü˛U€±s§™ô*Ôæ:U¿≤U›`v‘vb1^á∞.\ππv©xß§ªX±6öË†ÇÒ‡eï¢‡|*+ór¥p⁄„ãŒNÁ©z:kGÀïqç∆´Ôù†∏Ïhπ’æÃËº&S4ÆgEWÄ‰h∫≠±™¢	]ã‡l
-ˆ¡—ÕˆQp¶\›Ü`?{≠‡ûzÇΩöÆSáh∂Q›zg“W@Ô—Ïdòá¬|™Y£ÊWÕ∆}|^Âê›jﬁT¢’âÊ—˜ è^bòÓÂñ{µÂ^kπˇœ†}¥4z£ë™Ù”4…µá)§$z&ícÜ,åﬁed*4Ñ¨vZ!&BVËVÆ'Ñ\4‰5—Á>}ÿ9À¢Ø:+ßØtœÇ0¯ËFÚ;Û·|›H£QHc.°5—∑ysÁFˇa4aπîƒ√≈R5º≥¬™RßJhZ∏‰	Âr˜$ã®çeÚû∆Ú–¬‘BüŸØÇXBˆQà◊…ç’"d7Ödò!y±ñDà'ëk±êã⁄û[mX≥ —v
-Œém2¨è"˚b€ú.˚c›Œ¯h!}r!\Jƒa b√F2–õ‰=Õé]à±ìW∆b|+bßyäÚÿe¯6âÊË|ä!≈±œ!|ë«Æ7Já∆ê]≈±õQd9	¨S]°µ∞$_π±;ê†©ÕIã`∫TÕè›o !}¥-ú J‡SBZòx±üfƒUX7?V6-„&öÌÙS¢·ääy¡‡kﬂJ∫ïífQR»¶4ívTYFÏOxÈÊRuK(ã/I-y‚?#ˆ6"˘Íõ^xºa”ké∑Âl±n¢ÖIöN¥(I3∏ƒUuà~µOMÍ≥c¥&”ò:UÍ‰ˆ<Õ‘vÿôCKîûOºZœ‡gõ]¨^ùÃ§*Fk"WÆæ¬ •h£x¨« ‚X\|54÷ÄWºcÔ2?:?ó õPı:∂[CS“¥Q_F˜b1Üi4ç¯zÉ∑ﬂn∂¢ìÀ/ã¢ö Ó¯NòA£ô£Ö›J$f◊Àôaœ‘G—ÍŸhHÉÆ£ÓC…:^ÑÍf÷z5Ïe’Z8ìπúàX=3¢Ü"tdõ√Û“•˛\mÏáõø_›Aœ4aamr'&_˛eˆÑ{Ä√Ù·múÂ√ã8=õn˙J(÷£õ€Dé‹û¯èi$iJTja;›$BY†ü\]ºÒÂR+÷ÿÚ¯”b»1+ÆÿfM(#˛-∑J⁄cÏ¥(∞±—⁄‡bxÇÁ¢≠üö™ò=4‚zik^|JÛ∏h∫„≥≤SN/πß‹^,IÂË©L»˙Bªû\ÿeßÚπ»=¿íG†Í[iY+èıGHœ;á™u…KÅ_ŒäW≠<s˛'ü-ær◊≥}óÔ|ˇﬂÛ˛µ‰À-Ô–◊t˚À7êö‰»¡–*⁄F¯ï¡BOÏa¯’ÍrœtÚ+«gìﬂ
-üc‰X·Ã›6ç’ÊêøxW—¬>KŸ\ç'‡§~ˆP3=V‡ñ‡AKAÕú÷D/ç@U.˝úA=€»œÁË÷•w~Ÿµ?€Ysc(Ûæ{ÙÀøπ˘¬¥©]W≠Ó|ˆ€wû¸R>ôs´<n⁄=∞hº≠˛:hT0Øì ó1ákãû&TNAÈ≠<(c*ÂE¨íãÿ0]Ñøìßœ:è’SPÊ6‰›ŒÉ™…Ë∫b<’…È8wÿÈá|À…ó„∆gn√õU∂\≈ÊπSŸIæRäm¶à%¸á"B)Gâbf•†IÙ0MápmQπ≤ûØ,.R2zî<ÏX–R¸ZˆU“ó∫4à,»õvZ)P≠¨ØE±…BÌÇÌ@=Rö∑⁄!ì¡≈πäWx–ÌP5Ï∆4	0"ﬂ«¿TEM‘YKu.£Í0N:[¨Aí¯µ•®3E¨ì‚xùÕ…:S5‘–djChQ©ävc;ÒÒ∆Ïá6‡©¶kURqóKfí'L•U™ìË¶‘~ûz¢öSÊF/vès5˝2,≤™»{â¶£≠v´≠‚¯4—¯&es5ò~®í1Dx|ﬂ$Æ/S¬IjMZSzÆ÷lÖI–-02h◊1ÿ<U«[2uTµé§¶ìàŒT6h–|v‘ôßed
-ÂÂ®öœJÌ‘ë1—O¿PñùÒTE6ﬂia~P¡ﬁI3héK˜µ∫ù∂¡nb≥\ÿ⁄j)Ìójµ=P˙u§#π¶VÎ†îee‡õ5ÚF€±√˚hn™zé∫[Á∞l'⁄7ãÙøBíésË≥VkPq™U‡w#«\ ã/òjvÜ+“≈∫π‘⁄u'ÜŸ2h%∏&ëƒõÅƒòœ©‘')àÿQç:ÖG∑Sï¥&∆HÜÌJÅä•„—©6öõ≤ÇY=aß˝—`sh˙•ìpEs\tt1XùÜ[≥•4ÙYv∆ı[<∞¡º§Éïõ=’Ü…geNz9hH°]?kL◊mU›À2ùÙ©XéÍ:}4èπÍPo∆¡p‰¯2È—W°O≠¢…˜Õ2˙Ù	f”P@ƒ	çFpöñ≠HRúÏRi±X¥“v≤ö$ùE±ï4xçv,/ôã·Å∑nYMÜJyß¶˚Ãèk.´Ù(íd–∂ØÑbuﬁ˘h·˘∞ªπbÕF≥[w≥F?6óã~∏Ôc~h+à\Âg™;lîÌvåπÜmQŸôÙm=Kÿ¥ow“w∂º”±›‹ßœH7Ì€óÙmÄè∫C˙uyÏ!hãHsÉN‚Êk‰~D≈û0t€UœbŒ∞®&‚x√IõØÍŸÙΩ†ÙiaKa,ò©?NSÆ·Â&©◊“≈ÿèRh4Z£+©?∂©ìŒ˙£}Ü˛òP8œë!©pb"¶¬ÈT±Áò
-ß[çD‘…Y4t6dU+‰È,7#°vsçúñ«|Æ†ì‰‡ê\Pâa∫)tu©Ü◊T˘v,Ì‹‰ò:!bπ
-·èU™Æ· o6[OÀy2ï’íÑÎá˙∆ó÷(ñÈtÑó©ák‹ñÿÃ,¡*W√%0ˇÁ∆ª!;qhví¥1Ë‡`X“´üø_èüèoojRJ|–p·‚úxãràdSƒèÛsSM<bE^ﬁÄÊÉ‘ƒ/38Df≈Ø©‰ŸPyÚö8L$T}Ùú—es≈oÇ∂EØF’∞œo~◊p)áúÊú§v‚?2úâCW *)'©	uËÕLÆ˜ﬁ˙ˇ©BWﬂh€Ù»w_xˇÊ¨¬œ¨oÀ˚ﬂ]ø°pip’”’YOˇ=´2Ù 7~eUq'€trL'◊tÚL'ﬂt
-Lß  Ωò;©Ó¯K∏„,5ù2Ó(M‹©4ù*”©6ùY¶S√gÌ\ŒÍ†``´π3«tÊrû“í…Îkk‡l>W™åvŒúÃ¿Ö<PYd:ãπì∫åói,7ã^¡eÂŒ÷j]ÎyJ◊”Ÿ‘»ùÕ¶≥≈¨Ωã◊Æl7€πÉ;∆ŒŒvô•ÏYÃù˝fÜ<É´ﬂ‡Ï‡jÓúﬂúfÈ∫[É«∆M{kB≈Ω& U‹-‹éÔzÕuÅäøıΩ±l¸[´ˆÏ∂˝∂ã^z◊¨_Ó7bW=~˙3gÜ' Ô©†∫ÚWp}≥†√K ≈Í‡TµñuRPŒFîªâk•º>≥«PTywõlOW~–úê‰üuàl<¶ÓÎ6’{z:—4fZ¡l¥w¡¥D;îR2ñ“£RZu§%A»d–“'ùêb˘yã˚¥ƒ…5E¬‘ë+1åÿê”‘nFÖ&¬±FeE∂'ûv‘‡¿j√b≈±]˙aıNd€GŸöëÕFŸx“‘”l[@Y#íÿ†`)€°äíæn¶cµàPê$_ŸJVl”`n ›¢YaÙS§t“œñÑèŒØi∂›…Ú0Ç‹*˘¿‡ªëÖQ‰»¡|¶.é¶%lèS˜—6ë∞˛ë›„Ö˛AaY…∞n=ÃÖõ∂óáYfM+,ãN∑–x5ë∑…¢m√˜ÉÈ"aÊ$9ú«‹Nl'>Vtñ∞Ç≥Ñ˘’|{≥æè¿Ê«√0ŒÙ˝˚(∂ÊÜW=·1ì‘Õ£º>j„t°uëM”aVJyßÎ‡È†√âîóÁù.œ>J∆%OtÛì[ºÊ!˚A*ÌÄtrúÕaı¬	º/y<—”H œ 8◊9®m¯!ı›†—•ûY;â€æ◊ú°„r”˝óDtÍ·:CÓÃπ#´µ
-©‹h»<1˜Ò2›(†{iµ0Â–Ê≠€√<¥O¬êämêFñíòfWÆop}ﬁ†ƒ∞ÔÀc€¥É—q`æ™tû¬¯€ùXœ(PùrC=ﬁNEéb6œÊ“gøŸ;áÙ˘b~‡ôüæª}◊•ˆ∑ﬂz‰Ó:ûª£{¸˝÷xÛØ˙“/r˛∫ËÒ/>ea!‘r<ZÏÒ'-Í<ºÉÀˇ È≥≤{-ó08ÒS˜¶ÈSw·T‘≈Éìøaè)ÄË^⁄∑Çf6¢I_—©+ñl*8üó¶ßág»#?}’DZ˙Sù¬„êc8xY:}πƒß◊ï!JéÂãkﬂe9ë9Œp°yØ_û“öÙQ,ˆÒpï≤ê⁄£8†/≥úŸI˘"Â∆]óÇÙ√)ÆL∏ÓùFÁJÍYë>-5r∑yob®S)4ISL˚#nNa∂Q(8Ÿ`°˚vëÕ÷És7W:ΩtT¨FœÎ"O˛‰åWù2¡q[íŒˆC√≤Ôr%oH"ø0-…∞õ*µëå"/:Ö˝∞©öáœ»’lëﬂ¡÷Ñ©j–èÖì5>&Ì)(ít'Ç”Y ¸t(ï|∏G7h82gF@ˇL˙Í…¨y«ì¿Jß√$à#yá—±Õ3;ç’“Ÿ√≠ÕºÁ—\°Áàñ|YŸ1b‹ ôùEv˙ôÉã©Œ‡tJ˘»f\mA*7›€AeÙìa/iº.é.IƒA	Ù$„jJ¯ıQ"ÆïÇ1(ˆúÕi@p≥%≥Û¨≈òqΩgç£Gqû@@R`÷ö÷G±Ù„g-ÅRîDO%Æ* H`á$3I∂yd•§‹¿i«*•ˇÊÄ˜åTÜËÁ:˘‡—ﬂb¯:≠uDÂóFøˆ)ˇ{-?Á#Âo√õÆ“ËVRuYru≥&ò≥È”„∞Î¡åUa‰ )œ'{¶%›|ˆIö√d,†a+≤FÃeÈ_\˘“7èùSÚ}%/P„¯‘Åü’>˙‚ÜÎÇÕœ-¸Yµ„?^{uŸÖUo5Ggπ◊æ	≠,”Tòmö
-πY∂¿TûÚ†u\.5µ´Ó¯L≈lißëNÌ¢?ptAj¡Äœ/5x?π$Éœ-SàÃa~w∆;ƒˇ¸πÉ9·j¿©”üêûÂ5¬ºT®E>eDÔ+‘”ﬂµ-ÛøXÓ¿ïÚ∏\uŸÈœG≈’Ù•È,Úc™)J(ÚO3õá´⁄à
-ì˜T0@ÒK¿ãÃõ–È‡Ã¯¶)Tg1ìD—H⁄—f¯†P[>nü·{e6]s3‹tﬁ¸d,6{+‘GìÓ=	m πåˇâß'⁄L'2Ì¨¿ÁÄ>†ÕF£ºÔl^t≠« EíL	Ÿ√u,3y+åBÛÍ¥A´ÁÏ;ΩÔöQ⁄∫àö∫éÌFçûh«Dÿyˇπï–ﬂµy¢◊`Êùe`oÎMÙˆÜˇeogo»Ÿ∫∑ö∫∑úÕ„›{Ï„?Ju¢+ÚáË2õ÷}Ihö™å|l”“œ⁄4≥-]‘ñV˛.‹˝mÅëÇO >É	ytÃ¯∏h˙K8O,_àñ⁄ë,¢Ê‹5¥ù;z’π∞ı—Äæs◊0zÓ¶ŒY√˙0ÙÿÂ∏ÀÇTB÷®ÛU ì¡vjŸŒß'jNp∑“ïV7û≥é:ö4±€Õ4®•k∫ô ¶,˘¯∂óHΩΩ à=eê«vê…≥§®C∫æõÕ’qãâMÜNñòNê≤ö√ﬂå\0üÁÏ¿Ò ’8›ª7ˇoΩ#)Îâß	Ω√ôÕ8À¨$˝Õ∑fS¢™èHDÎì¡WØ˜§£:/PLŒ	™–ùà.à∑#öüfD◊%¢W!Wîb‹Li¶>B/sÚXUﬂed&Ø’ê≥¸∂=+ﬁçª=ÓA®i¸ j”€¯¸¯0˙Qeá˘é_@¡ÜÌ¬P£Ùi>ãvoÿÔs»@‡„ØE®π0ZkÊŸ~J€∆5÷º¯ßÕ”3ô‹äbıXkÒsöH]¨=Iî˛ÿ?Æ.M[al•?©˙÷≈÷ây6Oì˙ÿV1f◊4…èÌ≥
-¿d=ÎÛ„qÕñî«˘C¨ Xàªe±c‹≠à]dπß¨¯K,˜
-ÀΩ∆røƒ›öÿWπ[ªŸrœpwaÏvÀ˝w≥„G
-Lw¬rOë»è”œoÉ¯´∞¯Ì~ˆ?â         £                         ï           _CorDllMain mscoree.dll        ˇ%       ]                                                                                                 :         
-    }       ,   
-        "     "       ,                                                                                                                                                   Ä                  0  Ä                   H   X  ˙          ˙4   V S _ V E R S I O N _ I N F O     ΩÔ˛                  ?                         D    V a r F i l e I n f o     $    T r a n s l a t i o n       ∞Z   S t r i n g F i l e I n f o   6   0 0 0 0 0 4 b 0   8   C o m m e n t s   L i t J S O N   l i b r a r y   "   C o m p a n y N a m e         8   F i l e D e s c r i p t i o n     L i t J s o n   2 	  F i l e V e r s i o n     0 . 1 7 . 0 . 0     8   I n t e r n a l N a m e   L i t J S O N . d l l   ä 3  L e g a l C o p y r i g h t   T h e   a u t h o r s   d i s c l a i m   c o p y r i g h t   t o   t h i s   s o u r c e   c o d e     *   L e g a l T r a d e m a r k s         @   O r i g i n a l F i l e n a m e   L i t J S O N . d l l   0   P r o d u c t N a m e     L i t J S O N   ∫ K  P r o d u c t V e r s i o n   0 . 1 7 . 0 - a l p h a . 0 + B r a n c h . d e v e l o p . S h a . 3 3 9 8 5 9 1 7 e b 5 0 7 c 6 c d 8 c 5 1 9 3 4 9 a f c f 2 5 0 8 d 0 0 6 c 0 7     : 	  A s s e m b l y   V e r s i o n   0 . 1 7 . 0 . 0                                                                                                                                                                                                                                                                                                                                                                                                                                                       ∏2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      //
-// System.Security.Cryptography.MiniParser: Internal XML parser implementation
-//
-// Authors:
-//	Sergey Chaban
-//
-// Copyright (c) 2001, 2002 Wild West Software
-// Copyright (c) 2002 Sergey Chaban
-// Copyright (C) 2004 Novell, Inc (http://www.novell.com)
-//
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
-
-using System;
-using System.Text;
-using System.Collections;
-using System.Globalization;
-
-namespace Mono.Xml {
-
-	internal class MiniParser {
-
-		public interface IReader {
-			int Read();
-		}
-
-		public interface IAttrList {
-			int Length {get;}
-			bool IsEmpty {get;}
-			string GetName(int i);
-			string GetValue(int i);
-			string GetValue(string name);
-			void ChangeValue(string name, string newValue);
-			string[] Names {get;}
-			string[] Values {get;}
-		}
-
-		public interface IMutableAttrList : IAttrList {
-			void Clear();
-			void Add(string name, string value);
-			void CopyFrom(IAttrList attrs);
-			void Remove(int i);
-			void Remove(string name);
-		}
-
-		public interface IHandler {
-			void OnStartParsing(MiniParser parser);
-			void OnStartElement(string name, IAttrList attrs);
-			void OnEndElement(string name);
-			void OnChars(string ch);
-			void OnEndParsing(MiniParser parser);
-		}
-
-		public class HandlerAdapter : IHandler {
-			public HandlerAdapter() {}
-			public void OnStartParsing(MiniParser parser) {}
-			public void OnStartElement(string name, IAttrList attrs) {}
-			public void OnEndElement(string name) {}
-			public void OnChars(string ch) {}
-			public void OnEndParsing(MiniParser parser) {}
-		}
-
-		private enum CharKind : byte {
-			LEFT_BR     = 0,
-			RIGHT_BR    = 1,
-			SLASH       = 2,
-			PI_MARK     = 3,
-			EQ          = 4,
-			AMP         = 5,
-			SQUOTE      = 6,
-			DQUOTE      = 7,
-			BANG        = 8,
-			LEFT_SQBR   = 9,
-			SPACE       = 0xA,
-			RIGHT_SQBR  = 0xB,
-			TAB         = 0xC,
-			CR          = 0xD,
-			EOL         = 0xE,
-			CHARS       = 0xF,
-			UNKNOWN = 0x1F
-		}
-
-		private enum ActionCode : byte {
-			START_ELEM               = 0,
-			END_ELEM                 = 1,
-			END_NAME                 = 2,
-			SET_ATTR_NAME            = 3,
-			SET_ATTR_VAL             = 4,
-			SEND_CHARS               = 5,
-			START_CDATA              = 6,
-			END_CDATA                = 7,
-			ERROR                    = 8,
-			STATE_CHANGE             = 9,
-			FLUSH_CHARS_STATE_CHANGE = 0xA,
-			ACC_CHARS_STATE_CHANGE   = 0xB,
-			ACC_CDATA                = 0xC,
-			PROC_CHAR_REF            = 0xD,
-			UNKNOWN = 0xF
-		}
-
-		public class AttrListImpl : IMutableAttrList {
-			protected ArrayList names;
-			protected ArrayList values;
-
-			public AttrListImpl() : this(0) {}
-
-			public AttrListImpl(int initialCapacity) {
-				if (initialCapacity <= 0) {
-					names = new ArrayList();
-					values = new ArrayList();
-				} else {
-					names = new ArrayList(initialCapacity);
-					values = new ArrayList(initialCapacity);
-				}
-			}
-
-			public AttrListImpl(IAttrList attrs)
-			: this(attrs != null ? attrs.Length : 0) {
-				if (attrs != null) this.CopyFrom(attrs);
-			}
-
-			public int Length {
-				get {return names.Count;}
-			}
-
-			public bool IsEmpty {
-				get {return this.Length != 0;}
-			}
-
-			public string GetName(int i) {
-				string res = null;
-				if (i >= 0 && i < this.Length) {
-					res = names[i] as string;
-				}
-				return res;
-			}
-
-			public string GetValue(int i) {
-				string res = null;
-				if (i >= 0 && i < this.Length) {
-					res = values[i] as string;
-				}
-				return res;
-			}
-
-			public string GetValue(string name) {
-				return this.GetValue(names.IndexOf(name));
-			}
-
-			public void ChangeValue(string name, string newValue) {
-				int i = names.IndexOf(name);
-				if (i >= 0 && i < this.Length) {
-					values[i] = newValue;
-				}
-			}
-
-			public string[] Names {
-				get {return names.ToArray(typeof(string)) as string[];}
-			}
-
-			public string[] Values {
-				get {return values.ToArray(typeof(string)) as string[];}
-			}
-
-			public void Clear() {
-				names.Clear();
-				values.Clear();
-			}
-
-			public void Add(string name, string value) {
-				names.Add(name);
-				values.Add(value);
-			}
-
-			public void Remove(int i) {
-				if (i >= 0) {
-					names.RemoveAt(i);
-					values.RemoveAt(i);
-				}
-			}
-
-			public void Remove(string name) {
-				this.Remove(names.IndexOf(name));
-			}
-
-			public void CopyFrom(IAttrList attrs) {
-				if (attrs != null && ((object)this == (object)attrs)) {
-					this.Clear();
-					int n = attrs.Length;
-					for (int i = 0; i < n; i++) {
-						this.Add(attrs.GetName(i), attrs.GetValue(i));
-					}
-				}
-			}
-		}
-
-		public class XMLError : Exception {
-			protected string descr;
-			protected int line, column;
-			public XMLError() : this("Unknown") {}
-			public XMLError(string descr) : this(descr, -1, -1) {}
-			public XMLError(string descr, int line, int column)
-			: base(descr) {
-				this.descr = descr;
-				this.line = line;
-				this.column = column;
-			}
-			public int Line {get {return line;}}
-			public int Column {get {return column;}}
-			public override string ToString() {
-				return (String.Format("{0} @ (line = {1}, col = {2})", descr, line, column));
-			}
-		}
-
-		private static readonly int INPUT_RANGE = 13;
-		private static readonly ushort[] tbl = {
-			(ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 1), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 0), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.ERROR << 8) | 128), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.ERROR << 8) | 128), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.ERROR << 8) | 128), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.ERROR << 8) | 128), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.ERROR << 8) | 128), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.ERROR << 8) | 128), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 128), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.ERROR << 8) | 128), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 128), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 128), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 128),
-			(ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 2), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.ERROR << 8) | 133), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 16), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.FLUSH_CHARS_STATE_CHANGE << 8) | 4),
-			(ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.END_ELEM << 8) | 0), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 2), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 2), (ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 129),
-			(ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 5), (ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3),
-			(ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 4), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.END_NAME << 8) | 6), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.END_NAME << 8) | 7), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.END_NAME << 8) | 8), (ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 129),
-			(ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 0), (ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 3),
-			(ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 0), (ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.ERROR << 8) | 129),
-			(ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.FLUSH_CHARS_STATE_CHANGE << 8) | 1), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.PROC_CHAR_REF << 8) | 10), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 7), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10),
-			(ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 9), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.START_ELEM << 8) | 6), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.START_ELEM << 8) | 7), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 8), (ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 129),
-			(ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 9), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.SET_ATTR_NAME << 8) | 11), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 12), (ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 130),
-			(ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 13), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.PROC_CHAR_REF << 8) | 10), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 10),
-			(ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 14), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 15), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 11), (ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.ERROR << 8) | 132), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.ERROR << 8) | 132), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.ERROR << 8) | 132), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.ERROR << 8) | 132), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.ERROR << 8) | 132), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.ERROR << 8) | 132), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.ERROR << 8) | 132), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 132), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 132), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.ERROR << 8) | 132),
-			(ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.SET_ATTR_NAME << 8) | 11), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 12), (ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 130), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.ERROR << 8) | 130),
-			(ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.SEND_CHARS << 8) | 2), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 16), (ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.ERROR << 8) | 134), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.ERROR << 8) | 134), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.ERROR << 8) | 134), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.ERROR << 8) | 134), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.ERROR << 8) | 134), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 134), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 134), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.ERROR << 8) | 134), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 134), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 134), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.ERROR << 8) | 134),
-			(ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.SET_ATTR_VAL << 8) | 17), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.PROC_CHAR_REF << 8) | 14), (ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 14), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 14), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 14), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 14), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 14), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 14), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 14), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 14), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 14), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 14), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 14),
-			(ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.SET_ATTR_VAL << 8) | 17), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.PROC_CHAR_REF << 8) | 15), (ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 15), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 15), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 15), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 15), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 15), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 15), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 15), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 15), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 15), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 15), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 15),
-			(ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.START_CDATA << 8) | 18), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 0), (ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.START_CDATA << 8) | 19), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.START_CDATA << 8) | 19), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.START_CDATA << 8) | 19), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.START_CDATA << 8) | 19), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.START_CDATA << 8) | 19), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.START_CDATA << 8) | 19), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.START_CDATA << 8) | 19), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.START_CDATA << 8) | 19), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.START_CDATA << 8) | 19), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.START_CDATA << 8) | 19), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.START_CDATA << 8) | 19),
-			(ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.START_ELEM << 8) | 6), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.START_ELEM << 8) | 7), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.STATE_CHANGE << 8) | 17), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.ACC_CHARS_STATE_CHANGE << 8) | 9), (ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.ERROR << 8) | 129), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.ERROR << 8) | 129),
-			(ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.END_CDATA << 8) | 10), (ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 18), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 18), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 18), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 18), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 18), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 18), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 18), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 18), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 18), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 18), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 18), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 18),
-			(ushort)(((ushort)CharKind.LEFT_BR << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 19), (ushort)(((ushort)CharKind.SLASH << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 19), (ushort)(((ushort)CharKind.RIGHT_BR << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 19), (ushort)(((ushort)CharKind.PI_MARK << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 19), (ushort)(((ushort)CharKind.EQ << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 19), (ushort)(((ushort)CharKind.AMP << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 19), (ushort)(((ushort)CharKind.SQUOTE << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 19), (ushort)(((ushort)CharKind.BANG << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 19), (ushort)(((ushort)CharKind.LEFT_SQBR << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 19), (ushort)(((ushort)CharKind.SPACE << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 19), (ushort)(((ushort)CharKind.RIGHT_SQBR << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 19), (ushort)(((ushort)CharKind.DQUOTE << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 19), (ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.ACC_CDATA << 8) | 19),
-			(ushort)(((ushort)CharKind.CHARS << 12) | ((ushort)ActionCode.UNKNOWN << 8) | 255),
-			0xFFFF
-		};
-
-		protected static string[] errors = {
-			/* 0 */ "Expected element",
-			/* 1 */ "Invalid character in tag",
-			/* 2 */ "No '='",
-			/* 3 */ "Invalid character entity",
-			/* 4 */ "Invalid attr value",
-			/* 5 */ "Empty tag",
-			/* 6 */ "No end tag",
-			/* 7 */ "Bad entity ref"
-		};
-
-		protected int line;
-		protected int col;
-		protected int[] twoCharBuff;
-		protected bool splitCData;
-
-		public MiniParser() {
-			twoCharBuff = new int[2];
-			splitCData = false;
-			Reset();
-		}
-
-		public void Reset() {
-			line = 0;
-			col = 0;
-		}
-
-		protected static bool StrEquals(string str, StringBuilder sb, int sbStart, int len) {
-			if (len != str.Length) return false;
-			for (int i = 0; i < len; i++) {
-				if (str[i] != sb[sbStart + i]) return false;
-			}
-			return true;
-		}
-
-		protected void FatalErr(string descr) {
-			throw new XMLError(descr, this.line, this.col);
-		}
-
-		protected static int Xlat(int charCode, int state) {
-			int p = state * INPUT_RANGE;
-			int n = System.Math.Min(tbl.Length - p, INPUT_RANGE);
-			for (;--n >= 0;) {
-				ushort code = tbl[p];
-				if (charCode == (code >> 12)) return (code & 0xFFF);
-				p++;
-			}
-			return 0xFFF;
-		}
-
-		public void Parse(IReader reader, IHandler handler) {
-			if (reader == null) throw new ArgumentNullException("reader");
-			if (handler == null) handler = new HandlerAdapter();
-
-			AttrListImpl attrList = new AttrListImpl();
-			string lastAttrName = null;
-			Stack tagStack = new Stack();
-			string elementName = null;
-			line = 1;
-			col = 0;
-			int currCh = 0;
-			int stateCode = 0;
-			StringBuilder sbChars = new StringBuilder();
-			bool seenCData = false;
-			bool isComment = false;
-			bool isDTD = false;
-			int bracketSwitch = 0;
-
-			handler.OnStartParsing(this);
-
-			while (true) {
-				++this.col;
-
-				currCh = reader.Read();
-
-				if (currCh == -1) {
-					if (stateCode != 0) {
-						FatalErr("Unexpected EOF");
-					}
-					break;
-				}
-
-				int charCode = "<>/?=&'\"![ ]\t\r\n".IndexOf((char)currCh) & 0xF;
-				if (charCode == (int)CharKind.CR) continue; // ignore
-				// whitepace ::= (#x20 | #x9 | #xd | #xa)+
-				if (charCode == (int)CharKind.TAB) charCode = (int)CharKind.SPACE; // tab == space
-				if (charCode == (int)CharKind.EOL) {
-					this.col = 0;
-					this.line++;
-					charCode = (int)CharKind.SPACE;
-				}
-
-				int actionCode = MiniParser.Xlat(charCode, stateCode);
-				stateCode = actionCode & 0xFF;
-				// Ignore newline inside attribute value.
-				if (currCh == '\n' && (stateCode == 0xE || stateCode == 0xF)) continue;
-				actionCode >>= 8;
-
-				if (stateCode >= 0x80) {
-					if (stateCode == 0xFF) {
-						FatalErr("State dispatch error.");
-					} else {
-						FatalErr(errors[stateCode ^ 0x80]);
-					}
-				}
-
-				switch (actionCode) {
-				case (int)ActionCode.START_ELEM:
-					handler.OnStartElement(elementName, attrList);
-					if (currCh != '/') {
-						tagStack.Push(elementName);
-					} else {
-						handler.OnEndElement(elementName);
-					}
-					attrList.Clear();
-					break;
-
-				case (int)ActionCode.END_ELEM:
-					elementName = sbChars.ToString();
-					sbChars = new StringBuilder();
-					string endName = null;
-					if (tagStack.Count == 0 ||
-						elementName != (endName = tagStack.Pop() as string)) {
-						if (endName == null) {
-							FatalErr("Tag stack underflow");
-						} else {
-							FatalErr(String.Format("Expected end tag '{0}' but found '{1}'", elementName, endName));
-						}
-					}
-					handler.OnEndElement(elementName);
-					break;
-
-				case (int)ActionCode.END_NAME:
-					elementName = sbChars.ToString();
-					sbChars = new StringBuilder();
-					if (currCh != '/' && currCh != '>') break;
-					goto case (int)ActionCode.START_ELEM;
-
-				case (int)ActionCode.SET_ATTR_NAME:
-					lastAttrName = sbChars.ToString();
-					sbChars = new StringBuilder();
-					break;
-
-				case (int)ActionCode.SET_ATTR_VAL:
-					if (lastAttrName == null) FatalErr("Internal error.");
-					attrList.Add(lastAttrName, sbChars.ToString());
-					sbChars = new StringBuilder();
-					lastAttrName = null;
-					break;
-
-				case (int)ActionCode.SEND_CHARS:
-					handler.OnChars(sbChars.ToString());
-					sbChars = new StringBuilder();
-					break;
-
-				case (int)ActionCode.START_CDATA:
-					string cdata = "CDATA[";
-					isComment = false;
-					isDTD = false;
-
-					if (currCh == '-') {
-						currCh = reader.Read();
-
-						if (currCh != '-') FatalErr("Invalid comment");
-
-						this.col++;
-						isComment = true;
-						twoCharBuff[0] = -1;
-						twoCharBuff[1] = -1;
-					} else {
-						if (currCh != '[') {
-							isDTD = true;
-							bracketSwitch = 0;
-							break;
-						}
-
-						for (int i = 0; i < cdata.Length; i++) {
-							if (reader.Read() != cdata[i]) {
-								this.col += i+1;
-								break;
-							}
-						}
-						this.col += cdata.Length;
-						seenCData = true;
-					}
-					break;
-
-				case (int)ActionCode.END_CDATA:
-					int n = 0;
-					currCh = ']';
-
-					while (currCh == ']') {
-						currCh = reader.Read();
-						n++;
-					}
-
-					if (currCh != '>') {
-						for (int i = 0; i < n; i++) sbChars.Append(']');
-						sbChars.Append((char)currCh);
-						stateCode = 0x12;
-					} else {
-						for (int i = 0; i < n-2; i++) sbChars.Append(']');
-						seenCData = false;
-					}
-
-					this.col += n;
-					break;
-
-				case (int)ActionCode.ERROR:
-					FatalErr(String.Format("Error {0}", stateCode));
-					break;
-
-				case (int)ActionCode.STATE_CHANGE:
-					break;
-
-				case (int)ActionCode.FLUSH_CHARS_STATE_CHANGE:
-					sbChars = new StringBuilder();
-					if (currCh != '<') goto case (int)ActionCode.ACC_CHARS_STATE_CHANGE;
-					break;
-
-				case (int)ActionCode.ACC_CHARS_STATE_CHANGE:
-					sbChars.Append((char)currCh);
-					break;
-
-				case (int)ActionCode.ACC_CDATA:
-					if (isComment) {
-						if (currCh == '>'
-							&& twoCharBuff[0] == '-'
-							&& twoCharBuff[1] == '-') {
-							isComment = false;
-							stateCode = 0;
-						} else {
-							twoCharBuff[0] = twoCharBuff[1];
-							twoCharBuff[1] = currCh;
-						}
-					} else if (isDTD) {
-						if (currCh == '<' || currCh == '>') bracketSwitch ^= 1;
-						if (currCh == '>' && bracketSwitch != 0) {
-							isDTD = false;
-							stateCode = 0;
-						}
-					} else {
-						if (this.splitCData
-							&& sbChars.Length > 0
-							&& seenCData) {
-							handler.OnChars(sbChars.ToString());
-							sbChars = new StringBuilder();
-						}
-						seenCData = false;
-						sbChars.Append((char)currCh);
-					}
-					break;
-
-				case (int)ActionCode.PROC_CHAR_REF:
-					currCh = reader.Read();
-					int cl = this.col + 1;
-					if (currCh == '#') {    // character reference
-						int r = 10;
-						int chCode = 0;
-						int nDigits = 0;
-						currCh = reader.Read();
-						cl++;
-
-						if (currCh == 'x') {
-							currCh = reader.Read();
-							cl++;
-							r=16;
-						}
-
-						NumberStyles style = r == 16 ? NumberStyles.HexNumber : NumberStyles.Integer;
-
-						while (true) {
-							int x = -1;
-							if (Char.IsNumber((char)currCh) || "abcdef".IndexOf(Char.ToLower((char)currCh)) != -1) {
-								try {
-									x = Int32.Parse(new string((char)currCh, 1), style);
-								} catch (FormatException) {x = -1;}
-							}
-							if (x == -1) break;
-							chCode *= r;
-							chCode += x;
-							nDigits++;
-							currCh = reader.Read();
-							cl++;
-						}
-
-						if (currCh == ';' && nDigits > 0) {
-							sbChars.Append((char)chCode);
-						} else {
-							FatalErr("Bad char ref");
-						}
-					} else {
-						// entity reference
-						string entityRefChars = "aglmopqstu"; // amp | apos | quot | gt | lt
-						string entities = "&'\"><";
-
-						int pos = 0;
-						int entIdx = 0xF;
-						int predShift = 0;
-
-						int sbLen = sbChars.Length;
-
-						while (true) {
-							if (pos != 0xF) pos = entityRefChars.IndexOf((char)currCh) & 0xF;
-							if (pos == 0xF) FatalErr(errors[7]);
-							sbChars.Append((char)currCh);
-
-							int path = "\uFF35\u3F8F\u4F8F\u0F5F\uFF78\uE1F4\u2299\uEEFF\uEEFF\uFF4F"[pos];
-							int lBr = (path >> 4) & 0xF;
-							int rBr = path & 0xF;
-							int lPred = path >> 12;
-							int rPred = (path >> 8) & 0xF;
-							currCh = reader.Read();
-							cl++;
-							pos = 0xF;
-							if (lBr != 0xF && currCh == entityRefChars[lBr]) {
-								if (lPred < 0xE) entIdx = lPred;
-//								pred = lPred;
-								predShift = 12; // left
-							} else if (rBr != 0xF && currCh == entityRefChars[rBr]) {
-								if (rPred < 0xE) entIdx = rPred;
-//								pred = rPred;
-								predShift = 8; // right
-							} else if (currCh == ';') {
-								if (entIdx != 0xF
-									&& predShift != 0
-									&& ((path >> predShift) & 0xF) == 0xE) break;
-								continue; // pos == 0xF
-							}
-
-							pos=0;
-
-						}
-
-						int l = cl - this.col - 1;
-
-						if ((l > 0 && l < 5)
-							&&(StrEquals("amp", sbChars, sbLen, l)
-							|| StrEquals("apos", sbChars, sbLen, l)
-							|| StrEquals("quot", sbChars, sbLen, l)
-							|| StrEquals("lt", sbChars, sbLen, l)
-							|| StrEquals("gt", sbChars, sbLen, l))
-							) {
-							sbChars.Length = sbLen;
-							sbChars.Append(entities[entIdx]);
-						} else FatalErr(errors[7]);
-					}
-
-					this.col = cl;
-					break;
-
-				default:
-					FatalErr(String.Format("Unexpected action code - {0}.", actionCode));
-					break;
-				}
-			} // while (true)
-
-			handler.OnEndParsing(this);
-
-		} // Parse
-
-	}
-
-}
-//
-// Mono.Xml.SecurityParser.cs class implementation
-//
-// Author:
-//	Sebastien Pouliot (spouliot@motus.com)
-//
-// (C) 2003 Motus Technologies Inc. (http://www.motus.com)
-//
-
-//
-// Copyright (C) 2004 Novell, Inc (http://www.novell.com)
-//
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
-
-using System;
-using System.Collections;
-using System.IO;
-using System.Security;
-
-namespace Mono.Xml {
-
-	// convert an XML document into SecurityElement objects
-	internal class SecurityParser : SmallXmlParser, SmallXmlParser.IContentHandler {
-
-		private SecurityElement root;
-
-		public SecurityParser () : base ()
-		{
-			stack = new Stack ();
-		}
-
-		public void LoadXml (string xml)
-		{
-			root = null;
-#if CF_1_0
-			stack = new Stack ();
-#else
-			stack.Clear ();
-#endif
-			Parse (new StringReader (xml), this);
-		}
-
-		public SecurityElement ToXml ()
-		{
-			return root;
-		}
-
-		// IContentHandler
-
-		private SecurityElement current;
-		private Stack stack;
-
-		public void OnStartParsing (SmallXmlParser parser) {}
-
-		public void OnProcessingInstruction (string name, string text) {}
-
-		public void OnIgnorableWhitespace (string s) {}
-
-		public void OnStartElement (string name, SmallXmlParser.IAttrList attrs)
-		{
-			SecurityElement newel = new SecurityElement (name);
-			if (root == null) {
-				root = newel;
-				current = newel;
-			}
-			else {
-				SecurityElement parent = (SecurityElement) stack.Peek ();
-				parent.AddChild (newel);
-			}
-			stack.Push (newel);
-			current = newel;
-			// attributes
-			int n = attrs.Length;
-			for (int i=0; i < n; i++)
-				current.AddAttribute (attrs.GetName (i), attrs.GetValue (i));
-		}
-
-		public void OnEndElement (string name)
-		{
-			current = (SecurityElement) stack.Pop ();
-		}
-
-		public void OnChars (string ch)
-		{
-			current.Text = ch;
-		}
-
-		public void OnEndParsing (SmallXmlParser parser) {}
-	}
-}
-
-//
-// SmallXmlParser.cs
-//
-// Author:
-//	Atsushi Enomoto  <atsushi@ximian.com>
-//
-// Copyright (C) 2005 Novell, Inc (http://www.novell.com)
-//
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
-
-//
-// small xml parser that is mostly compatible with
-//
-
-using System;
-using System.Collections;
-using System.Globalization;
-using System.IO;
-using System.Text;
-
-namespace Mono.Xml
-{
-	internal class DefaultHandler : SmallXmlParser.IContentHandler
-	{
-		public void OnStartParsing (SmallXmlParser parser)
-		{
-		}
-
-		public void OnEndParsing (SmallXmlParser parser)
-		{
-		}
-
-		public void OnStartElement (string name, SmallXmlParser.IAttrList attrs)
-		{
-		}
-
-		public void OnEndElement (string name)
-		{
-		}
-
-		public void OnChars (string s)
-		{
-		}
-
-		public void OnIgnorableWhitespace (string s)
-		{
-		}
-
-		public void OnProcessingInstruction (string name, string text)
-		{
-		}
-	}
-
-	internal class SmallXmlParser
-	{
-		public interface IContentHandler
-		{
-			void OnStartParsing (SmallXmlParser parser);
-			void OnEndParsing (SmallXmlParser parser);
-			void OnStartElement (string name, IAttrList attrs);
-			void OnEndElement (string name);
-			void OnProcessingInstruction (string name, string text);
-			void OnChars (string text);
-			void OnIgnorableWhitespace (string text);
-		}
-
-		public interface IAttrList
-		{
-			int Length { get; }
-			bool IsEmpty { get; }
-			string GetName (int i);
-			string GetValue (int i);
-			string GetValue (string name);
-			string [] Names { get; }
-			string [] Values { get; }
-		}
-
-		class AttrListImpl : IAttrList
-		{
-			public int Length {
-				get { return attrNames.Count; }
-			}
-			public bool IsEmpty {
-				get { return attrNames.Count == 0; }
-			}
-			public string GetName (int i)
-			{
-				return (string) attrNames [i];
-			}
-			public string GetValue (int i)
-			{
-				return (string) attrValues [i];
-			}
-			public string GetValue (string name)
-			{
-				for (int i = 0; i < attrNames.Count; i++)
-					if ((string) attrNames [i] == name)
-						return (string) attrValues [i];
-				return null;
-			}
-			public string [] Names {
-				get { return (string []) attrNames.ToArray (typeof (string)); }
-			}
-			public string [] Values {
-				get { return (string []) attrValues.ToArray (typeof (string)); }
-			}
-
-			ArrayList attrNames = new ArrayList ();
-			ArrayList attrValues = new ArrayList ();
-
-			internal void Clear ()
-			{
-				attrNames.Clear ();
-				attrValues.Clear ();
-			}
-
-			internal void Add (string name, string value)
-			{
-				attrNames.Add (name);
-				attrValues.Add (value);
-			}
-		}
-
-		IContentHandler handler;
-		TextReader reader;
-		Stack elementNames = new Stack ();
-		Stack xmlSpaces = new Stack ();
-		string xmlSpace;
-		StringBuilder buffer = new StringBuilder (200);
-		char [] nameBuffer = new char [30];
-		bool isWhitespace;
-
-		AttrListImpl attributes = new AttrListImpl ();
-		int line = 1, column;
-		bool resetColumn;
-
-		public SmallXmlParser ()
-		{
-		}
-
-		private Exception Error (string msg)
-		{
-			return new SmallXmlParserException (msg, line, column);
-		}
-
-		private Exception UnexpectedEndError ()
-		{
-			string [] arr = new string [elementNames.Count];
-			// COMPACT FRAMEWORK NOTE: CopyTo is not visible through the Stack class
-			(elementNames as ICollection).CopyTo (arr, 0);
-			return Error (String.Format (
-							  "Unexpected end of stream. Element stack content is {0}", String.Join (",", arr)));
-		}
-
-
-		private bool IsNameChar (char c, bool start)
-		{
-			switch (c) {
-			case ':':
-			case '_':
-				return true;
-			case '-':
-			case '.':
-				return !start;
-			}
-			if (c > 0x100) { // optional condition for optimization
-				switch (c) {
-				case '\u0559':
-				case '\u06E5':
-				case '\u06E6':
-					return true;
-				}
-				if ('\u02BB' <= c && c <= '\u02C1')
-					return true;
-			}
-			switch (Char.GetUnicodeCategory (c)) {
-			case UnicodeCategory.LowercaseLetter:
-			case UnicodeCategory.UppercaseLetter:
-			case UnicodeCategory.OtherLetter:
-			case UnicodeCategory.TitlecaseLetter:
-			case UnicodeCategory.LetterNumber:
-				return true;
-			case UnicodeCategory.SpacingCombiningMark:
-			case UnicodeCategory.EnclosingMark:
-			case UnicodeCategory.NonSpacingMark:
-			case UnicodeCategory.ModifierLetter:
-			case UnicodeCategory.DecimalDigitNumber:
-				return !start;
-			default:
-				return false;
-			}
-		}
-
-		private bool IsWhitespace (int c)
-		{
-			switch (c) {
-			case ' ':
-			case '\r':
-			case '\t':
-			case '\n':
-				return true;
-			default:
-				return false;
-			}
-		}
-
-
-		public void SkipWhitespaces ()
-		{
-			SkipWhitespaces (false);
-		}
-
-		private void HandleWhitespaces ()
-		{
-			while (IsWhitespace (Peek ()))
-				buffer.Append ((char) Read ());
-			if (Peek () != '<' && Peek () >= 0)
-				isWhitespace = false;
-		}
-
-		public void SkipWhitespaces (bool expected)
-		{
-			while (true) {
-				switch (Peek ()) {
-				case ' ':
-				case '\r':
-				case '\t':
-				case '\n':
-					Read ();
-					if (expected)
-						expected = false;
-					continue;
-				}
-				if (expected)
-					throw Error ("Whitespace is expected.");
-				return;
-			}
-		}
-
-
-		private int Peek ()
-		{
-			return reader.Peek ();
-		}
-
-		private int Read ()
-		{
-			int i = reader.Read ();
-			if (i == '\n')
-				resetColumn = true;
-			if (resetColumn) {
-				line++;
-				resetColumn = false;
-				column = 1;
-			}
-			else
-				column++;
-			return i;
-		}
-
-		public void Expect (int c)
-		{
-			int p = Read ();
-			if (p < 0)
-				throw UnexpectedEndError ();
-			else if (p != c)
-				throw Error (String.Format ("Expected '{0}' but got {1}", (char) c, (char) p));
-		}
-
-		private string ReadUntil (char until, bool handleReferences)
-		{
-			while (true) {
-				if (Peek () < 0)
-					throw UnexpectedEndError ();
-				char c = (char) Read ();
-				if (c == until)
-					break;
-				else if (handleReferences && c == '&')
-					ReadReference ();
-				else
-					buffer.Append (c);
-			}
-			string ret = buffer.ToString ();
-			buffer.Length = 0;
-			return ret;
-		}
-
-		public string ReadName ()
-		{
-			int idx = 0;
-			if (Peek () < 0 || !IsNameChar ((char) Peek (), true))
-				throw Error ("XML name start character is expected.");
-			for (int i = Peek (); i >= 0; i = Peek ()) {
-				char c = (char) i;
-				if (!IsNameChar (c, false))
-					break;
-				if (idx == nameBuffer.Length) {
-					char [] tmp = new char [idx * 2];
-					// COMPACT FRAMEWORK NOTE: Array.Copy(sourceArray, destinationArray, count) is not available.
-					Array.Copy (nameBuffer, 0, tmp, 0, idx);
-					nameBuffer = tmp;
-				}
-				nameBuffer [idx++] = c;
-				Read ();
-			}
-			if (idx == 0)
-				throw Error ("Valid XML name is expected.");
-			return new string (nameBuffer, 0, idx);
-		}
-
-
-		public void Parse (TextReader input, IContentHandler handler)
-		{
-			this.reader = input;
-			this.handler = handler;
-
-			handler.OnStartParsing (this);
-
-			while (Peek () >= 0)
-				ReadContent ();
-			HandleBufferedContent ();
-			if (elementNames.Count > 0)
-				throw Error (String.Format ("Insufficient close tag: {0}", elementNames.Peek ()));
-
-			handler.OnEndParsing (this);
-
-			Cleanup ();
-		}
-
-		private void Cleanup ()
-		{
-			line = 1;
-			column = 0;
-			handler = null;
-			reader = null;
-#if CF_1_0
-			elementNames = new Stack ();
-			xmlSpaces = new Stack ();
-#else
-			elementNames.Clear ();
-			xmlSpaces.Clear ();
-#endif
-			attributes.Clear ();
-			buffer.Length = 0;
-			xmlSpace = null;
-			isWhitespace = false;
-		}
-
-		public void ReadContent ()
-		{
-			string name;
-			if (IsWhitespace (Peek ())) {
-				if (buffer.Length == 0)
-					isWhitespace = true;
-				HandleWhitespaces ();
-			}
-			if (Peek () == '<') {
-				Read ();
-				switch (Peek ()) {
-				case '!': // declarations
-					Read ();
-					if (Peek () == '[') {
-						Read ();
-						if (ReadName () != "CDATA")
-							throw Error ("Invalid declaration markup");
-						Expect ('[');
-						ReadCDATASection ();
-						return;
-					}
-					else if (Peek () == '-') {
-						ReadComment ();
-						return;
-					}
-					else if (ReadName () != "DOCTYPE")
-						throw Error ("Invalid declaration markup.");
-					else
-						throw Error ("This parser does not support document type.");
-				case '?': // PIs
-					HandleBufferedContent ();
-					Read ();
-					name = ReadName ();
-					SkipWhitespaces ();
-					string text = String.Empty;
-					if (Peek () != '?') {
-						while (true) {
-							text += ReadUntil ('?', false);
-							if (Peek () == '>')
-								break;
-							text += "?";
-						}
-					}
-					handler.OnProcessingInstruction (
-						name, text);
-					Expect ('>');
-					return;
-				case '/': // end tags
-					HandleBufferedContent ();
-					if (elementNames.Count == 0)
-						throw UnexpectedEndError ();
-					Read ();
-					name = ReadName ();
-					SkipWhitespaces ();
-					string expected = (string) elementNames.Pop ();
-					xmlSpaces.Pop ();
-					if (xmlSpaces.Count > 0)
-						xmlSpace = (string) xmlSpaces.Peek ();
-					else
-						xmlSpace = null;
-					if (name != expected)
-						throw Error (String.Format ("End tag mismatch: expected {0} but found {1}", expected, name));
-					handler.OnEndElement (name);
-					Expect ('>');
-					return;
-				default: // start tags (including empty tags)
-					HandleBufferedContent ();
-					name = ReadName ();
-					while (Peek () != '>' && Peek () != '/')
-						ReadAttribute (attributes);
-					handler.OnStartElement (name, attributes);
-					attributes.Clear ();
-					SkipWhitespaces ();
-					if (Peek () == '/') {
-						Read ();
-						handler.OnEndElement (name);
-					}
-					else {
-						elementNames.Push (name);
-						xmlSpaces.Push (xmlSpace);
-					}
-					Expect ('>');
-					return;
-				}
-			}
-			else
-				ReadCharacters ();
-		}
-
-		private void HandleBufferedContent ()
-		{
-			if (buffer.Length == 0)
-				return;
-			if (isWhitespace)
-				handler.OnIgnorableWhitespace (buffer.ToString ());
-			else
-				handler.OnChars (buffer.ToString ());
-			buffer.Length = 0;
-			isWhitespace = false;
-		}
-
-		private void ReadCharacters ()
-		{
-			isWhitespace = false;
-			while (true) {
-				int i = Peek ();
-				switch (i) {
-				case -1:
-					return;
-				case '<':
-					return;
-				case '&':
-					Read ();
-					ReadReference ();
-					continue;
-				default:
-					buffer.Append ((char) Read ());
-					continue;
-				}
-			}
-		}
-
-		private void ReadReference ()
-		{
-			if (Peek () == '#') {
-				// character reference
-				Read ();
-				ReadCharacterReference ();
-			} else {
-				string name = ReadName ();
-				Expect (';');
-				switch (name) {
-				case "amp":
-					buffer.Append ('&');
-					break;
-				case "quot":
-					buffer.Append ('"');
-					break;
-				case "apos":
-					buffer.Append ('\'');
-					break;
-				case "lt":
-					buffer.Append ('<');
-					break;
-				case "gt":
-					buffer.Append ('>');
-					break;
-				default:
-					throw Error ("General non-predefined entity reference is not supported in this parser.");
-				}
-			}
-		}
-
-		private int ReadCharacterReference ()
-		{
-			int n = 0;
-			if (Peek () == 'x') { // hex
-				Read ();
-				for (int i = Peek (); i >= 0; i = Peek ()) {
-					if ('0' <= i && i <= '9')
-						n = n << 4 + i - '0';
-					else if ('A' <= i && i <='F')
-						n = n << 4 + i - 'A' + 10;
-					else if ('a' <= i && i <='f')
-						n = n << 4 + i - 'a' + 10;
-					else
-						break;
-					Read ();
-				}
-			} else {
-				for (int i = Peek (); i >= 0; i = Peek ()) {
-					if ('0' <= i && i <= '9')
-						n = n << 4 + i - '0';
-					else
-						break;
-					Read ();
-				}
-			}
-			return n;
-		}
-
-		private void ReadAttribute (AttrListImpl a)
-		{
-			SkipWhitespaces (true);
-			if (Peek () == '/' || Peek () == '>')
-			// came here just to spend trailing whitespaces
-				return;
-
-			string name = ReadName ();
-			string value;
-			SkipWhitespaces ();
-			Expect ('=');
-			SkipWhitespaces ();
-			switch (Read ()) {
-			case '\'':
-				value = ReadUntil ('\'', true);
-				break;
-			case '"':
-				value = ReadUntil ('"', true);
-				break;
-			default:
-				throw Error ("Invalid attribute value markup.");
-			}
-			if (name == "xml:space")
-				xmlSpace = value;
-			a.Add (name, value);
-		}
-
-		private void ReadCDATASection ()
-		{
-			int nBracket = 0;
-			while (true) {
-				if (Peek () < 0)
-					throw UnexpectedEndError ();
-				char c = (char) Read ();
-				if (c == ']')
-					nBracket++;
-				else if (c == '>' && nBracket > 1) {
-					for (int i = nBracket; i > 2; i--)
-						buffer.Append (']');
-					break;
-				}
-				else {
-					for (int i = 0; i < nBracket; i++)
-						buffer.Append (']');
-					nBracket = 0;
-					buffer.Append (c);
-				}
-			}
-		}
-
-		private void ReadComment ()
-		{
-			Expect ('-');
-			Expect ('-');
-			while (true) {
-				if (Read () != '-')
-					continue;
-				if (Read () != '-')
-					continue;
-				if (Read () != '>')
-					throw Error ("'--' is not allowed inside comment markup.");
-				break;
-			}
-		}
-	}
-
-	internal class SmallXmlParserException : SystemException
-	{
-		int line;
-		int column;
-
-		public SmallXmlParserException (string msg, int line, int column)
-		: base (String.Format ("{0}. At ({1},{2})", msg, line, column))
-		{
-			this.line = line;
-			this.column = column;
-		}
-
-		public int Line {
-			get { return line; }
-		}
-
-		public int Column {
-			get { return column; }
-		}
-	}
-}
-
-
-
-{
-    "dir": "H:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Data Processing@v1.0.0",
-    "fileBytesLength": 141737,
-    "fileCount": 10,
-    "fileIndexList": [
-        {
-            "fileName": "kitPackageConfig.json",
-            "relativeFilePath": "kitPackageConfig.json",
-            "fileBytesLength": 453,
-            "filePosition": 0
-        },
-        {
-            "fileName": "LitJsonScene.unity",
-            "relativeFilePath": "Example/ExamplesLitJson/LitJsonScene.unity",
-            "fileBytesLength": 8405,
-            "filePosition": 453
-        },
-        {
-            "fileName": "LitJsonTest.cs",
-            "relativeFilePath": "Example/ExamplesLitJson/LitJsonTest.cs",
-            "fileBytesLength": 1111,
-            "filePosition": 8858
-        },
-        {
-            "fileName": "ExamplesMono.XmlScene.unity",
-            "relativeFilePath": "Example/ExamplesMono.Xml/ExamplesMono.XmlScene.unity",
-            "fileBytesLength": 8398,
-            "filePosition": 9969
-        },
-        {
-            "fileName": "MonoXmlTest.cs",
-            "relativeFilePath": "Example/ExamplesMono.Xml/MonoXmlTest.cs",
-            "fileBytesLength": 630,
-            "filePosition": 18367
-        },
-        {
-            "fileName": "Tutorial.xml",
-            "relativeFilePath": "Example/ExamplesMono.Xml/Resources/Tutorial.xml",
-            "fileBytesLength": 5501,
-            "filePosition": 18997
-        },
-        {
-            "fileName": "LitJSON.dll",
-            "relativeFilePath": "JSON/LitJson/LitJSON.dll",
-            "fileBytesLength": 60928,
-            "filePosition": 24498
-        },
-        {
-            "fileName": "MiniParser.cs",
-            "relativeFilePath": "XML/Mono.Xml/MiniParser.cs",
-            "fileBytesLength": 38706,
-            "filePosition": 85426
-        },
-        {
-            "fileName": "SecurityParser.cs",
-            "relativeFilePath": "XML/Mono.Xml/SecurityParser.cs",
-            "fileBytesLength": 2973,
-            "filePosition": 124132
-        },
-        {
-            "fileName": "SmallXmlParser.cs",
-            "relativeFilePath": "XML/Mono.Xml/SmallXmlParser.cs",
-            "fileBytesLength": 14632,
-            "filePosition": 127105
-        }
-    ]
-}©)     ‘  kkp@v1.0.0

@@ -26,6 +26,7 @@ namespace KSwordKit.Editor.PackageManager
         public string kkpurl;
         public string kkpfilepath;
         public string configurl;
+        public string configfilepath;
         public KitPackageConfig KitPackageConfig;
     }
 

@@ -101,7 +101,7 @@ namespace KSwordKit.Editor.PackageManager
                         if(KitInitializeEditor.KitOriginConfig.PackageCount > 0 && KitInitializeEditor.KitOriginConfig.OriginPackageConfigList != null)
                         {
                             for (var i = 0; i < KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count; i++)
-                                DrawItemGUI(i + 1, KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[i]);
+                                DrawItemGUI(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[i]);
                         }
 
                     }
@@ -116,7 +116,7 @@ namespace KSwordKit.Editor.PackageManager
             GUILayout.Space(30);
         }
 
-        void DrawItemGUI(int index, KitOriginPackageConfig originPackageConfig)
+        void DrawItemGUI(KitOriginPackageConfig originPackageConfig)
         {
             GUILayout.Button("", GUILayout.Height(2));
             GUILayout.Space(5);
@@ -124,7 +124,6 @@ namespace KSwordKit.Editor.PackageManager
             GUILayout.Space(15);
             blod.fontSize = 14;
             blod.normal.textColor = new Color(255, 200, 200);
-            GUILayout.Label(index.ToString() + ",", blod, GUILayout.Width(15), GUILayout.Height(22));
             GUILayout.Label(originPackageConfig.ID, blod, GUILayout.Height(22));
 
             if(string.IsNullOrEmpty(originPackageConfig.kkpfilepath))
