@@ -62,7 +62,8 @@ namespace KSwordKit.Editor
         static void Action_update()
         {
             foreach (var action in Actions)
-                action();
+                if (action != null)
+                    action();
             Actions.Clear();
         }
 

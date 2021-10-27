@@ -41,6 +41,10 @@ namespace KSwordKit
         /// </summary>
         public const string KitPackageConfigFilename = "kitPackageConfig.json";
         /// <summary>
+        /// 检查更新时，从源中获取的包配置文件名
+        /// </summary>
+        public const string KitOriginPackageConfigFilename = ".KitConfig.json";
+        /// <summary>
         /// KSwordKit可用的所有的包所在的根目录
         /// <para>此目录指示了在用户执行 `导入包`时, 将此处存取数据。</para>
         /// <para>该目录在当前Unity项目根目录下，不会出现在 `Assets` 目录中，避免被Unity编辑器编译。</para>

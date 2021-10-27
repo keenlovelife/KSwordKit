@@ -12,6 +12,7 @@ namespace KSwordKit.Editor
         public static KSwordKit.KSwordKitConfig KSwordKitConfig { get { return config; } }
         public static KSwordKit.Editor.PackageManager.KitOriginConfig KitOriginConfig { get { return originConfig; } }
         static KSwordKit.Editor.PackageManager.KitOriginConfig originConfig;
+        static string originConfigFilepath = KitConst.KitPackagesRootDirectory + "/" + KitConst.KitOriginPackageConfigFilename;
         static KSwordKit.KSwordKitConfig config;
         static string KitInstallationPath;
         static string KitVersion = KitConst.KitVersion;
@@ -58,12 +59,28 @@ namespace KSwordKit.Editor
                 }
             }
 
+            initOriginConfig();
 
             EditorApplication.projectChanged += OnProjectChanged;
             EditorApplication.update += EditorApplication_update;
 
             DateTime = System.DateTime.Now;
+        }
 
+        static void initOriginConfig()
+        {
+            if (System.IO.File.Exists(originConfigFilepath))
+            {
+                var _originConfig = JsonUtility.FromJson<PackageManager.KitOriginConfig>(System.IO.File.ReadAllText(originConfigFilepath, System.Text.Encoding.UTF8));
+                if (originConfig == null)
+                    originConfig = _originConfig;
+                else
+                {
+                    originConfig.Version = _originConfig.Version;
+                    originConfig.PackageCount = _originConfig.PackageCount;
+                    originConfig.PackageList = _originConfig.PackageList;
+                }
+            }
         }
         static string URL(string url)
         {
@@ -81,6 +98,7 @@ namespace KSwordKit.Editor
             if (isFirstRequst) isFirstRequst = false;
             isRequestting = true;
             checkWWW = UnityEngine.Networking.UnityWebRequest.Get(KitConfigURL);
+            checkWWW.certificateHandler = new KitToolEditor.WebRequestCertificate();
             checkWWW.SendWebRequest();
             EditorApplication.update += Request_update;
         }
@@ -91,19 +109,28 @@ namespace KSwordKit.Editor
                 if (checkWWW.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
                 {
                     Debug.Log(KitConst.KitName + ": 请求结果：" + checkWWW.downloadHandler.text);
-                    var _originConfig = JsonUtility.FromJson<PackageManager.KitOriginConfig>(checkWWW.downloadHandler.text);
-                    if (originConfig == null)
-                        originConfig = _originConfig;
-                    else
-                    {
-                        originConfig.Version = _originConfig.Version;
-                        originConfig.PackageCount = _originConfig.PackageCount;
-                        originConfig.PackageList = _originConfig.PackageList;
-                    }
-                    if (originConfig.PackageCount > 0 && originConfig.PackageList != null)
-                        Rqquest_packages();
 
-                    if (originConfig.Version != config.KitVersion)
+                    if (!string.IsNullOrEmpty(checkWWW.downloadHandler.text))
+                    {
+                        if (!System.IO.Directory.Exists(KitConst.KitPackagesRootDirectory))
+                            System.IO.Directory.CreateDirectory(KitConst.KitPackagesRootDirectory);
+                        if (System.IO.File.Exists(originConfigFilepath))
+                            System.IO.File.Delete(originConfigFilepath);
+                        System.IO.File.WriteAllText(originConfigFilepath, checkWWW.downloadHandler.text);
+                        var _originConfig = JsonUtility.FromJson<PackageManager.KitOriginConfig>(checkWWW.downloadHandler.text);
+                        if (originConfig == null)
+                            originConfig = _originConfig;
+                        else
+                        {
+                            originConfig.Version = _originConfig.Version;
+                            originConfig.PackageCount = _originConfig.PackageCount;
+                            originConfig.PackageList = _originConfig.PackageList;
+                        }
+                    }
+
+                    Request_packages();
+
+                    if (originConfig != null && originConfig.Version != config.KitVersion)
                         ShowUpdateKitDialog();
                 }
                 else
@@ -117,66 +144,91 @@ namespace KSwordKit.Editor
                 isRequestting = false;
             }
         }
-        static void Rqquest_packages()
+        public static void Request_packages(System.Action<bool, float> requestAction = null)
         {
+            if (originConfig == null || originConfig.PackageCount <= 0 || originConfig.PackageList == null)
+            {
+                if (requestAction != null) requestAction(true, 1);
+                return;
+            }
+            var count = 0;
+            if(requestAction != null)
+            {
+                if (originConfig.PackageList.Count == 0)
+                {
+                    requestAction(true, 1);
+                    return;
+                }
+                else requestAction(false, 0);
+            }
             foreach (var id in originConfig.PackageList)
             {
                 var ID = id;
-                KitToolEditor.WaitNextFrame(() => {
-                    PackageManager.KitOriginPackageConfig opconfig = null;
-                    if (originConfig.OriginPackageConfigList == null) originConfig.OriginPackageConfigList = new List<PackageManager.KitOriginPackageConfig>();
-                    foreach (var _config in originConfig.OriginPackageConfigList)
+                PackageManager.KitOriginPackageConfig opconfig = null;
+                if (originConfig.OriginPackageConfigList == null) originConfig.OriginPackageConfigList = new List<PackageManager.KitOriginPackageConfig>();
+                foreach (var _config in originConfig.OriginPackageConfigList)
+                {
+                    if (_config.ID == ID)
                     {
-                        if (_config.ID == ID)
-                        {
-                            opconfig = _config;
-                            break;
-                        }
+                        opconfig = _config;
+                        break;
                     }
-                    if (opconfig == null)
-                    {
-                        opconfig = new PackageManager.KitOriginPackageConfig();
-                        originConfig.OriginPackageConfigList.Add(opconfig);
-                    }
-                    opconfig.ID = ID;
-                    if (string.IsNullOrEmpty(opconfig.configurl))
-                        opconfig.configurl = KitConst.KitOriginPackagesURL + "/" + URL(ID) + ".kitPackageConfig.json";
-                    if (string.IsNullOrEmpty(opconfig.kkpurl))
-                        opconfig.kkpurl = KitConst.KitOriginPackagesURL + "/" + URL(ID) + ".kkp";
-                    if (string.IsNullOrEmpty(opconfig.configfilepath))
-                        opconfig.configfilepath = KitConst.KitPackagesRootDirectory + "/" + ID + ".kitPackageConfig.json";
-                    if (System.IO.File.Exists(opconfig.configfilepath))
-                        opconfig.KitPackageConfig = JsonUtility.FromJson<PackageManager.KitPackageConfig>(System.IO.File.ReadAllText(opconfig.configfilepath, System.Text.Encoding.UTF8));
+                }
+                if (opconfig == null)
+                {
+                    opconfig = new PackageManager.KitOriginPackageConfig();
+                    originConfig.OriginPackageConfigList.Add(opconfig);
+                }
+                opconfig.ID = ID;
+                if (string.IsNullOrEmpty(opconfig.configurl))
+                    opconfig.configurl = KitConst.KitOriginPackagesURL + "/" + URL(ID) + ".kitPackageConfig.json";
+                if (string.IsNullOrEmpty(opconfig.kkpurl))
+                    opconfig.kkpurl = KitConst.KitOriginPackagesURL + "/" + URL(ID) + ".kkp";
 
-                    var webq = new KitToolEditor.WebRequest();
-                    webq.www = UnityEngine.Networking.UnityWebRequest.Get(opconfig.configurl);
-                    webq.ResultAction = (uwq) =>
+                if (string.IsNullOrEmpty(opconfig.kkpfilepath))
+                    opconfig.kkpfilepath = KitConst.KitPackagesRootDirectory + "/" + ID + ".kkp";
+                if (string.IsNullOrEmpty(opconfig.configfilepath))
+                    opconfig.configfilepath = KitConst.KitPackagesRootDirectory + "/" + ID + ".kitPackageConfig.json";
+
+                if (System.IO.File.Exists(opconfig.configfilepath))
+                    opconfig.KitPackageConfig = JsonUtility.FromJson<PackageManager.KitPackageConfig>(System.IO.File.ReadAllText(opconfig.configfilepath, System.Text.Encoding.UTF8));
+
+                var webq = new KitToolEditor.WebRequest();
+                webq.www = UnityEngine.Networking.UnityWebRequest.Get(opconfig.configurl);
+                webq.ResultAction = (uwq) =>
+                {
+                    if (uwq.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
                     {
-                        if (uwq.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
+                        Debug.Log("获取：" + ID + " 配置文件成功！\n" + uwq.downloadHandler.text);
+                        foreach (var config in originConfig.OriginPackageConfigList)
                         {
-                            Debug.Log("获取：" + ID + " 配置文件成功！\n" + uwq.downloadHandler.text);
-                            foreach (var config in originConfig.OriginPackageConfigList)
+                            if (config.ID == ID)
                             {
-                                if (config.ID == ID)
-                                {
-                                    config.KitPackageConfig = JsonUtility.FromJson<PackageManager.KitPackageConfig>(uwq.downloadHandler.text);
-                                    if (System.IO.File.Exists(opconfig.configfilepath))
-                                        System.IO.File.Delete(opconfig.configfilepath);
-                                    if (!System.IO.Directory.Exists(KitConst.KitPackagesRootDirectory))
-                                        System.IO.Directory.CreateDirectory(KitConst.KitPackagesRootDirectory);
-                                    System.IO.File.WriteAllText(opconfig.configfilepath, uwq.downloadHandler.text);
-                                    break;
-                                }
+                                config.KitPackageConfig = JsonUtility.FromJson<PackageManager.KitPackageConfig>(uwq.downloadHandler.text);
+                                if (System.IO.File.Exists(opconfig.configfilepath))
+                                    System.IO.File.Delete(opconfig.configfilepath);
+                                if (!System.IO.Directory.Exists(KitConst.KitPackagesRootDirectory))
+                                    System.IO.Directory.CreateDirectory(KitConst.KitPackagesRootDirectory);
+                                System.IO.File.WriteAllText(opconfig.configfilepath, uwq.downloadHandler.text);
+                                break;
                             }
                         }
-                        else
-                        {
-                            Debug.LogError("获取：" + ID + " 配置文件失败！" + uwq.error);
-                        }
-                    };
-                    KitToolEditor.AddWebRequest(webq);
-                });
+                    }
+                    else
+                    {
+                        Debug.LogWarning(KitConst.KitName + ": 获取 " + ID + " 配置文件失败！" + uwq.error);
+                    }
 
+                    if(requestAction != null)
+                    {
+                        count++;
+                        if (count >= originConfig.PackageList.Count)
+                            requestAction(true, 1);
+                        else
+                            requestAction(false, count / (float)originConfig.PackageList.Count);
+                    }
+                };
+                KitToolEditor.AddWebRequest(webq);
             }
         }
         public static void ShowUpdateKitDialog()

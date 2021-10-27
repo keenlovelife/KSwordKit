@@ -24,33 +24,20 @@ namespace KSwordKit.Editor.PackageManager
         {
             var windowTitle = KitConst.KitName + "：" + subtitle;
             window = GetWindow<KitPackageManagerEditorWindow>(true, windowTitle);
-            window.minSize = new Vector2(600, 500);
+            window.minSize = new Vector2(600, 800);
             window.blod = new GUIStyle();
+
+            KitInitializeEditor.Request_packages((done, progress) => {
+                if (done) Debug.Log(KitConst.KitName + ": 所有可用包已拉取完成！");
+            });
+
         }
 
         Vector2 scorllPos;
-        bool isLoading;
         GUIStyle blod;
-        Texture loading;
-
-        bool showDisplayProgressBar = false;
-        string displayProgressBarTitle;
-        string displayProgressBarInfo;
-        float progress;
-        bool clear;
-
+        string packageCount = "";
         private void OnGUI()
         {
-            if (showDisplayProgressBar)
-            {
-                EditorUtility.DisplayProgressBar(displayProgressBarTitle, displayProgressBarInfo, progress);
-            }
-
-            if(clear)
-            {
-                EditorUtility.ClearProgressBar();
-            }
-
             EditorGUILayout.Space(10);
             EditorGUILayout.BeginHorizontal();
             blod.fontSize = 15;
@@ -61,17 +48,10 @@ namespace KSwordKit.Editor.PackageManager
             EditorGUILayout.Space(10);
             EditorGUILayout.BeginHorizontal();
             blod.fontSize = 20;
-            EditorGUILayout.LabelField("包列表：", blod);
-            if (isLoading)
-            {
-                if (loading == null)
-                    loading = Resources.Load<Texture>("loading");
-                GUILayout.Label(loading, GUILayout.Width(20), GUILayout.Height(20));
-            }
-            if (GUILayout.Button("检查更新", GUILayout.Width(100), GUILayout.Height(24)))
-            {
+            EditorGUILayout.LabelField("包列表：(" + packageCount + ")", blod);
 
-            }
+            if (string.IsNullOrEmpty(packageCount))
+                GUI.enabled = false;
             if (GUILayout.Button("全部更新", GUILayout.Width(100), GUILayout.Height(24)))
             {
 
@@ -80,37 +60,29 @@ namespace KSwordKit.Editor.PackageManager
             {
 
             }
+            GUI.enabled = true;
             EditorGUILayout.EndHorizontal();
 
             // 包列表内容
             GUILayout.Space(12);
-            if (KitInitializeEditor.KitOriginConfig != null)
+            if (KitInitializeEditor.KitOriginConfig == null || KitInitializeEditor.KitOriginConfig.PackageCount <= 0)
             {
-                if (KitInitializeEditor.KitOriginConfig.PackageCount <= 0)
+                packageCount = "";
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(15);
+                GUILayout.Label("无任何可用包");
+                GUILayout.EndHorizontal();
+            }
+            else
+            {
+                packageCount = KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count.ToString();
+                scorllPos = GUILayout.BeginScrollView(scorllPos, false, false);
+                if (KitInitializeEditor.KitOriginConfig.PackageCount > 0 && KitInitializeEditor.KitOriginConfig.OriginPackageConfigList != null)
                 {
-                    GUILayout.BeginHorizontal();
-                    GUILayout.Space(15);
-                    GUILayout.Label("无任何可用包");
-                    GUILayout.EndHorizontal();
+                    for (var i = 0; i < KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count; i++)
+                        DrawItemGUI(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[i]);
                 }
-                else
-                {
-                    scorllPos = GUILayout.BeginScrollView(scorllPos, false, false);
-                    if (KitInitializeEditor.KitOriginConfig != null)
-                    {
-                        if(KitInitializeEditor.KitOriginConfig.PackageCount > 0 && KitInitializeEditor.KitOriginConfig.OriginPackageConfigList != null)
-                        {
-                            for (var i = 0; i < KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count; i++)
-                                DrawItemGUI(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[i]);
-                        }
-
-                    }
-                    else
-                    {
-
-                    }
-                    GUILayout.EndScrollView();
-                }
+                GUILayout.EndScrollView();
             }
 
             GUILayout.Space(30);
@@ -125,30 +97,83 @@ namespace KSwordKit.Editor.PackageManager
             blod.fontSize = 14;
             blod.normal.textColor = new Color(255, 200, 200);
             GUILayout.Label(originPackageConfig.ID, blod, GUILayout.Height(22));
-
-            if(string.IsNullOrEmpty(originPackageConfig.kkpfilepath))
-                originPackageConfig.kkpfilepath = System.IO.Path.Combine(KitConst.KitPackagesRootDirectory, originPackageConfig.ID + ".kkp");
-
-            if (GUILayout.Button("导入", GUILayout.Width(50), GUILayout.Height(23)))
+            bool imported = true;
+            var importDirPath = System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, originPackageConfig.ID));
+            imported = System.IO.Directory.Exists(importDirPath);
+            if (imported)
+            {
+                if (KitInitializeEditor.KSwordKitConfig != null)
+                {
+                    if (KitInitializeEditor.KSwordKitConfig.KitImportedPackageList == null)
+                        KitInitializeEditor.KSwordKitConfig.KitImportedPackageList = new List<string>();
+                    if (!KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.Contains(originPackageConfig.ID))
+                    {
+                        KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.Add(originPackageConfig.ID);
+                        EditorUtility.SetDirty(KitInitializeEditor.KSwordKitConfig);
+                        AssetDatabase.SaveAssets();
+                        AssetDatabase.Refresh();
+                    }
+                }
+            }
+            else
+            {
+                if (KitInitializeEditor.KSwordKitConfig != null)
+                {
+                    if (KitInitializeEditor.KSwordKitConfig.KitImportedPackageList != null &&
+                        KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.Contains(originPackageConfig.ID))
+                    {
+                        var l = new List<string>();
+                        foreach(var id in KitInitializeEditor.KSwordKitConfig.KitImportedPackageList)
+                            if (id != originPackageConfig.ID) l.Add(id);
+                        KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.Clear();
+                        KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.AddRange(l);
+                        EditorUtility.SetDirty(KitInitializeEditor.KSwordKitConfig);
+                        AssetDatabase.SaveAssets();
+                        AssetDatabase.Refresh();
+                    }
+                }
+            }
+            
+            
+            if (!imported && GUILayout.Button("导入", GUILayout.Width(50), GUILayout.Height(23)))
             {
                 EditorUtility.DisplayProgressBar("导入: " + originPackageConfig.ID, "正在准备数据...", 0);
 
                 System.Action unpackAction = () => {
-                    KitPacker.Unpack(originPackageConfig.kkpfilepath,
-                    System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, originPackageConfig.ID)),
-                    (filename, progress) =>
-                    {
-                        KitToolEditor.WaitNextFrame(() => {
-                            EditorUtility.DisplayProgressBar("导入: " + originPackageConfig.ID, "包下载完毕！正在导入: " + filename, 0.5f + progress * 0.5f);
-                        });
-                    });
-                };
+                    KitPacker.Unpack(
+                        originPackageConfig.kkpfilepath,
+                        importDirPath,
+                        (filename, progress) =>
+                        {
+                            KitToolEditor.WaitNextFrame(() => {
+                                EditorUtility.DisplayProgressBar("导入: " + originPackageConfig.ID, "包下载完毕！正在导入: " + filename, 0.5f + progress * 0.5f);
+                            });
 
-                if (System.IO.File.Exists(originPackageConfig.kkpfilepath))
-                {
-                    unpackAction();
-                }
-                else
+                            if(progress == 1)
+                            {
+                                EditorUtility.ClearProgressBar();
+                                if (KitInitializeEditor.KSwordKitConfig != null)
+                                {
+                                    if (KitInitializeEditor.KSwordKitConfig.KitImportedPackageList == null)
+                                        KitInitializeEditor.KSwordKitConfig.KitImportedPackageList = new List<string>();
+                                    KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.Add(originPackageConfig.ID);
+                                }
+
+                                KitToolEditor.WaitNextFrame(() => {
+                                    if(KitInitializeEditor.KSwordKitConfig != null)
+                                    {
+                                        EditorUtility.SetDirty(KitInitializeEditor.KSwordKitConfig);
+                                        AssetDatabase.SaveAssets();
+                                        AssetDatabase.Refresh();
+                                    }
+                                    Debug.Log(KitConst.KitName + ": 导入 " + originPackageConfig.ID + " 成功！");
+                                    EditorUtility.DisplayDialog("导入: " + originPackageConfig.ID, "导入成功！", "确定");
+                                });
+                            }
+                        }
+                    );
+                };
+                if (!System.IO.File.Exists(originPackageConfig.kkpfilepath))
                 {
                     var kkpurl = originPackageConfig.kkpurl;
                     var _www = new UnityEngine.Networking.UnityWebRequest(kkpurl);
@@ -170,14 +195,7 @@ namespace KSwordKit.Editor.PackageManager
                             {
                                 KitToolEditor.WaitNextFrame(() => {
                                     EditorUtility.DisplayProgressBar("导入: " + originPackageConfig.ID, "包下载完毕！正在导入... ", uwq.downloadProgress * 100 / 2);
-                                });
-
-                                unpackAction();
-                                KitToolEditor.WaitNextFrame(() => {
-                                    AssetDatabase.SaveAssets();
-                                    AssetDatabase.Refresh();
-                                    EditorUtility.ClearProgressBar();
-                                    Debug.Log(KitConst.KitName + ": 导入 " + originPackageConfig.ID + " 成功！");
+                                    unpackAction();
                                 });
                             }
                             else
@@ -190,14 +208,40 @@ namespace KSwordKit.Editor.PackageManager
                         }
                     });
                 }
+                else unpackAction();
             }
-            if (GUILayout.Button("更新", GUILayout.Width(50), GUILayout.Height(23)))
+            if(imported)
+            {
+                GUI.enabled = false;
+                GUILayout.Button("已导入", GUILayout.Width(60), GUILayout.Height(23));
+                GUI.enabled = true;
+            }
+            if (imported && GUILayout.Button("更新", GUILayout.Width(50), GUILayout.Height(23)))
             {
 
             }
-            if (GUILayout.Button("卸载", GUILayout.Width(50), GUILayout.Height(23)))
+            if (imported && GUILayout.Button("卸载", GUILayout.Width(50), GUILayout.Height(23)))
             {
-
+                if(EditorUtility.DisplayDialog("卸载：" + originPackageConfig.ID, "确认卸载？","确认","取消"))
+                {
+                    DirectoryDelete(importDirPath);
+                    if (KitInitializeEditor.KSwordKitConfig != null)
+                    {
+                        if (KitInitializeEditor.KSwordKitConfig.KitImportedPackageList != null &&
+                            KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.Contains(originPackageConfig.ID))
+                        {
+                            var l = new List<string>();
+                            foreach (var id in KitInitializeEditor.KSwordKitConfig.KitImportedPackageList)
+                                if (id != originPackageConfig.ID) l.Add(id);
+                            KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.Clear();
+                            KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.AddRange(l);
+                            EditorUtility.SetDirty(KitInitializeEditor.KSwordKitConfig);
+                            AssetDatabase.SaveAssets();
+                            AssetDatabase.Refresh();
+                        }
+                    }
+                    EditorUtility.DisplayDialog("卸载：" + originPackageConfig.ID, "已成功卸载！", "确认");
+                }
             }
             GUILayout.Space(15);
             EditorGUILayout.EndHorizontal();
@@ -490,8 +534,6 @@ namespace KSwordKit.Editor.PackageManager
         {
             if (System.IO.Directory.Exists(dir))
                 System.IO.Directory.Delete(dir, true);
-            if (System.IO.Directory.Exists(dir))
-                System.IO.Directory.Delete(dir);
             var dirMetaFilePath = dir + ".meta";
             if (System.IO.File.Exists(dirMetaFilePath))
                 System.IO.File.Delete(dirMetaFilePath);

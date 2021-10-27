@@ -10,5 +10,6 @@ namespace KSwordKit
     {
         public string KitInstallationPath = "";
         public string KitVersion = "";
+        public List<string> KitImportedPackageList;
     }
 }
