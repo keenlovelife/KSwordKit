@@ -98,9 +98,9 @@ namespace KSwordKit
             if (progress != null) progress("", 1, true, null);
         }
 
-        public static void Unpack(string inPackageFilepath, string outDir, System.Action<string, float> progress = null, bool overwrite = true)
+        public static void Unpack(string inPackageFilepath, string outDir, System.Action<string, float, bool> progress = null, bool overwrite = true)
         {
-            if (progress != null) progress("", 0);
+            if (progress != null) progress("", 0, false);
             var fs = System.IO.File.OpenRead(inPackageFilepath);
 
             var tagbytes = System.Text.Encoding.UTF8.GetBytes(tag);
@@ -137,10 +137,10 @@ namespace KSwordKit
                 fs.Seek((int)fileindex.filePosition, System.IO.SeekOrigin.Begin);
                 fs.Read(bytes, 0, count);
                 System.IO.File.WriteAllBytes(filepath, bytes);
-                if (progress != null) progress(filename, (i + 1) / (float)fileIndexs.fileIndexList.Count);
+                if (progress != null) progress(filename, (i + 1) / (float)fileIndexs.fileIndexList.Count, false);
             }
             fs.Close();
-            if (progress != null) progress("", 1);
+            if (progress != null) progress("", 1, true);
         }
 
         public static void EachFile(string inDir, System.Action<System.IO.FileInfo> findFileAction)

@@ -72,10 +72,10 @@ namespace KSwordKit.Editor.PackageManager
         [NonSerialized]
         public string RootDirectory;
         /// <summary>
-        /// 该包安装到Unity项目后，所在的目录
+        /// 该包导入到Unity项目后，所在的目录
         /// </summary>
         [NonSerialized]
-        public string InstallationRootDirectory;
+        public string ImportRootDirectory;
 
     }
     [Serializable]

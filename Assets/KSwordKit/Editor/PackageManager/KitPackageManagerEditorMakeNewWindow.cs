@@ -21,7 +21,7 @@ namespace KSwordKit.Editor.PackageManager
         {
             windowTitle = KitConst.KitName + "：" + subtitle;
             window = GetWindow<KitPackageManagerEditorMakeNewWindow>(true, windowTitle);
-            window.minSize = new Vector2(600, 800);
+            window.minSize = new Vector2(600, 700);
             window.blod = new GUIStyle();
             window.Show();
         }

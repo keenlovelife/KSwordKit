@@ -21,7 +21,7 @@ namespace KSwordKit.Editor.PackageManager
         {
             var windowTitle = KitConst.KitName + "：" + subtitle;
             window = GetWindow<KitPackageManagerEditorWindow>(true, windowTitle);
-            window.minSize = new Vector2(600, 800);
+            window.minSize = new Vector2(600, 700);
             window.blod = new GUIStyle();
 
             KitInitializeEditor.Request_packages((done, progress) => {
@@ -103,7 +103,8 @@ namespace KSwordKit.Editor.PackageManager
             bool needUpdate = true;
 
             var importNames = new List<string>();
-            var importDirPath = System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, originPackageConfig.ID));
+            if(string.IsNullOrEmpty(originPackageConfig.KitPackageConfig.ImportRootDirectory))
+                originPackageConfig.KitPackageConfig.ImportRootDirectory = System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, originPackageConfig.ID));
             var packagesImportRootDir = System.IO.Path.Combine(KitConst.KitInstallationDirectory, KitConst.KitPackagesImportRootDirectory);
             if (System.IO.Directory.Exists(packagesImportRootDir))
             {
@@ -157,79 +158,9 @@ namespace KSwordKit.Editor.PackageManager
             
             if (!imported && GUILayout.Button("导入", GUILayout.Width(50), GUILayout.Height(23)))
             {
-                EditorUtility.DisplayProgressBar("导入: " + originPackageConfig.ID, "正在准备数据...", 0);
-                System.Action unpackAction = () => {
-                    KitPacker.Unpack(
-                        originPackageConfig.kkpfilepath,
-                        importDirPath,
-                        (filename, progress) =>
-                        {
-                            KitToolEditor.WaitNextFrame(() => {
-                                EditorUtility.DisplayProgressBar("导入: " + originPackageConfig.ID, "包下载完毕！正在导入: " + filename, 0.5f + progress * 0.5f);
-                            });
-
-                            if(progress == 1)
-                            {
-                                EditorUtility.ClearProgressBar();
-                                if (KitInitializeEditor.KSwordKitConfig != null)
-                                {
-                                    if (KitInitializeEditor.KSwordKitConfig.KitImportedPackageList == null)
-                                        KitInitializeEditor.KSwordKitConfig.KitImportedPackageList = new List<string>();
-                                    KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.Add(originPackageConfig.ID);
-                                }
-
-                                KitToolEditor.WaitNextFrame(() => {
-                                    if(KitInitializeEditor.KSwordKitConfig != null)
-                                    {
-                                        EditorUtility.SetDirty(KitInitializeEditor.KSwordKitConfig);
-                                        AssetDatabase.SaveAssets();
-                                        AssetDatabase.Refresh();
-                                    }
-                                    Debug.Log(KitConst.KitName + ": 导入 " + originPackageConfig.ID + " 成功！");
-                                    EditorUtility.DisplayDialog("导入: " + originPackageConfig.ID, "导入成功！", "确定");
-                                });
-                            }
-                        }
-                    );
-                };
-                if (!System.IO.File.Exists(originPackageConfig.kkpfilepath))
-                {
-                    var kkpurl = originPackageConfig.kkpurl;
-                    var _www = new UnityEngine.Networking.UnityWebRequest(kkpurl);
-                    _www.downloadHandler = new UnityEngine.Networking.DownloadHandlerFile(originPackageConfig.kkpfilepath);
-                    _www.disposeDownloadHandlerOnDispose = true;
-
-                    KitToolEditor.AddWebRequest(new KitToolEditor.WebRequest()
-                    {
-                        www = _www,
-                        waitAction = (uwq) =>
-                        {
-                            KitToolEditor.WaitNextFrame(() => {
-                                EditorUtility.DisplayProgressBar("导入: " + originPackageConfig.ID, "正在下载包 " + uwq.downloadProgress * 100, uwq.downloadProgress * 100 / 2);
-                            });
-                        },
-                        ResultAction = (uwq) =>
-                        {
-                            if (uwq.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
-                            {
-                                KitToolEditor.WaitNextFrame(() => {
-                                    EditorUtility.DisplayProgressBar("导入: " + originPackageConfig.ID, "包下载完毕！正在导入... ", uwq.downloadProgress * 100 / 2);
-                                    unpackAction();
-                                });
-                            }
-                            else
-                            {
-                                KitToolEditor.WaitNextFrame(() => {
-                                    EditorUtility.DisplayDialog("导入: " + originPackageConfig.ID, "下载包失败：" + uwq.error, "确定");
-                                    EditorUtility.ClearProgressBar();
-                                });
-                            }
-                        }
-                    });
-                }
-                else unpackAction();
+                importKKPFile(originPackageConfig, "导入");
             }
-            if(imported)
+            if (imported)
             {
                 GUI.enabled = false;
                 GUILayout.Button("已导入", GUILayout.Width(60), GUILayout.Height(23));
@@ -239,16 +170,16 @@ namespace KSwordKit.Editor.PackageManager
             if (imported)
             {
                 foreach(var name in importNames)
-                    if(name.EndsWith(ids[1]))
+                    if(name == originPackageConfig.ID)
                     {
                         needUpdate = false;
                         break;
                     }
             }
-            if (needUpdate)
+            if (imported && !needUpdate)
             {
                 GUI.enabled = false;
-                GUILayout.Button("已是最新版本", GUILayout.Width(80), GUILayout.Height(23));
+                GUILayout.Button("已是最新版本", GUILayout.Width(100), GUILayout.Height(23));
                 GUI.enabled = true;
             }
             else
@@ -256,35 +187,19 @@ namespace KSwordKit.Editor.PackageManager
                 if (!imported) GUI.enabled = false;
                 if (GUILayout.Button("更新", GUILayout.Width(50), GUILayout.Height(23)))
                 {
-
+                    uninstal(originPackageConfig);
+                    importKKPFile(originPackageConfig, "更新");
                 }
                 GUI.enabled = true;
             }
+
             if (!imported) GUI.enabled = false;
             if (GUILayout.Button("卸载", GUILayout.Width(50), GUILayout.Height(23)))
             {
-                if(EditorUtility.DisplayDialog("卸载：" + originPackageConfig.ID, "确认卸载？","确认","取消"))
-                {
-                    DirectoryDelete(importDirPath);
-                    if (KitInitializeEditor.KSwordKitConfig != null)
-                    {
-                        if (KitInitializeEditor.KSwordKitConfig.KitImportedPackageList != null &&
-                            KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.Contains(originPackageConfig.ID))
-                        {
-                            var l = new List<string>();
-                            foreach (var id in KitInitializeEditor.KSwordKitConfig.KitImportedPackageList)
-                                if (id != originPackageConfig.ID) l.Add(id);
-                            KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.Clear();
-                            KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.AddRange(l);
-                            EditorUtility.SetDirty(KitInitializeEditor.KSwordKitConfig);
-                            AssetDatabase.SaveAssets();
-                            AssetDatabase.Refresh();
-                        }
-                    }
-                    EditorUtility.DisplayDialog("卸载：" + originPackageConfig.ID, "已成功卸载！", "确认");
-                }
+                uninstal(originPackageConfig);
             }
             GUI.enabled = true;
+
             GUILayout.Space(15);
             EditorGUILayout.EndHorizontal();
 
@@ -295,6 +210,18 @@ namespace KSwordKit.Editor.PackageManager
                 GUILayout.Space(35);
                 GUILayout.Label("作者：", EditorStyles.boldLabel, GUILayout.Width(30));
                 GUILayout.Label(originPackageConfig.KitPackageConfig.Author);
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.Space(35);
+                GUILayout.Label("版本：", EditorStyles.boldLabel, GUILayout.Width(30));
+                GUILayout.Label(originPackageConfig.KitPackageConfig.Version);
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.Space(35);
+                GUILayout.Label("日期：", EditorStyles.boldLabel, GUILayout.Width(30));
+                GUILayout.Label(originPackageConfig.KitPackageConfig.Date);
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
@@ -312,271 +239,96 @@ namespace KSwordKit.Editor.PackageManager
             GUILayout.Space(10);
         }
 
-        /// <summary>
-        /// 遍历得到本地所有组件所在目录
-        /// </summary>
-        /// <param name="kitLocalResourceRootDir">套件本地资源所在得根目录</param>
-        /// <param name="kitAllComponentsRootPathList">套件所有所在的组件的根目录列表，每个目录内都可能包含多个组件资源。</param>
-        /// <param name="targetComponentDirectoryCallback">遍历得到的目标组件所在的目录位置回调</param>
-        static void EachKitLocalResourceComponentRootDirectory(string kitLocalResourceRootDir, List<string> kitAllComponentsRootPathList, System.Action<string, string> targetComponentDirectoryCallback)
+        void RequestKKPFile(KitOriginPackageConfig originPackageConfig, System.Action successAction = null)
         {
-            if (!string.IsNullOrEmpty(kitLocalResourceRootDir) && kitAllComponentsRootPathList != null && targetComponentDirectoryCallback != null)
+            var _www = new UnityEngine.Networking.UnityWebRequest(originPackageConfig.kkpurl);
+            _www.downloadHandler = new UnityEngine.Networking.DownloadHandlerFile(originPackageConfig.kkpfilepath);
+            _www.disposeDownloadHandlerOnDispose = true;
+
+            KitToolEditor.AddWebRequest(new KitToolEditor.WebRequest()
             {
-                foreach (var componentRootPath in kitAllComponentsRootPathList)
+                www = _www,
+                waitAction = (uwq) =>
                 {
-                    if (!string.IsNullOrEmpty(componentRootPath))
+                    EditorUtility.DisplayProgressBar("导入: " + originPackageConfig.ID, "正在下载包: " + uwq.downloadProgress * 100 + "%", uwq.downloadProgress * 100 / 2);
+                },
+                ResultAction = (uwq) =>
+                {
+                    EditorUtility.ClearProgressBar();
+                    if (uwq.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
                     {
-                        var rootPath = System.IO.Path.Combine(kitLocalResourceRootDir, componentRootPath);
-                        var rootDirInfo = new System.IO.DirectoryInfo(rootPath);
-                        foreach (var rootDir in rootDirInfo.GetDirectories())
-                        {
-                            targetComponentDirectoryCallback(componentRootPath, rootDir.FullName);
-                        }
+                        if (successAction != null) successAction();
+                    }
+                    else
+                    {
+                        EditorUtility.DisplayDialog("导入: " + originPackageConfig.ID, "下载包失败：" + uwq.error, "确定");
                     }
                 }
-            }
+            });
         }
-
-        ///// <summary> 
-        ///// 窗口更新多次调用
-        ///// </summary> 
-        //private void Update()
-        //{
-        //    if (window == null || windowData == null)
-        //    {
-        //        var tempfilePath = System.IO.Path.Combine(Application.temporaryCachePath, kitTempFileName);
-        //        if (System.IO.File.Exists(tempfilePath))
-        //        {
-        //            var tempfilelines = System.IO.File.ReadAllLines(tempfilePath);
-        //            var windowtitle = tempfilelines[0];
-        //            GetWindow<KitManagementEditorWindow>(true, windowtitle).Close();
-        //            var tempfilecontent = tempfilelines[1];
-        //            if (tempfilecontent == KitManagementEditor.InstallComponentWindowTitle) KitManagementEditor.InstallComponentFunction();
-        //            else if (tempfilecontent == KitManagementEditor.UninstallComponentWindowTitle) KitManagementEditor.UninstallComponentFunction();
-        //        }
-        //        return;
-        //    }
-        //}
-
-        ///// <summary>
-        ///// 窗口GUI更新时触发
-        ///// </summary>
-        //private void OnGUI()
-        //{
-        //    if (window == null || windowData == null)
-        //        return;
-
-        //    EditorGUILayout.BeginHorizontal();
-        //    GUILayout.Space(10);
-        //    kitUserSearchInputString = EditorGUILayout.TextField("所有组件：", kitUserSearchInputString, GUILayout.Height(kitSubTitleHeight));
-        //    window.SearchItem(kitUserSearchInputString);
-        //    GUILayout.Space(15);
-        //    EditorGUILayout.EndHorizontal();
-
-        //    scorllPos = EditorGUILayout.BeginScrollView(scorllPos, false, false, GUILayout.Height(window.position.height - 30), GUILayout.Width(window.position.width));
-
-        //    foreach (var item in windowData.kitShouldShowConfigList)
-        //        window.AddItemView(item);
-
-        //    EditorGUILayout.EndScrollView();
-        //}
-        ///// <summary>
-        ///// 根据用户输入的搜索字符串，筛选匹配的子项
-        ///// </summary>
-        ///// <param name="userSearchInputString">用户输入的搜索字符串</param>
-        //void SearchItem(string userSearchInputString)
-        //{
-        //    if (string.IsNullOrEmpty(userSearchInputString) || userSearchInputString == kitUserSearchDefaultInputString)
-        //    {
-        //        windowData.kitShouldShowConfigList.Clear();
-        //        windowData.kitShouldShowConfigList.AddRange(windowData.KitConfigList);
-        //    }
-        //    else
-        //    {
-        //        windowData.kitShouldShowConfigList.Clear();
-        //        //var pattern = "[" + userSearchInputString + "]";
-        //        foreach (var kitConfig in windowData.KitConfigList)
-        //        {
-        //            //if (Regex.IsMatch(kitConfig.Name, pattern) 
-        //            //    || Regex.IsMatch(kitConfig.Author, pattern) 
-        //            //    || Regex.IsMatch(kitConfig.Contact, pattern) 
-        //            //    || Regex.IsMatch(kitConfig.Date, pattern)
-        //            //    || Regex.IsMatch(kitConfig.HomePage, pattern)
-        //            //    || Regex.IsMatch(kitConfig.Version, pattern) )
-        //            if (kitConfig.Name.ToLower().StartsWith(userSearchInputString.ToLower())
-        //                || kitConfig.Author.ToLower().StartsWith(userSearchInputString.ToLower())
-        //                )
-        //            {
-        //                windowData.kitShouldShowConfigList.Add(kitConfig);
-        //            }
-        //        }
-        //    }
-        //}
-        ///// <summary>
-        ///// 添加子项视图到窗口上
-        ///// </summary>
-        ///// <param name="config">子项的具体配置数据</param>
-        //void AddItemView(KitConfig config)
-        //{
-        //    EditorGUILayout.BeginHorizontal();
-        //    GUILayout.Label(config.DisplayedName, EditorStyles.boldLabel, GUILayout.Height(kitItemViewHeight));
-        //    GUILayout.FlexibleSpace();
-
-        //    var buttonName = "安装";
-        //    var isComponentInstalled = window.IsComponentInstalled(config);
-        //    if (isComponentInstalled)
-        //        buttonName = "重新安装";
-
-        //    if (GUILayout.Button(buttonName, GUILayout.Width(120), GUILayout.Height(kitItemViewHeight)))
-        //    {
-        //        var error = window.InstallComponent(config, buttonName == "重新安装");
-        //        AssetDatabase.Refresh();
-        //        EditorUtility.DisplayDialog("安装组件 '" + config.DisplayedName + "' ", string.IsNullOrEmpty(error) ? "安装成功！" : "安装失败: \n" + error, "确定");
-        //    }
-
-        //    EditorGUI.BeginDisabledGroup(!isComponentInstalled);
-        //    if (GUILayout.Button("卸载", GUILayout.Width(120), GUILayout.Height(kitItemViewHeight)))
-        //    {
-        //        var error = window.UninstallComponent(config);
-        //        AssetDatabase.Refresh();
-        //        EditorUtility.DisplayDialog("卸载组件 '" + config.DisplayedName + "' ", string.IsNullOrEmpty(error) ? "卸载成功！" : "卸载失败: \n" + error, "确定");
-        //    }
-        //    EditorGUI.EndDisabledGroup();
-
-        //    EditorGUILayout.EndHorizontal();
-        //}
-        ///// <summary>
-        ///// 组件是否已安装
-        ///// </summary>
-        ///// <param name="config">组件配置数据</param>
-        ///// <returns>返回true，表示该组件已安装；否则，组件未安装。</returns>
-        //bool IsComponentInstalled(KitConfig config)
-        //{
-        //    var installRootDir = System.IO.Path.Combine(windowData.KitComponentInstallRootDirectory, config.Classification);
-        //    var componentInstallDir = System.IO.Path.Combine(installRootDir, config.DisplayedName);
-        //    if (!System.IO.Directory.Exists(componentInstallDir)) return false;
-        //    return true;
-        //}
-        /// <summary>
-        /// 安装组件到Unity项目中
-        /// </summary>
-        /// <param name="kitConfig">组件具体的配置数据</param>
-        /// <returns>返回null或字符串，null表示安装成功，字符串则表示安装失败的描述。</returns>
-        //string InstallPackage(KitConfig config, bool isReinstall)
-        //{
-        //    if (isReinstall)
-        //    {
-        //        var error = UninstallComponent(config);
-        //        if (!string.IsNullOrEmpty(error))
-        //            return error;
-        //        AssetDatabase.Refresh();
-        //    }
-
-        //    var installRootDir = System.IO.Path.Combine(windowData.KitComponentInstallRootDirectory, config.Classification);
-        //    var componentInstallDir = System.IO.Path.Combine(installRootDir, config.DisplayedName);
-        //    try
-        //    {
-        //        window.DirectoryCopy(config.LocalResourceDirectory, componentInstallDir, true);
-        //        var installedConfigFilePath = System.IO.Path.Combine(componentInstallDir, windowData.KitConfigFileName);
-        //        if (System.IO.File.Exists(installedConfigFilePath))
-        //            System.IO.File.Delete(installedConfigFilePath);
-        //        foreach (var fileSetting in config.FileSettings)
-        //        {
-        //            var fileSettingSourcePath = System.IO.Path.Combine(componentInstallDir, fileSetting.SourcePath);
-        //            if (System.IO.File.Exists(fileSettingSourcePath))
-        //            {
-        //                System.IO.File.Copy(fileSettingSourcePath, fileSetting.DestPath, true);
-        //                System.IO.File.Delete(fileSettingSourcePath);
-        //            }
-        //            else if (System.IO.Directory.Exists(fileSettingSourcePath))
-        //            {
-        //                DirectoryCopy(fileSettingSourcePath, fileSetting.DestPath, true);
-        //                DirectoryDelete(fileSettingSourcePath);
-        //            }
-        //        }
-        //        config.LocalInstallationResourceDirectory = componentInstallDir;
-        //        foreach (var dependency in config.Dependencies)
-        //        {
-        //            foreach (var _config in windowData.KitConfigList)
-        //            {
-        //                if (dependency == _config.Name || dependency == _config.DisplayedName)
-        //                {
-        //                    if (_config.DisplayedName == config.DisplayedName) continue;
-        //                    if (!IsComponentInstalled(_config))
-        //                        InstallComponent(_config, false);
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (System.Exception e)
-        //    {
-        //        return e.Message;
-        //    }
-        //    return null;
-        //}
-        /// <summary>
-        /// 拷贝文件夹
-        /// </summary>
-        /// <param name="sourceDir">源文件夹</param>
-        /// <param name="destDir">目标文件夹</param>
-        /// <param name="copySubDirs">是否递归拷贝子目录</param>
-        void DirectoryCopy(string sourceDir, string destDir, bool copySubDirs)
+        void unpackeKKP(KitOriginPackageConfig originPackageConfig, string title)
         {
-            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(sourceDir);
-            if (!dir.Exists)
-            {
-                throw new System.IO.DirectoryNotFoundException(
-                    "Source directory does not exist or could not be found: "
-                    + sourceDir);
-            }
-
-            System.IO.DirectoryInfo[] dirs = dir.GetDirectories();
-            System.IO.Directory.CreateDirectory(destDir);
-            System.IO.FileInfo[] files = dir.GetFiles();
-            foreach (System.IO.FileInfo file in files)
-            {
-                string tempPath = System.IO.Path.Combine(destDir, file.Name);
-                file.CopyTo(tempPath, true);
-            }
-
-            if (copySubDirs)
-            {
-                foreach (System.IO.DirectoryInfo subdir in dirs)
+            KitPacker.Unpack(
+                originPackageConfig.kkpfilepath,
+                originPackageConfig.KitPackageConfig.ImportRootDirectory,
+                (filename, progress, done) =>
                 {
-                    string tempPath = System.IO.Path.Combine(destDir, subdir.Name);
-                    DirectoryCopy(subdir.FullName, tempPath, copySubDirs);
+                    if (!done)
+                        EditorUtility.DisplayProgressBar(title + ": " + originPackageConfig.ID, "包下载完毕！正在" + title + ": " + filename, 0.5f + progress * 0.5f);
+
+                    if (done)
+                    {
+                        EditorUtility.ClearProgressBar();
+                        if (KitInitializeEditor.KSwordKitConfig != null)
+                        {
+                            if (KitInitializeEditor.KSwordKitConfig.KitImportedPackageList == null)
+                                KitInitializeEditor.KSwordKitConfig.KitImportedPackageList = new List<string>();
+                            KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.Add(originPackageConfig.ID);
+                            EditorUtility.SetDirty(KitInitializeEditor.KSwordKitConfig);
+                            AssetDatabase.SaveAssets();
+                            AssetDatabase.Refresh();
+                        }
+
+                        Debug.Log(KitConst.KitName + ": " + title + " " + originPackageConfig.ID + " 成功！");
+                        EditorUtility.DisplayDialog(title + ": " + originPackageConfig.ID, title + "成功！", "确定");
+                    }
                 }
+            );
+        }
+        void importKKPFile(KitOriginPackageConfig originPackageConfig, string title)
+        {
+            EditorUtility.DisplayProgressBar(title +": " + originPackageConfig.ID, "正在准备数据...", 0);
+            if (!System.IO.File.Exists(originPackageConfig.kkpfilepath))
+            {
+                RequestKKPFile(originPackageConfig, () => {
+                    unpackeKKP(originPackageConfig, title);
+                });
+            }
+            else unpackeKKP(originPackageConfig, title);
+        }
+        void uninstal(KitOriginPackageConfig originPackageConfig)
+        {
+            if (EditorUtility.DisplayDialog("卸载：" + originPackageConfig.ID, "确认卸载？", "确认", "取消"))
+            {
+                DirectoryDelete(originPackageConfig.KitPackageConfig.ImportRootDirectory);
+                if (KitInitializeEditor.KSwordKitConfig != null)
+                {
+                    if (KitInitializeEditor.KSwordKitConfig.KitImportedPackageList != null &&
+                        KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.Contains(originPackageConfig.ID))
+                    {
+                        var l = new List<string>();
+                        foreach (var id in KitInitializeEditor.KSwordKitConfig.KitImportedPackageList)
+                            if (id != originPackageConfig.ID) l.Add(id);
+                        KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.Clear();
+                        KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.AddRange(l);
+                        EditorUtility.SetDirty(KitInitializeEditor.KSwordKitConfig);
+                        AssetDatabase.SaveAssets();
+                        AssetDatabase.Refresh();
+                    }
+                }
+                EditorUtility.DisplayDialog("卸载：" + originPackageConfig.ID, "已成功卸载！", "确认");
             }
         }
-        /// <summary>
-        /// 卸载组件
-        /// </summary>
-        /// <param name="config">组件配置数据</param>
-        /// <returns>返回null或字符串，null表示卸载成功，字符串则表示卸载失败的描述。</returns>
-        //string UninstallComponent(KitConfig config)
-        //{
-        //    try
-        //    {
-        //        DirectoryDelete(config.LocalInstallationResourceDirectory);
-        //        foreach (var filesetting in config.FileSettings)
-        //        {
-        //            if (System.IO.File.Exists(filesetting.DestPath))
-        //            {
-        //                FileDelete(filesetting.DestPath);
-        //            }
-        //            else if (System.IO.Directory.Exists(filesetting.DestPath))
-        //            {
-        //                DirectoryDelete(filesetting.DestPath);
-        //            }
-        //        }
-        //    }
-        //    catch (System.Exception e)
-        //    {
-        //        return e.Message;
-        //    }
-
-        //    return null;
-        //}
         /// <summary>
         /// 删除目录
         /// </summary>
