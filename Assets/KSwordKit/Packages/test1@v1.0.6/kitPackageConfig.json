@@ -1,11 +1,11 @@
 {
-    "ID": "test1@v1.0.2",
+    "ID": "test1@v1.0.6",
     "Name": "test1",
-    "Version": "v1.0.2",
+    "Version": "v1.0.6",
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-10-28 14:54:26",
+    "Date": "2021-10-28 14:55:04",
     "Description": "测试包",
     "Dependencies": [],
     "Tags": [
