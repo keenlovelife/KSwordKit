@@ -80,6 +80,40 @@ namespace KSwordKit.Editor
                     originConfig.PackageCount = _originConfig.PackageCount;
                     originConfig.PackageList = _originConfig.PackageList;
                 }
+                PackageManager.KitOriginPackageConfig opconfig = null;
+                if (originConfig.OriginPackageConfigList == null) originConfig.OriginPackageConfigList = new List<PackageManager.KitOriginPackageConfig>();
+                if(originConfig.PackageList != null)
+                {
+                    foreach (var packageID in originConfig.PackageList)
+                    {
+                        foreach (var _config in originConfig.OriginPackageConfigList)
+                        {
+                            if (_config.ID == packageID)
+                            {
+                                opconfig = _config;
+                                break;
+                            }
+                        }
+                        if (opconfig == null)
+                        {
+                            opconfig = new PackageManager.KitOriginPackageConfig();
+                            originConfig.OriginPackageConfigList.Add(opconfig);
+                        }
+                        opconfig.ID = packageID;
+                        if (string.IsNullOrEmpty(opconfig.configurl))
+                            opconfig.configurl = KitConst.KitOriginPackagesURL + "/" + URL(packageID) + ".kitPackageConfig.json";
+                        if (string.IsNullOrEmpty(opconfig.kkpurl))
+                            opconfig.kkpurl = KitConst.KitOriginPackagesURL + "/" + URL(packageID) + ".kkp";
+
+                        if (string.IsNullOrEmpty(opconfig.kkpfilepath))
+                            opconfig.kkpfilepath = KitConst.KitPackagesRootDirectory + "/" + packageID + ".kkp";
+                        if (string.IsNullOrEmpty(opconfig.configfilepath))
+                            opconfig.configfilepath = KitConst.KitPackagesRootDirectory + "/" + packageID + ".kitPackageConfig.json";
+
+                        if (System.IO.File.Exists(opconfig.configfilepath))
+                            opconfig.KitPackageConfig = JsonUtility.FromJson<PackageManager.KitPackageConfig>(System.IO.File.ReadAllText(opconfig.configfilepath, System.Text.Encoding.UTF8));
+                    }
+                }
             }
         }
         static string URL(string url)

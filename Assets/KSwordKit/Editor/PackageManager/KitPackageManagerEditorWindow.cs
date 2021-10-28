@@ -103,6 +103,7 @@ namespace KSwordKit.Editor.PackageManager
             bool needUpdate = true;
 
             var importNames = new List<string>();
+            var importDirPath = System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, originPackageConfig.ID));
             var packagesImportRootDir = System.IO.Path.Combine(KitConst.KitInstallationDirectory, KitConst.KitPackagesImportRootDirectory);
             if (System.IO.Directory.Exists(packagesImportRootDir))
             {
@@ -157,7 +158,6 @@ namespace KSwordKit.Editor.PackageManager
             if (!imported && GUILayout.Button("导入", GUILayout.Width(50), GUILayout.Height(23)))
             {
                 EditorUtility.DisplayProgressBar("导入: " + originPackageConfig.ID, "正在准备数据...", 0);
-                var importDirPath = System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, originPackageConfig.ID));
                 System.Action unpackAction = () => {
                     KitPacker.Unpack(
                         originPackageConfig.kkpfilepath,

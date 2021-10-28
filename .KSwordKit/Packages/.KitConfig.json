@@ -1,0 +1,17 @@
+{
+  "Version": "v2.1.0",
+  "PackageCount": 11,
+  "PackageList": [
+    "Data Processing@v1.0.0",
+    "Enhanced Coroutine@v1.0.0",
+    "Multithreading@v1.0.0",
+    "Project File Management@v1.0.0",
+    "PureMVC@v1.0.0",
+    "Resources Management@v1.0.0",
+    "Singleton Template@v1.0.0",
+    "test@v1.0.0",
+    "test1@v1.0.0",
+    "Timer@v1.0.0",
+    "xLua@v1.0.0" 
+  ]
+}
