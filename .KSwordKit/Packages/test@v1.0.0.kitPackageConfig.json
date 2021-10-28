@@ -6,7 +6,7 @@
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
     "Date": "2021-10-25 15:18:20",
-    "Description": "测试包",
+    "Description": "测试包\n这是一个测试描述的文本内容\n这是一个测试描述的文本内容\n这是一个测试描述的文本内容\n这是一个测试描述的文本内容\n这是一个测试描述的文本内容\n这是一个测试描述的文本内容\n这是一个测试描述的文本内容",
     "Dependencies": [
         "test1@v1.0.0"
     ],
