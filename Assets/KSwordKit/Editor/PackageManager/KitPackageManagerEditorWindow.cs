@@ -79,8 +79,18 @@ namespace KSwordKit.Editor.PackageManager
                 scorllPos = GUILayout.BeginScrollView(scorllPos, false, false);
                 if (KitInitializeEditor.KitOriginConfig.PackageCount > 0 && KitInitializeEditor.KitOriginConfig.OriginPackageConfigList != null)
                 {
+                    var idname = "";
                     for (var i = 0; i < KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count; i++)
-                        DrawItemGUI(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[i]);
+                    {
+                        var opc = KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[i];
+                        var ids = opc.ID.Split('@');
+                        if (ids[0] != idname)
+                        {
+                            idname = ids[0];
+                            DrawItemGUI(opc);
+                        }
+                    }
+                    idname = null;
                 }
                 GUILayout.EndScrollView();
             }
@@ -90,13 +100,14 @@ namespace KSwordKit.Editor.PackageManager
 
         void DrawItemGUI(KitOriginPackageConfig originPackageConfig)
         {
+            var ids = originPackageConfig.ID.Split('@');
+
             GUILayout.Button("", GUILayout.Height(2));
             GUILayout.Space(5);
             EditorGUILayout.BeginHorizontal();
             GUILayout.Space(15);
             blod.fontSize = 14;
             blod.normal.textColor = new Color(255, 200, 200);
-            var ids = originPackageConfig.ID.Split('@');
             GUILayout.Label(ids[0], blod, GUILayout.Height(22));
 
             bool imported = false;
@@ -234,6 +245,29 @@ namespace KSwordKit.Editor.PackageManager
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.EndHorizontal();
 
+                if (KitInitializeEditor.KitOriginConfig.OriginPackageDic != null)
+                {
+                    if (KitInitializeEditor.KitOriginConfig.OriginPackageDic.ContainsKey(ids[0]) && 
+                        KitInitializeEditor.KitOriginConfig.OriginPackageDic[ids[0]] != null &&
+                        KitInitializeEditor.KitOriginConfig.OriginPackageDic[ids[0]].Count > 1)
+                    {
+                        var versions = KitInitializeEditor.KitOriginConfig.OriginPackageDic[ids[0]];
+                        EditorGUILayout.BeginHorizontal();
+                        GUILayout.Space(35);
+                        GUILayout.Label("旧版：", EditorStyles.boldLabel, GUILayout.Width(30));
+                        
+                        EditorGUILayout.BeginVertical();
+                        for (var i = 1; i < versions.Count && i < 4; i++)
+                        {
+                            var version = KitInitializeEditor.KitOriginConfig.PackageList[versions[i]].Split('@')[1];
+                            GUILayout.Label(version);
+                        }
+                        if(versions.Count > 3)
+                            GUILayout.Label("more ...");
+                        EditorGUILayout.EndVertical();
+                        EditorGUILayout.EndHorizontal();
+                    }
+                }
             }
 
             GUILayout.Space(10);

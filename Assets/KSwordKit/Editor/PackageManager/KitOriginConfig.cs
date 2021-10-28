@@ -18,6 +18,8 @@ namespace KSwordKit.Editor.PackageManager
 
         [NonSerialized]
         public List<KitOriginPackageConfig> OriginPackageConfigList;
+        [NonSerialized]
+        public Dictionary<string, List<int>> OriginPackageDic;
     }
 
     public class KitOriginPackageConfig

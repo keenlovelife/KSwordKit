@@ -80,12 +80,13 @@ namespace KSwordKit.Editor
                     originConfig.PackageCount = _originConfig.PackageCount;
                     originConfig.PackageList = _originConfig.PackageList;
                 }
-                PackageManager.KitOriginPackageConfig opconfig = null;
-                if (originConfig.OriginPackageConfigList == null) originConfig.OriginPackageConfigList = new List<PackageManager.KitOriginPackageConfig>();
+                if (originConfig.OriginPackageConfigList == null) 
+                    originConfig.OriginPackageConfigList = new List<PackageManager.KitOriginPackageConfig>();
                 if(originConfig.PackageList != null)
                 {
                     foreach (var packageID in originConfig.PackageList)
                     {
+                        PackageManager.KitOriginPackageConfig opconfig = null;
                         foreach (var _config in originConfig.OriginPackageConfigList)
                         {
                             if (_config.ID == packageID)
@@ -112,6 +113,18 @@ namespace KSwordKit.Editor
 
                         if (System.IO.File.Exists(opconfig.configfilepath))
                             opconfig.KitPackageConfig = JsonUtility.FromJson<PackageManager.KitPackageConfig>(System.IO.File.ReadAllText(opconfig.configfilepath, System.Text.Encoding.UTF8));
+                    }
+
+                    if (originConfig.OriginPackageDic == null)
+                        originConfig.OriginPackageDic = new Dictionary<string, List<int>>();
+                    for (var i = 0; i < originConfig.PackageList.Count; i++)
+                    {
+                        var packageID = originConfig.PackageList[i];
+                        var ids = packageID.Split('@');
+                        if (!originConfig.OriginPackageDic.ContainsKey(ids[0]))
+                            originConfig.OriginPackageDic[ids[0]] = new List<int>();
+                        if (!originConfig.OriginPackageDic[ids[0]].Contains(i))
+                            originConfig.OriginPackageDic[ids[0]].Add(i);
                     }
                 }
             }
@@ -199,7 +212,8 @@ namespace KSwordKit.Editor
             {
                 var ID = id;
                 PackageManager.KitOriginPackageConfig opconfig = null;
-                if (originConfig.OriginPackageConfigList == null) originConfig.OriginPackageConfigList = new List<PackageManager.KitOriginPackageConfig>();
+                if (originConfig.OriginPackageConfigList == null) 
+                    originConfig.OriginPackageConfigList = new List<PackageManager.KitOriginPackageConfig>();
                 foreach (var _config in originConfig.OriginPackageConfigList)
                 {
                     if (_config.ID == ID)
@@ -257,7 +271,32 @@ namespace KSwordKit.Editor
                     {
                         count++;
                         if (count >= originConfig.PackageList.Count)
+                        {
+                            var temp = new List<PackageManager.KitOriginPackageConfig>();
+                            
+                            if (originConfig.OriginPackageDic == null)
+                                originConfig.OriginPackageDic = new Dictionary<string, List<int>>();
+                            for (var i = 0; i < originConfig.PackageList.Count; i++)
+                            {
+                                var packageID = originConfig.PackageList[i];
+                                foreach(var c in originConfig.OriginPackageConfigList)
+                                    if(c.ID == packageID)
+                                    {
+                                        temp.Add(c);
+                                        break;
+                                    }
+                                var ids = packageID.Split('@');
+                                if (!originConfig.OriginPackageDic.ContainsKey(ids[0]))
+                                    originConfig.OriginPackageDic[ids[0]] = new List<int>();
+                                if (!originConfig.OriginPackageDic[ids[0]].Contains(i))
+                                    originConfig.OriginPackageDic[ids[0]].Add(i);
+                            }
+                            originConfig.OriginPackageConfigList.Clear();
+                            originConfig.OriginPackageConfigList.AddRange(temp);
+                            temp.Clear();
+                            temp = null;
                             requestAction(true, 1);
+                        }
                         else
                             requestAction(false, count / (float)originConfig.PackageList.Count);
                     }
