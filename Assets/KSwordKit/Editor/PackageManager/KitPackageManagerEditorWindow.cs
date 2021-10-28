@@ -213,7 +213,10 @@ namespace KSwordKit.Editor.PackageManager
                 uninstal(originPackageConfig);
             }
             GUI.enabled = true;
+            if (GUILayout.Button("查看", GUILayout.Width(50), GUILayout.Height(23)))
+            {
 
+            }
             GUILayout.Space(15);
             EditorGUILayout.EndHorizontal();
 
@@ -240,13 +243,80 @@ namespace KSwordKit.Editor.PackageManager
 
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Space(35);
+                GUILayout.Label("标签：", EditorStyles.boldLabel, GUILayout.Width(30));
+                var eachMaxLength = 500;
+                var maxHeight = 2;
+                GUILayout.BeginVertical();
+                GUI.enabled = false;
+                var _i = 0;
+                var each_length = 0;
+                for (var l = 0; l < maxHeight; l++)
+                {
+                    each_length = 0;
+                    GUILayout.BeginHorizontal();
+                    for (; each_length < eachMaxLength && _i < originPackageConfig.KitPackageConfig.Tags.Count; _i++)
+                    {
+                        var tag = originPackageConfig.KitPackageConfig.Tags[_i];
+                        var w = getButtonWidth(tag);
+                        GUILayout.Button(tag, GUILayout.Width(w));
+                        each_length += w + 10;
+                    }
+                    GUILayout.EndHorizontal();
+                }
+                if(_i < originPackageConfig.KitPackageConfig.Tags.Count)
+                    GUILayout.Button("...", GUILayout.Width(20));
+                GUI.enabled = true;
+                GUILayout.EndVertical();
+                EditorGUILayout.EndHorizontal();
+
+                if(originPackageConfig.KitPackageConfig.Dependencies != null && originPackageConfig.KitPackageConfig.Dependencies.Count > 0)
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    GUILayout.Space(35);
+                    GUILayout.Label("依赖：", EditorStyles.boldLabel, GUILayout.Width(30));
+                    GUILayout.BeginVertical();
+                    var dependenciesMaxCount = 3;
+                    GUI.enabled = false;
+                    for (var l = 0; l <= dependenciesMaxCount && l < originPackageConfig.KitPackageConfig.Dependencies.Count; l++)
+                    {
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Label(originPackageConfig.KitPackageConfig.Dependencies[l]);
+                        GUILayout.EndHorizontal();
+                    }
+                    if (dependenciesMaxCount < originPackageConfig.KitPackageConfig.Dependencies.Count)
+                        GUILayout.Label("...", GUILayout.Width(20));
+                    GUI.enabled = true;
+                    GUILayout.EndVertical();
+                    EditorGUILayout.EndHorizontal();
+                }
+
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.Space(35);
                 GUILayout.Label("描述：", EditorStyles.boldLabel, GUILayout.Width(30));
+                var maxLineLength = 40;
                 var lines = originPackageConfig.KitPackageConfig.Description.Split('\n');
+                var tempLines = new List<string>();
+                for(var i = 0; i < lines.Length; i++)
+                {
+                    var line = lines[i];
+                    if (line.Length <= maxLineLength)
+                        tempLines.Add(line);
+                    else
+                    {
+                        while(line.Length > maxLineLength)
+                        {
+                            tempLines.Add(line.Substring(0, maxLineLength));
+                            line = line.Substring(maxLineLength, line.Length - maxLineLength);
+                        }
+                        if (!string.IsNullOrEmpty(line))
+                            tempLines.Add(line);
+                    }
+                }
                 EditorGUILayout.BeginVertical();
-                for(var i = 0; i < lines.Length && i < 4; i++)
-                    GUILayout.Label(lines[i]);
+                for(var i = 0; i < tempLines.Count && i < 4; i++)
+                    GUILayout.Label(tempLines[i]);
                 if (lines.Length > 3)
-                    GUILayout.Label("more ...");
+                    GUILayout.Label("...");
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.EndHorizontal();
 
@@ -259,16 +329,45 @@ namespace KSwordKit.Editor.PackageManager
                         var versions = KitInitializeEditor.KitOriginConfig.OriginPackageDic[ids[0]];
                         EditorGUILayout.BeginHorizontal();
                         GUILayout.Space(35);
-                        GUILayout.Label("旧版：", EditorStyles.boldLabel, GUILayout.Width(30));
+                        GUILayout.Label("旧版本：", EditorStyles.boldLabel, GUILayout.Width(40));
                         
                         EditorGUILayout.BeginVertical();
                         for (var i = 1; i < versions.Count && i < 4; i++)
                         {
-                            var version = KitInitializeEditor.KitOriginConfig.PackageList[versions[i]].Split('@')[1];
-                            GUILayout.Label(version);
+                            var versionID = KitInitializeEditor.KitOriginConfig.PackageList[versions[i]];
+                            var version = versionID.Split('@')[1];
+                            GUILayout.BeginHorizontal();
+                            GUILayout.Label(version, GUILayout.Width(getButtonWidth(version)));
+                            var versionPath = System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, versionID));
+                            var versionImported = System.IO.File.Exists(versionPath);
+                            if (versionImported)
+                            {
+                                GUI.enabled = false;
+                                GUILayout.Button("已导入", GUILayout.Width(60), GUILayout.Height(23));
+                                GUI.enabled = true;
+                            }
+                            else if (GUILayout.Button("导入", GUILayout.Width(50), GUILayout.Height(23)))
+                            {
+                                var opc = KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[versions[i]];
+                                if(string.IsNullOrEmpty(opc.KitPackageConfig.ImportRootDirectory))
+                                    opc.KitPackageConfig.ImportRootDirectory = System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, versionID));
+                                importKKPFile(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[versions[i]], "导入");
+                            }
+                            GUI.enabled = versionImported;
+                            if (GUILayout.Button("卸载", GUILayout.Width(50), GUILayout.Height(23)))
+                            {
+                                uninstal(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[versions[i]]);
+                            }
+                            GUI.enabled = true;
+                            GUILayout.EndHorizontal();
                         }
                         if(versions.Count > 3)
-                            GUILayout.Label("more ...");
+                        {
+                            GUI.enabled = false;
+                            GUILayout.Label("more...");
+                            GUI.enabled = true;
+                        }
+                            
                         EditorGUILayout.EndVertical();
                         EditorGUILayout.EndHorizontal();
                     }
@@ -368,6 +467,42 @@ namespace KSwordKit.Editor.PackageManager
                 EditorUtility.DisplayDialog("卸载：" + originPackageConfig.ID, "已成功卸载！", "确认");
             }
         }
+
+        int getButtonWidth(string str)
+        {
+            int r = 0;
+            int hanziCount = 0;
+            int zimuCount = 0;
+            foreach (var c in str)
+            {
+                bool ishanzi;
+                r += getCharButtonWidth(c, out ishanzi);
+                if (ishanzi) hanziCount++;
+                else zimuCount++;
+            }
+            int dw = 0;
+            if(hanziCount + zimuCount > 1)
+            {
+                dw = hanziCount * 5 + zimuCount * 10;
+            }
+            r -= dw;
+            return r;
+        }
+        int getCharButtonWidth(char c, out bool ishanzi)
+        {
+            string zimu = "0123456789.+-*/\\`~!@#$%^&*()_+[]{}:';\"?><,qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM ";
+            if (zimu.Contains(c.ToString()))
+            {
+                ishanzi = false;
+                return 22;
+            }
+            else
+            {
+                ishanzi = true;
+                return 25;
+            }
+        }
+
         /// <summary>
         /// 删除目录
         /// </summary>

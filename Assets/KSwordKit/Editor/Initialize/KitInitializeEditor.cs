@@ -112,7 +112,11 @@ namespace KSwordKit.Editor
                             opconfig.configfilepath = KitConst.KitPackagesRootDirectory + "/" + packageID + ".kitPackageConfig.json";
 
                         if (System.IO.File.Exists(opconfig.configfilepath))
+                        {
                             opconfig.KitPackageConfig = JsonUtility.FromJson<PackageManager.KitPackageConfig>(System.IO.File.ReadAllText(opconfig.configfilepath, System.Text.Encoding.UTF8));
+                            if (string.IsNullOrEmpty(opconfig.KitPackageConfig.ImportRootDirectory))
+                                opconfig.KitPackageConfig.ImportRootDirectory = System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, packageID));
+                        }
                     }
 
                     if (originConfig.OriginPackageDic == null)
@@ -241,8 +245,11 @@ namespace KSwordKit.Editor
                     opconfig.configfilepath = KitConst.KitPackagesRootDirectory + "/" + ID + ".kitPackageConfig.json";
 
                 if (System.IO.File.Exists(opconfig.configfilepath))
+                {
                     opconfig.KitPackageConfig = JsonUtility.FromJson<PackageManager.KitPackageConfig>(System.IO.File.ReadAllText(opconfig.configfilepath, System.Text.Encoding.UTF8));
-
+                    if (string.IsNullOrEmpty(opconfig.KitPackageConfig.ImportRootDirectory))
+                        opconfig.KitPackageConfig.ImportRootDirectory = System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, ID));
+                }
                 var webq = new KitToolEditor.WebRequest();
                 webq.www = UnityEngine.Networking.UnityWebRequest.Get(opconfig.configurl);
                 webq.www.SetRequestHeader("Content-Type", "application/json");
