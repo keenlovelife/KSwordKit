@@ -84,7 +84,7 @@ namespace KSwordKit.Editor.PackageManager
                     {
                         var opc = KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[i];
                         var ids = opc.ID.Split('@');
-                        if (ids[0] != idname)
+                        if (ids.Length == 2 && ids[0] != idname)
                         {
                             idname = ids[0];
                             DrawItemGUI(opc);
@@ -121,11 +121,14 @@ namespace KSwordKit.Editor.PackageManager
             {
                 var dirinfo = new System.IO.DirectoryInfo(packagesImportRootDir);
                 foreach (var dinfo in dirinfo.GetDirectories())
-                    if (dinfo.Name.StartsWith(ids[0]))
+                {
+                    var dirs = dinfo.Name.Split('@');
+                    if (dirs[0] == ids[0])
                     {
                         imported = true;
                         importNames.Add(dinfo.Name);
                     }
+                }
             }
             if (imported)
             {
@@ -240,8 +243,10 @@ namespace KSwordKit.Editor.PackageManager
                 GUILayout.Label("描述：", EditorStyles.boldLabel, GUILayout.Width(30));
                 var lines = originPackageConfig.KitPackageConfig.Description.Split('\n');
                 EditorGUILayout.BeginVertical();
-                foreach(var line in lines)
-                    GUILayout.Label(line);
+                for(var i = 0; i < lines.Length && i < 4; i++)
+                    GUILayout.Label(lines[i]);
+                if (lines.Length > 3)
+                    GUILayout.Label("more ...");
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.EndHorizontal();
 

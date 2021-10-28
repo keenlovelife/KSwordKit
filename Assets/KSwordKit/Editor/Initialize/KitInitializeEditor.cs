@@ -145,6 +145,8 @@ namespace KSwordKit.Editor
             if (isFirstRequst) isFirstRequst = false;
             isRequestting = true;
             checkWWW = UnityEngine.Networking.UnityWebRequest.Get(KitConfigURL);
+            checkWWW.SetRequestHeader("Content-Type", "application/json");
+            checkWWW.SetRequestHeader("Accept", "application/json");
             checkWWW.certificateHandler = new KitToolEditor.WebRequestCertificate();
             checkWWW.SendWebRequest();
             EditorApplication.update += Request_update;
@@ -243,6 +245,8 @@ namespace KSwordKit.Editor
 
                 var webq = new KitToolEditor.WebRequest();
                 webq.www = UnityEngine.Networking.UnityWebRequest.Get(opconfig.configurl);
+                webq.www.SetRequestHeader("Content-Type", "application/json");
+                webq.www.SetRequestHeader("Accept", "application/json");
                 webq.ResultAction = (uwq) =>
                 {
                     if (uwq.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
