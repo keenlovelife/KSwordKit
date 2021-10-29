@@ -25,8 +25,10 @@ namespace KSwordKit.Editor
             init();
         }
 
+        static int initTimes = 0;
         static void init()
         {
+            initTimes++;
             var paths = AssetDatabase.FindAssets(scriptName);
             foreach (var path in paths)
             {
@@ -66,12 +68,32 @@ namespace KSwordKit.Editor
 
             initOriginConfig();
 
-            EditorApplication.projectChanged += OnProjectChanged;
-            EditorApplication.update += EditorApplication_update;
+            bool initsuccess = true;
+            if (KSwordKitConfig == null || KitOriginConfig == null)
+            {
+                if (initTimes <= 1)
+                {
+                    initsuccess = false;
+                    KitToolEditor.WaitNextFrame(() =>
+                    {
+                        init();
+                    });
+                }
+                else
+                {
+                    Debug.Log(KitConst.KitName + ": 初始化失败！项目配置文件意外null");
+                }
+            }
 
-            DateTime = System.DateTime.Now;
+            if(initsuccess)
+            {
+                EditorApplication.projectChanged += OnProjectChanged;
+                EditorApplication.update += EditorApplication_update;
+                DateTime = System.DateTime.Now;
 
-            Debug.Log(KitConst.KitName + ": 初始化完成！");
+                Debug.Log("初始化次数：" + initTimes);
+                Debug.Log(KitConst.KitName + ": 初始化完成！");
+            }
         }
 
         static void initOriginConfig()
@@ -120,7 +142,7 @@ namespace KSwordKit.Editor
 
                         if (System.IO.File.Exists(opconfig.configfilepath))
                         {
-                            opconfig.KitPackageConfig = JsonUtility.FromJson<PackageManager.KitPackageConfig>(System.IO.File.ReadAllText(opconfig.configfilepath, System.Text.Encoding.UTF8));
+                            opconfig.KitPackageConfig = JsonUtility.FromJson<KitPackageConfig>(System.IO.File.ReadAllText(opconfig.configfilepath, System.Text.Encoding.UTF8));
                             if (string.IsNullOrEmpty(opconfig.KitPackageConfig.ImportRootDirectory))
                                 opconfig.KitPackageConfig.ImportRootDirectory = System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, packageID));
                         }
@@ -253,7 +275,7 @@ namespace KSwordKit.Editor
 
                 if (System.IO.File.Exists(opconfig.configfilepath))
                 {
-                    opconfig.KitPackageConfig = JsonUtility.FromJson<PackageManager.KitPackageConfig>(System.IO.File.ReadAllText(opconfig.configfilepath, System.Text.Encoding.UTF8));
+                    opconfig.KitPackageConfig = JsonUtility.FromJson<KitPackageConfig>(System.IO.File.ReadAllText(opconfig.configfilepath, System.Text.Encoding.UTF8));
                     if (string.IsNullOrEmpty(opconfig.KitPackageConfig.ImportRootDirectory))
                         opconfig.KitPackageConfig.ImportRootDirectory = System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, ID));
                 }
@@ -270,7 +292,7 @@ namespace KSwordKit.Editor
                         {
                             if (config.ID == ID)
                             {
-                                config.KitPackageConfig = JsonUtility.FromJson<PackageManager.KitPackageConfig>(uwq.downloadHandler.text);
+                                config.KitPackageConfig = JsonUtility.FromJson<KitPackageConfig>(uwq.downloadHandler.text);
                                 if (System.IO.File.Exists(opconfig.configfilepath))
                                     System.IO.File.Delete(opconfig.configfilepath);
                                 if (!System.IO.Directory.Exists(KitConst.KitPackagesRootDirectory))

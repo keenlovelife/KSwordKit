@@ -33,7 +33,7 @@ namespace KSwordKit
         static KSwordKit.KSwordKitConfig config;
         /// <summary>
         /// KSwordKit已导入项目中的所有包所在的根目录
-        /// <para>此目录指示了在点击 `导入包` 时，该包将会被导入的根目录。</para>
+        /// <para>此目录指示了在点击 `导入包` 时，该包将会被导入到该目录中。</para>
         /// </summary>
         public const string KitPackagesImportRootDirectory = "Packages";
         /// <summary>

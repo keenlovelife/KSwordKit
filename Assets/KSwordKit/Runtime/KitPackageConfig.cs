@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
-#if UNITY_EDITOR
-namespace KSwordKit.Editor.PackageManager
+namespace KSwordKit
 {
     [Serializable]
     public class KitPackageConfig
@@ -107,6 +107,20 @@ namespace KSwordKit.Editor.PackageManager
         /// <para>{PackageRootDirWhenImport} // 表示当前包准备导入时，将被导入的根目录。</para>
         /// </summary>
         public string TargetPath;
+
+        public static string TargetPathToRealPath(string targetPath)
+        {
+            if (targetPath == null) return null;
+            targetPath = targetPath.Replace("{Application.dataPath}", Application.dataPath);
+            targetPath = targetPath.Replace("{Application.temporaryCachePath}", Application.temporaryCachePath);
+            targetPath = targetPath.Replace("{Application.consoleLogPath}", Application.consoleLogPath);
+            targetPath = targetPath.Replace("{Application.persistentDataPath}", Application.persistentDataPath);
+            targetPath = targetPath.Replace("{Application.temporaryCachePath}", Application.temporaryCachePath);
+            targetPath = targetPath.Replace("{Application.streamingAssetsPath}", Application.streamingAssetsPath);
+            targetPath = targetPath.Replace("{KSwordKitRootDir}",KitConst.KitInstallationDirectory);
+            targetPath = targetPath.Replace("{PackageRootDir}", KitConst.KitPackagesRootDirectory);
+            targetPath = targetPath.Replace("{PackageRootDirWhenImport}", System.IO.Path.Combine(KitConst.KitInstallationDirectory, KitConst.KitPackagesImportRootDirectory));
+            return targetPath;
+        }
     }
 }
-#endif

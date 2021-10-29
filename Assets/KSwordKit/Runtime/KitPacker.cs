@@ -7,14 +7,8 @@ namespace KSwordKit
 {
     public class KitPacker
     {
-        [Serializable]
-        public class FileIndex
-        {
-            public string fileName;
-            public string relativeFilePath;
-            public long fileBytesLength;
-            public long filePosition;
-        }
+        static readonly string tag = "kkp@v1.0.0";
+        static readonly string tag_mark = "kkp";
         [Serializable]
         public class FileIndexs
         {
@@ -23,9 +17,66 @@ namespace KSwordKit
             public int fileCount;
             public List<FileIndex> fileIndexList;
         }
-
-        static readonly string tag = "kkp@v1.0.0";
-
+        [Serializable]
+        public class FileIndex
+        {
+            public bool isDir;
+            public string fileName;
+            public string relativeFilePath;
+            public long fileBytesLength;
+            public long filePosition;
+        }
+        public static void CopyDirectory(string inDir, string toDir, bool overwrite = true)
+        {
+            if (!System.IO.Directory.Exists(inDir)) return;
+            EachFileAndDir(
+                inDir, 
+                (dirinfo) => {
+                    var relativeFilePath = dirinfo.FullName.Replace(new System.IO.DirectoryInfo(inDir).FullName, "");
+                    relativeFilePath = relativeFilePath.Replace("\\", "/");
+                    if (relativeFilePath.Length > 0 && relativeFilePath[0] == '/')
+                        relativeFilePath = relativeFilePath.Substring(1);
+                    var path = System.IO.Path.Combine(toDir, relativeFilePath);
+                    if (!System.IO.Directory.Exists(path))
+                        System.IO.Directory.CreateDirectory(path);
+                }, 
+                (fileinfo) => {
+                    var relativeFilePath = fileinfo.FullName.Replace(new System.IO.DirectoryInfo(inDir).FullName, "");
+                    relativeFilePath = relativeFilePath.Replace("\\", "/");
+                    if (relativeFilePath.Length > 0 && relativeFilePath[0] == '/')
+                        relativeFilePath = relativeFilePath.Substring(1);
+                    var path = System.IO.Path.Combine(toDir, relativeFilePath);
+                    if (System.IO.File.Exists(path) && !overwrite) return;
+                    if(System.IO.File.Exists(path)) System.IO.File.Delete(path);
+                    var filedir = System.IO.Path.GetDirectoryName(path);
+                    if (!System.IO.Directory.Exists(filedir))
+                        System.IO.Directory.CreateDirectory(filedir);
+                    System.IO.File.WriteAllBytes(path, System.IO.File.ReadAllBytes(fileinfo.FullName));
+                });
+        }
+        public static void DeleteDirectory(string dir, bool deleteWithMataFile = false)
+        {
+            if (System.IO.Directory.Exists(dir))
+                System.IO.Directory.Delete(dir, true);
+            if (deleteWithMataFile)
+            {
+                var dirMetaFilePath = dir + ".meta";
+                if (System.IO.File.Exists(dirMetaFilePath))
+                    System.IO.File.Delete(dirMetaFilePath);
+            }
+        }
+        public static void EachFileAndDir(string inDir, System.Action<System.IO.DirectoryInfo> findDirAction, System.Action<System.IO.FileInfo> findFileAction)
+        {
+            if (!System.IO.Directory.Exists(inDir)) return;
+            var dirinfo = new System.IO.DirectoryInfo(inDir);
+            foreach (var dir in dirinfo.GetDirectories())
+            {
+                if(findDirAction != null) findDirAction(dir);
+                EachFileAndDir(dir.FullName, findDirAction, findFileAction);
+            }
+            foreach (var fileinfo in dirinfo.GetFiles())
+                if (findFileAction != null) findFileAction(fileinfo);
+        }
         public static void Pack(string inDir, string outFilepath, bool exportJsonFile = true, System.Action<string, float, bool, string> progress = null, bool overwrite = true)
         {
             if (progress != null) progress("", 0, false, null);
@@ -50,29 +101,43 @@ namespace KSwordKit
             fileIndexs.fileIndexList = new List<FileIndex>();
             fileIndexs.dir = inDir;
 
-            EachFile(inDir, (fileinfo) => {
-                var fileIndex = new FileIndex();
-                fileIndex.fileName = fileinfo.Name;
-                fileIndex.relativeFilePath = fileinfo.FullName.Replace(new System.IO.DirectoryInfo(inDir).FullName, "");
-                fileIndex.relativeFilePath = fileIndex.relativeFilePath.Replace("\\", "/");
-                if (fileIndex.relativeFilePath.Length > 0 && fileIndex.relativeFilePath[0] == '/')
-                    fileIndex.relativeFilePath = fileIndex.relativeFilePath.Substring(1);
-                fileIndex.filePosition = outFileStream.Position;
-                var infileBytes = System.IO.File.ReadAllBytes(fileinfo.FullName);
-                fileIndex.fileBytesLength = infileBytes.LongLength;
+            EachFileAndDir(
+                inDir,
+                (dirinfo) => {
+                     var fileIndex = new FileIndex();
+                     fileIndex.isDir = true;
+                     fileIndex.fileName = dirinfo.Name;
+                     fileIndex.relativeFilePath = dirinfo.FullName.Replace(new System.IO.DirectoryInfo(inDir).FullName, "");
+                     fileIndex.relativeFilePath = fileIndex.relativeFilePath.Replace("\\", "/");
+                     if (fileIndex.relativeFilePath.Length > 0 && fileIndex.relativeFilePath[0] == '/')
+                         fileIndex.relativeFilePath = fileIndex.relativeFilePath.Substring(1);
+                     fileIndex.filePosition = -1;
+                     fileIndex.fileBytesLength = -1;
+                     fileIndexs.fileIndexList.Add(fileIndex);
+                 },
+                (fileinfo) => {
+                    var fileIndex = new FileIndex();
+                    fileIndex.fileName = fileinfo.Name;
+                    fileIndex.relativeFilePath = fileinfo.FullName.Replace(new System.IO.DirectoryInfo(inDir).FullName, "");
+                    fileIndex.relativeFilePath = fileIndex.relativeFilePath.Replace("\\", "/");
+                    if (fileIndex.relativeFilePath.Length > 0 && fileIndex.relativeFilePath[0] == '/')
+                        fileIndex.relativeFilePath = fileIndex.relativeFilePath.Substring(1);
+                    fileIndex.filePosition = outFileStream.Position;
+                    var infileBytes = System.IO.File.ReadAllBytes(fileinfo.FullName);
+                    fileIndex.fileBytesLength = infileBytes.LongLength;
 
-                if (infileBytes.LongLength <= int.MaxValue)
-                {
-                    var count = (int)infileBytes.LongLength;
-                    outFileStream.Write(infileBytes, 0, count);
-                    fileIndexs.fileCount++;
-                    fileIndexs.fileBytesLength += count;
-                    fileIndexs.fileIndexList.Add(fileIndex);
-                }
-                else
-                    Debug.Log(KitConst.KitName + ": 文件尺寸超过 " + int.MaxValue + " 字节数，不能被写入！" + fileinfo.FullName);
-                if (progress != null) progress(fileIndex.fileName, UnityEngine.Random.Range(0.1f,0.9f), false, null);
-            });
+                    if (infileBytes.LongLength <= int.MaxValue)
+                    {
+                        var count = (int)infileBytes.LongLength;
+                        outFileStream.Write(infileBytes, 0, count);
+                        fileIndexs.fileCount++;
+                        fileIndexs.fileBytesLength += count;
+                        fileIndexs.fileIndexList.Add(fileIndex);
+                    }
+                    else
+                        Debug.Log(KitConst.KitName + ": 文件尺寸超过 " + int.MaxValue + " 字节数，不能被写入！" + fileinfo.FullName);
+                    if (progress != null) progress(fileIndex.fileName, UnityEngine.Random.Range(0.1f,0.9f), false, null);
+                });
 
             var pos = outFileStream.Position;
             var posBytes = System.BitConverter.GetBytes(pos);
@@ -97,10 +162,9 @@ namespace KSwordKit
 
             if (progress != null) progress("", 1, true, null);
         }
-
-        public static void Unpack(string inPackageFilepath, string outDir, System.Action<string, float, bool> progress = null, bool overwrite = true)
+        public static void Unpack(string inPackageFilepath, string outDir, System.Action<string, float, bool, string, List<string>> progress = null, bool overwrite = true)
         {
-            if (progress != null) progress("", 0, false);
+            if (progress != null) progress("", 0, false,null, null);
             var fs = System.IO.File.OpenRead(inPackageFilepath);
 
             var tagbytes = System.Text.Encoding.UTF8.GetBytes(tag);
@@ -109,6 +173,11 @@ namespace KSwordKit
             fs.Seek(-tagCount, System.IO.SeekOrigin.End);
             fs.Read(tagBytes, 0, tagCount);
             var getTag = System.Text.Encoding.UTF8.GetString(tagBytes);
+            if(!getTag.StartsWith(tag_mark))
+            {
+                if (progress != null) progress("", 1, true, "该文件不是kkp文件格式，无法解析！", null);
+                return;
+            }
 
             fs.Seek(-12 - tagCount, System.IO.SeekOrigin.End);
             byte[] longbytes = new byte[8];
@@ -125,32 +194,195 @@ namespace KSwordKit
             for(var i = 0; i < fileIndexs.fileIndexList.Count; i++)
             {
                 var fileindex = fileIndexs.fileIndexList[i];
-                var filepath = System.IO.Path.Combine(outDir, fileindex.relativeFilePath);
-                if (System.IO.File.Exists(filepath) && !overwrite) continue;
-                else if (System.IO.File.Exists(filepath)) System.IO.File.Delete(filepath);
-                var filedir = System.IO.Path.GetDirectoryName(filepath);
-                var filename = System.IO.Path.GetFileName(filepath);
-                if (!System.IO.Directory.Exists(filedir))
-                    System.IO.Directory.CreateDirectory(filedir);
-                int count = (int)fileindex.fileBytesLength;
-                byte[] bytes = new byte[count];
-                fs.Seek((int)fileindex.filePosition, System.IO.SeekOrigin.Begin);
-                fs.Read(bytes, 0, count);
-                System.IO.File.WriteAllBytes(filepath, bytes);
-                if (progress != null) progress(filename, (i + 1) / (float)fileIndexs.fileIndexList.Count, false);
+                if (fileindex.isDir)
+                {
+                    var dirpath = System.IO.Path.Combine(outDir, fileindex.relativeFilePath);
+                    if (!System.IO.Directory.Exists(dirpath))
+                        System.IO.Directory.CreateDirectory(dirpath);
+                }
+                else
+                {
+                    var filepath = System.IO.Path.Combine(outDir, fileindex.relativeFilePath);
+                    if (System.IO.File.Exists(filepath) && !overwrite) continue;
+                    else if (System.IO.File.Exists(filepath)) System.IO.File.Delete(filepath);
+                    var filedir = System.IO.Path.GetDirectoryName(filepath);
+                    if (!System.IO.Directory.Exists(filedir))
+                        System.IO.Directory.CreateDirectory(filedir);
+                    int count = (int)fileindex.fileBytesLength;
+                    byte[] bytes = new byte[count];
+                    fs.Seek((int)fileindex.filePosition, System.IO.SeekOrigin.Begin);
+                    fs.Read(bytes, 0, count);
+                    System.IO.File.WriteAllBytes(filepath, bytes);
+                }
+                if (progress != null) progress(fileindex.fileName, (i + 1) / (float)fileIndexs.fileIndexList.Count, false, null);
             }
             fs.Close();
-            if (progress != null) progress("", 1, true);
+
+            var kitPackageConfigFilepath = System.IO.Path.Combine(outDir, KitConst.KitPackageConfigFilename);
+            if(System.IO.File.Exists(kitPackageConfigFilepath))
+            {
+                var kitPackageConfig = JsonUtility.FromJson<KSwordKit.KitPackageConfig>(System.IO.File.ReadAllText(kitPackageConfigFilepath, System.Text.Encoding.UTF8));
+                // 整理文件
+                if (kitPackageConfig.FileSettings != null && kitPackageConfig.FileSettings.Count > 0)
+                {
+                    var fileFileSettings = new List<KitPackageConfigFileSetting>();
+                    var dirFileSettings = new List<KitPackageConfigFileSetting>();
+                    foreach (var fileSetting in kitPackageConfig.FileSettings)
+                        if (fileSetting.isDir) dirFileSettings.Add(fileSetting);
+                        else fileFileSettings.Add(fileSetting);
+                    foreach (var fileSetting in fileFileSettings)
+                    {
+                        var filepath = System.IO.Path.Combine(outDir, fileSetting.SourcePath);
+                        if (!System.IO.File.Exists(filepath))
+                        {
+                            Debug.LogWarning(KitConst.KitName + ": 文件意外丢失！ " + filepath);
+                            continue;
+                        }
+                        var targetPath = KitPackageConfigFileSetting.TargetPathToRealPath(fileSetting.TargetPath);
+                        if (System.IO.File.Exists(targetPath) && !overwrite) continue;
+                        if (System.IO.File.Exists(targetPath)) System.IO.File.Delete(targetPath);
+                        var targetDir = System.IO.Path.GetDirectoryName(targetPath);
+                        if (!System.IO.Directory.Exists(targetDir))
+                            System.IO.Directory.CreateDirectory(targetDir);
+                        System.IO.File.WriteAllBytes(targetPath, System.IO.File.ReadAllBytes(filepath));
+                        System.IO.File.Delete(filepath);
+                    }
+                    var temp_dirFileSettings = new List<KitPackageConfigFileSetting>();
+                    while(temp_dirFileSettings.Count != dirFileSettings.Count)
+                    {
+                        foreach (var fileSetting in dirFileSettings)
+                        {
+                            if (temp_dirFileSettings.Contains(fileSetting)) continue;
+                            bool find = false;
+                            foreach (var _fileSetting in dirFileSettings)
+                            {
+                                if (fileSetting == _fileSetting || temp_dirFileSettings.Contains(_fileSetting)) continue;
+                                if (_fileSetting.SourcePath.StartsWith(fileSetting.SourcePath))
+                                {
+                                    find = true;
+                                    break;
+                                }
+                            }
+                            if(!find)
+                                temp_dirFileSettings.Add(fileSetting);
+                        }
+                    }
+                    foreach (var fileSetting in temp_dirFileSettings)
+                    {
+                        var dirpath = System.IO.Path.Combine(outDir, fileSetting.SourcePath);
+                        if (!System.IO.Directory.Exists(dirpath))
+                        {
+                            Debug.LogWarning(KitConst.KitName + ": 文件目录意外丢失！ " + dirpath);
+                            continue;
+                        }
+                        var targetPath = KitPackageConfigFileSetting.TargetPathToRealPath(fileSetting.TargetPath);
+                        CopyDirectory(dirpath, targetPath);
+                        DeleteDirectory(dirpath);
+                    }
+
+                    fileFileSettings.Clear();
+                    fileFileSettings = null;
+                    dirFileSettings.Clear();
+                    dirFileSettings = null;
+                    temp_dirFileSettings.Clear();
+                    temp_dirFileSettings = null;
+                }
+                // 导入依赖
+                if (progress != null) progress("", 1, true, null, kitPackageConfig.Dependencies);
+            }
+            else if (progress != null) progress("", 1, true, null, null);
+        }
+        public static string Unpack_getFileIndexs_Text(string inPackageFilepath, out string error)
+        {
+            var fs = System.IO.File.OpenRead(inPackageFilepath);
+
+            var tagbytes = System.Text.Encoding.UTF8.GetBytes(tag);
+            var tagCount = tagbytes.Length;
+            var tagBytes = new byte[tagCount];
+            fs.Seek(-tagCount, System.IO.SeekOrigin.End);
+            fs.Read(tagBytes, 0, tagCount);
+            var getTag = System.Text.Encoding.UTF8.GetString(tagBytes);
+            if (!getTag.StartsWith(tag_mark))
+            {
+                error = "该文件不是kkp文件格式，无法解析！";
+                return null;
+            }
+
+            error = null;
+            fs.Seek(-12 - tagCount, System.IO.SeekOrigin.End);
+            byte[] longbytes = new byte[8];
+            fs.Read(longbytes, 0, 8);
+            byte[] countbytes = new byte[4];
+            fs.Read(countbytes, 0, 4);
+            var pos = System.BitConverter.ToInt64(longbytes, 0);
+            var jsoncount = System.BitConverter.ToInt32(countbytes, 0);
+            fs.Seek(pos, System.IO.SeekOrigin.Begin);
+            byte[] jsonbytes = new byte[jsoncount];
+            fs.Read(jsonbytes, 0, jsoncount);
+            var jsonstring = System.Text.Encoding.UTF8.GetString(jsonbytes);
+            fs.Close();
+            return jsonstring;
+        }
+        public static bool IsKKP(string inPackageFilepath)
+        {
+            var fs = System.IO.File.OpenRead(inPackageFilepath);
+
+            var tagbytes = System.Text.Encoding.UTF8.GetBytes(tag);
+            var tagCount = tagbytes.Length;
+            var tagBytes = new byte[tagCount];
+            fs.Seek(-tagCount, System.IO.SeekOrigin.End);
+            fs.Read(tagBytes, 0, tagCount);
+            var getTag = System.Text.Encoding.UTF8.GetString(tagBytes);
+            fs.Close();
+            return getTag.StartsWith(tag_mark);
+        }
+        public static string Unpack_getKitPackageConfig_Text(string inPackageFilepath, out string error)
+        {
+            var fs = System.IO.File.OpenRead(inPackageFilepath);
+
+            var tagbytes = System.Text.Encoding.UTF8.GetBytes(tag);
+            var tagCount = tagbytes.Length;
+            var tagBytes = new byte[tagCount];
+            fs.Seek(-tagCount, System.IO.SeekOrigin.End);
+            fs.Read(tagBytes, 0, tagCount);
+            var getTag = System.Text.Encoding.UTF8.GetString(tagBytes);
+            if (!getTag.StartsWith(tag_mark))
+            {
+                error = "该文件不是kkp文件格式，无法解析！";
+                return null;
+            }
+
+            error = null;
+            fs.Seek(-12 - tagCount, System.IO.SeekOrigin.End);
+            byte[] longbytes = new byte[8];
+            fs.Read(longbytes, 0, 8);
+            byte[] countbytes = new byte[4];
+            fs.Read(countbytes, 0, 4);
+            var pos = System.BitConverter.ToInt64(longbytes, 0);
+            var jsoncount = System.BitConverter.ToInt32(countbytes, 0);
+            fs.Seek(pos, System.IO.SeekOrigin.Begin);
+            byte[] jsonbytes = new byte[jsoncount];
+            fs.Read(jsonbytes, 0, jsoncount);
+            var jsonstring = System.Text.Encoding.UTF8.GetString(jsonbytes);
+            var fileIndexs = JsonUtility.FromJson<FileIndexs>(jsonstring);
+            for (var i = 0; i < fileIndexs.fileIndexList.Count; i++)
+            {
+                var fileindex = fileIndexs.fileIndexList[i];
+                if(fileindex.fileName == KitConst.KitPackageConfigFilename)
+                {
+                    int count = (int)fileindex.fileBytesLength;
+                    byte[] bytes = new byte[count];
+                    fs.Seek((int)fileindex.filePosition, System.IO.SeekOrigin.Begin);
+                    fs.Read(bytes, 0, count);
+                    var configjsonstr = System.Text.Encoding.UTF8.GetString(bytes);
+                    fs.Close();
+                    return configjsonstr;
+                }
+            }
+            fs.Close();
+            error = "该文件是kkp文件，但是它里面不包含 " + KitConst.KitPackageConfigFilename + " 文件！";
+            return null;
         }
 
-        public static void EachFile(string inDir, System.Action<System.IO.FileInfo> findFileAction)
-        {
-            if (!System.IO.Directory.Exists(inDir) || findFileAction == null) return;
-            var dirinfo = new System.IO.DirectoryInfo(inDir);
-            foreach (var fileinfo in dirinfo.GetFiles())
-                findFileAction(fileinfo);
-            foreach (var dir in dirinfo.GetDirectories())
-                EachFile(dir.FullName, findFileAction);
-        }
     }
 }

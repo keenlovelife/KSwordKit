@@ -62,7 +62,7 @@ namespace KSwordKit.Editor.PackageManager
             EditorGUILayout.LabelField("搜索：", blod, GUILayout.Width(40));
             kitUserSearchInputString = EditorGUILayout.TextField(kitUserSearchInputString);
             EditorGUILayout.EndHorizontal();
-            EditorGUILayout.Space(10);
+            EditorGUILayout.Space(16);
             EditorGUILayout.BeginHorizontal();
             blod.fontSize = 20;
             EditorGUILayout.LabelField("包列表：(" + packageCount + ")", blod);
@@ -674,12 +674,12 @@ namespace KSwordKit.Editor.PackageManager
                 }
             });
         }
-        void unpackeKKP(KitOriginPackageConfig originPackageConfig, string title, bool notDisplatDialog = false, System.Action doneAction = null)
+        void unpackeKKP(KitOriginPackageConfig originPackageConfig, string title, bool notDisplatDialog = false, System.Action<List<string>> doneAction = null)
         {
             KitPacker.Unpack(
                 originPackageConfig.kkpfilepath,
                 originPackageConfig.KitPackageConfig.ImportRootDirectory,
-                (filename, progress, done) =>
+                (filename, progress, done, error, dependencies) =>
                 {
                     if (!done)
                         EditorUtility.DisplayProgressBar(title + ": " + originPackageConfig.ID, "包下载完毕！正在" + title + ": " + filename, 0.5f + progress * 0.5f);
@@ -696,13 +696,20 @@ namespace KSwordKit.Editor.PackageManager
                             AssetDatabase.SaveAssets();
                             AssetDatabase.Refresh();
                         }
-                        Debug.Log(KitConst.KitName + ": 导入 " + originPackageConfig.ID + " 成功！");
-
+                        if (!string.IsNullOrEmpty(error))
+                        {
+                            Debug.LogError(KitConst.KitName + ": 导入 " + originPackageConfig.ID + " 失败！" + error);
+                        }
+                        else
+                        {
+                            Debug.Log(KitConst.KitName + ": 导入 " + originPackageConfig.ID + " 成功！");
+                        }
                         if (!notDisplatDialog)
                         {
                             EditorUtility.DisplayDialog(title + ": " + originPackageConfig.ID, title + "成功！", "确定");
                         }
-                        if (doneAction != null) doneAction();
+
+                        if (doneAction != null) doneAction(dependencies);
                     }
                 }
             );
@@ -711,13 +718,31 @@ namespace KSwordKit.Editor.PackageManager
         {
             if (notDisplatDialog || EditorUtility.DisplayDialog(title + ": " + originPackageConfig.ID, "确认" + title + " " + originPackageConfig.ID + " ？", "确认", "取消"))
             {
+                System.Action<List<string>> unpackKKPDoneAction = (dependencies) => { 
+                    if(dependencies != null && dependencies.Count > 0)
+                    {
+                        
+                        foreach (var depd in dependencies)
+                        {
+                            if (KitInitializeEditor.KitOriginConfig.PackageList != null &&
+                                KitInitializeEditor.KitOriginConfig.PackageList.Contains(depd) &&
+                                KitInitializeEditor.KitOriginConfig.OriginPackageConfigList != null &&
+                                KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count > 0)
+                            {
+                                foreach (var opc in KitInitializeEditor.KitOriginConfig.OriginPackageConfigList)
+                                    if (opc.ID == depd)
+                                        importKKPFile(opc, title, true);
+                            }
+                        }
+                    }
+                };
                 if (!System.IO.File.Exists(originPackageConfig.kkpfilepath))
                 {
                     RequestKKPFile(originPackageConfig, title, () => {
-                        unpackeKKP(originPackageConfig, title, notDisplatDialog, doneAction);
+                        unpackeKKP(originPackageConfig, title, notDisplatDialog, unpackKKPDoneAction);
                     });
                 }
-                else unpackeKKP(originPackageConfig, title, notDisplatDialog, doneAction);
+                else unpackeKKP(originPackageConfig, title, notDisplatDialog, unpackKKPDoneAction);
             }
         }
         void importKKPFile(List<KitOriginPackageConfig> kitOriginPackageConfigs, string title, bool notDisplatDialog = false, System.Action doneAction = null)
