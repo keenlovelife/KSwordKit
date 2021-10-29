@@ -24,6 +24,7 @@ namespace KSwordKit.Editor.PackageManager
 
     public class KitOriginPackageConfig
     {
+        public bool selected;
         public string ID;
         public string kkpurl;
         public string kkpfilepath;

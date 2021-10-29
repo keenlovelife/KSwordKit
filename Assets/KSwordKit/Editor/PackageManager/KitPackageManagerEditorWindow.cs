@@ -55,11 +55,86 @@ namespace KSwordKit.Editor.PackageManager
                 GUI.enabled = false;
             if (GUILayout.Button("全部更新", GUILayout.Width(100), GUILayout.Height(24)))
             {
+                if (KitInitializeEditor.KitOriginConfig != null &&
+                    KitInitializeEditor.KitOriginConfig.PackageCount > 0 &&
+                    KitInitializeEditor.KitOriginConfig.OriginPackageConfigList != null &&
+                    KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count > 0)
+                {
+                    var opcs = new List<KitOriginPackageConfig>(); // 已导入
+                    var needUpdateOpcs = new List<KitOriginPackageConfig>(); // 需要更新
+                    var updateTargetOpcs = new List<KitOriginPackageConfig>(); // 更新包
+                    var infoDic = new Dictionary<string, string>();
+                    foreach (var c in KitInitializeEditor.KitOriginConfig.OriginPackageConfigList)
+                    {
+                        if (c.KitPackageConfig != null && System.IO.Directory.Exists(c.KitPackageConfig.ImportRootDirectory))
+                            opcs.Add(c);
+                    }
+                    if (opcs.Count > 0 && KitInitializeEditor.KitOriginConfig.OriginPackageDic != null)
+                    {
+                        foreach(var c in opcs)
+                        {
+                            var cids = c.ID.Split('@');
+                            if (KitInitializeEditor.KitOriginConfig.OriginPackageDic.ContainsKey(cids[0]) &&
+                                KitInitializeEditor.KitOriginConfig.OriginPackageDic[cids[0]] != null &&
+                                KitInitializeEditor.KitOriginConfig.OriginPackageDic[cids[0]].Count > 1)
+                            {
+                                var versions = KitInitializeEditor.KitOriginConfig.OriginPackageDic[cids[0]];
+                                var opc = KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[versions[0]];
+                                if (c.ID != opc.ID)
+                                {
+                                    if (opc.KitPackageConfig != null && !System.IO.Directory.Exists(opc.KitPackageConfig.ImportRootDirectory))
+                                    {
+                                        if (infoDic.ContainsKey(cids[0]))
+                                            infoDic[cids[0]] = cids[0] + " -> " + opc.ID;
+                                        else
+                                            infoDic[cids[0]] = c.ID + " -> " + opc.ID;
+                                        needUpdateOpcs.Add(c);
+                                        bool canadd = true;
+                                        foreach(var _c in updateTargetOpcs)
+                                            if(_c.ID == opc.ID)
+                                            {
+                                                canadd = false;
+                                                break;
+                                            }
+                                        if (canadd)
+                                            updateTargetOpcs.Add(opc);
+                                    }
+                                }
+                            }
+                        }
+                        
+                        if(needUpdateOpcs.Count > 0)
+                        {
+                            var info = "";
+                            foreach (var kv in infoDic)
+                            {
+                                if(string.IsNullOrEmpty(info))
+                                    info = kv.Value;
+                                else
+                                    info += "\n" + kv.Value;
+                            }
+                            updateKKP(updateTargetOpcs, needUpdateOpcs, info);
+                        }
+                    }
+                }
 
             }
             if (GUILayout.Button("全部卸载", GUILayout.Width(100), GUILayout.Height(24)))
             {
-
+                if (KitInitializeEditor.KitOriginConfig != null &&
+                   KitInitializeEditor.KitOriginConfig.PackageCount > 0 &&
+                   KitInitializeEditor.KitOriginConfig.OriginPackageConfigList != null &&
+                   KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count > 0)
+                {
+                    var opcs = new List<KitOriginPackageConfig>();
+                    foreach (var c in KitInitializeEditor.KitOriginConfig.OriginPackageConfigList)
+                    {
+                        if (c.KitPackageConfig != null && System.IO.Directory.Exists(c.KitPackageConfig.ImportRootDirectory))
+                            opcs.Add(c);
+                    }
+                    if (opcs.Count > 0)
+                        uninstal(opcs);
+                }
             }
             GUI.enabled = true;
             EditorGUILayout.EndHorizontal();
@@ -110,7 +185,58 @@ namespace KSwordKit.Editor.PackageManager
 
         void DrawItemGUI(KitOriginPackageConfig originPackageConfig)
         {
+            var nameMaxLength_hanzi = 37;
+            var nameGoodLength_hanzi = 17;
+            var nameMaxLength_zimu = 78;
+            var nameGoodLength_zimu = 36;
+            var hanzi_to_zimu_c = (int)((float)nameMaxLength_zimu / nameMaxLength_hanzi);
+
+            //var nameMaxLength = 17;
+            //var nameGoodLength = 100;
+            var nameNotGood = false;
             var ids = originPackageConfig.ID.Split('@');
+
+            var idname = ids[0];
+            if (idname == "test1")
+                idname = "汉字炸你汉字炸你zimu汉字炸你汉字炸你zimu汉字炸你汉字炸你zimu汉字炸你汉字炸你zimu汉字炸你汉字炸你zimu汉字炸你汉字炸你zimu汉字炸你汉字炸你zimu汉字炸你汉字炸你zimu汉字炸你汉字炸你zimu汉字炸你汉字炸你zimu汉字炸你汉字炸你zimu汉字炸你汉字炸你zimu汉字炸你汉字炸你zimu汉字炸你汉字炸你zimu汉字炸你汉字炸你zimu汉字炸你汉字炸你zimu汉字炸你汉字炸你zimu";
+            var hanzi_count = 0;
+            var zimu_count = 0;
+            foreach (var c in idname)
+                if (isHanzi(c)) ++hanzi_count;
+                else ++zimu_count ;
+            if(zimu_count == 0)
+            {
+                if (idname.Length > nameMaxLength_hanzi)
+                    idname = idname.Substring(0, nameMaxLength_hanzi) + "...";
+                if(idname.Length > nameGoodLength_hanzi)
+                    nameNotGood = true;
+            } 
+            else if (hanzi_count == 0)
+            {
+                if (idname.Length > nameMaxLength_zimu)
+                    idname = idname.Substring(0, nameMaxLength_zimu) + "...";
+                if (idname.Length > nameGoodLength_zimu)
+                    nameNotGood = true;
+            }
+            else
+            {
+                var idname_hanziCount = hanzi_count * hanzi_to_zimu_c;
+                var idname_length = idname_hanziCount + zimu_count;
+                while (idname_length > nameMaxLength_zimu)
+                {
+                    idname = idname.Substring(0, idname.Length - 2) + "...";
+                    hanzi_count = 0;
+                    zimu_count = 0;
+                    foreach (var c in idname)
+                        if (isHanzi(c)) ++hanzi_count;
+                        else ++zimu_count;
+                    idname_hanziCount = hanzi_count * hanzi_to_zimu_c;
+                    idname_length = idname_hanziCount + zimu_count;
+                }
+
+                if (idname_length > nameGoodLength_zimu)
+                    nameNotGood = true;
+            }
 
             GUILayout.Button("", GUILayout.Height(2));
             GUILayout.Space(5);
@@ -118,22 +244,44 @@ namespace KSwordKit.Editor.PackageManager
             GUILayout.Space(15);
             blod.fontSize = 14;
             blod.normal.textColor = new Color(255, 200, 200);
-            GUILayout.Label(ids[0], blod, GUILayout.Height(22));
+            originPackageConfig.selected = GUILayout.Toggle(originPackageConfig.selected, "", GUILayout.Width(18));
+            GUILayout.Label(idname, blod, GUILayout.Height(22));
 
+            if (nameNotGood)
+            {
+                GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("");
+            }
             bool imported = false;
             bool needUpdate = true;
+            var haveMoreVersion = false;
+            if (KitInitializeEditor.KitOriginConfig.OriginPackageDic != null &&
+                KitInitializeEditor.KitOriginConfig.OriginPackageDic.ContainsKey(ids[0]) &&
+                KitInitializeEditor.KitOriginConfig.OriginPackageDic[ids[0]] != null &&
+                KitInitializeEditor.KitOriginConfig.OriginPackageDic[ids[0]].Count > 1)
+                haveMoreVersion = true;
+            var opcs = new List<KitOriginPackageConfig>();
+            if (haveMoreVersion)
+            {
+                var versions = KitInitializeEditor.KitOriginConfig.OriginPackageDic[ids[0]];
+                foreach (var i in versions)
+                {
+                    var _opc = KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[i];
+                    if (_opc.KitPackageConfig != null && System.IO.Directory.Exists(_opc.KitPackageConfig.ImportRootDirectory))
+                        opcs.Add(_opc);
+                }
+            }
 
             var importNames = new List<string>();
-            if(string.IsNullOrEmpty(originPackageConfig.KitPackageConfig.ImportRootDirectory))
-                originPackageConfig.KitPackageConfig.ImportRootDirectory = System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, originPackageConfig.ID));
             var packagesImportRootDir = System.IO.Path.Combine(KitConst.KitInstallationDirectory, KitConst.KitPackagesImportRootDirectory);
             if (System.IO.Directory.Exists(packagesImportRootDir))
             {
                 var dirinfo = new System.IO.DirectoryInfo(packagesImportRootDir);
                 foreach (var dinfo in dirinfo.GetDirectories())
                 {
-                    var dirs = dinfo.Name.Split('@');
-                    if (dirs[0] == ids[0])
+                    var dinfoname = dinfo.Name.Split('@')[0];
+                    if (dinfoname == ids[0])
                     {
                         imported = true;
                         importNames.Add(dinfo.Name);
@@ -170,12 +318,15 @@ namespace KSwordKit.Editor.PackageManager
                     {
                         var l = new List<string>();
                         foreach(var id in KitInitializeEditor.KSwordKitConfig.KitImportedPackageList)
-                            if (id.StartsWith(ids[0])) l.Add(id);
-                        KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.Clear();
-                        KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.AddRange(l);
-                        EditorUtility.SetDirty(KitInitializeEditor.KSwordKitConfig);
-                        AssetDatabase.SaveAssets();
-                        AssetDatabase.Refresh();
+                            if (id == originPackageConfig.ID) l.Add(id);
+                        if(l.Count > 0)
+                        {
+                            KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.Clear();
+                            KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.AddRange(l);
+                            EditorUtility.SetDirty(KitInitializeEditor.KSwordKitConfig);
+                            AssetDatabase.SaveAssets();
+                            AssetDatabase.Refresh();
+                        }
                     }
                 }
             }
@@ -200,50 +351,27 @@ namespace KSwordKit.Editor.PackageManager
                         break;
                     }
             }
-            if (imported && !needUpdate)
+
+            if (!imported || !needUpdate) GUI.enabled = false;
+            if (GUILayout.Button("更新", GUILayout.Width(50), GUILayout.Height(23)))
             {
-                GUI.enabled = false;
-                GUILayout.Button("已是最新版本", GUILayout.Width(100), GUILayout.Height(23));
-                GUI.enabled = true;
+                updateKKP(originPackageConfig, opcs);
+            }
+            GUI.enabled = true;
+
+            if (!imported) GUI.enabled = false;
+            if (haveMoreVersion)
+            {
+                if (GUILayout.Button("卸载所有版本", GUILayout.Width(100), GUILayout.Height(23)))
+                {
+                    uninstal(opcs);
+                }
             }
             else
             {
-                if (!imported) GUI.enabled = false;
-                if (GUILayout.Button("更新", GUILayout.Width(50), GUILayout.Height(23)))
+                if (GUILayout.Button("卸载", GUILayout.Width(50), GUILayout.Height(23)))
                 {
                     uninstal(originPackageConfig);
-                    importKKPFile(originPackageConfig, "更新");
-                }
-                GUI.enabled = true;
-            }
-
-            if (!imported) GUI.enabled = false;
-            if (GUILayout.Button("卸载", GUILayout.Width(50), GUILayout.Height(23)))
-            {
-                if (KitInitializeEditor.KitOriginConfig.OriginPackageDic == null)
-                {
-                    uninstal(originPackageConfig);
-                }
-                else if (KitInitializeEditor.KitOriginConfig.OriginPackageDic.ContainsKey(ids[0]) &&
-                        KitInitializeEditor.KitOriginConfig.OriginPackageDic[ids[0]] != null &&
-                        KitInitializeEditor.KitOriginConfig.OriginPackageDic[ids[0]].Count > 1)
-                {
-                    if(EditorUtility.DisplayDialog("项目中并存多个版本", "卸载所有版本 or 仅卸载当前版本？", "卸载所有版本", "仅卸载当前版本"))
-                    {
-                        var versions = KitInitializeEditor.KitOriginConfig.OriginPackageDic[ids[0]];
-                        var opcs = new List<KitOriginPackageConfig>();
-                        foreach (var i in versions)
-                        {
-                            var _opc = KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[i];
-                            if (_opc.KitPackageConfig != null && System.IO.Directory.Exists(_opc.KitPackageConfig.ImportRootDirectory))
-                                opcs.Add(_opc);
-                        }
-                        uninstal(opcs);
-                    }
-                    else
-                    {
-                        uninstal(originPackageConfig);
-                    }
                 }
             }
             GUI.enabled = true;
@@ -259,20 +387,14 @@ namespace KSwordKit.Editor.PackageManager
             {
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Space(35);
-                GUILayout.Label("作者：", EditorStyles.boldLabel, GUILayout.Width(30));
-                GUILayout.Label(originPackageConfig.KitPackageConfig.Author);
-                EditorGUILayout.EndHorizontal();
-
-                EditorGUILayout.BeginHorizontal();
-                GUILayout.Space(35);
-                GUILayout.Label("版本：", EditorStyles.boldLabel, GUILayout.Width(30));
+                GUILayout.Label("最新版本：", EditorStyles.boldLabel, GUILayout.Width(60));
                 GUILayout.Label(originPackageConfig.KitPackageConfig.Version);
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Space(35);
-                GUILayout.Label("日期：", EditorStyles.boldLabel, GUILayout.Width(30));
-                GUILayout.Label(originPackageConfig.KitPackageConfig.Date);
+                GUILayout.Label("作者：", EditorStyles.boldLabel, GUILayout.Width(30));
+                GUILayout.Label(originPackageConfig.KitPackageConfig.Author);
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
@@ -363,10 +485,10 @@ namespace KSwordKit.Editor.PackageManager
                         var versions = KitInitializeEditor.KitOriginConfig.OriginPackageDic[ids[0]];
                         EditorGUILayout.BeginHorizontal();
                         GUILayout.Space(35);
-                        GUILayout.Label("旧版本：", EditorStyles.boldLabel, GUILayout.Width(40));
+                        GUILayout.Label("版本列表：", EditorStyles.boldLabel, GUILayout.Width(60));
                         
                         EditorGUILayout.BeginVertical();
-                        for (var i = 1; i < versions.Count && i < 4; i++)
+                        for (var i = 0; i < versions.Count && i < 4; i++)
                         {
                             var versionID = KitInitializeEditor.KitOriginConfig.PackageList[versions[i]];
                             var version = versionID.Split('@')[1];
@@ -435,7 +557,7 @@ namespace KSwordKit.Editor.PackageManager
                 }
             });
         }
-        void unpackeKKP(KitOriginPackageConfig originPackageConfig, string title)
+        void unpackeKKP(KitOriginPackageConfig originPackageConfig, string title, bool notDisplatDialog = false, System.Action doneAction = null)
         {
             KitPacker.Unpack(
                 originPackageConfig.kkpfilepath,
@@ -458,26 +580,33 @@ namespace KSwordKit.Editor.PackageManager
                             AssetDatabase.Refresh();
                         }
 
-                        Debug.Log(KitConst.KitName + ": " + title + " " + originPackageConfig.ID + " 成功！");
-                        EditorUtility.DisplayDialog(title + ": " + originPackageConfig.ID, title + "成功！", "确定");
+                        if (!notDisplatDialog)
+                        {
+                            Debug.Log(KitConst.KitName + ": " + title + " " + originPackageConfig.ID + " 成功！");
+                            EditorUtility.DisplayDialog(title + ": " + originPackageConfig.ID, title + "成功！", "确定");
+                        }
+                        if (doneAction != null) doneAction();
                     }
                 }
             );
         }
-        void importKKPFile(KitOriginPackageConfig originPackageConfig, string title)
+        void importKKPFile(KitOriginPackageConfig originPackageConfig, string title, bool notDisplatDialog = false, System.Action doneAction = null)
         {
-            EditorUtility.DisplayProgressBar(title +": " + originPackageConfig.ID, "正在准备数据...", 0);
-            if (!System.IO.File.Exists(originPackageConfig.kkpfilepath))
+            if (notDisplatDialog || EditorUtility.DisplayDialog(title + ": " + originPackageConfig.ID, "确认" + title + " " + originPackageConfig.ID + " ？", "确认", "取消"))
             {
-                RequestKKPFile(originPackageConfig, () => {
-                    unpackeKKP(originPackageConfig, title);
-                });
+                EditorUtility.DisplayProgressBar(title + ": " + originPackageConfig.ID, "正在准备数据...", 0);
+                if (!System.IO.File.Exists(originPackageConfig.kkpfilepath))
+                {
+                    RequestKKPFile(originPackageConfig, () => {
+                        unpackeKKP(originPackageConfig, title, notDisplatDialog, doneAction);
+                    });
+                }
+                else unpackeKKP(originPackageConfig, title, notDisplatDialog, doneAction);
             }
-            else unpackeKKP(originPackageConfig, title);
         }
-        void uninstal(KitOriginPackageConfig originPackageConfig)
+        void uninstal(KitOriginPackageConfig originPackageConfig, bool notDisplatDialog = false)
         {
-            if (EditorUtility.DisplayDialog("卸载：" + originPackageConfig.ID, "确认卸载？", "确认", "取消"))
+            if (notDisplatDialog || EditorUtility.DisplayDialog("卸载：" + originPackageConfig.ID, "确认卸载 " + originPackageConfig.ID + " ？", "确认", "取消"))
             {
                 DirectoryDelete(originPackageConfig.KitPackageConfig.ImportRootDirectory);
                 if (KitInitializeEditor.KSwordKitConfig != null)
@@ -495,15 +624,20 @@ namespace KSwordKit.Editor.PackageManager
                         AssetDatabase.Refresh();
                     }
                 }
-                EditorUtility.DisplayDialog("卸载：" + originPackageConfig.ID, "已成功卸载！", "确认");
+                Debug.Log(KitConst.KitName + ": " + originPackageConfig.ID + " 已成功卸载！");
+                if (!notDisplatDialog)
+                    EditorUtility.DisplayDialog("卸载：" + originPackageConfig.ID, "已成功卸载！", "确认");
             }
         }
-        void uninstal(List<KitOriginPackageConfig> kitOriginPackageConfigs)
+        void uninstal(List<KitOriginPackageConfig> kitOriginPackageConfigs, bool notDisplatDialog = false)
         {
             var info = "";
             foreach (var c in kitOriginPackageConfigs)
-                info += "\n" + c.ID;
-            if (EditorUtility.DisplayDialog("卸载所有版本", "确认卸载所有版本？" + info, "确认", "取消"))
+                if (string.IsNullOrEmpty(info))
+                    info = c.ID;
+                else
+                    info += "\n" + c.ID;
+            if (notDisplatDialog || EditorUtility.DisplayDialog("全部卸载", "确认全部卸载？\n\n" + info, "确认", "取消"))
             {
                 foreach(var originPackageConfig in kitOriginPackageConfigs)
                 {
@@ -520,12 +654,64 @@ namespace KSwordKit.Editor.PackageManager
                             KitInitializeEditor.KSwordKitConfig.KitImportedPackageList.AddRange(l);
                         }
                     }
+                    Debug.Log(KitConst.KitName + ": " + originPackageConfig.ID + " 已成功卸载！");
                 }
 
                 EditorUtility.SetDirty(KitInitializeEditor.KSwordKitConfig);
                 AssetDatabase.SaveAssets();
                 AssetDatabase.Refresh();
-                EditorUtility.DisplayDialog("全部卸载", "全部完成卸载！", "确认");
+                if (!notDisplatDialog)
+                    EditorUtility.DisplayDialog("全部卸载", info + "\n\n已全部卸载完成！", "确认");
+            }
+        }
+        void updateKKP(KitOriginPackageConfig originPackageConfig, List<KitOriginPackageConfig> kitOriginPackageConfigs)
+        {
+            if (kitOriginPackageConfigs.Count > 1)
+            {
+                var info = "";
+                foreach (var c in kitOriginPackageConfigs)
+                    info += "\n" + c.ID;
+                if (EditorUtility.DisplayDialog("更新：" + originPackageConfig.ID.Split('@')[0], "项目中已导入多个版本：\n" + info + "\n\n是否将它们全部更新到最新版本？", "确认", "取消"))
+                {
+                    uninstal(kitOriginPackageConfigs, true);
+                    importKKPFile(originPackageConfig, "更新", true, () => {
+                        Debug.Log(KitConst.KitName + ": " + originPackageConfig.ID.Split('@')[0] + " 已成功更新到最新版本！" + originPackageConfig.ID);
+                        EditorUtility.DisplayDialog("更新：" + originPackageConfig.ID.Split('@')[0],
+                            "已成功更新到最新版本！\n\n" + originPackageConfig.ID,
+                            "确定");
+                    });
+                }
+            }
+            else if(EditorUtility.DisplayDialog("更新：" + kitOriginPackageConfigs[0].ID, 
+                kitOriginPackageConfigs[0].ID + " -> " + originPackageConfig.ID + "\n\n确认更新？", "确认", "取消"))
+            {
+                uninstal(kitOriginPackageConfigs[0], true);
+                importKKPFile(originPackageConfig, "更新", true, ()=> {
+                    Debug.Log(KitConst.KitName + ": 更新 " + kitOriginPackageConfigs[0].ID + " -> " + originPackageConfig.ID + " 已成功！");
+                    EditorUtility.DisplayDialog("更新：" + kitOriginPackageConfigs[0].ID,
+                        kitOriginPackageConfigs[0].ID + " -> " + originPackageConfig.ID + "\n\n更新成功！", "确定");
+                });
+            }
+        }
+        void updateKKP(List<KitOriginPackageConfig> kitOriginPackageConfigs, List<KitOriginPackageConfig> needUpdateOriginPackageConfigs, string info)
+        {
+            if (EditorUtility.DisplayDialog("全部更新", "检测到以下内容需要更新：\n\n" + info + "\n\n是否将它们全部更新到最新版本？", "确认", "取消"))
+            {
+                uninstal(needUpdateOriginPackageConfigs, true);
+                var index = 0;
+                for (var i = 0; i < kitOriginPackageConfigs.Count; i++)
+                {
+                    var originPackageConfig = kitOriginPackageConfigs[i];
+                    importKKPFile(originPackageConfig, "更新", true, ()=> {
+                        index++;
+                        if(index == kitOriginPackageConfigs.Count)
+                        {
+                            EditorUtility.DisplayDialog("全部更新",
+                            "已全部更新到了最新版本！",
+                            "确定");
+                        }
+                    });
+                }
             }
         }
 
@@ -551,8 +737,7 @@ namespace KSwordKit.Editor.PackageManager
         }
         int getCharButtonWidth(char c, out bool ishanzi)
         {
-            string zimu = "0123456789.+-*/\\`~!@#$%^&*()_+[]{}:';\"?><,qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM ";
-            if (zimu.Contains(c.ToString()))
+            if (!isHanzi(c))
             {
                 ishanzi = false;
                 return 22;
@@ -562,6 +747,11 @@ namespace KSwordKit.Editor.PackageManager
                 ishanzi = true;
                 return 25;
             }
+        }
+        bool isHanzi(char c)
+        {
+            string zimu = "0123456789.+-*/\\`~!@#$%^&*()_+[]{}:';\"?><,qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM ";
+            return !zimu.Contains(c.ToString());
         }
 
         /// <summary>
