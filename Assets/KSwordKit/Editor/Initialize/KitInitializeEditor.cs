@@ -22,6 +22,11 @@ namespace KSwordKit.Editor
         static readonly string configName = "KSwordKitConfig";
         static KitInitializeEditor()
         {
+            init();
+        }
+
+        static void init()
+        {
             var paths = AssetDatabase.FindAssets(scriptName);
             foreach (var path in paths)
             {
@@ -35,9 +40,9 @@ namespace KSwordKit.Editor
                     var _configPath = System.IO.Path.Combine(projectDir, configPath);
                     if (System.IO.File.Exists(_configPath))
                     {
-                        if(config == null)
+                        if (config == null)
                             config = Resources.Load<KSwordKit.KSwordKitConfig>(configName);
-                        if(config != null)
+                        if (config != null)
                         {
                             config.KitInstallationPath = KitInstallationPath;
                             config.KitVersion = KitVersion;
@@ -65,6 +70,8 @@ namespace KSwordKit.Editor
             EditorApplication.update += EditorApplication_update;
 
             DateTime = System.DateTime.Now;
+
+            Debug.Log(KitConst.KitName + ": 初始化完成！");
         }
 
         static void initOriginConfig()

@@ -1,0 +1,21 @@
+{
+    "ID": "test_Dependencies@v1.0.0",
+    "Name": "test_Dependencies",
+    "Version": "v1.0.0",
+    "Author": "ks",
+    "Contact": "ks@keenlove.com",
+    "HomePage": "https://github.com/keenlovelife",
+    "Date": "2021-10-28 14:53:48",
+    "Description": "测试依赖导入情况",
+    "Dependencies": [
+        "test@v1.0.0",
+        "test1@v1.0.0",
+        "Data Processing@v1.0.0",
+        "Singleton Template@v1.0.0",
+        "Timer@v1.0.0"
+    ],
+    "Tags": [
+        "测试"
+    ],
+    "FileSettings": []
+}

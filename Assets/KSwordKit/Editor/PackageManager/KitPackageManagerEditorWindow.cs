@@ -122,6 +122,28 @@ namespace KSwordKit.Editor.PackageManager
                         var infoDic = new Dictionary<string, string>();
                         foreach (var c in KitInitializeEditor.KitOriginConfig.OriginPackageConfigList)
                         {
+                            if (seleceted && !c.selected)
+                            {
+                                var cids = c.ID.Split('@');
+                                if (KitInitializeEditor.KitOriginConfig.OriginPackageDic != null &&
+                                    KitInitializeEditor.KitOriginConfig.OriginPackageDic.ContainsKey(cids[0]) &&
+                                    KitInitializeEditor.KitOriginConfig.OriginPackageDic[cids[0]] != null &&
+                                    KitInitializeEditor.KitOriginConfig.OriginPackageDic[cids[0]].Count > 1)
+                                {
+                                    var versions = KitInitializeEditor.KitOriginConfig.OriginPackageDic[cids[0]];
+                                    var find = false;
+                                    foreach (var v in versions)
+                                    {
+                                        if (KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[v].selected)
+                                        {
+                                            find = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!find) continue;
+                                }
+                                else continue;
+                            }
                             if (c.KitPackageConfig != null && System.IO.Directory.Exists(c.KitPackageConfig.ImportRootDirectory))
                                 opcs.Add(c);
                         }
@@ -177,19 +199,61 @@ namespace KSwordKit.Editor.PackageManager
                 }
                 if (GUILayout.Button(seleceted ? "卸载选中项" : "全部卸载", GUILayout.Width(80), GUILayout.Height(24)))
                 {
-                    if (KitInitializeEditor.KitOriginConfig != null &&
-                       KitInitializeEditor.KitOriginConfig.PackageCount > 0 &&
-                       KitInitializeEditor.KitOriginConfig.OriginPackageConfigList != null &&
-                       KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count > 0)
+                    if (seleceted)
                     {
-                        var opcs = new List<KitOriginPackageConfig>();
-                        foreach (var c in KitInitializeEditor.KitOriginConfig.OriginPackageConfigList)
+                        if (KitInitializeEditor.KitOriginConfig != null &&
+                            KitInitializeEditor.KitOriginConfig.PackageCount > 0 &&
+                            KitInitializeEditor.KitOriginConfig.OriginPackageConfigList != null &&
+                            KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count > 0)
                         {
-                            if (c.KitPackageConfig != null && System.IO.Directory.Exists(c.KitPackageConfig.ImportRootDirectory))
-                                opcs.Add(c);
+                            var opcs = new List<KitOriginPackageConfig>();
+                            foreach (var c in KitInitializeEditor.KitOriginConfig.OriginPackageConfigList)
+                            {
+                                if (seleceted && !c.selected)
+                                {
+                                    var cids = c.ID.Split('@');
+                                    if(KitInitializeEditor.KitOriginConfig.OriginPackageDic != null &&
+                                        KitInitializeEditor.KitOriginConfig.OriginPackageDic.ContainsKey(cids[0]) &&
+                                        KitInitializeEditor.KitOriginConfig.OriginPackageDic[cids[0]] != null &&
+                                        KitInitializeEditor.KitOriginConfig.OriginPackageDic[cids[0]].Count > 1)
+                                    {
+                                        var versions = KitInitializeEditor.KitOriginConfig.OriginPackageDic[cids[0]];
+                                        var find = false;
+                                        foreach(var v in versions)
+                                        {
+                                            if(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[v].selected)
+                                            {
+                                                find = true;
+                                                break;
+                                            }
+                                        }
+                                        if (!find) continue;
+                                    }
+                                    else continue;
+                                }
+                                if (c.KitPackageConfig != null && System.IO.Directory.Exists(c.KitPackageConfig.ImportRootDirectory))
+                                    opcs.Add(c);
+                            }
+                            if (opcs.Count > 0)
+                                uninstal(opcs);
                         }
-                        if (opcs.Count > 0)
-                            uninstal(opcs);
+                    }
+                    else
+                    {
+                        if (KitInitializeEditor.KitOriginConfig != null &&
+                            KitInitializeEditor.KitOriginConfig.PackageCount > 0 &&
+                            KitInitializeEditor.KitOriginConfig.OriginPackageConfigList != null &&
+                            KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count > 0)
+                        {
+                            var opcs = new List<KitOriginPackageConfig>();
+                            foreach (var c in KitInitializeEditor.KitOriginConfig.OriginPackageConfigList)
+                            {
+                                if (c.KitPackageConfig != null && System.IO.Directory.Exists(c.KitPackageConfig.ImportRootDirectory))
+                                    opcs.Add(c);
+                            }
+                            if (opcs.Count > 0)
+                                uninstal(opcs);
+                        }
                     }
                 }
             }
