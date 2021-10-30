@@ -403,7 +403,7 @@ namespace KSwordKit.Editor.PackageManager
                             {
                                 EditorGUILayout.LabelField(item.filename, blod);
                             }
-                            EditorGUILayout.Toggle("", item.enableUnstaill, GUILayout.Width(15));
+                            item.enableUnstaill = EditorGUILayout.Toggle("", item.enableUnstaill, GUILayout.Width(15));
                             EditorGUILayout.LabelField("卸载时删除", GUILayout.Width(65));
                             item.settingpath = EditorGUILayout.TextField(item.settingpath, GUILayout.Width(190));
                             if (!string.IsNullOrEmpty(item.settingpath) && !item.settingpath.EndsWith(item.filename))

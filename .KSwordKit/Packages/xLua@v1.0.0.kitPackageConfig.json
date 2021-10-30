@@ -2,10 +2,11 @@
     "ID": "xLua@v1.0.0",
     "Name": "xLua",
     "Version": "v1.0.0",
+    "liveWithOtherVersion": false,
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-10-25 15:18:11",
+    "Date": "2021-10-30 21:01:53",
     "Description": "xLua框架，向项目添加支持xLua框架的工具，支持Lua脚本。",
     "Dependencies": [],
     "Tags": [
