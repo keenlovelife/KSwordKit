@@ -7,7 +7,7 @@ namespace KSwordKit
 {
     public class KitPacker
     {
-        static readonly string tag = "kkp@v1.0.0";
+        static readonly string tag = "kkp@v1.0.0;make by ks";
         static readonly string tag_mark = "kkp";
         [Serializable]
         public class FileIndexs
@@ -214,7 +214,7 @@ namespace KSwordKit
                     fs.Read(bytes, 0, count);
                     System.IO.File.WriteAllBytes(filepath, bytes);
                 }
-                if (progress != null) progress(fileindex.fileName, (i + 1) / (float)fileIndexs.fileIndexList.Count, false, null);
+                if (progress != null) progress(fileindex.fileName, (i + 1) / (float)fileIndexs.fileIndexList.Count, false, null, null);
             }
             fs.Close();
 
@@ -270,12 +270,14 @@ namespace KSwordKit
                     foreach (var fileSetting in temp_dirFileSettings)
                     {
                         var dirpath = System.IO.Path.Combine(outDir, fileSetting.SourcePath);
+                        var targetPath = KitPackageConfigFileSetting.TargetPathToRealPath(fileSetting.TargetPath);
                         if (!System.IO.Directory.Exists(dirpath))
                         {
                             Debug.LogWarning(KitConst.KitName + ": 文件目录意外丢失！ " + dirpath);
+                            if (!System.IO.Directory.Exists(targetPath))
+                                System.IO.Directory.CreateDirectory(targetPath);
                             continue;
                         }
-                        var targetPath = KitPackageConfigFileSetting.TargetPathToRealPath(fileSetting.TargetPath);
                         CopyDirectory(dirpath, targetPath);
                         DeleteDirectory(dirpath);
                     }
@@ -287,7 +289,7 @@ namespace KSwordKit
                     temp_dirFileSettings.Clear();
                     temp_dirFileSettings = null;
                 }
-                // 导入依赖
+                // 输出依赖
                 if (progress != null) progress("", 1, true, null, kitPackageConfig.Dependencies);
             }
             else if (progress != null) progress("", 1, true, null, null);

@@ -95,7 +95,6 @@ namespace KSwordKit.Editor
                 Debug.Log(KitConst.KitName + ": 初始化完成！");
             }
         }
-
         static void initOriginConfig()
         {
             if (System.IO.File.Exists(originConfigFilepath))

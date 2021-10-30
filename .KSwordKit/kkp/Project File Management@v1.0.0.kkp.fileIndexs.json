@@ -1,0 +1,49 @@
+{
+    "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Framework/Project File Management@v1.0.0",
+    "fileBytesLength": 3225,
+    "fileCount": 3,
+    "fileIndexList": [
+        {
+            "isDir": true,
+            "fileName": "AutomaticFileAnnotation",
+            "relativeFilePath": "AutomaticFileAnnotation",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "Editor",
+            "relativeFilePath": "AutomaticFileAnnotation/Editor",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "AutomaticFileAnnotationEditor.cs",
+            "relativeFilePath": "AutomaticFileAnnotation/Editor/AutomaticFileAnnotationEditor.cs",
+            "fileBytesLength": 2134,
+            "filePosition": 0
+        },
+        {
+            "isDir": true,
+            "fileName": "Editor",
+            "relativeFilePath": "Editor",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "ProjectFileManagementEditor.cs",
+            "relativeFilePath": "Editor/ProjectFileManagementEditor.cs",
+            "fileBytesLength": 583,
+            "filePosition": 2134
+        },
+        {
+            "isDir": false,
+            "fileName": "kitPackageConfig.json",
+            "relativeFilePath": "kitPackageConfig.json",
+            "fileBytesLength": 508,
+            "filePosition": 2717
+        }
+    ]
+}

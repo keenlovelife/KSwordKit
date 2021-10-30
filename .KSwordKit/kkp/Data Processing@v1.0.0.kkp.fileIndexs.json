@@ -1,0 +1,133 @@
+{
+    "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Data Processing@v1.0.0",
+    "fileBytesLength": 141772,
+    "fileCount": 10,
+    "fileIndexList": [
+        {
+            "isDir": true,
+            "fileName": "Example",
+            "relativeFilePath": "Example",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "ExamplesLitJson",
+            "relativeFilePath": "Example/ExamplesLitJson",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "LitJsonScene.unity",
+            "relativeFilePath": "Example/ExamplesLitJson/LitJsonScene.unity",
+            "fileBytesLength": 8405,
+            "filePosition": 0
+        },
+        {
+            "isDir": false,
+            "fileName": "LitJsonTest.cs",
+            "relativeFilePath": "Example/ExamplesLitJson/LitJsonTest.cs",
+            "fileBytesLength": 1111,
+            "filePosition": 8405
+        },
+        {
+            "isDir": true,
+            "fileName": "ExamplesMono.Xml",
+            "relativeFilePath": "Example/ExamplesMono.Xml",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "Resources",
+            "relativeFilePath": "Example/ExamplesMono.Xml/Resources",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "Tutorial.xml",
+            "relativeFilePath": "Example/ExamplesMono.Xml/Resources/Tutorial.xml",
+            "fileBytesLength": 5501,
+            "filePosition": 9516
+        },
+        {
+            "isDir": false,
+            "fileName": "ExamplesMono.XmlScene.unity",
+            "relativeFilePath": "Example/ExamplesMono.Xml/ExamplesMono.XmlScene.unity",
+            "fileBytesLength": 8398,
+            "filePosition": 15017
+        },
+        {
+            "isDir": false,
+            "fileName": "MonoXmlTest.cs",
+            "relativeFilePath": "Example/ExamplesMono.Xml/MonoXmlTest.cs",
+            "fileBytesLength": 630,
+            "filePosition": 23415
+        },
+        {
+            "isDir": true,
+            "fileName": "JSON",
+            "relativeFilePath": "JSON",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "LitJson",
+            "relativeFilePath": "JSON/LitJson",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "LitJSON.dll",
+            "relativeFilePath": "JSON/LitJson/LitJSON.dll",
+            "fileBytesLength": 60928,
+            "filePosition": 24045
+        },
+        {
+            "isDir": true,
+            "fileName": "XML",
+            "relativeFilePath": "XML",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "Mono.Xml",
+            "relativeFilePath": "XML/Mono.Xml",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "MiniParser.cs",
+            "relativeFilePath": "XML/Mono.Xml/MiniParser.cs",
+            "fileBytesLength": 38706,
+            "filePosition": 84973
+        },
+        {
+            "isDir": false,
+            "fileName": "SecurityParser.cs",
+            "relativeFilePath": "XML/Mono.Xml/SecurityParser.cs",
+            "fileBytesLength": 2973,
+            "filePosition": 123679
+        },
+        {
+            "isDir": false,
+            "fileName": "SmallXmlParser.cs",
+            "relativeFilePath": "XML/Mono.Xml/SmallXmlParser.cs",
+            "fileBytesLength": 14632,
+            "filePosition": 126652
+        },
+        {
+            "isDir": false,
+            "fileName": "kitPackageConfig.json",
+            "relativeFilePath": "kitPackageConfig.json",
+            "fileBytesLength": 488,
+            "filePosition": 141284
+        }
+    ]
+}

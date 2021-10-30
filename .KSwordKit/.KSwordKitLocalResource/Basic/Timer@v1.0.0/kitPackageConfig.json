@@ -2,10 +2,11 @@
     "ID": "Timer@v1.0.0",
     "Name": "Timer",
     "Version": "v1.0.0",
+    "liveWithOtherVersion": false,
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-10-25 15:17:42",
+    "Date": "2021-10-30 21:01:19",
     "Description": "定时器库，提供定时器接口。",
     "Dependencies": [],
     "Tags": [

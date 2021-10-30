@@ -23,6 +23,12 @@ namespace KSwordKit
         /// </summary>
         public string Version;
         /// <summary>
+        /// 能否与旧版共存
+        /// <para>如果值为false，则该包导入时将删除旧版本的包。</para>
+        /// <para>默认为false</para>
+        /// </summary>
+        public bool liveWithOtherVersion;
+        /// <summary>
         /// 包作者
         /// </summary>
         public string Author;
@@ -62,16 +68,6 @@ namespace KSwordKit
         /// </summary>
         public List<KitPackageConfigFileSetting> FileSettings;
         /// <summary>
-        /// 包显示的名字
-        /// </summary>
-        [NonSerialized]
-        public string DisplayName;
-        /// <summary>
-        /// 该包的所在源目录
-        /// </summary>
-        [NonSerialized]
-        public string RootDirectory;
-        /// <summary>
         /// 该包导入到Unity项目后，所在的目录
         /// </summary>
         [NonSerialized]
@@ -81,6 +77,10 @@ namespace KSwordKit
     [Serializable]
     public class KitPackageConfigFileSetting
     {
+        /// <summary>
+        /// 当包被卸载时，当前的文件是否允许同步卸载？
+        /// </summary>
+        public bool enableUninstall = true;
         /// <summary>
         /// 是否是文件夹
         /// </summary>
