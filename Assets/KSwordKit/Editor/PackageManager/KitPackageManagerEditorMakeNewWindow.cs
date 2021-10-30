@@ -545,6 +545,7 @@ namespace KSwordKit.Editor.PackageManager
                         });
                     else
                     {
+                        config.FileSettings[index].enableUninstall = fileItem.enableUnstaill;
                         config.FileSettings[index].TargetPath = fileItem.settingpath;
                     }
                 }
@@ -560,6 +561,7 @@ namespace KSwordKit.Editor.PackageManager
                         });
                     else
                     {
+                        config.FileSettings[index].enableUninstall = fileItem.enableUnstaill;
                         config.FileSettings[index].TargetPath = settingpath + "/" + fileItem.filename;
                     }
                 }
@@ -578,7 +580,8 @@ namespace KSwordKit.Editor.PackageManager
                             TargetPath = fileItem.settingpath
                         });
                     else 
-                    { 
+                    {
+                        config.FileSettings[index].enableUninstall = fileItem.enableUnstaill;
                         config.FileSettings[index].isDir = true;
                         config.FileSettings[index].TargetPath = fileItem.settingpath;
                     }
@@ -596,6 +599,7 @@ namespace KSwordKit.Editor.PackageManager
                         });
                     else
                     {
+                        config.FileSettings[index].enableUninstall = fileItem.enableUnstaill;
                         config.FileSettings[index].isDir = true;
                         config.FileSettings[index].TargetPath = settingpath + "/" + fileItem.filename;
                     }
@@ -619,6 +623,7 @@ namespace KSwordKit.Editor.PackageManager
                                     });
                                 else
                                 {
+                                    config.FileSettings[index].enableUninstall = item.enableUnstaill;
                                     config.FileSettings[index].TargetPath = fileItem.settingpath + "/" + item.filename;
                                 }
                             }
@@ -634,6 +639,7 @@ namespace KSwordKit.Editor.PackageManager
                                     });
                                 else
                                 {
+                                    config.FileSettings[index].enableUninstall = item.enableUnstaill;
                                     config.FileSettings[index].TargetPath = fileItem.settingpath + "/" + item.filename;
                                 }
                             }
@@ -651,6 +657,7 @@ namespace KSwordKit.Editor.PackageManager
                                 });
                             else
                             {
+                                config.FileSettings[index].enableUninstall = item.enableUnstaill;
                                 config.FileSettings[index].TargetPath = item.settingpath;
                             }
                         }
