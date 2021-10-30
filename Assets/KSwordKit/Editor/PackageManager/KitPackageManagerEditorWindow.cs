@@ -92,7 +92,6 @@ namespace KSwordKit.Editor.PackageManager
                     AssetDatabase.Refresh();
                 }
             }
-
             if (seleceted != per_selected)
             {
                 per_selected = seleceted;
@@ -101,23 +100,33 @@ namespace KSwordKit.Editor.PackageManager
                        KitInitializeEditor.KitOriginConfig.OriginPackageConfigList != null &&
                        KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count > 0)
                 {
-                    var opcs = new List<KitOriginPackageConfig>();
                     foreach (var c in KitInitializeEditor.KitOriginConfig.OriginPackageConfigList)
                         c.selected = false;
                 }
             }
+            if (KitInitializeEditor.KitOriginConfig == null ||
+                KitInitializeEditor.KitOriginConfig.PackageCount <= 0 ||
+                KitInitializeEditor.KitOriginConfig.OriginPackageConfigList == null ||
+                KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count == 0)
+                packageCount = "";
+            else
+                packageCount = KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count.ToString();
 
             EditorGUILayout.BeginHorizontal();
             GUILayout.Space(15);
             EditorGUILayout.BeginVertical();
+
             EditorGUILayout.BeginHorizontal();
             blod.fontSize = 15;
             blod.normal.textColor = new Color(255, 200, 200);
             EditorGUILayout.LabelField("搜索：", blod, GUILayout.Width(40));
             kitUserSearchInputString = EditorGUILayout.TextField(kitUserSearchInputString);
             EditorGUILayout.EndHorizontal();
+
             EditorGUILayout.Space(16);
+
             EditorGUILayout.BeginHorizontal();
+
             blod.fontSize = 20;
             EditorGUILayout.LabelField("包列表：(" + packageCount + ")", blod);
 
@@ -153,17 +162,20 @@ namespace KSwordKit.Editor.PackageManager
                                     info += "\n" + c.ID;
                             if (EditorUtility.DisplayDialog("全部导入", "存在一个或多个内容项需要全部导入：\n\n" + info + "\n\n确认全部导入 ？", "确认", "取消"))
                             {
-                                importKKPFile(opcs, "全部导入", true, () => {
+                                importKKPFile(opcs, "全部导入", true, () =>
+                                {
                                     Debug.Log(KitConst.KitName + ": 全部导入成功！");
                                     EditorUtility.DisplayDialog("全部导入", info + "\n\n已全部导入成功！", "确定");
                                 });
                             }
                         }
-                            
+
                     }
                 }
                 GUI.enabled = true;
-                if (GUILayout.Button(seleceted ? "更新选中项" : "全部更新", GUILayout.Width(80), GUILayout.Height(24)))
+
+                var buttonName = seleceted ? "更新选中项" : "全部更新";
+                if (GUILayout.Button(buttonName, GUILayout.Width(80), GUILayout.Height(24)))
                 {
                     if (KitInitializeEditor.KitOriginConfig != null &&
                         KitInitializeEditor.KitOriginConfig.PackageCount > 0 &&
@@ -249,7 +261,6 @@ namespace KSwordKit.Editor.PackageManager
                             }
                         }
                     }
-
                 }
                 if (GUILayout.Button(seleceted ? "卸载选中项" : "全部卸载", GUILayout.Width(80), GUILayout.Height(24)))
                 {
@@ -266,16 +277,16 @@ namespace KSwordKit.Editor.PackageManager
                                 if (seleceted && !c.selected)
                                 {
                                     var cids = c.ID.Split('@');
-                                    if(KitInitializeEditor.KitOriginConfig.OriginPackageDic != null &&
+                                    if (KitInitializeEditor.KitOriginConfig.OriginPackageDic != null &&
                                         KitInitializeEditor.KitOriginConfig.OriginPackageDic.ContainsKey(cids[0]) &&
                                         KitInitializeEditor.KitOriginConfig.OriginPackageDic[cids[0]] != null &&
                                         KitInitializeEditor.KitOriginConfig.OriginPackageDic[cids[0]].Count > 1)
                                     {
                                         var versions = KitInitializeEditor.KitOriginConfig.OriginPackageDic[cids[0]];
                                         var find = false;
-                                        foreach(var v in versions)
+                                        foreach (var v in versions)
                                         {
-                                            if(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[v].selected)
+                                            if (KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[v].selected)
                                             {
                                                 find = true;
                                                 break;
@@ -311,12 +322,16 @@ namespace KSwordKit.Editor.PackageManager
                     }
                 }
             }
+
             EditorGUILayout.EndHorizontal();
+
             GUILayout.Space(5);
+
             EditorGUILayout.BeginHorizontal();
             GUILayout.Label("");
             seleceted = GUILayout.Toggle(seleceted, seleceted ? "关闭多选" : "开启多选", GUILayout.Width(80));
             EditorGUILayout.EndHorizontal();
+
             EditorGUILayout.EndVertical();
             GUILayout.Space(15);
             EditorGUILayout.EndHorizontal();

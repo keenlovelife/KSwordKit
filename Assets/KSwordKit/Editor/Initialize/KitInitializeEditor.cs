@@ -91,7 +91,6 @@ namespace KSwordKit.Editor
                 EditorApplication.update += EditorApplication_update;
                 DateTime = System.DateTime.Now;
 
-                Debug.Log("初始化次数：" + initTimes);
                 Debug.Log(KitConst.KitName + ": 初始化完成！");
             }
         }
