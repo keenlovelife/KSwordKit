@@ -408,7 +408,8 @@ namespace KSwordKit.Editor.PackageManager
                     nameNotGood = true;
             }
 
-            GUILayout.Button("", GUILayout.Height(2));
+
+            GUILayout.Button("", GUILayout.Height(1));
             GUILayout.Space(5);
             EditorGUILayout.BeginHorizontal();
             GUILayout.Space(15);
