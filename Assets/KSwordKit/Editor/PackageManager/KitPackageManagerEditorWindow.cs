@@ -33,6 +33,26 @@ namespace KSwordKit.Editor.PackageManager
         Vector2 scorllPos;
         GUIStyle blod;
         GUIStyle richText;
+        string idKey = "id";
+        string nameKey = "name";
+        string versionKey = "version|v";
+        string liveWithOtherVersionKey = "livewithotherversion|livewithother";
+        string contactKey = "contact";
+        string homepageKey = "homepage";
+        string dateKey = "date";
+        string descriptionKey = "description|desc";
+        string dependenciesKey = "dependencies|depend|rely|dependency";
+        string tagKey = "tag";
+        string notagKey = "notag";
+        string allKeys
+        {
+            get
+            {
+                return idKey + "|" + nameKey + "|" + versionKey + "|" + liveWithOtherVersionKey + "|"
+                    + contactKey + "|" + homepageKey + "|" + dateKey + "|" + descriptionKey + "|" 
+                    + dependenciesKey + "|" + tagKey;
+            }
+        }
         string packageCount = "";
         bool seleceted = false;
         bool per_selected = false;
@@ -738,45 +758,220 @@ namespace KSwordKit.Editor.PackageManager
         {
             var _searchStr = searchStr;
             tagSearchDic = new Dictionary<string, string>();
-            while (searchStr.IndexOf('|') != -1)
-            { 
-                
+            var index = _searchStr.IndexOf('|');
+            if(index == -1)
+                tagSearchDic[notagKey.ToLower()] = _searchStr.Trim().ToLower();
+            else
+            {
+                do
+                {
+                    var s = _searchStr.Substring(0, index).ToLower();
+                    var sindex = s.IndexOf(':');
+                    var key = "";
+                    var value = "";
+                    if (sindex != -1)
+                    {
+                        key = s.Substring(0, sindex);
+                        if (s.Length > sindex + 1)
+                            value = s.Substring(sindex + 1, s.Length - index - 1);
+                        key = key.Trim().ToLower();
+                        value = value.Trim().ToLower();
+                    }
+                    else
+                    {
+                        key = notagKey.ToLower().Trim();
+                        value = s.Trim().ToLower();
+                    }
+                    if (string.IsNullOrEmpty(key) || string.IsNullOrWhiteSpace(key))
+                        key = notagKey;
+                    if (!string.IsNullOrEmpty(value) && !string.IsNullOrWhiteSpace(value) && value != "|")
+                    {
+                        if (!tagSearchDic.ContainsKey(key))
+                            tagSearchDic[key] = value;
+                        else
+                        {
+                            var _ss = tagSearchDic[key].Split('|');
+                            var _ssList = new List<string>();
+                            _ssList.AddRange(_ss);
+                            if (!_ssList.Contains(value))
+                                tagSearchDic[key] = tagSearchDic[key] + "|" + value;
+                        }
+                    }
+                    if (_searchStr.Length <= index + 1)
+                        break;
+                    _searchStr = _searchStr.Substring(index + 1, _searchStr.Length - index - 1);
+                    index = _searchStr.IndexOf('|');
+                } 
+                while (index != -1);
             }
-            var searchResults = new List<KitOriginPackageConfig>();
 
+            var searchResults = new List<KitOriginPackageConfig>();
             if (KitInitializeEditor.KitOriginConfig != null &&
                 KitInitializeEditor.KitOriginConfig.PackageCount > 0 &&
                 KitInitializeEditor.KitOriginConfig.OriginPackageConfigList != null &&
                 KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count > 0)
                 foreach (var opc in KitInitializeEditor.KitOriginConfig.OriginPackageConfigList)
-                    if (matchOriginPackageConfig(opc, searchStr)) searchResults.Add(opc);
+                    if (matchOriginPackageConfig(opc, tagSearchDic)) searchResults.Add(opc);
 
             return searchResults;
         }
-        bool matchOriginPackageConfig(KitOriginPackageConfig opc, string searchStr)
+        bool matchOriginPackageConfig(KitOriginPackageConfig opc, Dictionary<string, string> tagSearchDic)
         {
-            if (match(opc.ID, searchStr)) return true;
-            if(opc.KitPackageConfig != null)
+            var versionKeys = versionKey.Split('|');
+            var versionKeyList = new List<string>();
+            versionKeyList.AddRange(versionKeys);
+
+            var liveKeys = liveWithOtherVersionKey.Split('|');
+            var liveKeyList = new List<string>();
+            liveKeyList.AddRange(liveKeys);
+
+            var descKeys = descriptionKey.Split('|');
+            var descKeyList = new List<string>();
+            descKeyList.AddRange(descKeys);
+
+            var depdKeys = dependenciesKey.Split('|');
+            var depdKeyList = new List<string>();
+            depdKeyList.AddRange(depdKeys);
+
+            var _allKeys = allKeys.Split('|');
+            var _allkeyList = new List<string>();
+            _allkeyList.AddRange(_allKeys);
+            foreach (var key in _allkeyList)
             {
-                var pc = opc.KitPackageConfig;
-                if (match(pc.ID, searchStr)) return true;
-                if (match(pc.Author, searchStr)) return true;
-                if (match(pc.Contact, searchStr)) return true;
-                if (match(pc.HomePage, searchStr)) return true;
-                if (match(pc.Date, searchStr)) return true;
-                if (match(pc.Description, searchStr)) return true;
-                foreach(var depd in pc.Dependencies)
-                    if (match(depd, searchStr)) return true;
-                foreach (var tag in pc.Tags)
-                    if (match(tag, searchStr)) return true;
+                var values = tagSearchDic[key].Split('|');
+                var content = "";
+                if (idKey == key)
+                    content = opc.ID;
+                else if(opc.KitPackageConfig != null)
+                {
+                    if (nameKey == key)
+                        content = opc.KitPackageConfig.Name;
+                    else if (contactKey == key)
+                        content = opc.KitPackageConfig.Contact;
+                    else if(homepageKey == key)
+                        content = opc.KitPackageConfig.HomePage;
+                    else if (tagKey == key)
+                    {
+                        foreach(var tag in opc.KitPackageConfig.Tags)
+                            foreach (var value in values)
+                                if (!string.IsNullOrEmpty(value) && !string.IsNullOrWhiteSpace(value) && tag.ToLower().StartsWith(value.ToLower())) return true;
+                    }
+                    else if(dateKey == key)
+                    {
+                        foreach (var value in values)
+                            if (!string.IsNullOrEmpty(value) && !string.IsNullOrWhiteSpace(value))
+                            {
+                                System.DateTime vdate;
+                                System.DateTime date;
+                                var datesuccess = System.DateTime.TryParse(opc.KitPackageConfig.Date, out date);
+                                var v = value;
+                                if (v.StartsWith("=="))
+                                {
+                                    v = v.Replace("==", "").Trim();
+                                    var vdatesuccess = System.DateTime.TryParse(v, out vdate);
+                                    if (vdatesuccess && datesuccess)
+                                    {
+                                        var vdatestr = vdate.ToString("yyyy-MM-dd HH:mm:ss");
+                                        while (vdatestr.EndsWith("00"))
+                                        {
+                                            if (vdatestr.Length - 3 < 1) break;
+                                            vdatestr = vdatestr.Trim();
+                                            vdatestr = vdatestr.Substring(0, vdatestr.Length - 3);
+                                        }
+                                        var datestr = date.ToString("yyyy-MM-dd HH:mm:ss");
+                                        if (!string.IsNullOrEmpty(vdatestr) && datestr.StartsWith(vdatestr)) return true;
+                                    }
+                                }
+                                else
+                                {
+                                    if (v.StartsWith(">="))
+                                    {
+                                        v = v.Replace(">=", "").Trim();
+                                        var vdatesuccess = System.DateTime.TryParse(v, out vdate);
+                                        if (vdatesuccess && datesuccess && date >= vdate) return true;
+                                    } 
+                                    else if (v.StartsWith("<="))
+                                    {
+                                        v = v.Replace("<=", "").Trim();
+                                        var vdatesuccess = System.DateTime.TryParse(v, out vdate);
+                                        if (vdatesuccess && datesuccess && date <= vdate) return true;
+                                    }
+                                    else if (v.StartsWith(">"))
+                                    {
+                                        v = v.Replace(">", "").Trim();
+                                        var vdatesuccess = System.DateTime.TryParse(v, out vdate);
+                                        if (vdatesuccess && datesuccess && date > vdate) return true;
+                                    }
+                                    else if (v.StartsWith("<"))
+                                    {
+                                        v = v.Replace("<", "").Trim();
+                                        var vdatesuccess = System.DateTime.TryParse(v, out vdate);
+                                        if (vdatesuccess && datesuccess && date < vdate) return true;
+                                    }
+                                }
+                            }
+                    }
+                    else
+                    {
+                        if (versionKeyList.Contains(key))
+                            content = opc.KitPackageConfig.Version;
+                        else if (liveKeyList.Contains(key))
+                            content = opc.KitPackageConfig.liveWithOtherVersion.ToString();
+                        else if (descKeyList.Contains(key))
+                            content = opc.KitPackageConfig.Description;
+                        else if (depdKeyList.Contains(key))
+                        {
+                            foreach (var value in values)
+                                if (!string.IsNullOrEmpty(value) && !string.IsNullOrWhiteSpace(value))
+                                {
+                                    foreach(var d in opc.KitPackageConfig.Dependencies)
+                                        if (d.ToLower() == value.ToLower()) return true;
+                                }
+                        }
+                    }
+                }
+                if (!string.IsNullOrEmpty(content) && !string.IsNullOrWhiteSpace(content))
+                {
+                    content = content.ToLower();
+                    foreach (var value in values)
+                        if (!string.IsNullOrEmpty(value) && !string.IsNullOrWhiteSpace(value) && content.StartsWith(value.ToLower())) return true;
+                }
             }
+
+            var notagValues = new List<string>();
+            foreach(var k in tagSearchDic.Keys)
+            {
+                if (!_allkeyList.Contains(k))
+                {
+                    var values = tagSearchDic[k].Split('|');
+                    notagValues.AddRange(values);
+                }
+            }
+            foreach (var value in notagValues)
+            {
+                var searchStr = value;
+                if (opc.KitPackageConfig != null)
+                {
+                    var pc = opc.KitPackageConfig;
+                    if (match(pc.Name, searchStr)) return true;
+                    if (match(pc.Version, searchStr)) return true;
+                    if (match(pc.Author, searchStr)) return true;
+                    if (match(pc.Contact, searchStr)) return true;
+                    if (match(pc.HomePage, searchStr)) return true;
+                    if (match(pc.Date, searchStr)) return true;
+                    if (match(pc.Description, searchStr)) return true;
+                    foreach (var depd in pc.Dependencies)
+                        if (match(depd, searchStr)) return true;
+                    foreach (var tag in pc.Tags)
+                        if (match(tag, searchStr)) return true;
+                }
+            }
+
             return false;
         }
         bool match(string str, string matchStr)
         {
-            foreach (var c in matchStr)
-                if (str.Contains(c.ToString())) return true;
-            return false;
+            return str.Trim().ToLower().StartsWith(matchStr.Trim().ToLower());
         }
         void RequestKKPFile(KitOriginPackageConfig originPackageConfig, string title, System.Action successAction = null)
         {
