@@ -9,9 +9,9 @@ namespace KSwordKit.Editor.PackageManager
 {
     public class KitPackageManagerEditor
     {
-        public const string Packages_import_update_uninstall_Assets = "Assets/" + KitConst.KitName + "/包管理/导入 - 更新 - 卸载";
-        public const string Packages_import_update_uninstall = KitConst.KitName + "/包管理/导入 - 更新 - 卸载 _%&I";
-        public const string Packages_import_update_uninstall_WindowTitle = "安装 - 更新 - 卸载";
+        public const string Packages_import_update_uninstall_Assets = "Assets/" + KitConst.KitName + "/包管理/安装\\更新\\卸载";
+        public const string Packages_import_update_uninstall = KitConst.KitName + "/包管理/安装\\更新\\卸载 _%&I";
+        public const string Packages_import_update_uninstall_WindowTitle = "安装\\更新\\卸载";
 
         public const string MakeNew_Assets = "Assets/" + KitConst.KitName + "/包管理/导出新包";
         public const string MakeNew = KitConst.KitName + "/包管理/导出新包 _%&N";
@@ -33,16 +33,6 @@ namespace KSwordKit.Editor.PackageManager
         [MenuItem(MakeNew, false, 20)]
         public static void MakeNewFunction()
         {
-            //KitPacker.Pack(".KSwordKitLocalResource/Basic/Timer@v1.0.0", "Assets/KSwordKit/Packages/Timer@v1.0.0.package", (filename, progress)=> {
-            //    EditorUtility.DisplayProgressBar("导出包：", "正在导出：" + filename, progress);
-            //});
-
-            //KitPacker.Pack(".KSwordKitLocalResource/Basic/Enhanced Coroutine@v1.0.0", "Assets/KSwordKit/Packages/Enhanced Coroutine@v1.0.0.package", (filename, progress) => {
-            //    EditorUtility.DisplayProgressBar("导出包：", "正在导出：" + filename, progress);
-            //});
-            //EditorUtility.ClearProgressBar();
-            //AssetDatabase.SaveAssets();
-            //AssetDatabase.Refresh();
             KitPackageManagerEditorMakeNewWindow.Open(MakeNewWindowTitle);
 
         }
@@ -52,7 +42,6 @@ namespace KSwordKit.Editor.PackageManager
         public static void AboutFunction()
         {
             Application.OpenURL("https://github.com/keenlovelife");
-
         }
 
     }

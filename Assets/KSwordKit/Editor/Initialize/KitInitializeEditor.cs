@@ -208,7 +208,9 @@ namespace KSwordKit.Editor
                         }
                     }
 
-                    Request_packages();
+                    Request_packages((done, progress) => {
+                        if (done) Debug.Log(KitConst.KitName + ": 所有可用包已拉取完成！");
+                    });
 
                     if (originConfig != null && originConfig.Version != config.KitVersion)
                         ShowUpdateKitDialog();

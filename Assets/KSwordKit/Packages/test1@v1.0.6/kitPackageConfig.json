@@ -2,7 +2,7 @@
     "ID": "test1@v1.0.6",
     "Name": "test1",
     "Version": "v1.0.6",
-    "liveWithOtherVersion": false,
+    "liveWithOtherVersion": true,
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",

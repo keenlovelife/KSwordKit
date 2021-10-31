@@ -11,7 +11,6 @@ namespace KSwordKit.Editor.PackageManager
     {
         static KitPackageManagerEditorWindow window;
         const string kitUserSearchDefaultInputString = "搜索包名、包作者、包描述等等";
-        static string kitUserSearchInputString = kitUserSearchDefaultInputString;
 
         /// <summary>
         /// 窗口打开显示函数
@@ -23,14 +22,17 @@ namespace KSwordKit.Editor.PackageManager
             window = GetWindow<KitPackageManagerEditorWindow>(true, windowTitle);
             window.minSize = new Vector2(600, 700);
             window.blod = new GUIStyle();
-
+            window.richText = new GUIStyle();
+            window.richText.richText = true;
             KitInitializeEditor.Request_packages((done, progress) => {
                 if (done) Debug.Log(KitConst.KitName + ": 所有可用包已拉取完成！");
             });
         }
 
+        string kitUserSearchInputString = kitUserSearchDefaultInputString;
         Vector2 scorllPos;
         GUIStyle blod;
+        GUIStyle richText;
         string packageCount = "";
         bool seleceted = false;
         bool per_selected = false;
@@ -104,6 +106,15 @@ namespace KSwordKit.Editor.PackageManager
                         c.selected = false;
                 }
             }
+            var selectedPackageCount = 0;
+            if (KitInitializeEditor.KitOriginConfig != null &&
+                       KitInitializeEditor.KitOriginConfig.PackageCount > 0 &&
+                       KitInitializeEditor.KitOriginConfig.OriginPackageConfigList != null &&
+                       KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count > 0)
+            {
+                foreach (var c in KitInitializeEditor.KitOriginConfig.OriginPackageConfigList)
+                    if (c.selected) selectedPackageCount++;
+            }
             if (KitInitializeEditor.KitOriginConfig == null ||
                 KitInitializeEditor.KitOriginConfig.PackageCount <= 0 ||
                 KitInitializeEditor.KitOriginConfig.OriginPackageConfigList == null ||
@@ -123,10 +134,44 @@ namespace KSwordKit.Editor.PackageManager
             kitUserSearchInputString = EditorGUILayout.TextField(kitUserSearchInputString);
             EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.Space(16);
+            EditorGUILayout.Space(20);
+
+            if (!string.IsNullOrEmpty(kitUserSearchInputString) && kitUserSearchInputString != kitUserSearchDefaultInputString)
+            {
+                var searchResultCount = 0;
+                Dictionary<string, string> tagSearchDic;
+                var searchResults = Search(kitUserSearchInputString, out tagSearchDic);
+                searchResultCount = searchResults.Count;
+
+                if (searchResultCount == 0)
+                {
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Space(15);
+                    GUILayout.Label("无任何搜索结果");
+                    GUILayout.EndHorizontal();
+                }
+                else
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    blod.fontSize = 15;
+                    EditorGUILayout.LabelField("搜索结果：(" + searchResultCount + ")", blod);
+                    EditorGUILayout.EndHorizontal();
+                    // 搜索列表内容
+                    GUILayout.Space(12);
+                    scorllPos = GUILayout.BeginScrollView(scorllPos, false, false);
+                    foreach (var opc in searchResults)
+                        DrawItemGUI(opc, true, kitUserSearchInputString);
+                    GUILayout.EndScrollView();
+                }
+
+                EditorGUILayout.EndVertical();
+                GUILayout.Space(15);
+                EditorGUILayout.EndHorizontal();
+                GUILayout.Space(30);
+                return;
+            }
 
             EditorGUILayout.BeginHorizontal();
-
             blod.fontSize = 20;
             EditorGUILayout.LabelField("包列表：(" + packageCount + ")", blod);
 
@@ -322,13 +367,15 @@ namespace KSwordKit.Editor.PackageManager
                     }
                 }
             }
-
             EditorGUILayout.EndHorizontal();
 
             GUILayout.Space(5);
 
             EditorGUILayout.BeginHorizontal();
-            GUILayout.Label("");
+            if (seleceted)
+                GUILayout.Label("已选择" + selectedPackageCount + "项");
+            else
+                GUILayout.Label("");
             seleceted = GUILayout.Toggle(seleceted, seleceted ? "关闭多选" : "开启多选", GUILayout.Width(80));
             EditorGUILayout.EndHorizontal();
 
@@ -377,7 +424,7 @@ namespace KSwordKit.Editor.PackageManager
             GUILayout.Space(30);
         }
 
-        void DrawItemGUI(KitOriginPackageConfig originPackageConfig)
+        void DrawItemGUI(KitOriginPackageConfig originPackageConfig, bool isSearchResult = false, string searchStr = "")
         {
             var nameMaxLength_hanzi = 37;
             var nameGoodLength_hanzi = 17;
@@ -428,11 +475,19 @@ namespace KSwordKit.Editor.PackageManager
             GUILayout.Space(5);
             EditorGUILayout.BeginHorizontal();
             GUILayout.Space(15);
+            richText.fontSize = 14;
+            richText.normal.textColor = new Color(255, 200, 200);
             blod.fontSize = 14;
             blod.normal.textColor = new Color(255, 200, 200);
             if (seleceted)
                 originPackageConfig.selected = GUILayout.Toggle(originPackageConfig.selected, "", GUILayout.Width(18));
-            GUILayout.Label(idname, blod, GUILayout.Height(22));
+            if (isSearchResult)
+            {
+                var idladel = idname;
+                GUILayout.Label(idladel, richText, GUILayout.Height(22));
+            }
+            else
+                GUILayout.Label(idname, blod, GUILayout.Height(22));
 
             if (nameNotGood)
             {
@@ -526,13 +581,18 @@ namespace KSwordKit.Editor.PackageManager
             GUILayout.Space(15);
             EditorGUILayout.EndHorizontal();
 
-
             if(originPackageConfig.KitPackageConfig != null)
             {
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Space(35);
                 GUILayout.Label("最新版本：", EditorStyles.boldLabel, GUILayout.Width(60));
                 GUILayout.Label(originPackageConfig.KitPackageConfig.Version);
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.Space(35);
+                GUILayout.Label("日期：", EditorStyles.boldLabel, GUILayout.Width(30));
+                GUILayout.Label(originPackageConfig.KitPackageConfig.Date);
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
@@ -674,6 +734,50 @@ namespace KSwordKit.Editor.PackageManager
             GUILayout.Space(10);
         }
 
+        List<KitOriginPackageConfig> Search(string searchStr, out Dictionary<string, string> tagSearchDic)
+        {
+            var _searchStr = searchStr;
+            tagSearchDic = new Dictionary<string, string>();
+            while (searchStr.IndexOf('|') != -1)
+            { 
+                
+            }
+            var searchResults = new List<KitOriginPackageConfig>();
+
+            if (KitInitializeEditor.KitOriginConfig != null &&
+                KitInitializeEditor.KitOriginConfig.PackageCount > 0 &&
+                KitInitializeEditor.KitOriginConfig.OriginPackageConfigList != null &&
+                KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count > 0)
+                foreach (var opc in KitInitializeEditor.KitOriginConfig.OriginPackageConfigList)
+                    if (matchOriginPackageConfig(opc, searchStr)) searchResults.Add(opc);
+
+            return searchResults;
+        }
+        bool matchOriginPackageConfig(KitOriginPackageConfig opc, string searchStr)
+        {
+            if (match(opc.ID, searchStr)) return true;
+            if(opc.KitPackageConfig != null)
+            {
+                var pc = opc.KitPackageConfig;
+                if (match(pc.ID, searchStr)) return true;
+                if (match(pc.Author, searchStr)) return true;
+                if (match(pc.Contact, searchStr)) return true;
+                if (match(pc.HomePage, searchStr)) return true;
+                if (match(pc.Date, searchStr)) return true;
+                if (match(pc.Description, searchStr)) return true;
+                foreach(var depd in pc.Dependencies)
+                    if (match(depd, searchStr)) return true;
+                foreach (var tag in pc.Tags)
+                    if (match(tag, searchStr)) return true;
+            }
+            return false;
+        }
+        bool match(string str, string matchStr)
+        {
+            foreach (var c in matchStr)
+                if (str.Contains(c.ToString())) return true;
+            return false;
+        }
         void RequestKKPFile(KitOriginPackageConfig originPackageConfig, string title, System.Action successAction = null)
         {
             var _www = new UnityEngine.Networking.UnityWebRequest(originPackageConfig.kkpurl);
@@ -950,7 +1054,6 @@ namespace KSwordKit.Editor.PackageManager
                 }
             }
         }
-
         int getButtonWidth(string str)
         {
             int r = 0;
@@ -989,11 +1092,6 @@ namespace KSwordKit.Editor.PackageManager
             string zimu = "0123456789.+-*/\\`~!@#$%^&*()_+[]{}:';\"?><,qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM ";
             return !zimu.Contains(c.ToString());
         }
-
-        /// <summary>
-        /// 删除目录
-        /// </summary>
-        /// <param name="dir">要删除的目录</param>
         void DirectoryDelete(string dir)
         {
             if (System.IO.Directory.Exists(dir))
@@ -1002,10 +1100,6 @@ namespace KSwordKit.Editor.PackageManager
             if (System.IO.File.Exists(dirMetaFilePath))
                 System.IO.File.Delete(dirMetaFilePath);
         }
-        /// <summary>
-        /// 删除文件
-        /// </summary>
-        /// <param name="file">要删除的文件路径</param>
         void FileDelete(string file)
         {
             if (System.IO.File.Exists(file))
