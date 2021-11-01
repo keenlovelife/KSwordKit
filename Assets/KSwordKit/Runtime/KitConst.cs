@@ -27,6 +27,7 @@ namespace KSwordKit
             {
                 if (config == null)
                     config = Resources.Load<KSwordKitConfig>("KSwordKitConfig");
+                if (config == null) return null;
                 return config.KitInstallationPath;
             }
         }
