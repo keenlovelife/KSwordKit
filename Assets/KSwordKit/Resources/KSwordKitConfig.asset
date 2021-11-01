@@ -15,4 +15,4 @@ MonoBehaviour:
   KitInstallationPath: Assets/KSwordKit
   KitVersion: v1.0.0
   KitImportedPackageList:
-  - test1@v1.0.6
+  - test1@v1.0.0

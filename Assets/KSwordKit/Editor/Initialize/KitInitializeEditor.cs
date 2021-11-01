@@ -25,6 +25,8 @@ namespace KSwordKit.Editor
             init();
         }
 
+        static bool initsuccess;
+        public static bool initSuccess { get { return initsuccess; } }
         static int initTimes = 0;
         static void init()
         {
@@ -68,12 +70,12 @@ namespace KSwordKit.Editor
 
             initOriginConfig();
 
-            bool initsuccess = true;
+            bool _initsuccess = true;
             if (KSwordKitConfig == null || KitOriginConfig == null)
             {
                 if (initTimes <= 1)
                 {
-                    initsuccess = false;
+                    _initsuccess = false;
                     KitToolEditor.WaitNextFrame(() =>
                     {
                         init();
@@ -85,8 +87,9 @@ namespace KSwordKit.Editor
                 }
             }
 
-            if(initsuccess)
+            if(_initsuccess)
             {
+                initsuccess = true;
                 EditorApplication.projectChanged += OnProjectChanged;
                 EditorApplication.update += EditorApplication_update;
                 DateTime = System.DateTime.Now;
@@ -142,7 +145,7 @@ namespace KSwordKit.Editor
                         {
                             opconfig.KitPackageConfig = JsonUtility.FromJson<KitPackageConfig>(System.IO.File.ReadAllText(opconfig.configfilepath, System.Text.Encoding.UTF8));
                             if (string.IsNullOrEmpty(opconfig.KitPackageConfig.ImportRootDirectory))
-                                opconfig.KitPackageConfig.ImportRootDirectory = System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, packageID));
+                                opconfig.KitPackageConfig.ImportRootDirectory = System.IO.Path.Combine(config.KitInstallationPath, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, packageID));
                         }
                     }
 
