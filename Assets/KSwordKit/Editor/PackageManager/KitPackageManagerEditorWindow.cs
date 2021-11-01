@@ -50,7 +50,7 @@ namespace KSwordKit.Editor.PackageManager
             get
             {
                 return idKey + "|" + nameKey + "|" + versionKey + "|" + liveWithOtherVersionKey + "|"
-                    + contactKey + "|" + homepageKey + "|" + dateKey + "|" + autherKey + "|" + descriptionKey + "|" 
+                    + contactKey + "|" + homepageKey + "|" + dateKey + "|" + authorKey + "|" + descriptionKey + "|" 
                     + dependenciesKey + "|" + tagKey;
             }
         }
