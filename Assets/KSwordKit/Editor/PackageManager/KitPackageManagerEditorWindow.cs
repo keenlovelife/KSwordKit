@@ -787,6 +787,7 @@ namespace KSwordKit.Editor.PackageManager
                 var desckeys = descriptionKey.Split('|');
                 var tagSearchDicHave = false;
                 var descValue = "";
+                if(tagSearchDic != null)
                 foreach(var desc in desckeys)
                     if(tagSearchDic.ContainsKey(desc))
                     {
@@ -803,10 +804,18 @@ namespace KSwordKit.Editor.PackageManager
                     var descValues = descValue.Split('|');
                     var descValueList = new List<string>();
                     descValueList.AddRange(descValues);
-                    var matchedIndex = new List<int>();
-                    for (var i = 0; i < tempLines.Count; i++)
-                    { 
-                        
+                    var matchedIndexDic = new Dictionary<int, int>();
+                    var descContent = originPackageConfig.KitPackageConfig.Description;
+                    foreach(var value in descValueList)
+                    {
+                        var dContent = descContent.Substring(0);
+                        var dindex = dContent.IndexOf(value);
+                        while (dindex != -1)
+                        {
+                            if (!matchedIndexDic.ContainsKey(dindex) || matchedIndexDic[dindex] < value.Length)
+                                matchedIndexDic[dindex] = value.Length;
+                            dContent = dContent.Substring(dindex + value.Length);
+                        }
                     }
                 }
                 else
