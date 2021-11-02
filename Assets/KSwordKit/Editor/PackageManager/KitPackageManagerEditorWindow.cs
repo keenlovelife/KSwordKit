@@ -673,27 +673,70 @@ namespace KSwordKit.Editor.PackageManager
                 GUILayout.Label("标签：", EditorStyles.boldLabel, GUILayout.Width(30));
                 var eachMaxLength = 500;
                 var maxHeight = 2;
-                GUILayout.BeginVertical();
-                GUI.enabled = false;
-                var _i = 0;
-                var each_length = 0;
-                for (var l = 0; l < maxHeight; l++)
+
+                if (isSearchResult && tagSearchDic.ContainsKey(tagKey))
                 {
-                    each_length = 0;
-                    GUILayout.BeginHorizontal();
-                    for (; each_length < eachMaxLength && _i < originPackageConfig.KitPackageConfig.Tags.Count; _i++)
+                    var tags = new List<string>();
+                    tags.AddRange(originPackageConfig.KitPackageConfig.Tags);
+                    var tagvalues = tagSearchDic[tagKey].Split('|');
+                    var tagValueList = new List<string>();
+                    tagValueList.AddRange(tagvalues);
+                    var tagmatchedList = new List<int>();
+                    foreach (var value in tagValueList)
                     {
-                        var tag = originPackageConfig.KitPackageConfig.Tags[_i];
-                        var w = getButtonWidth(tag);
-                        GUILayout.Button(tag, GUILayout.Width(w));
-                        each_length += w + 10;
+                        for(var i = 0; i < tags.Count; i++)
+                        {
+                            if (tags[i].ToLower().Contains(value) && !tagmatchedList.Contains(i)) tagmatchedList.Add(i);
+                        }
                     }
-                    GUILayout.EndHorizontal();
+                    GUILayout.BeginVertical();
+                    GUI.enabled = false;
+                    var _i = 0;
+                    var each_length = 0;
+                    for (var l = 0; l < maxHeight || tagmatchedList.Count > 0; l++)
+                    {
+                        each_length = 0;
+                        GUILayout.BeginHorizontal();
+                        for (; each_length < eachMaxLength && _i < tags.Count; _i++)
+                        {
+                            if (tagmatchedList.Contains(_i)) tagmatchedList.Remove(_i);
+                            var tag = tags[_i];
+                            var w = getButtonWidth(tag);
+                            tag = makeRichText(tag, tagKey, tagSearchDic);
+                            GUILayout.Label(tag, richText, GUILayout.Width(w));
+                            each_length += w + 10;
+                        }
+                        GUILayout.EndHorizontal();
+                    }
+                    if (_i < tags.Count)
+                        GUILayout.Button("...", GUILayout.Width(20));
+                    GUI.enabled = true;
+                    GUILayout.EndVertical();
                 }
-                if(_i < originPackageConfig.KitPackageConfig.Tags.Count)
-                    GUILayout.Button("...", GUILayout.Width(20));
-                GUI.enabled = true;
-                GUILayout.EndVertical();
+                else
+                {
+                    GUILayout.BeginVertical();
+                    GUI.enabled = false;
+                    var _i = 0;
+                    var each_length = 0;
+                    for (var l = 0; l < maxHeight; l++)
+                    {
+                        each_length = 0;
+                        GUILayout.BeginHorizontal();
+                        for (; each_length < eachMaxLength && _i < originPackageConfig.KitPackageConfig.Tags.Count; _i++)
+                        {
+                            var tag = originPackageConfig.KitPackageConfig.Tags[_i];
+                            var w = getButtonWidth(tag);
+                            GUILayout.Button(tag, GUILayout.Width(w));
+                            each_length += w + 10;
+                        }
+                        GUILayout.EndHorizontal();
+                    }
+                    if (_i < originPackageConfig.KitPackageConfig.Tags.Count)
+                        GUILayout.Button("...", GUILayout.Width(20));
+                    GUI.enabled = true;
+                    GUILayout.EndVertical();
+                }
                 EditorGUILayout.EndHorizontal();
 
                 if(originPackageConfig.KitPackageConfig.Dependencies != null && originPackageConfig.KitPackageConfig.Dependencies.Count > 0)
@@ -740,10 +783,39 @@ namespace KSwordKit.Editor.PackageManager
                     }
                 }
                 EditorGUILayout.BeginVertical();
-                for(var i = 0; i < tempLines.Count && i < 4; i++)
-                    GUILayout.Label(tempLines[i]);
-                if (lines.Length > 3)
-                    GUILayout.Label("...");
+
+                var desckeys = descriptionKey.Split('|');
+                var tagSearchDicHave = false;
+                var descValue = "";
+                foreach(var desc in desckeys)
+                    if(tagSearchDic.ContainsKey(desc))
+                    {
+                        tagSearchDicHave = true;
+
+                        if (string.IsNullOrEmpty(descValue))
+                            descValue = tagSearchDic[desc];
+                        else 
+                            descValue += "|" + tagSearchDic[desc];
+                    }
+
+                if (isSearchResult && tagSearchDicHave)
+                {
+                    var descValues = descValue.Split('|');
+                    var descValueList = new List<string>();
+                    descValueList.AddRange(descValues);
+                    var matchedIndex = new List<int>();
+                    for (var i = 0; i < tempLines.Count; i++)
+                    { 
+                        
+                    }
+                }
+                else
+                {
+                    for (var i = 0; i < tempLines.Count && i < 4; i++)
+                        GUILayout.Label(tempLines[i]);
+                    if (lines.Length > 3)
+                        GUILayout.Label("...");
+                }
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.EndHorizontal();
 
@@ -828,7 +900,7 @@ namespace KSwordKit.Editor.PackageManager
         }
         string makeRichText(string text, string tag, Dictionary<string, string> tagSearchDic)
         {
-            if (tag == dateKey)
+            if (tag == dateKey && tagSearchDic.ContainsKey(tag))
                 return "<color=yellow><b>" + text + "</b></color>";
 
             var tags = tag.Split('|');

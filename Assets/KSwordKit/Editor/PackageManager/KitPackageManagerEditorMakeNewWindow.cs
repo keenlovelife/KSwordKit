@@ -162,12 +162,11 @@ namespace KSwordKit.Editor.PackageManager
             blod.normal.textColor = new Color(255, 200, 200);
             EditorGUILayout.Space(10);
             GUI.enabled = false;
-            GUILayout.Button("您需要先选择包所在目录，然后填写包配置信息，最后导出包文件。", GUILayout.Height(40));
+            GUILayout.Button("您需要先选择包所在目录，填写包配置信息后，导出包文件。（一次导出一个包）", GUILayout.Height(40));
             GUI.enabled = true;
 
             EditorGUILayout.Space(10);
             GUILayout.BeginHorizontal();
-
             GUILayout.Space(spaceCount);
             EditorGUILayout.LabelField("选择包目录：", blod, GUILayout.Width(80));
             packageDir = EditorGUILayout.TextField(packageDir);
@@ -183,6 +182,29 @@ namespace KSwordKit.Editor.PackageManager
             }
             GUILayout.Space(spaceCount);
             GUILayout.EndHorizontal();
+
+            //EditorGUILayout.Space(10);
+            //GUI.enabled = false;
+            //GUILayout.Button("或者，您可以一次性选择多个包目录，将他们全部导出成包文件。（一次导出多个包）", GUILayout.Height(40));
+            //GUI.enabled = true;
+            //EditorGUILayout.Space(10);
+            //GUILayout.BeginHorizontal();
+            //GUILayout.Space(spaceCount);
+            //EditorGUILayout.LabelField("选择多个包目录：", blod, GUILayout.Width(80));
+            //packageDir = EditorGUILayout.TextField(packageDir);
+            //blod.fontSize = 12;
+            //if (GUILayout.Button("浏览", GUILayout.Width(70), GUILayout.Height(20)))
+            //{
+                
+            //    packageDir = EditorUtility.OpenFilePanelWithFilters(windowTitle, packageDir, new string[] { "图片或pdf","*jpg;*png" }); ;
+            //    var temp = System.IO.Path.Combine(Application.temporaryCachePath, tempPackageName);
+            //    if (System.IO.File.Exists(temp))
+            //        System.IO.File.Delete(temp);
+            //    System.IO.File.WriteAllText(temp, packageDir);
+            //    init();
+            //}
+            //GUILayout.Space(spaceCount);
+            //GUILayout.EndHorizontal();
 
             if (!string.IsNullOrEmpty(packageDir))
             {
