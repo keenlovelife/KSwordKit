@@ -817,6 +817,7 @@ namespace KSwordKit.Editor.PackageManager
                             dContent = dContent.Substring(dindex + value.Length);
                         }
                     }
+
                 }
                 else
                 {
