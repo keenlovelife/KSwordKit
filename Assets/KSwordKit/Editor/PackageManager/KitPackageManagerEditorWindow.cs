@@ -1244,74 +1244,57 @@ namespace KSwordKit.Editor.PackageManager
             foreach (var kv in temp)
                 tagSearchDic[kv.Key] = kv.Value;
         }
+        Dictionary<int, int> matchStrs(string match, string[] strs)
+        {
+            var dic = new Dictionary<int, int>();
+
+            return dic;
+        }
         string makeRichText(string text, string tag, Dictionary<string, string> tagSearchDic)
         {
             if (tag == dateKey && tagSearchDic.ContainsKey(tag))
                 return "<color=yellow><b>" + text + "</b></color>";
             var idladel = text.Substring(0);
-            var _idlabel = idladel.ToLower();
             var tags = tag.Split('|');
-            var matchedIndexDic = new Dictionary<int, int>();
+            
+            var values = new List<string>();
             foreach(var _tag in tags)
-            {
                 if (tagSearchDic.ContainsKey(_tag))
-                {
-                    var values = tagSearchDic[_tag].Split('|');
-                    foreach (var v in values)
-                    {
-                        if (_idlabel.Contains(v))
-                        {
-                            var vindex = _idlabel.IndexOf(v);
-                            if (vindex != -1)
-                            {
-                                if (matchedIndexDic.ContainsKey(vindex) && matchedIndexDic[vindex] < v.Length)
-                                    matchedIndexDic[vindex] = v.Length;
-                                else if(!matchedIndexDic.ContainsKey(vindex))
-                                {
-                                    matchedIndexDic[vindex] = v.Length;
-
-                                    foreach(var kv in matchedIndexDic)
-                                    {
-                                        foreach(var _kv in matchedIndexDic)
-                                        {
-                                            if (kv.Key == _kv.Key) continue;
-                                            if(kv.Key > _kv.Key && kv.Key <= _kv.Key + _kv.Value)
-                                            {
-
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
+                    values.AddRange(tagSearchDic[_tag].Split('|'));
             if (tagSearchDic.ContainsKey(notagKey))
+                values.AddRange(tagSearchDic[notagKey].Split('|'));
+            var matchedIndexDic = matchStrs(text, values.ToArray());
+            var _idlabel = "";
+            var lastIndex = 0;
+            foreach(var kv in matchedIndexDic)
             {
-                var notagValues = tagSearchDic[notagKey].Split('|');
-                foreach(var v in notagValues)
-                {
-                    if (_idlabel.Contains(v))
-                    {
-                        var vindex = _idlabel.IndexOf(v);
-                        if (vindex != -1)
-                        {
-                            var idlabelleft = idladel.Substring(0, vindex);
-                            var idlabelcenter = "";
-                            if (idladel.Length > vindex && idladel.Length >= vindex + v.Length)
-                                idlabelcenter = idladel.Substring(vindex, v.Length);
-                            var idlaelrigth = "";
-                            if (idladel.Length > vindex + v.Length)
-                                idlaelrigth = idladel.Substring(vindex + v.Length);
-                            idladel = idlabelleft + "<color=yellow><b>" + idlabelcenter + "</b></color>" + idlaelrigth;
-                            return idladel;
-                        }
-                        break;
-                    }
-                }
+                _idlabel += idladel.Substring(lastIndex, kv.Key - lastIndex);
+
             }
+            //if (tagSearchDic.ContainsKey(notagKey))
+            //{
+            //    var notagValues = tagSearchDic[notagKey].Split('|');
+            //    foreach(var v in notagValues)
+            //    {
+            //        if (_idlabel.Contains(v))
+            //        {
+            //            var vindex = _idlabel.IndexOf(v);
+            //            if (vindex != -1)
+            //            {
+            //                //var idlabelleft = idladel.Substring(0, vindex);
+            //                //var idlabelcenter = "";
+            //                //if (idladel.Length > vindex && idladel.Length >= vindex + v.Length)
+            //                //    idlabelcenter = idladel.Substring(vindex, v.Length);
+            //                //var idlaelrigth = "";
+            //                //if (idladel.Length > vindex + v.Length)
+            //                //    idlaelrigth = idladel.Substring(vindex + v.Length);
+            //                //idladel = idlabelleft + "<color=yellow><b>" + idlabelcenter + "</b></color>" + idlaelrigth;
+            //                return idladel;
+            //            }
+            //            break;
+            //        }
+            //    }
+            //}
 
             return text;
         }
