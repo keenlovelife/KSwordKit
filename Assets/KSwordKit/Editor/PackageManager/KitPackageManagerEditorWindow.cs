@@ -1268,9 +1268,18 @@ namespace KSwordKit.Editor.PackageManager
                                     matchedIndexDic[vindex] = v.Length;
                                 else if(!matchedIndexDic.ContainsKey(vindex))
                                 {
+                                    matchedIndexDic[vindex] = v.Length;
+
                                     foreach(var kv in matchedIndexDic)
                                     {
+                                        foreach(var _kv in matchedIndexDic)
+                                        {
+                                            if (kv.Key == _kv.Key) continue;
+                                            if(kv.Key > _kv.Key && kv.Key <= _kv.Key + _kv.Value)
+                                            {
 
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -1281,7 +1290,6 @@ namespace KSwordKit.Editor.PackageManager
 
             if (tagSearchDic.ContainsKey(notagKey))
             {
-                var _idlabel = idladel.ToLower();
                 var notagValues = tagSearchDic[notagKey].Split('|');
                 foreach(var v in notagValues)
                 {
