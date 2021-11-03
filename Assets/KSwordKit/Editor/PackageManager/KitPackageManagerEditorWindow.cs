@@ -59,6 +59,8 @@ namespace KSwordKit.Editor.PackageManager
         bool per_selected = false;
         private void OnGUI()
         {
+            GUIEvent();
+
             EditorGUILayout.Space(20);
 
             var importdAllNames = new List<string>();
@@ -453,6 +455,8 @@ namespace KSwordKit.Editor.PackageManager
 
         void DrawItemGUI(KitOriginPackageConfig originPackageConfig, bool isSearchResult = false, Dictionary<string, string> tagSearchDic = null)
         {
+            var lableWith = 450;
+
             var nameMaxLength_hanzi = 37;
             var nameGoodLength_hanzi = 17;
             var nameMaxLength_zimu = 78;
@@ -507,15 +511,17 @@ namespace KSwordKit.Editor.PackageManager
             blod.normal.textColor = new Color(255, 200, 200);
             if (seleceted)
                 originPackageConfig.selected = GUILayout.Toggle(originPackageConfig.selected, "", GUILayout.Width(18));
+            var idladel = idname;
             if (isSearchResult)
-            {
-                var idladel = idname;
                 idladel = makeRichText(idladel, nameKey, tagSearchDic);
-                GUILayout.Label(idladel, richText, GUILayout.Height(22));
+            if (GUILayout.Button(idladel, richText))
+            {
+                GenericMenu menu = new GenericMenu();
+                menu.AddItem(new GUIContent("复制文本"), false, () => {
+                    UnityEngine.GUIUtility.systemCopyBuffer = originPackageConfig.KitPackageConfig.Name;
+                });
+                menu.ShowAsContext();
             }
-            else
-                GUILayout.Label(idname, blod, GUILayout.Height(22));
-
             if (nameNotGood)
             {
                 GUILayout.EndHorizontal();
@@ -630,10 +636,10 @@ namespace KSwordKit.Editor.PackageManager
                 {
                     var idlabel = originPackageConfig.KitPackageConfig.ID;
                     idlabel = makeRichText(idlabel, idKey, tagSearchDic);
-                    GUILayout.Label(idlabel, richText);
+                    GUILayout.Label(idlabel, richText, GUILayout.Width(lableWith));
                 }
                 else
-                    GUILayout.Label(originPackageConfig.KitPackageConfig.ID);
+                    GUILayout.Label(originPackageConfig.KitPackageConfig.ID, GUILayout.Width(lableWith));
                 GUI.enabled = true;
                 EditorGUILayout.EndHorizontal();
 
@@ -644,10 +650,10 @@ namespace KSwordKit.Editor.PackageManager
                 {
                     var versionlabel = originPackageConfig.KitPackageConfig.Version;
                     versionlabel = makeRichText(versionlabel, versionKey, tagSearchDic);
-                    GUILayout.Label(versionlabel, richText);
+                    GUILayout.Label(versionlabel, richText, GUILayout.Width(lableWith));
                 }
                 else
-                    GUILayout.Label(originPackageConfig.KitPackageConfig.Version);
+                    GUILayout.Label(originPackageConfig.KitPackageConfig.Version, GUILayout.Width(lableWith));
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
@@ -657,50 +663,71 @@ namespace KSwordKit.Editor.PackageManager
                 {
                     var datelable = originPackageConfig.KitPackageConfig.Date;
                     datelable = makeRichText(datelable, dateKey, tagSearchDic);
-                    GUILayout.Label(datelable, richText);
+                    GUILayout.Label(datelable, richText, GUILayout.Width(lableWith));
                 }
                 else
-                    GUILayout.Label(originPackageConfig.KitPackageConfig.Date);
+                    GUILayout.Label(originPackageConfig.KitPackageConfig.Date, GUILayout.Width(lableWith));
 
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Space(35);
                 GUILayout.Label("作者：", EditorStyles.boldLabel, GUILayout.Width(30));
+                var Authorlable = originPackageConfig.KitPackageConfig.Author;
                 if (isSearchResult)
-                {
-                    var Authorlable = originPackageConfig.KitPackageConfig.Author;
                     Authorlable = makeRichText(Authorlable, authorKey, tagSearchDic);
-                    GUILayout.Label(Authorlable, richText);
+                if (GUILayout.Button(Authorlable, richText, GUILayout.Width(lableWith)))
+                {
+                    GenericMenu menu = new GenericMenu();
+                    menu.AddItem(new GUIContent("复制文本"), false, () => {
+                        UnityEngine.GUIUtility.systemCopyBuffer = originPackageConfig.KitPackageConfig.Author;
+                    });
+                    menu.ShowAsContext();
                 }
-                else
-                    GUILayout.Label(originPackageConfig.KitPackageConfig.Author);
                 EditorGUILayout.EndHorizontal();
+
 
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Space(35);
                 GUILayout.Label("主页：", EditorStyles.boldLabel, GUILayout.Width(30));
+                var HomePagelable = originPackageConfig.KitPackageConfig.HomePage;
                 if (isSearchResult)
-                {
-                    var HomePagelable = originPackageConfig.KitPackageConfig.HomePage;
                     HomePagelable = makeRichText(HomePagelable, homepageKey, tagSearchDic);
-                    GUILayout.Label(HomePagelable, richText);
+                if (GUILayout.Button(HomePagelable, richText, GUILayout.Width(lableWith)))
+                {
+                    GenericMenu menu = new GenericMenu();
+                    menu.AddItem(new GUIContent("复制文本"), false, () =>
+                    {
+                        UnityEngine.GUIUtility.systemCopyBuffer = originPackageConfig.KitPackageConfig.HomePage;
+                    });
+                    menu.AddItem(new GUIContent("去浏览器打开"), false, () =>
+                    {
+                        System.Diagnostics.Process.Start(originPackageConfig.KitPackageConfig.HomePage);
+                    });
+                    menu.ShowAsContext();
                 }
-                else
-                    GUILayout.Label(originPackageConfig.KitPackageConfig.HomePage);
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Space(35);
                 GUILayout.Label("联系：", EditorStyles.boldLabel, GUILayout.Width(30));
+                var Contactlable = originPackageConfig.KitPackageConfig.Contact;
                 if (isSearchResult)
-                {
-                    var Contactlable = originPackageConfig.KitPackageConfig.Contact;
                     Contactlable = makeRichText(Contactlable, contactKey, tagSearchDic);
-                    GUILayout.Label(Contactlable, richText);
+                if (GUILayout.Button(Contactlable, richText, GUILayout.Width(lableWith)))
+                {
+                    GenericMenu menu = new GenericMenu();
+                    menu.AddItem(new GUIContent("复制文本"), false, () =>
+                    {
+                        UnityEngine.GUIUtility.systemCopyBuffer = originPackageConfig.KitPackageConfig.Contact;
+                    });
+                    menu.AddItem(new GUIContent("发邮件"), false, () =>
+                    {
+                        System.Uri uri = new System.Uri(string.Format("mailto:{0}", originPackageConfig.KitPackageConfig.Contact));//第二个参数是邮件的标题
+                        Application.OpenURL(uri.AbsoluteUri);
+                    });
+                    menu.ShowAsContext();
                 }
-                else
-                    GUILayout.Label(originPackageConfig.KitPackageConfig.Contact);
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
@@ -931,9 +958,29 @@ namespace KSwordKit.Editor.PackageManager
                         matchedIndexList.Clear();
                     }
                     for (var i = 0; i < tempLines.Count && (i <= lastMatchIndex || i < maxLineCount); i++)
-                        GUILayout.Label(tempLines[i], richText);
+                    {
+                        if (GUILayout.Button(tempLines[i], richText))
+                        {
+                            GenericMenu menu = new GenericMenu();
+                            menu.AddItem(new GUIContent("复制文本"), false, () =>
+                            {
+                                UnityEngine.GUIUtility.systemCopyBuffer = originPackageConfig.KitPackageConfig.Description;
+                            });
+                            menu.ShowAsContext();
+                        }
+                    }
                     if (tempLines.Count > maxLineCount - 1 && lastMatchIndex < tempLines.Count - 1)
-                        GUILayout.Label("...");
+                    {
+                        if (GUILayout.Button("...", richText))
+                        {
+                            GenericMenu menu = new GenericMenu();
+                            menu.AddItem(new GUIContent("复制文本"), false, () =>
+                            {
+                                UnityEngine.GUIUtility.systemCopyBuffer = originPackageConfig.KitPackageConfig.Description;
+                            });
+                            menu.ShowAsContext();
+                        }
+                    }
                 }
                 else
                 {
@@ -956,9 +1003,29 @@ namespace KSwordKit.Editor.PackageManager
                         }
                     }
                     for (var i = 0; i < tempLines.Count && i < maxLineCount; i++)
-                        GUILayout.Label(tempLines[i]);
+                    {
+                        if (GUILayout.Button(tempLines[i], richText))
+                        {
+                            GenericMenu menu = new GenericMenu();
+                            menu.AddItem(new GUIContent("复制文本"), false, () =>
+                            {
+                                UnityEngine.GUIUtility.systemCopyBuffer = originPackageConfig.KitPackageConfig.Description;
+                            });
+                            menu.ShowAsContext();
+                        }
+                    }
                     if (lines.Length > maxLineCount - 1)
-                        GUILayout.Label("...");
+                    {
+                        if (GUILayout.Button("...", richText))
+                        {
+                            GenericMenu menu = new GenericMenu();
+                            menu.AddItem(new GUIContent("复制文本"), false, () =>
+                            {
+                                UnityEngine.GUIUtility.systemCopyBuffer = originPackageConfig.KitPackageConfig.Description;
+                            });
+                            menu.ShowAsContext();
+                        }
+                    }
                 }
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.EndHorizontal();
@@ -1046,18 +1113,150 @@ namespace KSwordKit.Editor.PackageManager
 
             GUILayout.Space(10);
         }
+        void GUIEvent()
+        {
+            //if (Event.current.type == EventType.MouseDown)
+            //{
+            //    Debug.LogError(EventType.MouseDown);//鼠标按下
+            //}
+            //else if (Event.current.type == EventType.MouseUp)
+            //{
+            //    Debug.LogError(EventType.MouseUp);//鼠标抬起
+            //}
+            //else if (Event.current.type == EventType.MouseMove)
+            //{
+            //    Debug.LogError(EventType.MouseMove);
+            //}
+            //else if (Event.current.type == EventType.MouseDrag)
+            //{
+            //    Debug.LogError(EventType.MouseDrag);//鼠标拖动
+            //}
+            //else if (Event.current.type == EventType.KeyDown)
+            //{
+            //    Debug.LogError(EventType.KeyDown);//按键按下
+            //}
+            //else if (Event.current.type == EventType.KeyUp)
+            //{
+            //    Debug.LogError(EventType.KeyUp);//按键抬起
+            //}
+            //else if (Event.current.type == EventType.ScrollWheel)
+            //{
+            //    Debug.LogError(EventType.ScrollWheel);//中轮滚动
+            //}
+            //else if (Event.current.type == EventType.Repaint)
+            //{
+            //    Debug.LogError(EventType.Repaint);//每一帧重新渲染会发
+            //}
+            //else if (Event.current.type == EventType.Layout)
+            //{
+            //    Debug.LogError(EventType.Layout);
+            //}
+            //else if (Event.current.type == EventType.DragUpdated)
+            //{
+            //    Debug.LogError(EventType.DragUpdated);//拖拽的资源进入界面
+            //}
+            //else if (Event.current.type == EventType.DragPerform)
+            //{
+            //    Debug.LogError(EventType.DragPerform);//拖拽的资源放到了某个区域里
+            //}
+            //else if (Event.current.type == EventType.Ignore)
+            //{
+            //    Debug.LogError(EventType.Ignore);//操作被忽略
+            //}
+            //else if (Event.current.type == EventType.Used)
+            //{
+            //    Debug.LogError(EventType.Used);//操作已经被使用过了
+            //}
+            //else if (Event.current.type == EventType.ValidateCommand)
+            //{
+            //    Debug.LogError(EventType.ValidateCommand);//有某种操作被触发（例如复制和粘贴）
+            //}
+            //else if (Event.current.type == EventType.ExecuteCommand)
+            //{
+            //    Debug.LogError(EventType.ExecuteCommand);//有某种操作被执行（例如复制和粘贴）
+            //}
+            //else if (Event.current.type == EventType.DragExited)
+            //{
+            //    Debug.LogError(EventType.DragExited);//松开拖拽的资源
+            //}
+            //else if (Event.current.type == EventType.ContextClick)
+            //{
+            //    Debug.LogError(EventType.ContextClick);//右键点击
+            //}
+            //else if (Event.current.type == EventType.MouseEnterWindow)
+            //{
+            //    Debug.LogError(EventType.MouseEnterWindow);
+            //}
+            //else if (Event.current.type == EventType.MouseLeaveWindow)
+            //{
+            //    Debug.LogError(EventType.MouseLeaveWindow);
+            //}
+
+            //if (Event.current.type == EventType.ContextClick)
+            //{
+            //    GenericMenu menu = new GenericMenu();
+
+            //    menu.AddItem(new GUIContent("1"), false, null, null);
+
+            //    menu.AddSeparator("");
+
+            //    menu.AddItem(new GUIContent("2"), false, null, null);
+
+            //    menu.ShowAsContext();
+
+            //    //设置该事件被使用
+
+            //    Event.current.Use();
+            //}
+        }
+        void RemoveDuplicateElements(Dictionary<string, string> tagSearchDic)
+        {
+            var temp = new Dictionary<string, string>();
+            foreach (var kv in tagSearchDic)
+            {
+                var values = kv.Value.Split('|');
+                var valueList = new List<string>();
+                for(var i = 0; i < values.Length; i++)
+                {
+                    var value = values[i];
+                    bool canadd = true;
+                    for (var j = 0; j < values.Length; j++)
+                    {
+                        if (i == j) continue;
+                        if(values[j].Contains(value))
+                        {
+                            canadd = false;
+                            break;
+                        }
+                    }
+                    if (canadd)
+                        valueList.Add(value); 
+                }
+                var v = "";
+                foreach (var _v in valueList)
+                    if (string.IsNullOrEmpty(v))
+                        v = _v;
+                    else
+                        v += "|" + _v;
+                temp[kv.Key] = v;
+            }
+            tagSearchDic.Clear();
+            foreach (var kv in temp)
+                tagSearchDic[kv.Key] = kv.Value;
+        }
         string makeRichText(string text, string tag, Dictionary<string, string> tagSearchDic)
         {
             if (tag == dateKey && tagSearchDic.ContainsKey(tag))
                 return "<color=yellow><b>" + text + "</b></color>";
             var idladel = text.Substring(0);
+            var _idlabel = idladel.ToLower();
             var tags = tag.Split('|');
+            var matchedIndexDic = new Dictionary<int, int>();
             foreach(var _tag in tags)
             {
                 if (tagSearchDic.ContainsKey(_tag))
                 {
                     var values = tagSearchDic[_tag].Split('|');
-                    var _idlabel = idladel.ToLower();
                     foreach (var v in values)
                     {
                         if (_idlabel.Contains(v))
@@ -1065,17 +1264,16 @@ namespace KSwordKit.Editor.PackageManager
                             var vindex = _idlabel.IndexOf(v);
                             if (vindex != -1)
                             {
-                                var idlabelleft = idladel.Substring(0, vindex);
-                                var idlabelcenter = "";
-                                if (idladel.Length > vindex && idladel.Length >= vindex + v.Length)
-                                    idlabelcenter = idladel.Substring(vindex, v.Length);
-                                var idlaelrigth = "";
-                                if (idladel.Length > vindex + v.Length)
-                                    idlaelrigth = idladel.Substring(vindex + v.Length);
-                                idladel = idlabelleft + "<color=yellow><b>" + idlabelcenter + "</b></color>" + idlaelrigth;
-                                return idladel;
+                                if (matchedIndexDic.ContainsKey(vindex) && matchedIndexDic[vindex] < v.Length)
+                                    matchedIndexDic[vindex] = v.Length;
+                                else if(!matchedIndexDic.ContainsKey(vindex))
+                                {
+                                    foreach(var kv in matchedIndexDic)
+                                    {
+
+                                    }
+                                }
                             }
-                            break;
                         }
                     }
                 }
@@ -1222,6 +1420,8 @@ namespace KSwordKit.Editor.PackageManager
                 } 
                 while (index != -1);
             }
+
+            RemoveDuplicateElements(tagSearchDic);
 
             var searchResults = new List<KitOriginPackageConfig>();
             if (KitInitializeEditor.KitOriginConfig != null &&
