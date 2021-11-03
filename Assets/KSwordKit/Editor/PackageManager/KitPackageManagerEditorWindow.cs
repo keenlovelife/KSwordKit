@@ -153,11 +153,6 @@ namespace KSwordKit.Editor.PackageManager
             blod.normal.textColor = new Color(255, 200, 200);
             EditorGUILayout.LabelField("搜索：", blod, GUILayout.Width(40));
             kitUserSearchInputString = EditorGUILayout.TextField(kitUserSearchInputString);
-            //if(GUILayout.Button("Clear", GUILayout.Width(50)))
-            //{
-            //    kitUserSearchInputString = "";
-
-            //}
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.Space(20);
@@ -502,7 +497,6 @@ namespace KSwordKit.Editor.PackageManager
                     nameNotGood = true;
             }
 
-
             GUILayout.Button("", GUILayout.Height(1));
             GUILayout.Space(5);
             EditorGUILayout.BeginHorizontal();
@@ -620,7 +614,7 @@ namespace KSwordKit.Editor.PackageManager
             GUI.enabled = true;
             if (GUILayout.Button("查看", GUILayout.Width(50), GUILayout.Height(23)))
             {
-
+                lookOriginPackageConfigInfo(originPackageConfig);
             }
             GUILayout.Space(15);
             EditorGUILayout.EndHorizontal();
@@ -628,6 +622,21 @@ namespace KSwordKit.Editor.PackageManager
             if(originPackageConfig.KitPackageConfig != null)
             {
                 richText.fontSize = 12;
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.Space(35);
+                GUILayout.Label("ID：", EditorStyles.boldLabel, GUILayout.Width(30));
+                GUI.enabled = false;
+                if (isSearchResult)
+                {
+                    var idlabel = originPackageConfig.KitPackageConfig.ID;
+                    idlabel = makeRichText(idlabel, idKey, tagSearchDic);
+                    GUILayout.Label(idlabel, richText);
+                }
+                else
+                    GUILayout.Label(originPackageConfig.KitPackageConfig.ID);
+                GUI.enabled = true;
+                EditorGUILayout.EndHorizontal();
+
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Space(35);
                 GUILayout.Label("版本：", EditorStyles.boldLabel, GUILayout.Width(30));
@@ -666,6 +675,32 @@ namespace KSwordKit.Editor.PackageManager
                 }
                 else
                     GUILayout.Label(originPackageConfig.KitPackageConfig.Author);
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.Space(35);
+                GUILayout.Label("主页：", EditorStyles.boldLabel, GUILayout.Width(30));
+                if (isSearchResult)
+                {
+                    var HomePagelable = originPackageConfig.KitPackageConfig.HomePage;
+                    HomePagelable = makeRichText(HomePagelable, homepageKey, tagSearchDic);
+                    GUILayout.Label(HomePagelable, richText);
+                }
+                else
+                    GUILayout.Label(originPackageConfig.KitPackageConfig.HomePage);
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.Space(35);
+                GUILayout.Label("联系：", EditorStyles.boldLabel, GUILayout.Width(30));
+                if (isSearchResult)
+                {
+                    var Contactlable = originPackageConfig.KitPackageConfig.Contact;
+                    Contactlable = makeRichText(Contactlable, contactKey, tagSearchDic);
+                    GUILayout.Label(Contactlable, richText);
+                }
+                else
+                    GUILayout.Label(originPackageConfig.KitPackageConfig.Contact);
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
@@ -749,8 +784,15 @@ namespace KSwordKit.Editor.PackageManager
                     GUI.enabled = false;
                     for (var l = 0; l <= dependenciesMaxCount && l < originPackageConfig.KitPackageConfig.Dependencies.Count; l++)
                     {
-                        GUILayout.BeginHorizontal();
-                        GUILayout.Label(originPackageConfig.KitPackageConfig.Dependencies[l]);
+                        GUILayout.BeginHorizontal(); 
+                        if (isSearchResult)
+                        {
+                            var Dependencieslable = originPackageConfig.KitPackageConfig.Dependencies[l];
+                            Dependencieslable = makeRichText(Dependencieslable, dependenciesKey, tagSearchDic);
+                            GUILayout.Label(Dependencieslable, richText);
+                        }
+                        else
+                            GUILayout.Label(originPackageConfig.KitPackageConfig.Dependencies[l]);
                         GUILayout.EndHorizontal();
                     }
                     if (dependenciesMaxCount < originPackageConfig.KitPackageConfig.Dependencies.Count)
@@ -764,26 +806,8 @@ namespace KSwordKit.Editor.PackageManager
                 GUILayout.Space(35);
                 GUILayout.Label("描述：", EditorStyles.boldLabel, GUILayout.Width(30));
                 var maxLineLength = 40;
-                var lines = originPackageConfig.KitPackageConfig.Description.Split('\n');
-                var tempLines = new List<string>();
-                for(var i = 0; i < lines.Length; i++)
-                {
-                    var line = lines[i];
-                    if (line.Length <= maxLineLength)
-                        tempLines.Add(line);
-                    else
-                    {
-                        while(line.Length > maxLineLength)
-                        {
-                            tempLines.Add(line.Substring(0, maxLineLength));
-                            line = line.Substring(maxLineLength, line.Length - maxLineLength);
-                        }
-                        if (!string.IsNullOrEmpty(line))
-                            tempLines.Add(line);
-                    }
-                }
+                var maxLineCount = 4;
                 EditorGUILayout.BeginVertical();
-
                 var desckeys = descriptionKey.Split('|');
                 var tagSearchDicHave = false;
                 var descValue = "";
@@ -804,26 +828,136 @@ namespace KSwordKit.Editor.PackageManager
                     var descValues = descValue.Split('|');
                     var descValueList = new List<string>();
                     descValueList.AddRange(descValues);
-                    var matchedIndexDic = new Dictionary<int, int>();
-                    var descContent = originPackageConfig.KitPackageConfig.Description;
-                    foreach(var value in descValueList)
+                    var matchedIndexList = new List<Vector2Int>();
+                    var descContent = originPackageConfig.KitPackageConfig.Description.Substring(0);
+                    foreach (var value in descValueList)
                     {
-                        var dContent = descContent.Substring(0);
+                        var dContent = descContent.Substring(0).ToLower();
                         var dindex = dContent.IndexOf(value);
+                        var lastStartIndex = 0;
                         while (dindex != -1)
                         {
-                            if (!matchedIndexDic.ContainsKey(dindex) || matchedIndexDic[dindex] < value.Length)
-                                matchedIndexDic[dindex] = value.Length;
+                            matchedIndexList.Add(new Vector2Int() { 
+                                x = lastStartIndex + dindex,
+                                y = value.Length
+                            });
                             dContent = dContent.Substring(dindex + value.Length);
+                            lastStartIndex += dindex + value.Length;
+                            dindex = dContent.IndexOf(value);
                         }
                     }
-
+                    var tempLines = new List<string>();
+                    var startIndex = 0;
+                    var count = 0;
+                    var lastMatchIndex = 0;
+                    bool haveOver = false;
+                    if(descContent.Length <= maxLineLength)
+                    {
+                        startIndex = 0;
+                        count = descContent.Length;
+                        haveOver = true;
+                    }
+                    else
+                    {
+                        for (var i = 0; i < descContent.Length; i++)
+                        {
+                            if (descContent[i] == '\n' || count >= maxLineLength)
+                            {
+                                if (count == 0) tempLines.Add("");
+                                else
+                                {
+                                    if (matchedIndexList.Count > 0)
+                                    {
+                                        var matched = matchedIndexList[0];
+                                        var left = "";
+                                        var center = "";
+                                        var rigth = "";
+                                        if (matched.x >= startIndex && matched.x <= startIndex + count - 1)
+                                        {
+                                            if (startIndex < matched.x)
+                                                left = descContent.Substring(startIndex, matched.x - startIndex);
+                                            if (startIndex + count - 1 >= matched.x + matched.y - 1)
+                                            {
+                                                center = descContent.Substring(matched.x, matched.y);
+                                                matchedIndexList.RemoveAt(0);
+                                            }
+                                            else if (startIndex + count - 1 < matched.x + matched.y - 1)
+                                            {
+                                                var c = startIndex + count - matched.x;
+                                                center = descContent.Substring(matched.x, c);
+                                                matchedIndexList[0] = new Vector2Int()
+                                                {
+                                                    x = startIndex + count,
+                                                    y = matched.y - c
+                                                };
+                                            }
+                                            if (startIndex + count - 1 > matched.x + matched.y - 1)
+                                                rigth = descContent.Substring(matched.x + matched.y, startIndex + count - matched.x - matched.y);
+                                        }
+                                        center = "<color=yellow><b>" + center + "</b></color>";
+                                        var line = left + center + rigth;
+                                        tempLines.Add(line);
+                                        lastMatchIndex = tempLines.Count - 1;
+                                    }
+                                    else
+                                        tempLines.Add(descContent.Substring(startIndex, count));
+                                }
+                                startIndex = i + 1;
+                                count = 0;
+                                haveOver = false;
+                            }
+                            else
+                            {
+                                count++;
+                                haveOver = true;
+                            }
+                        }
+                    }
+                    if (haveOver && matchedIndexList.Count > 0)
+                    {
+                        var matchedStr = "";
+                        var lastIndex = startIndex;
+                        for(var i = 0; i < matchedIndexList.Count; i++)
+                        {
+                            var matched = matchedIndexList[i];
+                            matchedStr += descContent.Substring(lastIndex, matched.x - lastIndex);
+                            matchedStr += "<color=yellow><b>" + descContent.Substring(matched.x, matched.y) + "</b></color>";
+                            lastIndex = matched.x + matched.y;
+                        }
+                        if (lastIndex < descContent.Length)
+                            matchedStr += descContent.Substring(lastIndex);
+                        tempLines.Add(matchedStr);
+                        lastMatchIndex = tempLines.Count - 1;
+                        matchedIndexList.Clear();
+                    }
+                    for (var i = 0; i < tempLines.Count && (i <= lastMatchIndex || i < maxLineCount); i++)
+                        GUILayout.Label(tempLines[i], richText);
+                    if (tempLines.Count > maxLineCount - 1 && lastMatchIndex < tempLines.Count - 1)
+                        GUILayout.Label("...");
                 }
                 else
                 {
-                    for (var i = 0; i < tempLines.Count && i < 4; i++)
+                    var lines = originPackageConfig.KitPackageConfig.Description.Split('\n');
+                    var tempLines = new List<string>();
+                    for (var i = 0; i < lines.Length; i++)
+                    {
+                        var line = lines[i];
+                        if (line.Length <= maxLineLength)
+                            tempLines.Add(line);
+                        else
+                        {
+                            while (line.Length > maxLineLength)
+                            {
+                                tempLines.Add(line.Substring(0, maxLineLength));
+                                line = line.Substring(maxLineLength, line.Length - maxLineLength);
+                            }
+                            if (!string.IsNullOrEmpty(line))
+                                tempLines.Add(line);
+                        }
+                    }
+                    for (var i = 0; i < tempLines.Count && i < maxLineCount; i++)
                         GUILayout.Label(tempLines[i]);
-                    if (lines.Length > 3)
+                    if (lines.Length > maxLineCount - 1)
                         GUILayout.Label("...");
                 }
                 EditorGUILayout.EndVertical();
@@ -877,19 +1011,23 @@ namespace KSwordKit.Editor.PackageManager
                                 if (versionImported)
                                 {
                                     GUI.enabled = false;
-                                    GUILayout.Button("已导入", GUILayout.Width(60), GUILayout.Height(23));
+                                    GUILayout.Button("已导入", GUILayout.Width(50), GUILayout.Height(23));
                                     GUI.enabled = true;
                                 }
-                                else if (GUILayout.Button("导入", GUILayout.Width(60), GUILayout.Height(23)))
+                                else if (GUILayout.Button("导入", GUILayout.Width(40), GUILayout.Height(23)))
                                 {
                                     importKKPFile(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[_versions[i]], "导入");
                                 }
                                 GUI.enabled = versionImported;
-                                if (GUILayout.Button("卸载", GUILayout.Width(50), GUILayout.Height(23)))
+                                if (GUILayout.Button("卸载", GUILayout.Width(40), GUILayout.Height(23)))
                                 {
                                     uninstal(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[_versions[i]]);
                                 }
                                 GUI.enabled = true;
+                                if (GUILayout.Button("查看", GUILayout.Width(40), GUILayout.Height(23)))
+                                {
+                                    lookOriginPackageConfigInfo(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[_versions[i]]);
+                                }
                                 GUILayout.EndHorizontal();
                             }
                         }
@@ -912,18 +1050,15 @@ namespace KSwordKit.Editor.PackageManager
         {
             if (tag == dateKey && tagSearchDic.ContainsKey(tag))
                 return "<color=yellow><b>" + text + "</b></color>";
-
+            var idladel = text.Substring(0);
             var tags = tag.Split('|');
             foreach(var _tag in tags)
             {
                 if (tagSearchDic.ContainsKey(_tag))
                 {
-                    var idladel = text;
                     var values = tagSearchDic[_tag].Split('|');
-                    var valueList = new List<string>();
-                    valueList.AddRange(values);
                     var _idlabel = idladel.ToLower();
-                    foreach (var v in valueList)
+                    foreach (var v in values)
                     {
                         if (_idlabel.Contains(v))
                         {
@@ -945,6 +1080,33 @@ namespace KSwordKit.Editor.PackageManager
                     }
                 }
             }
+
+            if (tagSearchDic.ContainsKey(notagKey))
+            {
+                var _idlabel = idladel.ToLower();
+                var notagValues = tagSearchDic[notagKey].Split('|');
+                foreach(var v in notagValues)
+                {
+                    if (_idlabel.Contains(v))
+                    {
+                        var vindex = _idlabel.IndexOf(v);
+                        if (vindex != -1)
+                        {
+                            var idlabelleft = idladel.Substring(0, vindex);
+                            var idlabelcenter = "";
+                            if (idladel.Length > vindex && idladel.Length >= vindex + v.Length)
+                                idlabelcenter = idladel.Substring(vindex, v.Length);
+                            var idlaelrigth = "";
+                            if (idladel.Length > vindex + v.Length)
+                                idlaelrigth = idladel.Substring(vindex + v.Length);
+                            idladel = idlabelleft + "<color=yellow><b>" + idlabelcenter + "</b></color>" + idlaelrigth;
+                            return idladel;
+                        }
+                        break;
+                    }
+                }
+            }
+
             return text;
         }
         List<string> makeTagSearchValueList(string values)
@@ -977,8 +1139,9 @@ namespace KSwordKit.Editor.PackageManager
         }
         List<KitOriginPackageConfig> Search(string searchStr, out Dictionary<string, string> tagSearchDic)
         {
-            var _searchStr = searchStr;
+            var _searchStr = searchStr.Substring(0);
             tagSearchDic = new Dictionary<string, string>();
+            if (_searchStr[_searchStr.Length - 1] != '|') _searchStr += '|';
             var index = _searchStr.IndexOf('|');
             if(index == -1)
             {
@@ -1182,7 +1345,7 @@ namespace KSwordKit.Editor.PackageManager
                                 if (!string.IsNullOrEmpty(value) && !string.IsNullOrWhiteSpace(value))
                                 {
                                     foreach(var d in opc.KitPackageConfig.Dependencies)
-                                        if (d.ToLower() == value.ToLower()) return true;
+                                        if (d.ToLower().Contains(value.ToLower())) return true;
                                 }
                         }
                     }
@@ -1505,6 +1668,10 @@ namespace KSwordKit.Editor.PackageManager
                     });
                 }
             }
+        }
+        void lookOriginPackageConfigInfo(KitOriginPackageConfig originPackageConfig)
+        {
+
         }
         int getButtonWidth(string str)
         {
