@@ -1974,7 +1974,7 @@ namespace KSwordKit.Editor.PackageManager
         }
         void lookOriginPackageConfigInfo(KitOriginPackageConfig originPackageConfig)
         {
-
+            KitLookPackageInfoWindow.Open(originPackageConfig.ID);
         }
         int getButtonWidth(string str)
         {
