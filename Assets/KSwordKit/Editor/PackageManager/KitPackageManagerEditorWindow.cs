@@ -10,7 +10,7 @@ namespace KSwordKit.Editor.PackageManager
     public class KitPackageManagerEditorWindow : EditorWindow
     {
         static KitPackageManagerEditorWindow window;
-        const string kitUserSearchDefaultInputString = "搜索包名、包作者、包描述等等";
+        const string kitUserSearchDefaultInputString = "搜索包名、作者、描述、版本号等等";
 
         /// <summary>
         /// 窗口打开显示函数
@@ -574,7 +574,7 @@ namespace KSwordKit.Editor.PackageManager
                 }
             }
             
-            if (!imported && GUILayout.Button("导入", GUILayout.Width(50), GUILayout.Height(23)))
+            if (!imported && GUILayout.Button("导入", GUILayout.Width(55), GUILayout.Height(23)))
             {
                 importKKPFile(originPackageConfig, "导入");
             }
@@ -596,7 +596,7 @@ namespace KSwordKit.Editor.PackageManager
             }
 
             if (!imported || !needUpdate) GUI.enabled = false;
-            if (GUILayout.Button("更新", GUILayout.Width(50), GUILayout.Height(23)))
+            if (GUILayout.Button("更新", GUILayout.Width(55), GUILayout.Height(23)))
             {
                 updateKKP(originPackageConfig, opcs);
             }
@@ -612,13 +612,13 @@ namespace KSwordKit.Editor.PackageManager
             }
             else
             {
-                if (GUILayout.Button("卸载", GUILayout.Width(50), GUILayout.Height(23)))
+                if (GUILayout.Button("卸载", GUILayout.Width(55), GUILayout.Height(23)))
                 {
                     uninstal(originPackageConfig);
                 }
             }
             GUI.enabled = true;
-            if (GUILayout.Button("查看", GUILayout.Width(50), GUILayout.Height(23)))
+            if (GUILayout.Button("查看", GUILayout.Width(55), GUILayout.Height(23)))
             {
                 lookOriginPackageConfigInfo(originPackageConfig);
             }
@@ -735,22 +735,19 @@ namespace KSwordKit.Editor.PackageManager
                 GUILayout.Label("标签：", EditorStyles.boldLabel, GUILayout.Width(30));
                 var eachMaxLength = 500;
                 var maxHeight = 2;
-
-                if (isSearchResult && tagSearchDic.ContainsKey(tagKey))
+                if (isSearchResult && (tagSearchDic.ContainsKey(tagKey) || tagSearchDic.ContainsKey(notagKey)))
                 {
                     var tags = new List<string>();
                     tags.AddRange(originPackageConfig.KitPackageConfig.Tags);
-                    var tagvalues = tagSearchDic[tagKey].Split('|');
                     var tagValueList = new List<string>();
-                    tagValueList.AddRange(tagvalues);
+                    if (tagSearchDic.ContainsKey(tagKey))
+                        tagValueList.AddRange(tagSearchDic[tagKey].Split('|'));
+                    if (tagSearchDic.ContainsKey(notagKey))
+                        tagValueList.AddRange(tagSearchDic[notagKey].Split('|'));
                     var tagmatchedList = new List<int>();
                     foreach (var value in tagValueList)
-                    {
-                        for(var i = 0; i < tags.Count; i++)
-                        {
+                        for (var i = 0; i < tags.Count; i++)
                             if (tags[i].ToLower().Contains(value) && !tagmatchedList.Contains(i)) tagmatchedList.Add(i);
-                        }
-                    }
                     GUILayout.BeginVertical();
                     GUI.enabled = false;
                     var _i = 0;
@@ -839,16 +836,26 @@ namespace KSwordKit.Editor.PackageManager
                 var tagSearchDicHave = false;
                 var descValue = "";
                 if(tagSearchDic != null)
-                foreach(var desc in desckeys)
-                    if(tagSearchDic.ContainsKey(desc))
+                {
+                    foreach (var desc in desckeys)
+                        if (tagSearchDic.ContainsKey(desc))
+                        {
+                            tagSearchDicHave = true;
+
+                            if (string.IsNullOrEmpty(descValue))
+                                descValue = tagSearchDic[desc];
+                            else
+                                descValue += "|" + tagSearchDic[desc];
+                        }
+                    if(tagSearchDic.ContainsKey(notagKey))
                     {
                         tagSearchDicHave = true;
-
                         if (string.IsNullOrEmpty(descValue))
-                            descValue = tagSearchDic[desc];
-                        else 
-                            descValue += "|" + tagSearchDic[desc];
+                            descValue = tagSearchDic[notagKey];
+                        else
+                            descValue += "|" + tagSearchDic[notagKey];
                     }
+                }
 
                 if (isSearchResult && tagSearchDicHave)
                 {
@@ -1044,61 +1051,79 @@ namespace KSwordKit.Editor.PackageManager
                         GUILayout.Label("所有版本：", EditorStyles.boldLabel, GUILayout.Width(60));
 
                         var maxShowVersionCount = 4;
-                        var idSearchIndex = 0;
+                        var lastidSearchIndex = 0;
                         for (var i = 0; i < versions.Count; i++)
-                            if (KitInitializeEditor.KitOriginConfig.PackageList[versions[i]] == originPackageConfig.ID)
-                            {
-                                idSearchIndex = i;
-                                break;
-                            }
-
-                        EditorGUILayout.BeginVertical();
-
-                        if (isSearchResult && versions.Count > maxShowVersionCount && idSearchIndex >= maxShowVersionCount)
                         {
-                            var idvalue = _versions[idSearchIndex];
-                            _versions[maxShowVersionCount - 1] = idvalue;
-                            _versions[maxShowVersionCount - 2] = -1;
-                        }
-
-                        for (var i = 0; i < _versions.Count && i < maxShowVersionCount; i++)
-                        {
-                            if(_versions[i] == -1)
+                           var _versionID = KitInitializeEditor.KitOriginConfig.PackageList[versions[i]];
+                            if (_versionID == originPackageConfig.ID)
                             {
-                                GUILayout.Label("...", GUILayout.Width(20));
+                                if (i > lastidSearchIndex)
+                                    lastidSearchIndex = i;
                             }
                             else
                             {
-                                var versionID = KitInitializeEditor.KitOriginConfig.PackageList[_versions[i]];
-                                var version = versionID.Split('@')[1];
-                                GUILayout.BeginHorizontal();
-                                GUILayout.Label(version, GUILayout.Width(getButtonWidth(version)));
-                                var versionPath = System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, versionID));
-                                var versionImported = System.IO.Directory.Exists(versionPath);
-                                if (versionImported)
+                                if (System.IO.Directory.Exists(System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, _versionID))))
                                 {
-                                    GUI.enabled = false;
-                                    GUILayout.Button("已导入", GUILayout.Width(50), GUILayout.Height(23));
-                                    GUI.enabled = true;
+                                    if (i > lastidSearchIndex)
+                                        lastidSearchIndex = i;
                                 }
-                                else if (GUILayout.Button("导入", GUILayout.Width(40), GUILayout.Height(23)))
-                                {
-                                    importKKPFile(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[_versions[i]], "导入");
-                                }
-                                GUI.enabled = versionImported;
-                                if (GUILayout.Button("卸载", GUILayout.Width(40), GUILayout.Height(23)))
-                                {
-                                    uninstal(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[_versions[i]]);
-                                }
-                                GUI.enabled = true;
-                                if (GUILayout.Button("查看", GUILayout.Width(40), GUILayout.Height(23)))
-                                {
-                                    lookOriginPackageConfigInfo(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[_versions[i]]);
-                                }
-                                GUILayout.EndHorizontal();
                             }
                         }
-                        if (_versions.Count > maxShowVersionCount)
+                        if (isSearchResult)
+                        {
+                            var tagValues = new List<string>();
+                            var versionKeys = versionKey.Split('|');
+                            foreach (var vkey in versionKeys)
+                                if (tagSearchDic.ContainsKey(vkey))
+                                    tagValues.AddRange(tagSearchDic[vkey].Split('|'));
+                            if (tagSearchDic.ContainsKey(notagKey))
+                                tagValues.AddRange(tagSearchDic[notagKey].Split('|'));
+                            foreach (var v in tagValues)
+                            {
+                                for (var i = 0; i < versions.Count; i++)
+                                    if (KitInitializeEditor.KitOriginConfig.PackageList[versions[i]].Split('@')[1] == v)
+                                        if (i > lastidSearchIndex)
+                                            lastidSearchIndex = i;
+                            }
+                        }
+
+                        EditorGUILayout.BeginVertical();
+
+                        var _i = 0;
+                        for (; _i < _versions.Count && (_i <= lastidSearchIndex || _i < maxShowVersionCount); _i++)
+                        {
+                            var versionID = KitInitializeEditor.KitOriginConfig.PackageList[_versions[_i]];
+                            var version = versionID.Split('@')[1];
+                            var w = GUILayout.Width(getButtonWidth(version));
+                            GUILayout.BeginHorizontal();
+                            if (isSearchResult)
+                                version = makeRichText(version, versionKey, tagSearchDic);
+                            GUILayout.Button(version, richText, w);
+                            var versionPath = System.IO.Path.Combine(KitConst.KitInstallationDirectory, System.IO.Path.Combine(KitConst.KitPackagesImportRootDirectory, versionID));
+                            var versionImported = System.IO.Directory.Exists(versionPath);
+                            if (versionImported)
+                            {
+                                GUI.enabled = false;
+                                GUILayout.Button("已导入", GUILayout.Width(45), GUILayout.Height(23));
+                                GUI.enabled = true;
+                            }
+                            else if (GUILayout.Button("导入", GUILayout.Width(45), GUILayout.Height(23)))
+                            {
+                                importKKPFile(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[_versions[_i]], "导入");
+                            }
+                            GUI.enabled = versionImported;
+                            if (GUILayout.Button("卸载", GUILayout.Width(45), GUILayout.Height(23)))
+                            {
+                                uninstal(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[_versions[_i]]);
+                            }
+                            GUI.enabled = true;
+                            if (GUILayout.Button("查看", GUILayout.Width(45), GUILayout.Height(23)))
+                            {
+                                lookOriginPackageConfigInfo(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[_versions[_i]]);
+                            }
+                            GUILayout.EndHorizontal();
+                        }
+                        if (_i < _versions.Count)
                         {
                             GUI.enabled = false;
                             GUILayout.Label("more...");
@@ -1244,10 +1269,118 @@ namespace KSwordKit.Editor.PackageManager
             foreach (var kv in temp)
                 tagSearchDic[kv.Key] = kv.Value;
         }
-        Dictionary<int, int> matchStrs(string match, string[] strs)
+        void RemoveDuplicateElements(List<string> strs)
         {
-            var dic = new Dictionary<int, int>();
+            var _strs = new List<string>();
+            for (var i = 0; i < strs.Count; i++)
+            {
+                var value = strs[i];
+                bool canadd = true;
+                for (var j = 0; j < strs.Count; j++)
+                {
+                    if (i == j) continue;
+                    if (strs[j].Contains(value))
+                    {
+                        canadd = false;
+                        break;
+                    }
+                }
+                if (canadd)
+                    _strs.Add(value);
+            }
+            strs.Clear();
+            strs.AddRange(_strs);
+        }
+        void RemoveDuplicateArea(List<Vector2Int> indexCountList)
+        {
+            int removeIndex;
+            do
+            {
+                removeIndex = -1;
+                for (var i = 0; i < indexCountList.Count; i++)
+                {
+                    var indexi = indexCountList[i];
+                    for (var j = 0; j < indexCountList.Count; j++)
+                    {
+                        if (i == j) continue;
+                        var indexj = indexCountList[j];
+                        if (indexi.x >= indexj.x && indexi.x <= indexj.x + indexj.y && indexi.x + indexi.y - 1 > indexj.x + indexj.y - 1)
+                        {
+                            indexCountList[i] = new Vector2Int()
+                            {
+                                x = indexj.x,
+                                y = indexi.x + indexi.y - indexj.x
+                            };
+                            removeIndex = j;
+                            break;
+                        }
+                        else if (indexi.x + indexi.y - 1 >= indexj.x && indexi.x + indexi.y - 1 <= indexj.x + indexj.y - 1)
+                        {
+                            indexCountList[i] = new Vector2Int()
+                            {
+                                x = indexi.x,
+                                y = indexi.y + indexj.x - indexi.x
+                            };
+                            removeIndex = j;
+                            break;
+                        }
+                    }
+                    if (removeIndex != -1)
+                        break;
+                }
+                if (removeIndex != -1)
+                    indexCountList.RemoveAt(removeIndex);
 
+            } while (removeIndex != -1);
+        }
+        Dictionary<int, int> matchStrs(string match, List<string> strs)
+        {
+            RemoveDuplicateElements(strs);
+            var matchedIndexList = new List<Vector2Int>();
+            foreach(var value in strs)
+            {
+                var _match = match.ToLower();
+                var index = _match.IndexOf(value);
+                while(index != -1)
+                {
+                    bool canadd = true;
+                    for (var i = 0; i < matchedIndexList.Count; i++)
+                    {
+                        var matched = matchedIndexList[i];
+                        if (index >= matched.x && index <= matched.x + matched.y && index + value.Length - 1 > matched.x + matched.y - 1)
+                        {
+                            matchedIndexList[i] = new Vector2Int()
+                            {
+                                x = matched.x,
+                                y = index + value.Length - matched.x
+                            };
+                            canadd = false;
+                        }
+                        else if(index + value.Length - 1 >= matched.x && index + value.Length -1 <= matched.x + matched.y - 1)
+                        {
+                            matchedIndexList[i] = new Vector2Int()
+                            {
+                                x = index,
+                                y = matched.y + matched.x - index
+                            };
+                            canadd = false;
+                        }
+                    }
+                    if (canadd)
+                        matchedIndexList.Add(new Vector2Int()
+                        {
+                            x = index,
+                            y = value.Length
+                        });
+                    else
+                        RemoveDuplicateArea(matchedIndexList);
+                    _match = _match.Substring(index + value.Length);
+                    index = _match.IndexOf(value);
+                }
+            }
+            var dic = new Dictionary<int, int>();
+            foreach (var ic in matchedIndexList)
+                dic[ic.x] = ic.y;
             return dic;
         }
         string makeRichText(string text, string tag, Dictionary<string, string> tagSearchDic)
@@ -1263,40 +1396,19 @@ namespace KSwordKit.Editor.PackageManager
                     values.AddRange(tagSearchDic[_tag].Split('|'));
             if (tagSearchDic.ContainsKey(notagKey))
                 values.AddRange(tagSearchDic[notagKey].Split('|'));
-            var matchedIndexDic = matchStrs(text, values.ToArray());
+            var matchedIndexDic = matchStrs(text, values);
             var _idlabel = "";
             var lastIndex = 0;
             foreach(var kv in matchedIndexDic)
             {
-                _idlabel += idladel.Substring(lastIndex, kv.Key - lastIndex);
-
+                if (kv.Key - lastIndex > 0)
+                    _idlabel += idladel.Substring(lastIndex, kv.Key - lastIndex);
+                _idlabel += "<color=yellow><b>" + idladel.Substring(kv.Key, kv.Value) + "</b></color>";
+                lastIndex = kv.Key + kv.Value;
             }
-            //if (tagSearchDic.ContainsKey(notagKey))
-            //{
-            //    var notagValues = tagSearchDic[notagKey].Split('|');
-            //    foreach(var v in notagValues)
-            //    {
-            //        if (_idlabel.Contains(v))
-            //        {
-            //            var vindex = _idlabel.IndexOf(v);
-            //            if (vindex != -1)
-            //            {
-            //                //var idlabelleft = idladel.Substring(0, vindex);
-            //                //var idlabelcenter = "";
-            //                //if (idladel.Length > vindex && idladel.Length >= vindex + v.Length)
-            //                //    idlabelcenter = idladel.Substring(vindex, v.Length);
-            //                //var idlaelrigth = "";
-            //                //if (idladel.Length > vindex + v.Length)
-            //                //    idlaelrigth = idladel.Substring(vindex + v.Length);
-            //                //idladel = idlabelleft + "<color=yellow><b>" + idlabelcenter + "</b></color>" + idlaelrigth;
-            //                return idladel;
-            //            }
-            //            break;
-            //        }
-            //    }
-            //}
-
-            return text;
+            if (lastIndex < idladel.Length)
+                _idlabel += idladel.Substring(lastIndex);
+            return _idlabel;
         }
         List<string> makeTagSearchValueList(string values)
         {
