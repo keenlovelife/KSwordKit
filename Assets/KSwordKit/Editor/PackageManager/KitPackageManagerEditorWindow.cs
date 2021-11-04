@@ -452,7 +452,6 @@ namespace KSwordKit.Editor.PackageManager
 
             GUILayout.Space(30);
         }
-
         void DrawItemGUI(KitOriginPackageConfig originPackageConfig, bool isSearchResult = false, Dictionary<string, string> tagSearchDic = null)
         {
             var lableWith = 450;
@@ -620,7 +619,7 @@ namespace KSwordKit.Editor.PackageManager
             GUI.enabled = true;
             if (GUILayout.Button("查看", GUILayout.Width(55), GUILayout.Height(23)))
             {
-                lookOriginPackageConfigInfo(originPackageConfig);
+                lookOriginPackageConfigInfo(originPackageConfig.ID);
             }
             GUILayout.Space(15);
             EditorGUILayout.EndHorizontal();
@@ -1119,7 +1118,7 @@ namespace KSwordKit.Editor.PackageManager
                             GUI.enabled = true;
                             if (GUILayout.Button("查看", GUILayout.Width(45), GUILayout.Height(23)))
                             {
-                                lookOriginPackageConfigInfo(KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[_versions[_i]]);
+                                lookOriginPackageConfigInfo(KitInitializeEditor.KitOriginConfig.PackageList[_versions[_i]]);
                             }
                             GUILayout.EndHorizontal();
                         }
@@ -1972,9 +1971,9 @@ namespace KSwordKit.Editor.PackageManager
                 }
             }
         }
-        void lookOriginPackageConfigInfo(KitOriginPackageConfig originPackageConfig)
+        void lookOriginPackageConfigInfo(string id)
         {
-            KitLookPackageInfoWindow.Open(originPackageConfig.ID);
+            KitLookPackageInfoWindow.Open(id);
         }
         int getButtonWidth(string str)
         {
