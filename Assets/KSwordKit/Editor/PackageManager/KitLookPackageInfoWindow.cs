@@ -12,8 +12,9 @@ namespace KSwordKit.Editor.PackageManager
         /// 窗口打开显示函数
         /// </summary>
         /// <param name="data">窗口数据</param>
-        public static void Open(string id)
+        public static void Open(string _id)
         {
+            id = _id;
             if (window)
             {
                 window.Close();
@@ -46,7 +47,7 @@ namespace KSwordKit.Editor.PackageManager
         static  readonly string tempFilename = "lookPackage.info";
         Vector2 scorllPos;
         float spaceCount = 20;
-        string id;
+        static string id;
         GUIStyle richText;
         private void OnGUI()
         {
@@ -87,9 +88,14 @@ namespace KSwordKit.Editor.PackageManager
                 KitInitializeEditor.KitOriginConfig.OriginPackageDic[ids[0]].Count > 1)
                 haveMoreVersion = true;
             var opcs = new List<KitOriginPackageConfig>();
+            KitOriginPackageConfig updateOpc = null;
             if (haveMoreVersion)
             {
                 var versions = KitInitializeEditor.KitOriginConfig.OriginPackageDic[ids[0]];
+                updateOpc = KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[versions[0]];
+                if (updateOpc.ID == id ||
+                    (updateOpc.KitPackageConfig != null && System.IO.Directory.Exists(updateOpc.KitPackageConfig.ImportRootDirectory)))
+                    needUpdate = false;
                 foreach (var i in versions)
                 {
                     var _opc = KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[i];
@@ -107,7 +113,8 @@ namespace KSwordKit.Editor.PackageManager
                     var dinfoname = dinfo.Name.Split('@')[0];
                     if (dinfoname == ids[0])
                     {
-                        imported = true;
+                        if (dinfo.Name == id)
+                            imported = true;
                         importNames.Add(dinfo.Name);
                     }
                 }
@@ -131,35 +138,16 @@ namespace KSwordKit.Editor.PackageManager
                 GUILayout.Button("已导入", GUILayout.Width(60), GUILayout.Height(23));
                 GUI.enabled = true;
             }
-            if (imported)
-            {
-                foreach (var name in importNames)
-                    if (name == config.ID)
-                    {
-                        needUpdate = false;
-                        break;
-                    }
-            }
             if (!imported || !needUpdate) GUI.enabled = false;
             if (GUILayout.Button("更新", GUILayout.Width(55), GUILayout.Height(23)))
             {
-                KitPackageManagerEditorWindow.updateKKP(originPackageConfig, opcs);
+                KitPackageManagerEditorWindow.updateKKP(updateOpc, opcs);
             }
             GUI.enabled = true;
             if (!imported) GUI.enabled = false;
-            if (haveMoreVersion)
+            if (GUILayout.Button("卸载", GUILayout.Width(55), GUILayout.Height(23)))
             {
-                if (GUILayout.Button("卸载所有版本", GUILayout.Width(100), GUILayout.Height(23)))
-                {
-                    KitPackageManagerEditorWindow.uninstal(opcs);
-                }
-            }
-            else
-            {
-                if (GUILayout.Button("卸载", GUILayout.Width(55), GUILayout.Height(23)))
-                {
-                    KitPackageManagerEditorWindow.uninstal(originPackageConfig);
-                }
+                KitPackageManagerEditorWindow.uninstal(originPackageConfig);
             }
             GUI.enabled = true;
             GUILayout.EndHorizontal();

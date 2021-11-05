@@ -174,37 +174,17 @@ namespace KSwordKit.Editor.PackageManager
             if (GUILayout.Button("浏览", GUILayout.Width(70), GUILayout.Height(20)))
             {
                 packageDir = EditorUtility.OpenFolderPanel(windowTitle, packageDir, "");
-                var temp = System.IO.Path.Combine(Application.temporaryCachePath, tempPackageName);
-                if (System.IO.File.Exists(temp))
-                    System.IO.File.Delete(temp);
-                System.IO.File.WriteAllText(temp, packageDir);
-                init();
+                if (!string.IsNullOrEmpty(packageDir))
+                {
+                    var temp = System.IO.Path.Combine(Application.temporaryCachePath, tempPackageName);
+                    if (System.IO.File.Exists(temp))
+                        System.IO.File.Delete(temp);
+                    System.IO.File.WriteAllText(temp, packageDir);
+                    init();
+                }
             }
             GUILayout.Space(spaceCount);
             GUILayout.EndHorizontal();
-
-            //EditorGUILayout.Space(10);
-            //GUI.enabled = false;
-            //GUILayout.Button("或者，您可以一次性选择多个包目录，将他们全部导出成包文件。（一次导出多个包）", GUILayout.Height(40));
-            //GUI.enabled = true;
-            //EditorGUILayout.Space(10);
-            //GUILayout.BeginHorizontal();
-            //GUILayout.Space(spaceCount);
-            //EditorGUILayout.LabelField("选择多个包目录：", blod, GUILayout.Width(80));
-            //packageDir = EditorGUILayout.TextField(packageDir);
-            //blod.fontSize = 12;
-            //if (GUILayout.Button("浏览", GUILayout.Width(70), GUILayout.Height(20)))
-            //{
-                
-            //    packageDir = EditorUtility.OpenFilePanelWithFilters(windowTitle, packageDir, new string[] { "图片或pdf","*jpg;*png" }); ;
-            //    var temp = System.IO.Path.Combine(Application.temporaryCachePath, tempPackageName);
-            //    if (System.IO.File.Exists(temp))
-            //        System.IO.File.Delete(temp);
-            //    System.IO.File.WriteAllText(temp, packageDir);
-            //    init();
-            //}
-            //GUILayout.Space(spaceCount);
-            //GUILayout.EndHorizontal();
 
             if (!string.IsNullOrEmpty(packageDir))
             {

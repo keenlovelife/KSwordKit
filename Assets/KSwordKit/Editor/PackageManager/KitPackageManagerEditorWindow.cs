@@ -30,6 +30,7 @@ namespace KSwordKit.Editor.PackageManager
         }
 
         static string kitUserSearchInputString = kitUserSearchDefaultInputString;
+        static string userSearchInputCacheFilename = "kitUserSearchInputCache";
         static Vector2 scorllPos;
         static GUIStyle blod;
         static GUIStyle richText;
@@ -154,6 +155,10 @@ namespace KSwordKit.Editor.PackageManager
             else
                 packageCount = KitInitializeEditor.KitOriginConfig.OriginPackageConfigList.Count.ToString();
 
+            var userSearchInputCacheFilepath = System.IO.Path.Combine(Application.temporaryCachePath, userSearchInputCacheFilename);
+            if (System.IO.File.Exists(userSearchInputCacheFilepath))
+                kitUserSearchInputString = System.IO.File.ReadAllText(userSearchInputCacheFilepath, System.Text.Encoding.UTF8);
+
             EditorGUILayout.BeginHorizontal();
             GUILayout.Space(15);
             EditorGUILayout.BeginVertical();
@@ -166,9 +171,14 @@ namespace KSwordKit.Editor.PackageManager
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.Space(20);
+
             // 搜索
             if (!string.IsNullOrEmpty(kitUserSearchInputString) && kitUserSearchInputString != kitUserSearchDefaultInputString)
             {
+                if (System.IO.File.Exists(userSearchInputCacheFilepath))
+                    System.IO.File.Delete(userSearchInputCacheFilepath);
+                System.IO.File.WriteAllText(userSearchInputCacheFilepath, kitUserSearchInputString);
+
                 var searchResultCount = 0;
                 Dictionary<string, string> tagSearchDic;
                 var searchResults = Search(kitUserSearchInputString, out tagSearchDic);
@@ -206,6 +216,11 @@ namespace KSwordKit.Editor.PackageManager
                 EditorGUILayout.EndHorizontal();
                 GUILayout.Space(30);
                 return;
+            }
+            else
+            {
+                if (System.IO.File.Exists(userSearchInputCacheFilepath))
+                    System.IO.File.Delete(userSearchInputCacheFilepath);
             }
 
             EditorGUILayout.BeginHorizontal();
@@ -544,9 +559,17 @@ namespace KSwordKit.Editor.PackageManager
                 KitInitializeEditor.KitOriginConfig.OriginPackageDic[ids[0]].Count > 1)
                 haveMoreVersion = true;
             var opcs = new List<KitOriginPackageConfig>();
+            KitOriginPackageConfig updateOpc = null;
             if (haveMoreVersion)
             {
                 var versions = KitInitializeEditor.KitOriginConfig.OriginPackageDic[ids[0]];
+                if (isSearchResult)
+                {
+                    updateOpc = KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[versions[0]];
+                    if (updateOpc.ID == originPackageConfig.ID ||
+                        (updateOpc.KitPackageConfig != null && System.IO.Directory.Exists(updateOpc.KitPackageConfig.ImportRootDirectory)))
+                        needUpdate = false;
+                }
                 foreach (var i in versions)
                 {
                     var _opc = KitInitializeEditor.KitOriginConfig.OriginPackageConfigList[i];
@@ -591,7 +614,7 @@ namespace KSwordKit.Editor.PackageManager
                 GUILayout.Button("已导入", GUILayout.Width(60), GUILayout.Height(23));
                 GUI.enabled = true;
             }
-            if (imported)
+            if (imported && !isSearchResult)
             {
                 foreach(var name in importNames)
                     if(name == originPackageConfig.ID)
@@ -603,7 +626,7 @@ namespace KSwordKit.Editor.PackageManager
             if (!imported || !needUpdate) GUI.enabled = false;
             if (GUILayout.Button("更新", GUILayout.Width(55), GUILayout.Height(23)))
             {
-                updateKKP(originPackageConfig, opcs);
+                updateKKP(updateOpc, opcs);
             }
             GUI.enabled = true;
             if (!imported) GUI.enabled = false;
@@ -853,7 +876,6 @@ namespace KSwordKit.Editor.PackageManager
                             descValue += "|" + tagSearchDic[notagKey];
                     }
                 }
-
                 if (isSearchResult && tagSearchDicHave)
                 {
                     var descValues = descValue.Split('|');
@@ -944,7 +966,7 @@ namespace KSwordKit.Editor.PackageManager
                             }
                         }
                     }
-                    if (haveOver && matchedIndexList.Count > 0)
+                    if (haveOver)
                     {
                         var matchedStr = "";
                         var lastIndex = startIndex;
