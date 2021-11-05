@@ -403,10 +403,6 @@ namespace KSwordKit.Editor
             }
             return AssetDeleteResult.DidNotDelete;
         }
-        public static void OnWillCreateAsset(string name)
-        {
-            Debug.Log("OnWillCreateAsset：" + name);
-        }
     }
 
 }
