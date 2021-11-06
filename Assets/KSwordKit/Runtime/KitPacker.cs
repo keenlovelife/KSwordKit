@@ -17,14 +17,32 @@ namespace KSwordKit
             public int fileCount;
             public List<FileIndex> fileIndexList;
         }
+        public enum FileIndexState
+        {
+            None,
+            NewFile,
+            CanUpdate,
+            Same
+        }
         [Serializable]
         public class FileIndex
         {
             public bool isDir;
             public string fileName;
             public string relativeFilePath;
+            public string MD5Value;
             public long fileBytesLength;
             public long filePosition;
+            [NonSerialized]
+            public bool selected;
+            [NonSerialized]
+            public bool per_selected;
+            [NonSerialized]
+            public bool foldout;
+            [NonSerialized]
+            public FileIndexState fileIndexState;
+            [NonSerialized]
+            public List<int> childFileindexList;
         }
         public static void CopyDirectory(string inDir, string toDir, bool overwrite = true)
         {
@@ -125,7 +143,7 @@ namespace KSwordKit
                     fileIndex.filePosition = outFileStream.Position;
                     var infileBytes = System.IO.File.ReadAllBytes(fileinfo.FullName);
                     fileIndex.fileBytesLength = infileBytes.LongLength;
-
+                    fileIndex.MD5Value = CheckMD5(fileinfo.FullName);
                     if (infileBytes.LongLength <= int.MaxValue)
                     {
                         var count = (int)infileBytes.LongLength;
@@ -162,7 +180,7 @@ namespace KSwordKit
 
             if (progress != null) progress("", 1, true, null);
         }
-        public static void Unpack(string inPackageFilepath, string outDir, System.Action<string, float, bool, string, List<string>> progress = null, bool overwrite = true)
+        public static void Unpack(string inPackageFilepath, string outDir, System.Action<string, float, bool, string, List<string>> progress = null, bool overwrite = true, bool runFileSettings = true, List<FileIndex> withFileIndexList = null)
         {
             if (progress != null) progress("", 0, false,null, null);
             var fs = System.IO.File.OpenRead(inPackageFilepath);
@@ -175,6 +193,7 @@ namespace KSwordKit
             var getTag = System.Text.Encoding.UTF8.GetString(tagBytes);
             if(!getTag.StartsWith(tag_mark))
             {
+                fs.Close();
                 if (progress != null) progress("", 1, true, "该文件不是kkp文件格式，无法解析！", null);
                 return;
             }
@@ -194,6 +213,20 @@ namespace KSwordKit
             for(var i = 0; i < fileIndexs.fileIndexList.Count; i++)
             {
                 var fileindex = fileIndexs.fileIndexList[i];
+                if(withFileIndexList != null)
+                {
+                    bool can = true;
+                    foreach(var fi in withFileIndexList)
+                    {
+                        if(fi.relativeFilePath == fileindex.relativeFilePath)
+                        {
+                            if (!fi.selected)
+                                can = false;
+                            break;
+                        }
+                    }
+                    if (!can) continue;
+                }
                 if (fileindex.isDir)
                 {
                     var dirpath = System.IO.Path.Combine(outDir, fileindex.relativeFilePath);
@@ -223,7 +256,7 @@ namespace KSwordKit
             {
                 var kitPackageConfig = JsonUtility.FromJson<KSwordKit.KitPackageConfig>(System.IO.File.ReadAllText(kitPackageConfigFilepath, System.Text.Encoding.UTF8));
                 // 整理文件
-                if (kitPackageConfig.FileSettings != null && kitPackageConfig.FileSettings.Count > 0)
+                if (runFileSettings && kitPackageConfig.FileSettings != null && kitPackageConfig.FileSettings.Count > 0)
                 {
                     var fileFileSettings = new List<KitPackageConfigFileSetting>();
                     var dirFileSettings = new List<KitPackageConfigFileSetting>();
@@ -307,6 +340,7 @@ namespace KSwordKit
             if (!getTag.StartsWith(tag_mark))
             {
                 error = "该文件不是kkp文件格式，无法解析！";
+                fs.Close();
                 return null;
             }
 
@@ -328,7 +362,6 @@ namespace KSwordKit
         public static bool IsKKP(string inPackageFilepath)
         {
             var fs = System.IO.File.OpenRead(inPackageFilepath);
-
             var tagbytes = System.Text.Encoding.UTF8.GetBytes(tag);
             var tagCount = tagbytes.Length;
             var tagBytes = new byte[tagCount];
@@ -351,6 +384,7 @@ namespace KSwordKit
             if (!getTag.StartsWith(tag_mark))
             {
                 error = "该文件不是kkp文件格式，无法解析！";
+                fs.Close();
                 return null;
             }
 
@@ -385,6 +419,15 @@ namespace KSwordKit
             error = "该文件是kkp文件，但是它里面不包含 " + KitConst.KitPackageConfigFilename + " 文件！";
             return null;
         }
-
+        public static string CheckMD5(string filename)
+        {
+            using (var md5 = System.Security.Cryptography.MD5.Create())
+            {
+                using (var stream = System.IO.File.OpenRead(filename))
+                {
+                    return System.Text.Encoding.Default.GetString(md5.ComputeHash(stream));
+                }
+            }
+        }
     }
 }
