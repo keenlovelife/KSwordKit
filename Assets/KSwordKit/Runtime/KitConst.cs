@@ -5,21 +5,21 @@ using UnityEngine;
 namespace KSwordKit
 {
     /// <summary>
-    /// KSwordKitï¿½Ğµï¿½ï¿½ï¿½ï¿½Ğ³ï¿½ï¿½ï¿½
-    /// <para>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ÃµÄ³ï¿½ï¿½ï¿½ï¿½É°ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã¡ï¿½</para>
-    /// <para>ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ş¸Ä¡ï¿½ï¿½ï¿½ï¿½Ô·ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</para>
+    /// KSwordKitÖĞµÄËùÓĞ³£Á¿
+    /// <para>µ«²»°üÀ¨ÆäËû°üÄÚ¶¨ÒåµÄ³£Á¿£¬ÆäËû°üÄÚÊ¹ÓÃµÄ³£Á¿ÓÉ°ü×Ô¼º¶¨ÒåºÍÊ¹ÓÃ¡£</para>
+    /// <para>ÕâÀïµÄ³£Á¿¡¾ÇëÎğĞŞ¸Ä¡¿£¬ÒÔ·ÀÖ¹³ÌĞò³ö´í¡£</para>
     /// </summary>
     public class KitConst
     {
         /// <summary>
-        /// KSwordKitï¿½ï¿½ï¿½ï¿½
+        /// KSwordKitÃû×Ö
         /// </summary>
         public const string KitName = "KSwordKit";
         public const string KitVersion = "v1.0.0";
         /// <summary>
-        /// KSwordKitï¿½ï¿½×°ï¿½ï¿½Ä¿Â¼
-        /// <para>ï¿½ï¿½Ä¿Â¼Ö¸Ê¾ï¿½ï¿½KSwordKitï¿½Ä±ï¿½ï¿½Ã»ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ÚµÄ¸ï¿½Ä¿Â¼ï¿½ï¿½Ò²ï¿½ï¿½KSwordKitï¿½Ä¹ï¿½ï¿½ï¿½Ä¿Â¼</para>
-        /// <para>KSwordKitï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ°ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½Ä¿Â¼ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ±ï¿½ï¿½ë¡£</para>
+        /// KSwordKit°²×°¸ùÄ¿Â¼
+        /// <para>´ËÄ¿Â¼Ö¸Ê¾ÁËKSwordKitµÄ±»ÓÃ»§°²×°ºó£¬ËùÔÚµÄ¸ùÄ¿Â¼£¬Ò²ÊÇKSwordKitµÄ¹¤×÷Ä¿Â¼</para>
+        /// <para>KSwordKitÄÚµ¼ÈëµÄËùÓĞ°üÒ²»á³öÏÖÔÚ¸ÃÄ¿Â¼ÄÚ£¬²ÎÓëÏîÄ¿³ÌĞòµÄ×îÖÕ±àÒë¡£</para>
         /// </summary>
         public static string KitInstallationDirectory
         {
@@ -33,34 +33,34 @@ namespace KSwordKit
         }
         static KSwordKit.KSwordKitConfig config;
         /// <summary>
-        /// KSwordKitï¿½Ñµï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½Ğµï¿½ï¿½ï¿½ï¿½Ğ°ï¿½ï¿½ï¿½ï¿½ÚµÄ¸ï¿½Ä¿Â¼
-        /// <para>ï¿½ï¿½Ä¿Â¼Ö¸Ê¾ï¿½ï¿½ï¿½Úµï¿½ï¿½ `ï¿½ï¿½ï¿½ï¿½ï¿½` Ê±ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿½ï¿½á±»ï¿½ï¿½ï¿½ëµ½ï¿½ï¿½Ä¿Â¼ï¿½Ğ¡ï¿½</para>
+        /// KSwordKitÒÑµ¼ÈëÏîÄ¿ÖĞµÄËùÓĞ°üËùÔÚµÄ¸ùÄ¿Â¼
+        /// <para>´ËÄ¿Â¼Ö¸Ê¾ÁËÔÚµã»÷ `µ¼Èë°ü` Ê±£¬¸Ã°ü½«»á±»µ¼Èëµ½¸ÃÄ¿Â¼ÖĞ¡£</para>
         /// </summary>
         public const string KitPackagesImportRootDirectory = "Packages";
         /// <summary>
-        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
+        /// °üÄÚÅäÖÃÎÄ¼şÃû
         /// </summary>
         public const string KitPackageConfigFilename = "kitPackageConfig.json";
         /// <summary>
-        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ô´ï¿½Ğ»ï¿½È¡ï¿½Ä°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
+        /// ¼ì²é¸üĞÂÊ±£¬´ÓÔ´ÖĞ»ñÈ¡µÄ°üÅäÖÃÎÄ¼şÃû
         /// </summary>
         public const string KitOriginPackageConfigFilename = ".KitConfig.json";
         /// <summary>
-        /// KSwordKitï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ĞµÄ°ï¿½ï¿½ï¿½ï¿½ÚµÄ¸ï¿½Ä¿Â¼
-        /// <para>ï¿½ï¿½Ä¿Â¼Ö¸Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ö´ï¿½ï¿½ `ï¿½ï¿½ï¿½ï¿½ï¿½`Ê±, ï¿½ï¿½ï¿½Ë´ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½İ¡ï¿½</para>
-        /// <para>ï¿½ï¿½Ä¿Â¼ï¿½Úµï¿½Ç°Unityï¿½ï¿½Ä¿ï¿½ï¿½Ä¿Â¼ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ `Assets` Ä¿Â¼ï¿½Ğ£ï¿½ï¿½ï¿½ï¿½â±»Unityï¿½à¼­ï¿½ï¿½ï¿½ï¿½ï¿½ë¡£</para>
+        /// KSwordKit¿ÉÓÃµÄËùÓĞµÄ°üËùÔÚµÄ¸ùÄ¿Â¼
+        /// <para>´ËÄ¿Â¼Ö¸Ê¾ÁËÔÚÓÃ»§Ö´ĞĞ `µ¼Èë°ü`Ê±, ½«´Ë´¦´æÈ¡Êı¾İ¡£</para>
+        /// <para>¸ÃÄ¿Â¼ÔÚµ±Ç°UnityÏîÄ¿¸ùÄ¿Â¼ÏÂ£¬²»»á³öÏÖÔÚ `Assets` Ä¿Â¼ÖĞ£¬±ÜÃâ±»Unity±à¼­Æ÷±àÒë¡£</para>
         /// </summary>
         public const string KitPackagesRootDirectory = ".KSwordKit/Packages";
         /// <summary>
-        /// KSwordKitï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½Ö·
+        /// KSwordKit¼ì²é¸üĞÂµØÖ·
         /// </summary>
         public const string KitCheckForUpdates = "https://gitee.com/keenlovelife/ksword-kit/raw/kkp/.KitConfig.json";
         /// <summary>
-        /// KSwordKit ï¿½ï¿½Ä¿Â¼ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
+        /// KSwordKit °üÄ¿Â¼µÄÔ´ÇëÇóÂ·¾¶
         /// </summary>
         public const string KitOriginPackagesURL = "https://gitee.com/keenlovelife/ksword-kit/raw/kkp/.KSwordKit/kkp";
         /// <summary>
-        /// KSwordKitï¿½ï¿½Ü¸ï¿½ï¿½ï¿½Ê±Ê¹ï¿½Ãµï¿½URLÇ°×º
+        /// KSwordKit¿ò¼Ü¸üĞÂÊ±Ê¹ÓÃµÄURLÇ°×º
         /// </summary>
         public const string KitUpdateURLPrefix = "https://github.com/keenlovelife/KSwordKit/releases/tag";
     }
