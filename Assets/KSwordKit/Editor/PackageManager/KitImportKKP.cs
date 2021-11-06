@@ -8,7 +8,7 @@ namespace KSwordKit.Editor.PackageManager
     [ScriptedImporter(1, "kkp")]
     public class KitImportKKP : ScriptedImporter
     {
-        public static readonly string kkpFilepathsTempFilename = "kkpFilepaths.tmp";
+        public const string kkpFilepathsTempFilename = "kkpFilepaths.tmp";
         public override void OnImportAsset(AssetImportContext ctx)
         {
             var tempfilepath = System.IO.Path.Combine(Application.temporaryCachePath, System.IO.Path.GetTempFileName());

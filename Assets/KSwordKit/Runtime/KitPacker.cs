@@ -14,6 +14,7 @@ namespace KSwordKit
         {
             public string dir;
             public long fileBytesLength;
+            public string MD5Value;
             public int fileCount;
             public List<FileIndex> fileIndexList;
         }
@@ -95,7 +96,7 @@ namespace KSwordKit
             foreach (var fileinfo in dirinfo.GetFiles())
                 if (findFileAction != null) findFileAction(fileinfo);
         }
-        public static void Pack(string inDir, string outFilepath, bool exportJsonFile = true, System.Action<string, float, bool, string> progress = null, bool overwrite = true)
+        public static void Pack(string inDir, string outFilepath, bool exportConfigJsonFile = true, bool exportFileIndexsJsonFile = true, System.Action<string, float, bool, string> progress = null, bool overwrite = true)
         {
             if (progress != null) progress("", 0, false, null);
 
@@ -170,8 +171,27 @@ namespace KSwordKit
             outFileStream.Write(tagbytes, 0, tagbytes.Length);
             outFileStream.Close();
 
-            if (exportJsonFile)
+            var md5 = CheckMD5(outFilepath);
+            if (exportConfigJsonFile)
             {
+                var configPath = System.IO.Path.Combine(outdir, outfilename + "." + KitConst.KitPackageConfigFilename);
+                var inconfigPath = System.IO.Path.Combine(inDir, KitConst.KitPackageConfigFilename);
+                if(System.IO.File.Exists(inconfigPath))
+                {
+                    if (System.IO.File.Exists(configPath))
+                        System.IO.File.Delete(configPath);
+                    var config = JsonUtility.FromJson<KitPackageConfig>(System.IO.File.ReadAllText(inconfigPath, System.Text.Encoding.UTF8));
+                    config.MD5Value = md5;
+                    System.IO.File.WriteAllText(configPath, JsonUtility.ToJson(config, true));
+                }
+                else
+                    Debug.LogWarning(KitConst.KitName + ": 配置文件 " + KitConst.KitPackageConfigFilename + " 文件不存在！\n包：" + inDir);
+            }
+
+            if (exportFileIndexsJsonFile)
+            {
+                fileIndexs.MD5Value = md5;
+                jsonString = JsonUtility.ToJson(fileIndexs, true);
                 var fileIndexsJsonPath = System.IO.Path.Combine(outdir, outfilename + ".fileIndexs.json");
                 if (System.IO.File.Exists(fileIndexsJsonPath))
                     System.IO.File.Delete(fileIndexsJsonPath);
@@ -425,7 +445,7 @@ namespace KSwordKit
             {
                 using (var stream = System.IO.File.OpenRead(filename))
                 {
-                    return System.Text.Encoding.Default.GetString(md5.ComputeHash(stream));
+                    return System.Text.Encoding.UTF8.GetString(md5.ComputeHash(stream));
                 }
             }
         }

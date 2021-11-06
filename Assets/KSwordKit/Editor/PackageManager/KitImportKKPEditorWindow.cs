@@ -23,9 +23,10 @@ namespace KSwordKit.Editor.PackageManager
         /// <param name="data">´°¿ÚÊý¾Ý</param>
         public static void Open(string subtitle, string assetpath)
         {
+            var isOpen = EditorWindow.HasOpenInstances<KitImportKKPEditorWindow>();
             assetPaths.Add(assetpath);
             getKKPFilepaths();
-            if (!EditorWindow.HasOpenInstances<KitImportKKPEditorWindow>())
+            if (!isOpen)
             {
                 var windowTitle = KitConst.KitName + "£º" + subtitle;
                 window = GetWindow<KitImportKKPEditorWindow>(true, windowTitle);

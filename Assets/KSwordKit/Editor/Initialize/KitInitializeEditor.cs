@@ -366,13 +366,39 @@ namespace KSwordKit.Editor
             if (isFirstRequst || (!isRequestting && (System.DateTime.Now - DateTime).TotalMinutes > 1))
                 RequestUpdate();
 
+            if (!EditorWindow.HasOpenInstances<PackageManager.KitImportKKPEditorWindow>())
+            {
+                var kkptempfilepath = System.IO.Path.Combine(Application.temporaryCachePath, PackageManager.KitImportKKP.kkpFilepathsTempFilename);
+                if (System.IO.File.Exists(kkptempfilepath))
+                    System.IO.File.Delete(kkptempfilepath);
+            }
 
             var _configPath = System.IO.Path.Combine(KitInstallationPath, configPath);
             if (System.IO.File.Exists(_configPath))
             {
                 if (config == null)
                     config = Resources.Load<KSwordKitConfig>(configName);
-                if(config.KitInstallationPath != KitInstallationPath || config.KitVersion != KitVersion)
+                var importRootDir = System.IO.Path.Combine(KitInstallationPath, KitConst.KitPackagesImportRootDirectory);
+                if (System.IO.Directory.Exists(importRootDir))
+                {
+                    var tempImportList = new List<string>();
+                    var importRootDirinfo = new System.IO.DirectoryInfo(importRootDir);
+                    foreach (var dirinfo in importRootDirinfo.GetDirectories())
+                        tempImportList.Add(dirinfo.Name);
+                    if (config.KitImportedPackageList != null)
+                    {
+                        config.KitImportedPackageList.Clear();
+                        config.KitImportedPackageList = null;
+                    }
+                    config.KitImportedPackageList = tempImportList;
+                }
+                else
+                {
+                    if (config.KitImportedPackageList != null && config.KitImportedPackageList.Count > 0)
+                        config.KitImportedPackageList.Clear();
+                }
+
+                if (config.KitInstallationPath != KitInstallationPath || config.KitVersion != KitVersion)
                 {
                     config.KitInstallationPath = KitInstallationPath;
                     config.KitVersion = KitVersion;

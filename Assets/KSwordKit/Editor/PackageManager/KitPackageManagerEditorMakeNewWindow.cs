@@ -440,8 +440,8 @@ namespace KSwordKit.Editor.PackageManager
                 {
                     saveFile();
                 }
-                exportJsonFile = EditorGUILayout.Toggle("同时导出json文件", exportJsonFile);
-                exportConfigFile = EditorGUILayout.Toggle("同时导出配置文件", exportConfigFile);
+                //exportJsonFile = EditorGUILayout.Toggle("同时导出json文件", exportJsonFile);
+                //exportConfigFile = EditorGUILayout.Toggle("同时导出配置文件", exportConfigFile);
 
             }
 
@@ -465,18 +465,8 @@ namespace KSwordKit.Editor.PackageManager
                     if (System.IO.File.Exists(configPath))
                         System.IO.File.Delete(configPath);
                     System.IO.File.WriteAllText(configPath, json);
-                    if (exportConfigFile)
-                    {
-                        var outdir = System.IO.Path.GetDirectoryName(savepath);
-                        if (!System.IO.Directory.Exists(outdir))
-                            System.IO.Directory.CreateDirectory(outdir);
-                        configPath = System.IO.Path.Combine(outdir, newConfig.ID + "."  + KitConst.KitPackageConfigFilename);
-                        if (System.IO.File.Exists(configPath))
-                            System.IO.File.Delete(configPath);
-                        System.IO.File.WriteAllText(configPath, json);
-                    }
 
-                    KitPacker.Pack(packageDir, savepath, exportJsonFile , (filename, progress, done, error) =>
+                    KitPacker.Pack(packageDir, savepath, exportConfigFile, exportJsonFile, (filename, progress, done, error) =>
                     {
                         EditorUtility.DisplayCancelableProgressBar(windowTitle + System.IO.Path.GetFileName(savepath),
                             "正在导出: " + filename, progress);
