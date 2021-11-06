@@ -7,6 +7,7 @@
             "isDir": true,
             "fileName": "C#",
             "relativeFilePath": "C#",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -14,6 +15,7 @@
             "isDir": true,
             "fileName": "Core",
             "relativeFilePath": "C#/Core",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -21,6 +23,7 @@
             "isDir": false,
             "fileName": "Controller.cs",
             "relativeFilePath": "C#/Core/Controller.cs",
+            "MD5Value": "j\u0015*��6\u0007I�n�����",
             "fileBytesLength": 8722,
             "filePosition": 0
         },
@@ -28,6 +31,7 @@
             "isDir": false,
             "fileName": "Model.cs",
             "relativeFilePath": "C#/Core/Model.cs",
+            "MD5Value": "\u0002]\u0003~t^\\w\u00130\u0018�84�L",
             "fileBytesLength": 6110,
             "filePosition": 8722
         },
@@ -35,6 +39,7 @@
             "isDir": false,
             "fileName": "View.cs",
             "relativeFilePath": "C#/Core/View.cs",
+            "MD5Value": "\r��c��CD�K?��[�\u001E",
             "fileBytesLength": 11397,
             "filePosition": 14832
         },
@@ -42,6 +47,7 @@
             "isDir": true,
             "fileName": "Interfaces",
             "relativeFilePath": "C#/Interfaces",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -49,6 +55,7 @@
             "isDir": false,
             "fileName": "ICommand.cs",
             "relativeFilePath": "C#/Interfaces/ICommand.cs",
+            "MD5Value": "\u0004\u0006qV��,`��s\u0007I/l�",
             "fileBytesLength": 677,
             "filePosition": 26229
         },
@@ -56,6 +63,7 @@
             "isDir": false,
             "fileName": "IController.cs",
             "relativeFilePath": "C#/Interfaces/IController.cs",
+            "MD5Value": "�6͒�\u0005�",
             "fileBytesLength": 3037,
             "filePosition": 26906
         },
@@ -63,6 +71,7 @@
             "isDir": false,
             "fileName": "IFacade.cs",
             "relativeFilePath": "C#/Interfaces/IFacade.cs",
+            "MD5Value": "p�\u0014Q #r��\b���b �",
             "fileBytesLength": 5607,
             "filePosition": 29943
         },
@@ -70,6 +79,7 @@
             "isDir": false,
             "fileName": "IMediator.cs",
             "relativeFilePath": "C#/Interfaces/IMediator.cs",
+            "MD5Value": "\u000B��2�jO��V�Hnu�|",
             "fileBytesLength": 3580,
             "filePosition": 35550
         },
@@ -77,6 +87,7 @@
             "isDir": false,
             "fileName": "IModel.cs",
             "relativeFilePath": "C#/Interfaces/IModel.cs",
+            "MD5Value": "K���-��{z򊖝�נ",
             "fileBytesLength": 2080,
             "filePosition": 39130
         },
@@ -84,6 +95,7 @@
             "isDir": false,
             "fileName": "INotification.cs",
             "relativeFilePath": "C#/Interfaces/INotification.cs",
+            "MD5Value": "=�\u0018U�\t�&\u0014�W�5J9�",
             "fileBytesLength": 2964,
             "filePosition": 41210
         },
@@ -91,6 +103,7 @@
             "isDir": false,
             "fileName": "INotifier.cs",
             "relativeFilePath": "C#/Interfaces/INotifier.cs",
+            "MD5Value": "9�o��\u0015{^MW\u000B\"��M",
             "fileBytesLength": 2649,
             "filePosition": 44174
         },
@@ -98,6 +111,7 @@
             "isDir": false,
             "fileName": "IObserver.cs",
             "relativeFilePath": "C#/Interfaces/IObserver.cs",
+            "MD5Value": "��p\u0011g\u0014�\r~�G\u0002��",
             "fileBytesLength": 3389,
             "filePosition": 46823
         },
@@ -105,6 +119,7 @@
             "isDir": false,
             "fileName": "IProxy.cs",
             "relativeFilePath": "C#/Interfaces/IProxy.cs",
+            "MD5Value": "�\b\u0004\u001B����\r�#Ø�k4",
             "fileBytesLength": 1992,
             "filePosition": 50212
         },
@@ -112,6 +127,7 @@
             "isDir": false,
             "fileName": "IView.cs",
             "relativeFilePath": "C#/Interfaces/IView.cs",
+            "MD5Value": "��)]�I�Dj\r���2z",
             "fileBytesLength": 4864,
             "filePosition": 52204
         },
@@ -119,6 +135,7 @@
             "isDir": true,
             "fileName": "Patterns",
             "relativeFilePath": "C#/Patterns",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -126,6 +143,7 @@
             "isDir": true,
             "fileName": "Command",
             "relativeFilePath": "C#/Patterns/Command",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -133,6 +151,7 @@
             "isDir": false,
             "fileName": "MacroCommand.cs",
             "relativeFilePath": "C#/Patterns/Command/MacroCommand.cs",
+            "MD5Value": "�\u0004{��Ʃ\u0001�gZ�\u000Eh�",
             "fileBytesLength": 5169,
             "filePosition": 57068
         },
@@ -140,6 +159,7 @@
             "isDir": false,
             "fileName": "SimpleCommand.cs",
             "relativeFilePath": "C#/Patterns/Command/SimpleCommand.cs",
+            "MD5Value": "�\u001C�����i�8\u001A�M��I",
             "fileBytesLength": 1577,
             "filePosition": 62237
         },
@@ -147,6 +167,7 @@
             "isDir": true,
             "fileName": "Facade",
             "relativeFilePath": "C#/Patterns/Facade",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -154,6 +175,7 @@
             "isDir": false,
             "fileName": "Facade.cs",
             "relativeFilePath": "C#/Patterns/Facade/Facade.cs",
+            "MD5Value": "��ZK�pi�κl�~8K�",
             "fileBytesLength": 15176,
             "filePosition": 63814
         },
@@ -161,6 +183,7 @@
             "isDir": true,
             "fileName": "Mediator",
             "relativeFilePath": "C#/Patterns/Mediator",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -168,6 +191,7 @@
             "isDir": false,
             "fileName": "Mediator.cs",
             "relativeFilePath": "C#/Patterns/Mediator/Mediator.cs",
+            "MD5Value": "��,�ﴑ�΀}�F�}$",
             "fileBytesLength": 2774,
             "filePosition": 78990
         },
@@ -175,6 +199,7 @@
             "isDir": true,
             "fileName": "Observer",
             "relativeFilePath": "C#/Patterns/Observer",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -182,6 +207,7 @@
             "isDir": false,
             "fileName": "Notification.cs",
             "relativeFilePath": "C#/Patterns/Observer/Notification.cs",
+            "MD5Value": "�o�_\u0015�6R+P�:KBG�",
             "fileBytesLength": 3645,
             "filePosition": 81764
         },
@@ -189,6 +215,7 @@
             "isDir": false,
             "fileName": "Notifier.cs",
             "relativeFilePath": "C#/Patterns/Observer/Notifier.cs",
+            "MD5Value": "�Z/�J,�q!�\\P���",
             "fileBytesLength": 4746,
             "filePosition": 85409
         },
@@ -196,6 +223,7 @@
             "isDir": false,
             "fileName": "Observer.cs",
             "relativeFilePath": "C#/Patterns/Observer/Observer.cs",
+            "MD5Value": "��`c����Qd'9�\u0019\u0011\u0002",
             "fileBytesLength": 3091,
             "filePosition": 90155
         },
@@ -203,6 +231,7 @@
             "isDir": true,
             "fileName": "Proxy",
             "relativeFilePath": "C#/Patterns/Proxy",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -210,6 +239,7 @@
             "isDir": false,
             "fileName": "Proxy.cs",
             "relativeFilePath": "C#/Patterns/Proxy/Proxy.cs",
+            "MD5Value": "��H\u0015''�sH���\u0017\u000E�",
             "fileBytesLength": 2404,
             "filePosition": 93246
         },
@@ -217,6 +247,7 @@
             "isDir": true,
             "fileName": "Example",
             "relativeFilePath": "Example",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -224,6 +255,7 @@
             "isDir": true,
             "fileName": "Examples-puremvc-lua-framework",
             "relativeFilePath": "Example/Examples-puremvc-lua-framework",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -231,6 +263,7 @@
             "isDir": false,
             "fileName": "ExamplesPureMVCLuaFrameworkTest.cs",
             "relativeFilePath": "Example/Examples-puremvc-lua-framework/ExamplesPureMVCLuaFrameworkTest.cs",
+            "MD5Value": "��\u0007\u000F�>�M8@�65",
             "fileBytesLength": 244,
             "filePosition": 95650
         },
@@ -238,6 +271,7 @@
             "isDir": false,
             "fileName": "ExamplesPureMVCLuaFrameworkTestScene.unity",
             "relativeFilePath": "Example/Examples-puremvc-lua-framework/ExamplesPureMVCLuaFrameworkTestScene.unity",
+            "MD5Value": "EF\u0018�g������\r�[�j",
             "fileBytesLength": 8405,
             "filePosition": 95894
         },
@@ -245,6 +279,7 @@
             "isDir": true,
             "fileName": "ExamplesPureMVC",
             "relativeFilePath": "Example/ExamplesPureMVC",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -252,6 +287,7 @@
             "isDir": true,
             "fileName": "Controller",
             "relativeFilePath": "Example/ExamplesPureMVC/Controller",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -259,6 +295,7 @@
             "isDir": false,
             "fileName": "StartUPCommand.cs",
             "relativeFilePath": "Example/ExamplesPureMVC/Controller/StartUPCommand.cs",
+            "MD5Value": "%M\u0003��u{�g:q���@\u000B",
             "fileBytesLength": 591,
             "filePosition": 104299
         },
@@ -266,6 +303,7 @@
             "isDir": true,
             "fileName": "TestPanel",
             "relativeFilePath": "Example/ExamplesPureMVC/TestPanel",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -273,6 +311,7 @@
             "isDir": true,
             "fileName": "Resources",
             "relativeFilePath": "Example/ExamplesPureMVC/TestPanel/Resources",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -280,6 +319,7 @@
             "isDir": false,
             "fileName": "testPanel.prefab",
             "relativeFilePath": "Example/ExamplesPureMVC/TestPanel/Resources/testPanel.prefab",
+            "MD5Value": "\u0003R+��\u000F �G!�å�>1",
             "fileBytesLength": 8767,
             "filePosition": 104890
         },
@@ -287,6 +327,7 @@
             "isDir": false,
             "fileName": "TestPanel.cs",
             "relativeFilePath": "Example/ExamplesPureMVC/TestPanel/TestPanel.cs",
+            "MD5Value": "�\u0018\u0017�\u000BNy\r\u000F�-�\u0003p��",
             "fileBytesLength": 187,
             "filePosition": 113657
         },
@@ -294,6 +335,7 @@
             "isDir": false,
             "fileName": "TestPanelMediator.cs",
             "relativeFilePath": "Example/ExamplesPureMVC/TestPanel/TestPanelMediator.cs",
+            "MD5Value": "\u001Bd\u000F܂�\b���C�u.��",
             "fileBytesLength": 828,
             "filePosition": 113844
         },
@@ -301,6 +343,7 @@
             "isDir": true,
             "fileName": "TestYesWindow",
             "relativeFilePath": "Example/ExamplesPureMVC/TestYesWindow",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -308,6 +351,7 @@
             "isDir": true,
             "fileName": "Resources",
             "relativeFilePath": "Example/ExamplesPureMVC/TestYesWindow/Resources",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -315,6 +359,7 @@
             "isDir": false,
             "fileName": "TestYesWindow.prefab",
             "relativeFilePath": "Example/ExamplesPureMVC/TestYesWindow/Resources/TestYesWindow.prefab",
+            "MD5Value": "�3���=��\u0017���x��",
             "fileBytesLength": 11272,
             "filePosition": 114672
         },
@@ -322,6 +367,7 @@
             "isDir": false,
             "fileName": "TestYesWindow.cs",
             "relativeFilePath": "Example/ExamplesPureMVC/TestYesWindow/TestYesWindow.cs",
+            "MD5Value": "Ia�8�$\\:�@�B�n\\\u0006",
             "fileBytesLength": 192,
             "filePosition": 125944
         },
@@ -329,6 +375,7 @@
             "isDir": false,
             "fileName": "TestYesWindowMediator.cs",
             "relativeFilePath": "Example/ExamplesPureMVC/TestYesWindow/TestYesWindowMediator.cs",
+            "MD5Value": "A�ι�\u0012�]\u0013A�=�>�X",
             "fileBytesLength": 1529,
             "filePosition": 126136
         },
@@ -336,6 +383,7 @@
             "isDir": false,
             "fileName": "App.cs",
             "relativeFilePath": "Example/ExamplesPureMVC/App.cs",
+            "MD5Value": "�o�!�OO�\\\u0012�\bxfJ",
             "fileBytesLength": 489,
             "filePosition": 127665
         },
@@ -343,6 +391,7 @@
             "isDir": false,
             "fileName": "AppFacade.cs",
             "relativeFilePath": "Example/ExamplesPureMVC/AppFacade.cs",
+            "MD5Value": "�\u001CpW�\u0017,�\u000F�",
             "fileBytesLength": 1339,
             "filePosition": 128154
         },
@@ -350,6 +399,7 @@
             "isDir": false,
             "fileName": "ExamplesPureMVC.unity",
             "relativeFilePath": "Example/ExamplesPureMVC/ExamplesPureMVC.unity",
+            "MD5Value": "��z�\u000BLN�uȭ��M?�",
             "fileBytesLength": 13867,
             "filePosition": 129493
         },
@@ -357,6 +407,7 @@
             "isDir": true,
             "fileName": "Lua",
             "relativeFilePath": "Lua",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -364,6 +415,7 @@
             "isDir": true,
             "fileName": "org",
             "relativeFilePath": "Lua/org",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -371,6 +423,7 @@
             "isDir": true,
             "fileName": "puremvc",
             "relativeFilePath": "Lua/org/puremvc",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -378,6 +431,7 @@
             "isDir": true,
             "fileName": "lua",
             "relativeFilePath": "Lua/org/puremvc/lua",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -385,6 +439,7 @@
             "isDir": true,
             "fileName": "multicore",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -392,6 +447,7 @@
             "isDir": true,
             "fileName": "core",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/core",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -399,6 +455,7 @@
             "isDir": false,
             "fileName": "Controller.lua",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/core/Controller.lua",
+            "MD5Value": "o��\u001Bx}���z����g",
             "fileBytesLength": 5853,
             "filePosition": 143360
         },
@@ -406,6 +463,7 @@
             "isDir": false,
             "fileName": "Model.lua",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/core/Model.lua",
+            "MD5Value": "��n���2��1\n�l\u0010�{",
             "fileBytesLength": 3737,
             "filePosition": 149213
         },
@@ -413,6 +471,7 @@
             "isDir": false,
             "fileName": "View.lua",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/core/View.lua",
+            "MD5Value": "��\u001A'��&�����_cʣ",
             "fileBytesLength": 7351,
             "filePosition": 152950
         },
@@ -420,6 +479,7 @@
             "isDir": true,
             "fileName": "help",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/help",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -427,6 +487,7 @@
             "isDir": false,
             "fileName": "oop.lua",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/help/oop.lua",
+            "MD5Value": "\u00156�vH�4�:�\u000E�ׅ5",
             "fileBytesLength": 1483,
             "filePosition": 160301
         },
@@ -434,6 +495,7 @@
             "isDir": true,
             "fileName": "patterns",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -441,6 +503,7 @@
             "isDir": true,
             "fileName": "command",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/command",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -448,6 +511,7 @@
             "isDir": false,
             "fileName": "MacroCommand.lua",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/command/MacroCommand.lua",
+            "MD5Value": "�3k\b�Y�[�f6L\u0016�r\u000B",
             "fileBytesLength": 2900,
             "filePosition": 161784
         },
@@ -455,6 +519,7 @@
             "isDir": false,
             "fileName": "SimpleCommand.lua",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/command/SimpleCommand.lua",
+            "MD5Value": "����ߞ^�\\���\u0018���",
             "fileBytesLength": 1171,
             "filePosition": 164684
         },
@@ -462,6 +527,7 @@
             "isDir": true,
             "fileName": "facade",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/facade",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -469,6 +535,7 @@
             "isDir": false,
             "fileName": "Facade.lua",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/facade/Facade.lua",
+            "MD5Value": "Q7��~�̞h��\u000E�L\u0007c",
             "fileBytesLength": 10924,
             "filePosition": 165855
         },
@@ -476,6 +543,7 @@
             "isDir": true,
             "fileName": "mediator",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/mediator",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -483,6 +551,7 @@
             "isDir": false,
             "fileName": "Mediator.lua",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/mediator/Mediator.lua",
+            "MD5Value": "\u000EW�\t!���'J�>\u0010=",
             "fileBytesLength": 3843,
             "filePosition": 176779
         },
@@ -490,6 +559,7 @@
             "isDir": true,
             "fileName": "observer",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/observer",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -497,6 +567,7 @@
             "isDir": false,
             "fileName": "Notification.lua",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/observer/Notification.lua",
+            "MD5Value": "�w�H���ɐ�iz�\u001F@�",
             "fileBytesLength": 2938,
             "filePosition": 180622
         },
@@ -504,6 +575,7 @@
             "isDir": false,
             "fileName": "Notifier.lua",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/observer/Notifier.lua",
+            "MD5Value": ")�U�\u0004�Bz*\fi\u0006x�x�",
             "fileBytesLength": 3200,
             "filePosition": 183560
         },
@@ -511,6 +583,7 @@
             "isDir": false,
             "fileName": "Observer.lua",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/observer/Observer.lua",
+            "MD5Value": "?��,s��f�\u0016�k�\u001E�",
             "fileBytesLength": 2596,
             "filePosition": 186760
         },
@@ -518,6 +591,7 @@
             "isDir": true,
             "fileName": "proxy",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/proxy",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -525,6 +599,7 @@
             "isDir": false,
             "fileName": "Proxy.lua",
             "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/proxy/Proxy.lua",
+            "MD5Value": "��mJ�]���@6&�s�",
             "fileBytesLength": 1948,
             "filePosition": 189356
         },
@@ -532,6 +607,7 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
+            "MD5Value": "\u0019��+!ThRܸ@��j�q",
             "fileBytesLength": 418,
             "filePosition": 191304
         }

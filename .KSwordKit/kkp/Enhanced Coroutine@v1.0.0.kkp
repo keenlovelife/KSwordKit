@@ -989,7 +989,7 @@ namespace KSwordKit.Core.EnhancedCoroutine
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-10-30 21:00:51",
+    "Date": "2021-11-07 02:16:12",
     "Description": "增强协程库，提供多种协程应用api。",
     "Dependencies": [],
     "Tags": [
@@ -1126,6 +1126,7 @@ namespace KSwordKit.Core.EnhancedCoroutine
             "isDir": true,
             "fileName": "ExamplesEnhancedCoroutine",
             "relativeFilePath": "ExamplesEnhancedCoroutine",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -1133,6 +1134,7 @@ namespace KSwordKit.Core.EnhancedCoroutine
             "isDir": false,
             "fileName": "ExamplesEnhancedCoroutineTest.cs",
             "relativeFilePath": "ExamplesEnhancedCoroutine/ExamplesEnhancedCoroutineTest.cs",
+            "MD5Value": "F�`�?���d�R�T���",
             "fileBytesLength": 4735,
             "filePosition": 0
         },
@@ -1140,6 +1142,7 @@ namespace KSwordKit.Core.EnhancedCoroutine
             "isDir": false,
             "fileName": "ExamplesLoopScene.unity",
             "relativeFilePath": "ExamplesEnhancedCoroutine/ExamplesLoopScene.unity",
+            "MD5Value": "���,N�qN2gZ\t����",
             "fileBytesLength": 20553,
             "filePosition": 4735
         },
@@ -1147,6 +1150,7 @@ namespace KSwordKit.Core.EnhancedCoroutine
             "isDir": false,
             "fileName": "Frame.cs",
             "relativeFilePath": "Frame.cs",
+            "MD5Value": "*tj���\b�C��� l�e",
             "fileBytesLength": 4448,
             "filePosition": 25288
         },
@@ -1154,6 +1158,7 @@ namespace KSwordKit.Core.EnhancedCoroutine
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
+            "MD5Value": "�II�9� �28Pg�]�",
             "fileBytesLength": 450,
             "filePosition": 29736
         },
@@ -1161,8 +1166,9 @@ namespace KSwordKit.Core.EnhancedCoroutine
             "isDir": false,
             "fileName": "Loop.cs",
             "relativeFilePath": "Loop.cs",
+            "MD5Value": "\u0011���\u0018\u001A�i��P@�*��",
             "fileBytesLength": 5801,
             "filePosition": 30186
         }
     ]
-}��      "  kkp@v1.0.0;make by ks
+}��      |  kkp@v1.0.0;make by ks

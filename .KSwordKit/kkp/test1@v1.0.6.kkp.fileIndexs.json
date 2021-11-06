@@ -7,6 +7,7 @@
             "isDir": true,
             "fileName": "新建文件夹",
             "relativeFilePath": "新建文件夹",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -14,6 +15,7 @@
             "isDir": false,
             "fileName": "新建 Microsoft Publisher Document.pub",
             "relativeFilePath": "新建文件夹/新建 Microsoft Publisher Document.pub",
+            "MD5Value": "\u0006'�r~+�\u001D\u001C��k���\\",
             "fileBytesLength": 59904,
             "filePosition": 0
         },
@@ -21,6 +23,7 @@
             "isDir": false,
             "fileName": "新建 文本文档.txt",
             "relativeFilePath": "新建文件夹/新建 文本文档.txt",
+            "MD5Value": "�\u001D�ُ",
             "fileBytesLength": 0,
             "filePosition": 59904
         },
@@ -28,6 +31,7 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
+            "MD5Value": "��1c\u0012�\nzm���Ϳ��",
             "fileBytesLength": 1073,
             "filePosition": 59904
         },
@@ -35,6 +39,7 @@
             "isDir": false,
             "fileName": "新建 Microsoft Access Database.accdb",
             "relativeFilePath": "新建 Microsoft Access Database.accdb",
+            "MD5Value": "�9\u0016ZEf�>�\u0001\u001Fd\u001E��\u0019",
             "fileBytesLength": 512000,
             "filePosition": 60977
         },
@@ -42,6 +47,7 @@
             "isDir": false,
             "fileName": "新建 RTF 文档.rtf",
             "relativeFilePath": "新建 RTF 文档.rtf",
+            "MD5Value": "�tB]�g�\u000B/�\u0011$�T��",
             "fileBytesLength": 7,
             "filePosition": 572977
         }

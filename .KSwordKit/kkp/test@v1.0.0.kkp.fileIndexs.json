@@ -7,6 +7,7 @@
             "isDir": true,
             "fileName": "新建文件夹",
             "relativeFilePath": "新建文件夹",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -14,6 +15,7 @@
             "isDir": true,
             "fileName": "新建文件夹",
             "relativeFilePath": "新建文件夹/新建文件夹",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -21,6 +23,7 @@
             "isDir": false,
             "fileName": "新建 RTF 文档.rtf",
             "relativeFilePath": "新建文件夹/新建文件夹/新建 RTF 文档.rtf",
+            "MD5Value": "�tB]�g�\u000B/�\u0011$�T��",
             "fileBytesLength": 7,
             "filePosition": 0
         },
@@ -28,6 +31,7 @@
             "isDir": false,
             "fileName": "新建 Microsoft Excel 工作表.xlsx",
             "relativeFilePath": "新建文件夹/新建 Microsoft Excel 工作表.xlsx",
+            "MD5Value": "��(��CR�\"}\u001F�:",
             "fileBytesLength": 6603,
             "filePosition": 7
         },
@@ -35,6 +39,7 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
+            "MD5Value": "�\u0012^O-\n�>���9gK\u0011�",
             "fileBytesLength": 1810,
             "filePosition": 6610
         },
@@ -42,6 +47,7 @@
             "isDir": false,
             "fileName": "test.txt",
             "relativeFilePath": "test.txt",
+            "MD5Value": "�\u001D�ُ",
             "fileBytesLength": 0,
             "filePosition": 8420
         },
@@ -49,6 +55,7 @@
             "isDir": false,
             "fileName": "新建 文本文档.txt",
             "relativeFilePath": "新建 文本文档.txt",
+            "MD5Value": "�\u001D�ُ",
             "fileBytesLength": 0,
             "filePosition": 8420
         }

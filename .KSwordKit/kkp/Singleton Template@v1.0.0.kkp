@@ -384,7 +384,7 @@ public class SingletonTest2 : KSwordKit.Core.SingletonTemplate<SingletonTest2>
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-10-30 21:01:07",
+    "Date": "2021-11-07 02:16:31",
     "Description": "单例模板，提供方便生成单例的模板类接口。",
     "Dependencies": [],
     "Tags": [
@@ -438,6 +438,7 @@ namespace KSwordKit.Core
             "isDir": true,
             "fileName": "ExamplesSingletonTemplate",
             "relativeFilePath": "ExamplesSingletonTemplate",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -445,6 +446,7 @@ namespace KSwordKit.Core
             "isDir": false,
             "fileName": "ExamplesSingletonTemplateScene.unity",
             "relativeFilePath": "ExamplesSingletonTemplate/ExamplesSingletonTemplateScene.unity",
+            "MD5Value": "Q>\u0012\\�hd\u001C+\u001D�w\n�\u0002!",
             "fileBytesLength": 8392,
             "filePosition": 0
         },
@@ -452,6 +454,7 @@ namespace KSwordKit.Core
             "isDir": false,
             "fileName": "ExamplesSingletonTemplateTest.cs",
             "relativeFilePath": "ExamplesSingletonTemplate/ExamplesSingletonTemplateTest.cs",
+            "MD5Value": "���{j=6�����M��K",
             "fileBytesLength": 784,
             "filePosition": 8392
         },
@@ -459,6 +462,7 @@ namespace KSwordKit.Core
             "isDir": false,
             "fileName": "ExamplesSingletonTemplateTest2.cs",
             "relativeFilePath": "ExamplesSingletonTemplate/ExamplesSingletonTemplateTest2.cs",
+            "MD5Value": "�\u0003ؼ�0��|z��Ԭ/",
             "fileBytesLength": 802,
             "filePosition": 9176
         },
@@ -466,6 +470,7 @@ namespace KSwordKit.Core
             "isDir": false,
             "fileName": "SingletonTest2.cs",
             "relativeFilePath": "ExamplesSingletonTemplate/SingletonTest2.cs",
+            "MD5Value": "ʹsY4\u0018M\rR<\u001E�\u0010�I\u0015",
             "fileBytesLength": 576,
             "filePosition": 9978
         },
@@ -473,6 +478,7 @@ namespace KSwordKit.Core
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
+            "MD5Value": "�Ʋ7T�%=p3�F�\u0014\u0011�",
             "fileBytesLength": 450,
             "filePosition": 10554
         },
@@ -480,8 +486,9 @@ namespace KSwordKit.Core
             "isDir": false,
             "fileName": "SingletonTemplate.cs",
             "relativeFilePath": "SingletonTemplate.cs",
+            "MD5Value": "�\u0014Y�W�\u000E6�D5\u0010V�`�",
             "fileBytesLength": 1315,
             "filePosition": 11004
         }
     ]
-}0      �  kkp@v1.0.0;make by ks
+}0      <	  kkp@v1.0.0;make by ks

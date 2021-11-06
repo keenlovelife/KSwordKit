@@ -7,6 +7,7 @@
             "isDir": true,
             "fileName": "AutomaticFileAnnotation",
             "relativeFilePath": "AutomaticFileAnnotation",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -14,6 +15,7 @@
             "isDir": true,
             "fileName": "Editor",
             "relativeFilePath": "AutomaticFileAnnotation/Editor",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -21,6 +23,7 @@
             "isDir": false,
             "fileName": "AutomaticFileAnnotationEditor.cs",
             "relativeFilePath": "AutomaticFileAnnotation/Editor/AutomaticFileAnnotationEditor.cs",
+            "MD5Value": "dܔ\u001B�����ğ\n�B�\r",
             "fileBytesLength": 2134,
             "filePosition": 0
         },
@@ -28,6 +31,7 @@
             "isDir": true,
             "fileName": "Editor",
             "relativeFilePath": "Editor",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -35,6 +39,7 @@
             "isDir": false,
             "fileName": "ProjectFileManagementEditor.cs",
             "relativeFilePath": "Editor/ProjectFileManagementEditor.cs",
+            "MD5Value": ">`�\u0004���\\O",
             "fileBytesLength": 583,
             "filePosition": 2134
         },
@@ -42,6 +47,7 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
+            "MD5Value": "3��C\u001D�\u0002;�hA�\f��",
             "fileBytesLength": 508,
             "filePosition": 2717
         }
