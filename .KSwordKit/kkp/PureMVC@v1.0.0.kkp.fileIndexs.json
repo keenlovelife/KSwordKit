@@ -1,0 +1,539 @@
+{
+    "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Framework/PureMVC@v1.0.0",
+    "fileBytesLength": 191722,
+    "fileCount": 46,
+    "fileIndexList": [
+        {
+            "isDir": true,
+            "fileName": "C#",
+            "relativeFilePath": "C#",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "Core",
+            "relativeFilePath": "C#/Core",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "Controller.cs",
+            "relativeFilePath": "C#/Core/Controller.cs",
+            "fileBytesLength": 8722,
+            "filePosition": 0
+        },
+        {
+            "isDir": false,
+            "fileName": "Model.cs",
+            "relativeFilePath": "C#/Core/Model.cs",
+            "fileBytesLength": 6110,
+            "filePosition": 8722
+        },
+        {
+            "isDir": false,
+            "fileName": "View.cs",
+            "relativeFilePath": "C#/Core/View.cs",
+            "fileBytesLength": 11397,
+            "filePosition": 14832
+        },
+        {
+            "isDir": true,
+            "fileName": "Interfaces",
+            "relativeFilePath": "C#/Interfaces",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "ICommand.cs",
+            "relativeFilePath": "C#/Interfaces/ICommand.cs",
+            "fileBytesLength": 677,
+            "filePosition": 26229
+        },
+        {
+            "isDir": false,
+            "fileName": "IController.cs",
+            "relativeFilePath": "C#/Interfaces/IController.cs",
+            "fileBytesLength": 3037,
+            "filePosition": 26906
+        },
+        {
+            "isDir": false,
+            "fileName": "IFacade.cs",
+            "relativeFilePath": "C#/Interfaces/IFacade.cs",
+            "fileBytesLength": 5607,
+            "filePosition": 29943
+        },
+        {
+            "isDir": false,
+            "fileName": "IMediator.cs",
+            "relativeFilePath": "C#/Interfaces/IMediator.cs",
+            "fileBytesLength": 3580,
+            "filePosition": 35550
+        },
+        {
+            "isDir": false,
+            "fileName": "IModel.cs",
+            "relativeFilePath": "C#/Interfaces/IModel.cs",
+            "fileBytesLength": 2080,
+            "filePosition": 39130
+        },
+        {
+            "isDir": false,
+            "fileName": "INotification.cs",
+            "relativeFilePath": "C#/Interfaces/INotification.cs",
+            "fileBytesLength": 2964,
+            "filePosition": 41210
+        },
+        {
+            "isDir": false,
+            "fileName": "INotifier.cs",
+            "relativeFilePath": "C#/Interfaces/INotifier.cs",
+            "fileBytesLength": 2649,
+            "filePosition": 44174
+        },
+        {
+            "isDir": false,
+            "fileName": "IObserver.cs",
+            "relativeFilePath": "C#/Interfaces/IObserver.cs",
+            "fileBytesLength": 3389,
+            "filePosition": 46823
+        },
+        {
+            "isDir": false,
+            "fileName": "IProxy.cs",
+            "relativeFilePath": "C#/Interfaces/IProxy.cs",
+            "fileBytesLength": 1992,
+            "filePosition": 50212
+        },
+        {
+            "isDir": false,
+            "fileName": "IView.cs",
+            "relativeFilePath": "C#/Interfaces/IView.cs",
+            "fileBytesLength": 4864,
+            "filePosition": 52204
+        },
+        {
+            "isDir": true,
+            "fileName": "Patterns",
+            "relativeFilePath": "C#/Patterns",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "Command",
+            "relativeFilePath": "C#/Patterns/Command",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "MacroCommand.cs",
+            "relativeFilePath": "C#/Patterns/Command/MacroCommand.cs",
+            "fileBytesLength": 5169,
+            "filePosition": 57068
+        },
+        {
+            "isDir": false,
+            "fileName": "SimpleCommand.cs",
+            "relativeFilePath": "C#/Patterns/Command/SimpleCommand.cs",
+            "fileBytesLength": 1577,
+            "filePosition": 62237
+        },
+        {
+            "isDir": true,
+            "fileName": "Facade",
+            "relativeFilePath": "C#/Patterns/Facade",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "Facade.cs",
+            "relativeFilePath": "C#/Patterns/Facade/Facade.cs",
+            "fileBytesLength": 15176,
+            "filePosition": 63814
+        },
+        {
+            "isDir": true,
+            "fileName": "Mediator",
+            "relativeFilePath": "C#/Patterns/Mediator",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "Mediator.cs",
+            "relativeFilePath": "C#/Patterns/Mediator/Mediator.cs",
+            "fileBytesLength": 2774,
+            "filePosition": 78990
+        },
+        {
+            "isDir": true,
+            "fileName": "Observer",
+            "relativeFilePath": "C#/Patterns/Observer",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "Notification.cs",
+            "relativeFilePath": "C#/Patterns/Observer/Notification.cs",
+            "fileBytesLength": 3645,
+            "filePosition": 81764
+        },
+        {
+            "isDir": false,
+            "fileName": "Notifier.cs",
+            "relativeFilePath": "C#/Patterns/Observer/Notifier.cs",
+            "fileBytesLength": 4746,
+            "filePosition": 85409
+        },
+        {
+            "isDir": false,
+            "fileName": "Observer.cs",
+            "relativeFilePath": "C#/Patterns/Observer/Observer.cs",
+            "fileBytesLength": 3091,
+            "filePosition": 90155
+        },
+        {
+            "isDir": true,
+            "fileName": "Proxy",
+            "relativeFilePath": "C#/Patterns/Proxy",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "Proxy.cs",
+            "relativeFilePath": "C#/Patterns/Proxy/Proxy.cs",
+            "fileBytesLength": 2404,
+            "filePosition": 93246
+        },
+        {
+            "isDir": true,
+            "fileName": "Example",
+            "relativeFilePath": "Example",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "Examples-puremvc-lua-framework",
+            "relativeFilePath": "Example/Examples-puremvc-lua-framework",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "ExamplesPureMVCLuaFrameworkTest.cs",
+            "relativeFilePath": "Example/Examples-puremvc-lua-framework/ExamplesPureMVCLuaFrameworkTest.cs",
+            "fileBytesLength": 244,
+            "filePosition": 95650
+        },
+        {
+            "isDir": false,
+            "fileName": "ExamplesPureMVCLuaFrameworkTestScene.unity",
+            "relativeFilePath": "Example/Examples-puremvc-lua-framework/ExamplesPureMVCLuaFrameworkTestScene.unity",
+            "fileBytesLength": 8405,
+            "filePosition": 95894
+        },
+        {
+            "isDir": true,
+            "fileName": "ExamplesPureMVC",
+            "relativeFilePath": "Example/ExamplesPureMVC",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "Controller",
+            "relativeFilePath": "Example/ExamplesPureMVC/Controller",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "StartUPCommand.cs",
+            "relativeFilePath": "Example/ExamplesPureMVC/Controller/StartUPCommand.cs",
+            "fileBytesLength": 591,
+            "filePosition": 104299
+        },
+        {
+            "isDir": true,
+            "fileName": "TestPanel",
+            "relativeFilePath": "Example/ExamplesPureMVC/TestPanel",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "Resources",
+            "relativeFilePath": "Example/ExamplesPureMVC/TestPanel/Resources",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "testPanel.prefab",
+            "relativeFilePath": "Example/ExamplesPureMVC/TestPanel/Resources/testPanel.prefab",
+            "fileBytesLength": 8767,
+            "filePosition": 104890
+        },
+        {
+            "isDir": false,
+            "fileName": "TestPanel.cs",
+            "relativeFilePath": "Example/ExamplesPureMVC/TestPanel/TestPanel.cs",
+            "fileBytesLength": 187,
+            "filePosition": 113657
+        },
+        {
+            "isDir": false,
+            "fileName": "TestPanelMediator.cs",
+            "relativeFilePath": "Example/ExamplesPureMVC/TestPanel/TestPanelMediator.cs",
+            "fileBytesLength": 828,
+            "filePosition": 113844
+        },
+        {
+            "isDir": true,
+            "fileName": "TestYesWindow",
+            "relativeFilePath": "Example/ExamplesPureMVC/TestYesWindow",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "Resources",
+            "relativeFilePath": "Example/ExamplesPureMVC/TestYesWindow/Resources",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "TestYesWindow.prefab",
+            "relativeFilePath": "Example/ExamplesPureMVC/TestYesWindow/Resources/TestYesWindow.prefab",
+            "fileBytesLength": 11272,
+            "filePosition": 114672
+        },
+        {
+            "isDir": false,
+            "fileName": "TestYesWindow.cs",
+            "relativeFilePath": "Example/ExamplesPureMVC/TestYesWindow/TestYesWindow.cs",
+            "fileBytesLength": 192,
+            "filePosition": 125944
+        },
+        {
+            "isDir": false,
+            "fileName": "TestYesWindowMediator.cs",
+            "relativeFilePath": "Example/ExamplesPureMVC/TestYesWindow/TestYesWindowMediator.cs",
+            "fileBytesLength": 1529,
+            "filePosition": 126136
+        },
+        {
+            "isDir": false,
+            "fileName": "App.cs",
+            "relativeFilePath": "Example/ExamplesPureMVC/App.cs",
+            "fileBytesLength": 489,
+            "filePosition": 127665
+        },
+        {
+            "isDir": false,
+            "fileName": "AppFacade.cs",
+            "relativeFilePath": "Example/ExamplesPureMVC/AppFacade.cs",
+            "fileBytesLength": 1339,
+            "filePosition": 128154
+        },
+        {
+            "isDir": false,
+            "fileName": "ExamplesPureMVC.unity",
+            "relativeFilePath": "Example/ExamplesPureMVC/ExamplesPureMVC.unity",
+            "fileBytesLength": 13867,
+            "filePosition": 129493
+        },
+        {
+            "isDir": true,
+            "fileName": "Lua",
+            "relativeFilePath": "Lua",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "org",
+            "relativeFilePath": "Lua/org",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "puremvc",
+            "relativeFilePath": "Lua/org/puremvc",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "lua",
+            "relativeFilePath": "Lua/org/puremvc/lua",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "multicore",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "core",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/core",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "Controller.lua",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/core/Controller.lua",
+            "fileBytesLength": 5853,
+            "filePosition": 143360
+        },
+        {
+            "isDir": false,
+            "fileName": "Model.lua",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/core/Model.lua",
+            "fileBytesLength": 3737,
+            "filePosition": 149213
+        },
+        {
+            "isDir": false,
+            "fileName": "View.lua",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/core/View.lua",
+            "fileBytesLength": 7351,
+            "filePosition": 152950
+        },
+        {
+            "isDir": true,
+            "fileName": "help",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/help",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "oop.lua",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/help/oop.lua",
+            "fileBytesLength": 1483,
+            "filePosition": 160301
+        },
+        {
+            "isDir": true,
+            "fileName": "patterns",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "command",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/command",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "MacroCommand.lua",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/command/MacroCommand.lua",
+            "fileBytesLength": 2900,
+            "filePosition": 161784
+        },
+        {
+            "isDir": false,
+            "fileName": "SimpleCommand.lua",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/command/SimpleCommand.lua",
+            "fileBytesLength": 1171,
+            "filePosition": 164684
+        },
+        {
+            "isDir": true,
+            "fileName": "facade",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/facade",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "Facade.lua",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/facade/Facade.lua",
+            "fileBytesLength": 10924,
+            "filePosition": 165855
+        },
+        {
+            "isDir": true,
+            "fileName": "mediator",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/mediator",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "Mediator.lua",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/mediator/Mediator.lua",
+            "fileBytesLength": 3843,
+            "filePosition": 176779
+        },
+        {
+            "isDir": true,
+            "fileName": "observer",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/observer",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "Notification.lua",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/observer/Notification.lua",
+            "fileBytesLength": 2938,
+            "filePosition": 180622
+        },
+        {
+            "isDir": false,
+            "fileName": "Notifier.lua",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/observer/Notifier.lua",
+            "fileBytesLength": 3200,
+            "filePosition": 183560
+        },
+        {
+            "isDir": false,
+            "fileName": "Observer.lua",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/observer/Observer.lua",
+            "fileBytesLength": 2596,
+            "filePosition": 186760
+        },
+        {
+            "isDir": true,
+            "fileName": "proxy",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/proxy",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "Proxy.lua",
+            "relativeFilePath": "Lua/org/puremvc/lua/multicore/patterns/proxy/Proxy.lua",
+            "fileBytesLength": 1948,
+            "filePosition": 189356
+        },
+        {
+            "isDir": false,
+            "fileName": "kitPackageConfig.json",
+            "relativeFilePath": "kitPackageConfig.json",
+            "fileBytesLength": 418,
+            "filePosition": 191304
+        }
+    ]
+}

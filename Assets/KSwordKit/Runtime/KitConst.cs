@@ -5,21 +5,21 @@ using UnityEngine;
 namespace KSwordKit
 {
     /// <summary>
-    /// KSwordKitÖÐµÄËùÓÐ³£Á¿
-    /// <para>µ«²»°üÀ¨ÆäËû°üÄÚ¶¨ÒåµÄ³£Á¿£¬ÆäËû°üÄÚÊ¹ÓÃµÄ³£Á¿ÓÉ°ü×Ô¼º¶¨ÒåºÍÊ¹ÓÃ¡£</para>
-    /// <para>ÕâÀïµÄ³£Á¿¡¾ÇëÎðÐÞ¸Ä¡¿£¬ÒÔ·ÀÖ¹³ÌÐò³ö´í¡£</para>
+    /// KSwordKitï¿½Ðµï¿½ï¿½ï¿½ï¿½Ð³ï¿½ï¿½ï¿½
+    /// <para>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ÃµÄ³ï¿½ï¿½ï¿½ï¿½É°ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã¡ï¿½</para>
+    /// <para>ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸Ä¡ï¿½ï¿½ï¿½ï¿½Ô·ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</para>
     /// </summary>
     public class KitConst
     {
         /// <summary>
-        /// KSwordKitÃû×Ö
+        /// KSwordKitï¿½ï¿½ï¿½ï¿½
         /// </summary>
         public const string KitName = "KSwordKit";
         public const string KitVersion = "v1.0.0";
         /// <summary>
-        /// KSwordKit°²×°¸ùÄ¿Â¼
-        /// <para>´ËÄ¿Â¼Ö¸Ê¾ÁËKSwordKitµÄ±»ÓÃ»§°²×°ºó£¬ËùÔÚµÄ¸ùÄ¿Â¼£¬Ò²ÊÇKSwordKitµÄ¹¤×÷Ä¿Â¼</para>
-        /// <para>KSwordKitÄÚµ¼ÈëµÄËùÓÐ°üÒ²»á³öÏÖÔÚ¸ÃÄ¿Â¼ÄÚ£¬²ÎÓëÏîÄ¿³ÌÐòµÄ×îÖÕ±àÒë¡£</para>
+        /// KSwordKitï¿½ï¿½×°ï¿½ï¿½Ä¿Â¼
+        /// <para>ï¿½ï¿½Ä¿Â¼Ö¸Ê¾ï¿½ï¿½KSwordKitï¿½Ä±ï¿½ï¿½Ã»ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ÚµÄ¸ï¿½Ä¿Â¼ï¿½ï¿½Ò²ï¿½ï¿½KSwordKitï¿½Ä¹ï¿½ï¿½ï¿½Ä¿Â¼</para>
+        /// <para>KSwordKitï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð°ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½Ä¿Â¼ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ±ï¿½ï¿½ë¡£</para>
         /// </summary>
         public static string KitInstallationDirectory
         {
@@ -27,31 +27,40 @@ namespace KSwordKit
             {
                 if (config == null)
                     config = Resources.Load<KSwordKitConfig>("KSwordKitConfig");
+                if (config == null) return null;
                 return config.KitInstallationPath;
             }
         }
         static KSwordKit.KSwordKitConfig config;
         /// <summary>
-        /// KSwordKitÒÑµ¼ÈëÏîÄ¿ÖÐµÄËùÓÐ°üËùÔÚµÄ¸ùÄ¿Â¼
-        /// <para>´ËÄ¿Â¼Ö¸Ê¾ÁËÔÚµã»÷ `µ¼Èë°ü` Ê±£¬¸Ã°ü½«»á±»µ¼ÈëµÄ¸ùÄ¿Â¼¡£</para>
+        /// KSwordKitï¿½Ñµï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½Ðµï¿½ï¿½ï¿½ï¿½Ð°ï¿½ï¿½ï¿½ï¿½ÚµÄ¸ï¿½Ä¿Â¼
+        /// <para>ï¿½ï¿½Ä¿Â¼Ö¸Ê¾ï¿½ï¿½ï¿½Úµï¿½ï¿½ `ï¿½ï¿½ï¿½ï¿½ï¿½` Ê±ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿½ï¿½á±»ï¿½ï¿½ï¿½ëµ½ï¿½ï¿½Ä¿Â¼ï¿½Ð¡ï¿½</para>
         /// </summary>
         public const string KitPackagesImportRootDirectory = "Packages";
         /// <summary>
-        /// °üÄÚÅäÖÃÎÄ¼þÃû
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
         /// </summary>
         public const string KitPackageConfigFilename = "kitPackageConfig.json";
         /// <summary>
-        /// KSwordKit¿ÉÓÃµÄËùÓÐµÄ°üËùÔÚµÄ¸ùÄ¿Â¼
-        /// <para>´ËÄ¿Â¼Ö¸Ê¾ÁËÔÚÓÃ»§Ö´ÐÐ `µ¼Èë°ü`Ê±, ½«´Ë´¦´æÈ¡Êý¾Ý¡£</para>
-        /// <para>¸ÃÄ¿Â¼ÔÚµ±Ç°UnityÏîÄ¿¸ùÄ¿Â¼ÏÂ£¬²»»á³öÏÖÔÚ `Assets` Ä¿Â¼ÖÐ£¬±ÜÃâ±»Unity±à¼­Æ÷±àÒë¡£</para>
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ô´ï¿½Ð»ï¿½È¡ï¿½Ä°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
         /// </summary>
-        public const string KitPackagesRootDirectory = ".KSwordKitPackages";
+        public const string KitOriginPackageConfigFilename = ".KitConfig.json";
         /// <summary>
-        /// KSwordKit¼ì²é¸üÐÂµØÖ·
+        /// KSwordKitï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ÐµÄ°ï¿½ï¿½ï¿½ï¿½ÚµÄ¸ï¿½Ä¿Â¼
+        /// <para>ï¿½ï¿½Ä¿Â¼Ö¸Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ö´ï¿½ï¿½ `ï¿½ï¿½ï¿½ï¿½ï¿½`Ê±, ï¿½ï¿½ï¿½Ë´ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ý¡ï¿½</para>
+        /// <para>ï¿½ï¿½Ä¿Â¼ï¿½Úµï¿½Ç°Unityï¿½ï¿½Ä¿ï¿½ï¿½Ä¿Â¼ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ `Assets` Ä¿Â¼ï¿½Ð£ï¿½ï¿½ï¿½ï¿½â±»Unityï¿½à¼­ï¿½ï¿½ï¿½ï¿½ï¿½ë¡£</para>
         /// </summary>
-        public const string KitCheckForUpdates = "https://raw.githubusercontent.com/keenlovelife/KSwordKit/kkp/.KitConfig.json";
+        public const string KitPackagesRootDirectory = ".KSwordKit/Packages";
         /// <summary>
-        /// KSwordKit¿ò¼Ü¸üÐÂÊ±Ê¹ÓÃµÄURLÇ°×º
+        /// KSwordKitï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½Ö·
+        /// </summary>
+        public const string KitCheckForUpdates = "https://gitee.com/keenlovelife/ksword-kit/raw/kkp/.KitConfig.json";
+        /// <summary>
+        /// KSwordKit ï¿½ï¿½Ä¿Â¼ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
+        /// </summary>
+        public const string KitOriginPackagesURL = "https://gitee.com/keenlovelife/ksword-kit/raw/kkp/.KSwordKit/kkp";
+        /// <summary>
+        /// KSwordKitï¿½ï¿½Ü¸ï¿½ï¿½ï¿½Ê±Ê¹ï¿½Ãµï¿½URLÇ°×º
         /// </summary>
         public const string KitUpdateURLPrefix = "https://github.com/keenlovelife/KSwordKit/releases/tag";
     }

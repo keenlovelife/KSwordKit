@@ -1,0 +1,56 @@
+{
+    "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Singleton Template@v1.0.0",
+    "fileBytesLength": 12319,
+    "fileCount": 6,
+    "fileIndexList": [
+        {
+            "isDir": true,
+            "fileName": "ExamplesSingletonTemplate",
+            "relativeFilePath": "ExamplesSingletonTemplate",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "ExamplesSingletonTemplateScene.unity",
+            "relativeFilePath": "ExamplesSingletonTemplate/ExamplesSingletonTemplateScene.unity",
+            "fileBytesLength": 8392,
+            "filePosition": 0
+        },
+        {
+            "isDir": false,
+            "fileName": "ExamplesSingletonTemplateTest.cs",
+            "relativeFilePath": "ExamplesSingletonTemplate/ExamplesSingletonTemplateTest.cs",
+            "fileBytesLength": 784,
+            "filePosition": 8392
+        },
+        {
+            "isDir": false,
+            "fileName": "ExamplesSingletonTemplateTest2.cs",
+            "relativeFilePath": "ExamplesSingletonTemplate/ExamplesSingletonTemplateTest2.cs",
+            "fileBytesLength": 802,
+            "filePosition": 9176
+        },
+        {
+            "isDir": false,
+            "fileName": "SingletonTest2.cs",
+            "relativeFilePath": "ExamplesSingletonTemplate/SingletonTest2.cs",
+            "fileBytesLength": 576,
+            "filePosition": 9978
+        },
+        {
+            "isDir": false,
+            "fileName": "kitPackageConfig.json",
+            "relativeFilePath": "kitPackageConfig.json",
+            "fileBytesLength": 450,
+            "filePosition": 10554
+        },
+        {
+            "isDir": false,
+            "fileName": "SingletonTemplate.cs",
+            "relativeFilePath": "SingletonTemplate.cs",
+            "fileBytesLength": 1315,
+            "filePosition": 11004
+        }
+    ]
+}

@@ -1,0 +1,112 @@
+{
+    "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Multithreading@v1.0.0",
+    "fileBytesLength": 102117,
+    "fileCount": 12,
+    "fileIndexList": [
+        {
+            "isDir": true,
+            "fileName": "LOOM Framework",
+            "relativeFilePath": "LOOM Framework",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "LOOM",
+            "relativeFilePath": "LOOM Framework/LOOM",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "Internal",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "MainThreadDispatcher.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal/MainThreadDispatcher.cs",
+            "fileBytesLength": 12932,
+            "filePosition": 0
+        },
+        {
+            "isDir": false,
+            "fileName": "MainThreadWatchdog.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal/MainThreadWatchdog.cs",
+            "fileBytesLength": 2160,
+            "filePosition": 12932
+        },
+        {
+            "isDir": false,
+            "fileName": "MultithreadedWorkloadHelper.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal/MultithreadedWorkloadHelper.cs",
+            "fileBytesLength": 13453,
+            "filePosition": 15092
+        },
+        {
+            "isDir": false,
+            "fileName": "SingleThreadStarter.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal/SingleThreadStarter.cs",
+            "fileBytesLength": 9540,
+            "filePosition": 28545
+        },
+        {
+            "isDir": false,
+            "fileName": "ThreadDispatchAction.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal/ThreadDispatchAction.cs",
+            "fileBytesLength": 4876,
+            "filePosition": 38085
+        },
+        {
+            "isDir": false,
+            "fileName": "ThreadPoolSchedulerWorkerObjects.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal/ThreadPoolSchedulerWorkerObjects.cs",
+            "fileBytesLength": 3315,
+            "filePosition": 42961
+        },
+        {
+            "isDir": false,
+            "fileName": "ThreadWaitCommands.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal/ThreadWaitCommands.cs",
+            "fileBytesLength": 1455,
+            "filePosition": 46276
+        },
+        {
+            "isDir": false,
+            "fileName": "UnityActivityWatchdog.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Internal/UnityActivityWatchdog.cs",
+            "fileBytesLength": 6232,
+            "filePosition": 47731
+        },
+        {
+            "isDir": false,
+            "fileName": "IThreadWorkerObject.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/IThreadWorkerObject.cs",
+            "fileBytesLength": 2272,
+            "filePosition": 53963
+        },
+        {
+            "isDir": false,
+            "fileName": "Loom.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/Loom.cs",
+            "fileBytesLength": 27158,
+            "filePosition": 56235
+        },
+        {
+            "isDir": false,
+            "fileName": "ThreadPoolScheduler.cs",
+            "relativeFilePath": "LOOM Framework/LOOM/ThreadPoolScheduler.cs",
+            "fileBytesLength": 18300,
+            "filePosition": 83393
+        },
+        {
+            "isDir": false,
+            "fileName": "kitPackageConfig.json",
+            "relativeFilePath": "kitPackageConfig.json",
+            "fileBytesLength": 424,
+            "filePosition": 101693
+        }
+    ]
+}

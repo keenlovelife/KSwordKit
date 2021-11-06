@@ -9,6 +9,13 @@ namespace KSwordKit.Editor
     [InitializeOnLoad]
     public class KitToolEditor
     {
+        public class WebRequestCertificate : UnityEngine.Networking.CertificateHandler
+        {
+            protected override bool ValidateCertificate(byte[] certificateData)
+            {
+                return true;
+            }
+        }
         public class WebRequest
         {
             public UnityEngine.Networking.UnityWebRequest www;
@@ -36,7 +43,8 @@ namespace KSwordKit.Editor
                 else
                 {
                     waitList.Add(webRequest);
-                    webRequest.waitAction(webRequest.www);
+                    if (webRequest.waitAction != null)
+                        webRequest.waitAction(webRequest.www);
                 }
             }
 
@@ -45,25 +53,26 @@ namespace KSwordKit.Editor
             waitList.Clear();
             waitList = null;
 
-            foreach(var webRequest in doneList)
-                webRequest.ResultAction(webRequest.www);
+            foreach (var webRequest in doneList)
+                if (webRequest.ResultAction != null)
+                    webRequest.ResultAction(webRequest.www);
             doneList.Clear();
             doneList = null;
         }
         static void Action_update()
         {
             foreach (var action in Actions)
-                action();
+                if (action != null)
+                    action();
             Actions.Clear();
         }
 
         public static void AddWebRequest(WebRequest webRequest)
         {
             if(webRequest != null && 
-                webRequest.www != null && 
-                webRequest.ResultAction != null &&
-                webRequest.waitAction != null)
+                webRequest.www != null)
             {
+                webRequest.www.certificateHandler = new WebRequestCertificate();
                 webRequest.www.SendWebRequest();
                 WebRequestList.Add(webRequest);
             }

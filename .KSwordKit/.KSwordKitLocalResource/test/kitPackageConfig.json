@@ -1,0 +1,49 @@
+{
+    "ID": "test@v1.0.0",
+    "Name": "test",
+    "Version": "v1.0.0",
+    "liveWithOtherVersion": false,
+    "Author": "ks",
+    "Contact": "ks@keenlove.com",
+    "HomePage": "https://github.com/keenlovelife",
+    "Date": "2021-10-30 21:16:28",
+    "Description": "测试包\n这是一个测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本",
+    "Dependencies": [
+        "test1@v1.0.0"
+    ],
+    "Tags": [
+        "测试"
+    ],
+    "FileSettings": [
+        {
+            "enableUninstall": true,
+            "isDir": false,
+            "SourcePath": "新建文件夹/新建 Microsoft Excel 工作表.xlsx",
+            "TargetPath": "{PackageRootDir}/新建文件夹/新建 Microsoft Excel 工作表.xlsx"
+        },
+        {
+            "enableUninstall": true,
+            "isDir": false,
+            "SourcePath": "新建文件夹/新建文件夹/新建 RTF 文档.rtf",
+            "TargetPath": "{PackageRootDir}/新建 RTF 文档.rtf"
+        },
+        {
+            "enableUninstall": true,
+            "isDir": true,
+            "SourcePath": "新建文件夹",
+            "TargetPath": "{PackageRootDir}/新建文件夹"
+        },
+        {
+            "enableUninstall": true,
+            "isDir": true,
+            "SourcePath": "新建文件夹/新建文件夹",
+            "TargetPath": "{PackageRootDir}/新建文件夹/新建文件夹"
+        },
+        {
+            "enableUninstall": true,
+            "isDir": true,
+            "SourcePath": "新建文件夹/新建文件夹/新建文件夹",
+            "TargetPath": "{PackageRootDir}/新建文件夹/新建文件夹"
+        }
+    ]
+}

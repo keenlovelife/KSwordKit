@@ -14,16 +14,23 @@ namespace KSwordKit.Editor.PackageManager
     {
         public string Version;
         public int PackageCount;
-        public List<KitOriginPackageConfig> PackageList;
+        public List<string> PackageList;
+
+        [NonSerialized]
+        public List<KitOriginPackageConfig> OriginPackageConfigList;
+        [NonSerialized]
+        public Dictionary<string, List<int>> OriginPackageDic;
     }
 
-    [Serializable]
     public class KitOriginPackageConfig
     {
+        public bool selected;
         public string ID;
-        public string Description;
-        public string URL;
-        public string Extension;
+        public string kkpurl;
+        public string kkpfilepath;
+        public string configurl;
+        public string configfilepath;
+        public KitPackageConfig KitPackageConfig;
     }
 
 }

@@ -1,0 +1,21 @@
+{
+    "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/test_Dependencies",
+    "fileBytesLength": 582,
+    "fileCount": 2,
+    "fileIndexList": [
+        {
+            "isDir": false,
+            "fileName": "kitPackageConfig.json",
+            "relativeFilePath": "kitPackageConfig.json",
+            "fileBytesLength": 552,
+            "filePosition": 0
+        },
+        {
+            "isDir": false,
+            "fileName": "新建文本文档.txt",
+            "relativeFilePath": "新建文本文档.txt",
+            "fileBytesLength": 30,
+            "filePosition": 552
+        }
+    ]
+}

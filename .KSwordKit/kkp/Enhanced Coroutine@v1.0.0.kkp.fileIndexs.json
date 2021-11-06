@@ -1,0 +1,49 @@
+{
+    "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Enhanced Coroutine@v1.0.0",
+    "fileBytesLength": 35987,
+    "fileCount": 5,
+    "fileIndexList": [
+        {
+            "isDir": true,
+            "fileName": "ExamplesEnhancedCoroutine",
+            "relativeFilePath": "ExamplesEnhancedCoroutine",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "ExamplesEnhancedCoroutineTest.cs",
+            "relativeFilePath": "ExamplesEnhancedCoroutine/ExamplesEnhancedCoroutineTest.cs",
+            "fileBytesLength": 4735,
+            "filePosition": 0
+        },
+        {
+            "isDir": false,
+            "fileName": "ExamplesLoopScene.unity",
+            "relativeFilePath": "ExamplesEnhancedCoroutine/ExamplesLoopScene.unity",
+            "fileBytesLength": 20553,
+            "filePosition": 4735
+        },
+        {
+            "isDir": false,
+            "fileName": "Frame.cs",
+            "relativeFilePath": "Frame.cs",
+            "fileBytesLength": 4448,
+            "filePosition": 25288
+        },
+        {
+            "isDir": false,
+            "fileName": "kitPackageConfig.json",
+            "relativeFilePath": "kitPackageConfig.json",
+            "fileBytesLength": 450,
+            "filePosition": 29736
+        },
+        {
+            "isDir": false,
+            "fileName": "Loop.cs",
+            "relativeFilePath": "Loop.cs",
+            "fileBytesLength": 5801,
+            "filePosition": 30186
+        }
+    ]
+}

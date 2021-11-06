@@ -1,0 +1,721 @@
+{
+    "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Framework/xLua@v1.0.0",
+    "fileBytesLength": 10762425,
+    "fileCount": 73,
+    "fileIndexList": [
+        {
+            "isDir": true,
+            "fileName": "ExamplesXLua",
+            "relativeFilePath": "ExamplesXLua",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "ExamplesXLuaScene.unity",
+            "relativeFilePath": "ExamplesXLua/ExamplesXLuaScene.unity",
+            "fileBytesLength": 8385,
+            "filePosition": 0
+        },
+        {
+            "isDir": false,
+            "fileName": "ExamplesXLuaTest.cs",
+            "relativeFilePath": "ExamplesXLua/ExamplesXLuaTest.cs",
+            "fileBytesLength": 367,
+            "filePosition": 8385
+        },
+        {
+            "isDir": true,
+            "fileName": "Plugins",
+            "relativeFilePath": "Plugins",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "Android",
+            "relativeFilePath": "Plugins/Android",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "libs",
+            "relativeFilePath": "Plugins/Android/libs",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "arm64-v8a",
+            "relativeFilePath": "Plugins/Android/libs/arm64-v8a",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "libxlua.so",
+            "relativeFilePath": "Plugins/Android/libs/arm64-v8a/libxlua.so",
+            "fileBytesLength": 993608,
+            "filePosition": 8752
+        },
+        {
+            "isDir": true,
+            "fileName": "armeabi-v7a",
+            "relativeFilePath": "Plugins/Android/libs/armeabi-v7a",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "libxlua.so",
+            "relativeFilePath": "Plugins/Android/libs/armeabi-v7a/libxlua.so",
+            "fileBytesLength": 546108,
+            "filePosition": 1002360
+        },
+        {
+            "isDir": true,
+            "fileName": "x86",
+            "relativeFilePath": "Plugins/Android/libs/x86",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "libxlua.so",
+            "relativeFilePath": "Plugins/Android/libs/x86/libxlua.so",
+            "fileBytesLength": 588904,
+            "filePosition": 1548468
+        },
+        {
+            "isDir": true,
+            "fileName": "iOS",
+            "relativeFilePath": "Plugins/iOS",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "HotfixFlags.cpp",
+            "relativeFilePath": "Plugins/iOS/HotfixFlags.cpp",
+            "fileBytesLength": 996,
+            "filePosition": 2137372
+        },
+        {
+            "isDir": false,
+            "fileName": "libxlua.a",
+            "relativeFilePath": "Plugins/iOS/libxlua.a",
+            "fileBytesLength": 2573536,
+            "filePosition": 2138368
+        },
+        {
+            "isDir": true,
+            "fileName": "WebGL",
+            "relativeFilePath": "Plugins/WebGL",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "xlua_webgl.cpp",
+            "relativeFilePath": "Plugins/WebGL/xlua_webgl.cpp",
+            "fileBytesLength": 1565,
+            "filePosition": 4711904
+        },
+        {
+            "isDir": true,
+            "fileName": "WSA",
+            "relativeFilePath": "Plugins/WSA",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "ARM",
+            "relativeFilePath": "Plugins/WSA/ARM",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "xlua.dll",
+            "relativeFilePath": "Plugins/WSA/ARM/xlua.dll",
+            "fileBytesLength": 200704,
+            "filePosition": 4713469
+        },
+        {
+            "isDir": true,
+            "fileName": "x64",
+            "relativeFilePath": "Plugins/WSA/x64",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "xlua.dll",
+            "relativeFilePath": "Plugins/WSA/x64/xlua.dll",
+            "fileBytesLength": 277504,
+            "filePosition": 4914173
+        },
+        {
+            "isDir": true,
+            "fileName": "x86",
+            "relativeFilePath": "Plugins/WSA/x86",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "xlua.dll",
+            "relativeFilePath": "Plugins/WSA/x86/xlua.dll",
+            "fileBytesLength": 221696,
+            "filePosition": 5191677
+        },
+        {
+            "isDir": true,
+            "fileName": "x86",
+            "relativeFilePath": "Plugins/x86",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "libxlua.so",
+            "relativeFilePath": "Plugins/x86/libxlua.so",
+            "fileBytesLength": 348987,
+            "filePosition": 5413373
+        },
+        {
+            "isDir": false,
+            "fileName": "xlua.dll",
+            "relativeFilePath": "Plugins/x86/xlua.dll",
+            "fileBytesLength": 457216,
+            "filePosition": 5762360
+        },
+        {
+            "isDir": true,
+            "fileName": "x86_64",
+            "relativeFilePath": "Plugins/x86_64",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "libxlua.so",
+            "relativeFilePath": "Plugins/x86_64/libxlua.so",
+            "fileBytesLength": 440203,
+            "filePosition": 6219576
+        },
+        {
+            "isDir": false,
+            "fileName": "xlua.dll",
+            "relativeFilePath": "Plugins/x86_64/xlua.dll",
+            "fileBytesLength": 525824,
+            "filePosition": 6659779
+        },
+        {
+            "isDir": true,
+            "fileName": "xlua.bundle",
+            "relativeFilePath": "Plugins/xlua.bundle",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "Contents",
+            "relativeFilePath": "Plugins/xlua.bundle/Contents",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "MacOS",
+            "relativeFilePath": "Plugins/xlua.bundle/Contents/MacOS",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "xlua",
+            "relativeFilePath": "Plugins/xlua.bundle/Contents/MacOS/xlua",
+            "fileBytesLength": 607224,
+            "filePosition": 7185603
+        },
+        {
+            "isDir": false,
+            "fileName": "Info.plist",
+            "relativeFilePath": "Plugins/xlua.bundle/Contents/Info.plist",
+            "fileBytesLength": 1375,
+            "filePosition": 7792827
+        },
+        {
+            "isDir": true,
+            "fileName": "Tools",
+            "relativeFilePath": "Tools",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "FilesSignature.exe",
+            "relativeFilePath": "Tools/FilesSignature.exe",
+            "fileBytesLength": 5120,
+            "filePosition": 7794202
+        },
+        {
+            "isDir": false,
+            "fileName": "KeyPairsGen.exe",
+            "relativeFilePath": "Tools/KeyPairsGen.exe",
+            "fileBytesLength": 4608,
+            "filePosition": 7799322
+        },
+        {
+            "isDir": false,
+            "fileName": "libxlua.so",
+            "relativeFilePath": "Tools/libxlua.so",
+            "fileBytesLength": 607224,
+            "filePosition": 7803930
+        },
+        {
+            "isDir": false,
+            "fileName": "Mono.Cecil.dll",
+            "relativeFilePath": "Tools/Mono.Cecil.dll",
+            "fileBytesLength": 302592,
+            "filePosition": 8411154
+        },
+        {
+            "isDir": false,
+            "fileName": "Mono.Cecil.Mdb.dll",
+            "relativeFilePath": "Tools/Mono.Cecil.Mdb.dll",
+            "fileBytesLength": 44544,
+            "filePosition": 8713746
+        },
+        {
+            "isDir": false,
+            "fileName": "Mono.Cecil.Pdb.dll",
+            "relativeFilePath": "Tools/Mono.Cecil.Pdb.dll",
+            "fileBytesLength": 81920,
+            "filePosition": 8758290
+        },
+        {
+            "isDir": false,
+            "fileName": "Mono.Security.dll",
+            "relativeFilePath": "Tools/Mono.Security.dll",
+            "fileBytesLength": 293376,
+            "filePosition": 8840210
+        },
+        {
+            "isDir": false,
+            "fileName": "xlua.dll",
+            "relativeFilePath": "Tools/xlua.dll",
+            "fileBytesLength": 525824,
+            "filePosition": 9133586
+        },
+        {
+            "isDir": false,
+            "fileName": "XLua.Mini.dll",
+            "relativeFilePath": "Tools/XLua.Mini.dll",
+            "fileBytesLength": 175104,
+            "filePosition": 9659410
+        },
+        {
+            "isDir": false,
+            "fileName": "XLuaGenerate.exe",
+            "relativeFilePath": "Tools/XLuaGenerate.exe",
+            "fileBytesLength": 156160,
+            "filePosition": 9834514
+        },
+        {
+            "isDir": false,
+            "fileName": "XLuaHotfixInject.exe",
+            "relativeFilePath": "Tools/XLuaHotfixInject.exe",
+            "fileBytesLength": 41984,
+            "filePosition": 9990674
+        },
+        {
+            "isDir": true,
+            "fileName": "XLua",
+            "relativeFilePath": "XLua",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "Resources",
+            "relativeFilePath": "XLua/Resources",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "perf",
+            "relativeFilePath": "XLua/Resources/perf",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "memory.lua.txt",
+            "relativeFilePath": "XLua/Resources/perf/memory.lua.txt",
+            "fileBytesLength": 948,
+            "filePosition": 10032658
+        },
+        {
+            "isDir": false,
+            "fileName": "profiler.lua.txt",
+            "relativeFilePath": "XLua/Resources/perf/profiler.lua.txt",
+            "fileBytesLength": 4487,
+            "filePosition": 10033606
+        },
+        {
+            "isDir": true,
+            "fileName": "tdr",
+            "relativeFilePath": "XLua/Resources/tdr",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "tdr.lua.txt",
+            "relativeFilePath": "XLua/Resources/tdr/tdr.lua.txt",
+            "fileBytesLength": 3280,
+            "filePosition": 10038093
+        },
+        {
+            "isDir": true,
+            "fileName": "xlua",
+            "relativeFilePath": "XLua/Resources/xlua",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "util.lua.txt",
+            "relativeFilePath": "XLua/Resources/xlua/util.lua.txt",
+            "fileBytesLength": 6211,
+            "filePosition": 10041373
+        },
+        {
+            "isDir": true,
+            "fileName": "Src",
+            "relativeFilePath": "XLua/Src",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "Editor",
+            "relativeFilePath": "XLua/Src/Editor",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": true,
+            "fileName": "LinkXmlGen",
+            "relativeFilePath": "XLua/Src/Editor/LinkXmlGen",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "LinkXmlGen.cs",
+            "relativeFilePath": "XLua/Src/Editor/LinkXmlGen/LinkXmlGen.cs",
+            "fileBytesLength": 1170,
+            "filePosition": 10047584
+        },
+        {
+            "isDir": false,
+            "fileName": "LinkXmlGen.tpl.txt",
+            "relativeFilePath": "XLua/Src/Editor/LinkXmlGen/LinkXmlGen.tpl.txt",
+            "fileBytesLength": 320,
+            "filePosition": 10048754
+        },
+        {
+            "isDir": true,
+            "fileName": "Template",
+            "relativeFilePath": "XLua/Src/Editor/Template",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "LuaClassWrap.tpl.txt",
+            "relativeFilePath": "XLua/Src/Editor/Template/LuaClassWrap.tpl.txt",
+            "fileBytesLength": 27010,
+            "filePosition": 10049074
+        },
+        {
+            "isDir": false,
+            "fileName": "LuaClassWrapGCM.tpl.txt",
+            "relativeFilePath": "XLua/Src/Editor/Template/LuaClassWrapGCM.tpl.txt",
+            "fileBytesLength": 23271,
+            "filePosition": 10076084
+        },
+        {
+            "isDir": false,
+            "fileName": "LuaDelegateBridge.tpl.txt",
+            "relativeFilePath": "XLua/Src/Editor/Template/LuaDelegateBridge.tpl.txt",
+            "fileBytesLength": 3864,
+            "filePosition": 10099355
+        },
+        {
+            "isDir": false,
+            "fileName": "LuaDelegateWrap.tpl.txt",
+            "relativeFilePath": "XLua/Src/Editor/Template/LuaDelegateWrap.tpl.txt",
+            "fileBytesLength": 5293,
+            "filePosition": 10103219
+        },
+        {
+            "isDir": false,
+            "fileName": "LuaEnumWrap.tpl.txt",
+            "relativeFilePath": "XLua/Src/Editor/Template/LuaEnumWrap.tpl.txt",
+            "fileBytesLength": 3765,
+            "filePosition": 10108512
+        },
+        {
+            "isDir": false,
+            "fileName": "LuaEnumWrapGCM.tpl.txt",
+            "relativeFilePath": "XLua/Src/Editor/Template/LuaEnumWrapGCM.tpl.txt",
+            "fileBytesLength": 3524,
+            "filePosition": 10112277
+        },
+        {
+            "isDir": false,
+            "fileName": "LuaInterfaceBridge.tpl.txt",
+            "relativeFilePath": "XLua/Src/Editor/Template/LuaInterfaceBridge.tpl.txt",
+            "fileBytesLength": 14721,
+            "filePosition": 10115801
+        },
+        {
+            "isDir": false,
+            "fileName": "LuaRegister.tpl.txt",
+            "relativeFilePath": "XLua/Src/Editor/Template/LuaRegister.tpl.txt",
+            "fileBytesLength": 5100,
+            "filePosition": 10130522
+        },
+        {
+            "isDir": false,
+            "fileName": "LuaRegisterGCM.tpl.txt",
+            "relativeFilePath": "XLua/Src/Editor/Template/LuaRegisterGCM.tpl.txt",
+            "fileBytesLength": 5112,
+            "filePosition": 10135622
+        },
+        {
+            "isDir": false,
+            "fileName": "LuaWrapPusher.tpl.txt",
+            "relativeFilePath": "XLua/Src/Editor/Template/LuaWrapPusher.tpl.txt",
+            "fileBytesLength": 8424,
+            "filePosition": 10140734
+        },
+        {
+            "isDir": false,
+            "fileName": "PackUnpack.tpl.txt",
+            "relativeFilePath": "XLua/Src/Editor/Template/PackUnpack.tpl.txt",
+            "fileBytesLength": 4433,
+            "filePosition": 10149158
+        },
+        {
+            "isDir": false,
+            "fileName": "TemplateCommon.lua.txt",
+            "relativeFilePath": "XLua/Src/Editor/Template/TemplateCommon.lua.txt",
+            "fileBytesLength": 18493,
+            "filePosition": 10153591
+        },
+        {
+            "isDir": false,
+            "fileName": "Generator.cs",
+            "relativeFilePath": "XLua/Src/Editor/Generator.cs",
+            "fileBytesLength": 80941,
+            "filePosition": 10172084
+        },
+        {
+            "isDir": false,
+            "fileName": "Hotfix.cs",
+            "relativeFilePath": "XLua/Src/Editor/Hotfix.cs",
+            "fileBytesLength": 75248,
+            "filePosition": 10253025
+        },
+        {
+            "isDir": false,
+            "fileName": "TemplateRef.cs",
+            "relativeFilePath": "XLua/Src/Editor/TemplateRef.cs",
+            "fileBytesLength": 635,
+            "filePosition": 10328273
+        },
+        {
+            "isDir": true,
+            "fileName": "TemplateEngine",
+            "relativeFilePath": "XLua/Src/TemplateEngine",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "TemplateEngine.cs",
+            "relativeFilePath": "XLua/Src/TemplateEngine/TemplateEngine.cs",
+            "fileBytesLength": 9002,
+            "filePosition": 10328908
+        },
+        {
+            "isDir": false,
+            "fileName": "CodeEmit.cs",
+            "relativeFilePath": "XLua/Src/CodeEmit.cs",
+            "fileBytesLength": 86756,
+            "filePosition": 10337910
+        },
+        {
+            "isDir": false,
+            "fileName": "CopyByValue.cs",
+            "relativeFilePath": "XLua/Src/CopyByValue.cs",
+            "fileBytesLength": 5777,
+            "filePosition": 10424666
+        },
+        {
+            "isDir": false,
+            "fileName": "DelegateBridge.cs",
+            "relativeFilePath": "XLua/Src/DelegateBridge.cs",
+            "fileBytesLength": 7819,
+            "filePosition": 10430443
+        },
+        {
+            "isDir": false,
+            "fileName": "GenAttributes.cs",
+            "relativeFilePath": "XLua/Src/GenAttributes.cs",
+            "fileBytesLength": 4577,
+            "filePosition": 10438262
+        },
+        {
+            "isDir": false,
+            "fileName": "GenericDelegateBridge.cs",
+            "relativeFilePath": "XLua/Src/GenericDelegateBridge.cs",
+            "fileBytesLength": 8184,
+            "filePosition": 10442839
+        },
+        {
+            "isDir": false,
+            "fileName": "InternalGlobals.cs",
+            "relativeFilePath": "XLua/Src/InternalGlobals.cs",
+            "fileBytesLength": 3003,
+            "filePosition": 10451023
+        },
+        {
+            "isDir": false,
+            "fileName": "LuaBase.cs",
+            "relativeFilePath": "XLua/Src/LuaBase.cs",
+            "fileBytesLength": 4002,
+            "filePosition": 10454026
+        },
+        {
+            "isDir": false,
+            "fileName": "LuaDLL.cs",
+            "relativeFilePath": "XLua/Src/LuaDLL.cs",
+            "fileBytesLength": 26769,
+            "filePosition": 10458028
+        },
+        {
+            "isDir": false,
+            "fileName": "LuaEnv.cs",
+            "relativeFilePath": "XLua/Src/LuaEnv.cs",
+            "fileBytesLength": 25099,
+            "filePosition": 10484797
+        },
+        {
+            "isDir": false,
+            "fileName": "LuaException.cs",
+            "relativeFilePath": "XLua/Src/LuaException.cs",
+            "fileBytesLength": 874,
+            "filePosition": 10509896
+        },
+        {
+            "isDir": false,
+            "fileName": "LuaFunction.cs",
+            "relativeFilePath": "XLua/Src/LuaFunction.cs",
+            "fileBytesLength": 7928,
+            "filePosition": 10510770
+        },
+        {
+            "isDir": false,
+            "fileName": "LuaTable.cs",
+            "relativeFilePath": "XLua/Src/LuaTable.cs",
+            "fileBytesLength": 11692,
+            "filePosition": 10518698
+        },
+        {
+            "isDir": false,
+            "fileName": "MethodWarpsCache.cs",
+            "relativeFilePath": "XLua/Src/MethodWarpsCache.cs",
+            "fileBytesLength": 23177,
+            "filePosition": 10530390
+        },
+        {
+            "isDir": false,
+            "fileName": "ObjectCasters.cs",
+            "relativeFilePath": "XLua/Src/ObjectCasters.cs",
+            "fileBytesLength": 28874,
+            "filePosition": 10553567
+        },
+        {
+            "isDir": false,
+            "fileName": "ObjectPool.cs",
+            "relativeFilePath": "XLua/Src/ObjectPool.cs",
+            "fileBytesLength": 4795,
+            "filePosition": 10582441
+        },
+        {
+            "isDir": false,
+            "fileName": "ObjectTranslator.cs",
+            "relativeFilePath": "XLua/Src/ObjectTranslator.cs",
+            "fileBytesLength": 64632,
+            "filePosition": 10587236
+        },
+        {
+            "isDir": false,
+            "fileName": "ObjectTranslatorPool.cs",
+            "relativeFilePath": "XLua/Src/ObjectTranslatorPool.cs",
+            "fileBytesLength": 3418,
+            "filePosition": 10651868
+        },
+        {
+            "isDir": false,
+            "fileName": "RawObject.cs",
+            "relativeFilePath": "XLua/Src/RawObject.cs",
+            "fileBytesLength": 2246,
+            "filePosition": 10655286
+        },
+        {
+            "isDir": false,
+            "fileName": "SignatureLoader.cs",
+            "relativeFilePath": "XLua/Src/SignatureLoader.cs",
+            "fileBytesLength": 2397,
+            "filePosition": 10657532
+        },
+        {
+            "isDir": false,
+            "fileName": "StaticLuaCallbacks.cs",
+            "relativeFilePath": "XLua/Src/StaticLuaCallbacks.cs",
+            "fileBytesLength": 47704,
+            "filePosition": 10659929
+        },
+        {
+            "isDir": false,
+            "fileName": "TypeExtensions.cs",
+            "relativeFilePath": "XLua/Src/TypeExtensions.cs",
+            "fileBytesLength": 4362,
+            "filePosition": 10707633
+        },
+        {
+            "isDir": false,
+            "fileName": "Utils.cs",
+            "relativeFilePath": "XLua/Src/Utils.cs",
+            "fileBytesLength": 49987,
+            "filePosition": 10711995
+        },
+        {
+            "isDir": false,
+            "fileName": "kitPackageConfig.json",
+            "relativeFilePath": "kitPackageConfig.json",
+            "fileBytesLength": 443,
+            "filePosition": 10761982
+        }
+    ]
+}

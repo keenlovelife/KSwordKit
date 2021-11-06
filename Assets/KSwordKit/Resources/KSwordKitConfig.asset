@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KitInstallationPath: Assets/KSwordKit
   KitVersion: v1.0.0
+  KitImportedPackageList:
+  - Data Processing@v1.0.0

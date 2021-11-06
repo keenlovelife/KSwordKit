@@ -1,0 +1,16 @@
+{
+    "ID": "PureMVC@v1.0.0",
+    "Name": "PureMVC",
+    "Version": "v1.0.0",
+    "liveWithOtherVersion": false,
+    "Author": "ks",
+    "Contact": "ks@keenlove.com",
+    "HomePage": "https://github.com/keenlovelife",
+    "Date": "2021-10-30 21:01:36",
+    "Description": "PureMVC框架，提供C#和Lua实现的PureMVC框架。",
+    "Dependencies": [],
+    "Tags": [
+        "PureMVC"
+    ],
+    "FileSettings": []
+}

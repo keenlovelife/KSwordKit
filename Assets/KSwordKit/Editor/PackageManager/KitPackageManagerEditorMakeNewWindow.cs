@@ -11,19 +11,27 @@ namespace KSwordKit.Editor.PackageManager
     {
         static KitPackageManagerEditorMakeNewWindow window;
         static KitPackageConfig newConfig;
-
         static string windowTitle;
         /// <summary>
         /// 窗口打开显示函数
         /// </summary>
         /// <param name="data">窗口数据</param>
-        public static void Open(string subtitle)
+        public static void Open(string subtitle, bool needinit = false)
         {
             windowTitle = KitConst.KitName + "：" + subtitle;
             window = GetWindow<KitPackageManagerEditorMakeNewWindow>(true, windowTitle);
-            window.minSize = new Vector2(600, 500);
+            window.minSize = new Vector2(600, 700);
             window.blod = new GUIStyle();
-            window.Show();
+
+            if (needinit)
+            {
+                if (string.IsNullOrEmpty(window.packageDir))
+                {
+                    var temp = System.IO.Path.Combine(Application.temporaryCachePath, window.tempPackageName);
+                    window.packageDir = System.IO.File.ReadAllText(temp);
+                }
+                window.init();
+            }
         }
 
         public class FileItem
@@ -34,6 +42,7 @@ namespace KSwordKit.Editor.PackageManager
             public string relativepath;
             public bool isDir;
             public bool foldout;
+            public bool enableUnstaill = true;
             public string settingpath;
             public FileItem partentFileItem;
             public List<FileItem> fileItems;
@@ -89,28 +98,75 @@ namespace KSwordKit.Editor.PackageManager
         static FileItem packageItem;
         string tempPackageName = ".tempPackage";
         int spaceCount = 40;
-        int space = 60;
+        int space = 40;
         bool foldout = false;
         bool exportJsonFile = true;
+        bool exportConfigFile = true;
+
+
+        void init()
+        {
+            if (!string.IsNullOrEmpty(packageDir))
+            {
+                packageItem = FileItem.MakeNew(packageDir, packageDir);
+
+                var configPath = System.IO.Path.Combine(packageDir, KitConst.KitPackageConfigFilename);
+                if (System.IO.File.Exists(configPath))
+                    newConfig = JsonUtility.FromJson<KitPackageConfig>(System.IO.File.ReadAllText(configPath, System.Text.Encoding.UTF8));
+                else
+                    newConfig = new KitPackageConfig();
+
+                _name = newConfig.Name;
+                if (string.IsNullOrEmpty(_name))
+                    _name = System.IO.Path.GetFileName(packageDir);
+                version = newConfig.Version;
+                if (string.IsNullOrEmpty(version))
+                    version = "v1.0.0";
+                author = newConfig.Author;
+                contact = newConfig.Contact;
+                homePage = newConfig.HomePage;
+                description = newConfig.Description;
+                if (newConfig.Dependencies != null && newConfig.Dependencies.Count > 0)
+                {
+                    var d = "";
+                    foreach (var de in newConfig.Dependencies)
+                        d += de + ";\n";
+                    Dependencies = d;
+                }
+                else
+                    Dependencies = "以';'号分割依赖";
+                if (newConfig.Tags != null && newConfig.Tags.Count > 0)
+                {
+                    var t = "";
+                    foreach (var _T in newConfig.Tags)
+                        t += _T + ";";
+                    Tags = t;
+                }
+                else
+                    Tags = "以';'号分割标签";
+                if (newConfig.FileSettings != null && newConfig.FileSettings.Count > 0)
+                {
+                    foreach (var f in newConfig.FileSettings)
+                    {
+                        setConfigFileSettings(packageItem, f);
+                    }
+                }
+            }
+        }
         private void OnGUI()
         {
             if(window == null)
-            {
-                GetWindow<KitPackageManagerEditorMakeNewWindow>().Close();
-                return;
-            }
-
+                Open(KitPackageManagerEditor.MakeNewWindowTitle, true);
 
             blod.fontSize = 13;
             blod.normal.textColor = new Color(255, 200, 200);
             EditorGUILayout.Space(10);
             GUI.enabled = false;
-            GUILayout.Button("您需要先选择包所在目录，然后填写包配置信息，最后导出包文件。", GUILayout.Height(40));
+            GUILayout.Button("您需要先选择包所在目录，填写包配置信息后，导出包文件。（一次导出一个包）", GUILayout.Height(40));
             GUI.enabled = true;
 
             EditorGUILayout.Space(10);
             GUILayout.BeginHorizontal();
-
             GUILayout.Space(spaceCount);
             EditorGUILayout.LabelField("选择包目录：", blod, GUILayout.Width(80));
             packageDir = EditorGUILayout.TextField(packageDir);
@@ -118,55 +174,13 @@ namespace KSwordKit.Editor.PackageManager
             if (GUILayout.Button("浏览", GUILayout.Width(70), GUILayout.Height(20)))
             {
                 packageDir = EditorUtility.OpenFolderPanel(windowTitle, packageDir, "");
-                var temp = System.IO.Path.Combine(Application.temporaryCachePath, tempPackageName);
-                if (System.IO.File.Exists(temp))
-                    System.IO.File.Delete(temp);
-                System.IO.File.WriteAllText(temp, packageDir);
                 if (!string.IsNullOrEmpty(packageDir))
                 {
-                    packageItem = FileItem.MakeNew(packageDir, packageDir);
-
-                    var configPath = System.IO.Path.Combine(packageDir, KitConst.KitPackageConfigFilename);
-                    if (System.IO.File.Exists(configPath))
-                        newConfig = JsonUtility.FromJson<KitPackageConfig>(System.IO.File.ReadAllText(configPath, System.Text.Encoding.UTF8));
-                    else
-                        newConfig = new KitPackageConfig();
-
-                    _name = newConfig.Name;
-                    if (string.IsNullOrEmpty(_name))
-                        _name = System.IO.Path.GetFileName(packageDir);
-                    version = newConfig.Version;
-                    if (string.IsNullOrEmpty(version))
-                        version = "v1.0.0";
-                    author = newConfig.Author;
-                    contact = newConfig.Contact;
-                    homePage = newConfig.HomePage;
-                    description = newConfig.Description;
-                    if (newConfig.Dependencies != null && newConfig.Dependencies.Count > 0)
-                    {
-                        var d = "";
-                        foreach (var de in newConfig.Dependencies)
-                            d += de + ";\n";
-                        Dependencies = d;
-                    }
-                    else
-                        Dependencies = "以';'号分割依赖";
-                    if (newConfig.Tags != null && newConfig.Tags.Count > 0)
-                    {
-                        var t = "";
-                        foreach (var _T in newConfig.Tags)
-                            t += _T + ";";
-                        Tags = t;
-                    }
-                    else
-                        Tags = "以';'号分割标签";
-                    if (newConfig.FileSettings != null && newConfig.FileSettings.Count > 0)
-                    {
-                        foreach (var f in newConfig.FileSettings)
-                        {
-                            setConfigFileSettings(packageItem, f);
-                        }
-                    }
+                    var temp = System.IO.Path.Combine(Application.temporaryCachePath, tempPackageName);
+                    if (System.IO.File.Exists(temp))
+                        System.IO.File.Delete(temp);
+                    System.IO.File.WriteAllText(temp, packageDir);
+                    init();
                 }
             }
             GUILayout.Space(spaceCount);
@@ -212,6 +226,8 @@ namespace KSwordKit.Editor.PackageManager
                 EditorGUILayout.LabelField("版本：", blod, GUILayout.Width(60));
                 version = EditorGUILayout.TextField(version);
                 newConfig.Version = version;
+                newConfig.liveWithOtherVersion = EditorGUILayout.Toggle("", newConfig.liveWithOtherVersion, GUILayout.Width(15));
+                EditorGUILayout.LabelField("可以和旧版共存", GUILayout.Width(120));
                 GUILayout.Space(space);
                 GUILayout.EndHorizontal();
 
@@ -312,25 +328,26 @@ namespace KSwordKit.Editor.PackageManager
                 blod.fontSize = 11;
                 EditorGUILayout.LabelField("可用包列表 -> ", blod, GUILayout.Width(80));
                 scorllPos_dependencies = EditorGUILayout.BeginScrollView(scorllPos_dependencies, false, false, GUILayout.Height(120));
-                foreach (var packageConfig in KitInitializeEditor.KitOriginConfig.PackageList)
-                {
-                    GUILayout.Button("", GUILayout.Height(1));
-                    GUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField(packageConfig.ID, blod);
-                    var dslist = new List<string>();
-                    dslist.AddRange(ds);
-                    if (dslist.Contains(packageConfig.ID))
-                        GUI.enabled = false;
-                    if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
+                if (KitInitializeEditor.KitOriginConfig != null && KitInitializeEditor.KitOriginConfig.PackageList != null)
+                    foreach (var packageConfigID in KitInitializeEditor.KitOriginConfig.PackageList)
                     {
-                        if (Dependencies == "以';'号分割依赖")
-                            Dependencies = packageConfig.ID + ";";
-                        else
-                            Dependencies += "\n" + packageConfig.ID + ";";
+                        GUILayout.Button("", GUILayout.Height(1));
+                        GUILayout.BeginHorizontal();
+                        EditorGUILayout.LabelField(packageConfigID, blod);
+                        var dslist = new List<string>();
+                        dslist.AddRange(ds);
+                        if (dslist.Contains(packageConfigID))
+                            GUI.enabled = false;
+                        if (GUILayout.Button("Add", GUILayout.Width(40), GUILayout.Height(20)))
+                        {
+                            if (Dependencies == "以';'号分割依赖")
+                                Dependencies = packageConfigID + ";";
+                            else
+                                Dependencies += "\n" + packageConfigID + ";";
+                        }
+                        GUI.enabled = true;
+                        GUILayout.EndHorizontal();
                     }
-                    GUI.enabled = true;
-                    GUILayout.EndHorizontal();
-                }
                 GUILayout.Button("", GUILayout.Height(1));
                 EditorGUILayout.EndScrollView();
                 GUILayout.EndHorizontal();
@@ -381,15 +398,16 @@ namespace KSwordKit.Editor.PackageManager
                             GUILayout.BeginHorizontal();
                             GUILayout.Space(15);
                             if (item.isDir)
-                            {
+                            {                                
                                 item.foldout = EditorGUILayout.Foldout(item.foldout, item.filename, true);
                             }
                             else
                             {
                                 EditorGUILayout.LabelField(item.filename, blod);
                             }
-
-                            item.settingpath = EditorGUILayout.TextField(item.settingpath, GUILayout.Width(200));
+                            item.enableUnstaill = EditorGUILayout.Toggle("", item.enableUnstaill, GUILayout.Width(15));
+                            EditorGUILayout.LabelField("卸载时删除", GUILayout.Width(65));
+                            item.settingpath = EditorGUILayout.TextField(item.settingpath, GUILayout.Width(190));
                             if (!string.IsNullOrEmpty(item.settingpath) && !item.settingpath.EndsWith(item.filename))
                                 item.settingpath += "/" + item.filename;
 
@@ -423,6 +441,7 @@ namespace KSwordKit.Editor.PackageManager
                     saveFile();
                 }
                 exportJsonFile = EditorGUILayout.Toggle("同时导出json文件", exportJsonFile);
+                exportConfigFile = EditorGUILayout.Toggle("同时导出配置文件", exportConfigFile);
 
             }
 
@@ -446,6 +465,16 @@ namespace KSwordKit.Editor.PackageManager
                     if (System.IO.File.Exists(configPath))
                         System.IO.File.Delete(configPath);
                     System.IO.File.WriteAllText(configPath, json);
+                    if (exportConfigFile)
+                    {
+                        var outdir = System.IO.Path.GetDirectoryName(savepath);
+                        if (!System.IO.Directory.Exists(outdir))
+                            System.IO.Directory.CreateDirectory(outdir);
+                        configPath = System.IO.Path.Combine(outdir, newConfig.ID + "."  + KitConst.KitPackageConfigFilename);
+                        if (System.IO.File.Exists(configPath))
+                            System.IO.File.Delete(configPath);
+                        System.IO.File.WriteAllText(configPath, json);
+                    }
 
                     KitPacker.Pack(packageDir, savepath, exportJsonFile , (filename, progress, done, error) =>
                     {
@@ -477,7 +506,6 @@ namespace KSwordKit.Editor.PackageManager
             if (string.IsNullOrEmpty(newConfig.Name)) return false;
             if (string.IsNullOrEmpty(newConfig.Version)) return false;
             if (string.IsNullOrEmpty(newConfig.Description)) return false;
-
             return true;
         }
 
@@ -513,11 +541,13 @@ namespace KSwordKit.Editor.PackageManager
                     if (index == -1)
                         config.FileSettings.Add(new KitPackageConfigFileSetting()
                         {
+                            enableUninstall = fileItem.enableUnstaill,
                             SourcePath = fileItem.relativepath,
                             TargetPath = fileItem.settingpath
                         });
                     else
                     {
+                        config.FileSettings[index].enableUninstall = fileItem.enableUnstaill;
                         config.FileSettings[index].TargetPath = fileItem.settingpath;
                     }
                 }
@@ -527,11 +557,13 @@ namespace KSwordKit.Editor.PackageManager
                     if (index == -1)
                         config.FileSettings.Add(new KitPackageConfigFileSetting()
                         {
+                            enableUninstall = fileItem.enableUnstaill,
                             SourcePath = fileItem.relativepath,
                             TargetPath = settingpath + "/" + fileItem.filename
                         });
                     else
                     {
+                        config.FileSettings[index].enableUninstall = fileItem.enableUnstaill;
                         config.FileSettings[index].TargetPath = settingpath + "/" + fileItem.filename;
                     }
                 }
@@ -544,12 +576,14 @@ namespace KSwordKit.Editor.PackageManager
                     if (index == -1)
                         config.FileSettings.Add(new KitPackageConfigFileSetting()
                         {
+                            enableUninstall = fileItem.enableUnstaill,
                             isDir = true,
                             SourcePath = fileItem.relativepath,
                             TargetPath = fileItem.settingpath
                         });
                     else 
-                    { 
+                    {
+                        config.FileSettings[index].enableUninstall = fileItem.enableUnstaill;
                         config.FileSettings[index].isDir = true;
                         config.FileSettings[index].TargetPath = fileItem.settingpath;
                     }
@@ -560,12 +594,14 @@ namespace KSwordKit.Editor.PackageManager
                     if (index == -1)
                         config.FileSettings.Add(new KitPackageConfigFileSetting()
                         {
+                            enableUninstall = fileItem.enableUnstaill,
                             isDir = true,
                             SourcePath = fileItem.relativepath,
                             TargetPath = settingpath + "/" + fileItem.filename
                         });
                     else
                     {
+                        config.FileSettings[index].enableUninstall = fileItem.enableUnstaill;
                         config.FileSettings[index].isDir = true;
                         config.FileSettings[index].TargetPath = settingpath + "/" + fileItem.filename;
                     }
@@ -583,11 +619,13 @@ namespace KSwordKit.Editor.PackageManager
                                 if (index == -1)
                                     config.FileSettings.Add(new KitPackageConfigFileSetting()
                                     {
+                                        enableUninstall = item.enableUnstaill,
                                         SourcePath = item.relativepath,
                                         TargetPath = fileItem.settingpath + "/" + item.filename
                                     });
                                 else
                                 {
+                                    config.FileSettings[index].enableUninstall = item.enableUnstaill;
                                     config.FileSettings[index].TargetPath = fileItem.settingpath + "/" + item.filename;
                                 }
                             }
@@ -597,11 +635,13 @@ namespace KSwordKit.Editor.PackageManager
                                 if (index == -1)
                                     config.FileSettings.Add(new KitPackageConfigFileSetting()
                                     {
+                                        enableUninstall = item.enableUnstaill,
                                         SourcePath = item.relativepath,
                                         TargetPath = settingpath + "/" + item.filename
                                     });
                                 else
                                 {
+                                    config.FileSettings[index].enableUninstall = item.enableUnstaill;
                                     config.FileSettings[index].TargetPath = fileItem.settingpath + "/" + item.filename;
                                 }
                             }
@@ -613,11 +653,13 @@ namespace KSwordKit.Editor.PackageManager
                             if (index == -1)
                                 config.FileSettings.Add(new KitPackageConfigFileSetting()
                                 {
+                                    enableUninstall = item.enableUnstaill,
                                     SourcePath = item.relativepath,
                                     TargetPath = item.settingpath
                                 });
                             else
                             {
+                                config.FileSettings[index].enableUninstall = item.enableUnstaill;
                                 config.FileSettings[index].TargetPath = item.settingpath;
                             }
                         }

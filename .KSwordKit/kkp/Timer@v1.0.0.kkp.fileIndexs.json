@@ -1,0 +1,21 @@
+{
+    "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Timer@v1.0.0",
+    "fileBytesLength": 1696,
+    "fileCount": 2,
+    "fileIndexList": [
+        {
+            "isDir": false,
+            "fileName": "kitPackageConfig.json",
+            "relativeFilePath": "kitPackageConfig.json",
+            "fileBytesLength": 400,
+            "filePosition": 0
+        },
+        {
+            "isDir": false,
+            "fileName": "Timer.cs",
+            "relativeFilePath": "Timer.cs",
+            "fileBytesLength": 1296,
+            "filePosition": 400
+        }
+    ]
+}
