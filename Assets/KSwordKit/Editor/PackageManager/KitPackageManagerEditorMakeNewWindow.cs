@@ -27,7 +27,7 @@ namespace KSwordKit.Editor.PackageManager
         {
             windowTitle = KitConst.KitName + "：" + subtitle;
             window = GetWindow<KitPackageManagerEditorMakeNewWindow>(true, windowTitle);
-            window.minSize = new Vector2(600, 800);
+            window.minSize = new Vector2(680, 800);
             window.blod = new GUIStyle();
             if (needinit)
             {
@@ -333,11 +333,14 @@ namespace KSwordKit.Editor.PackageManager
             GUILayout.Space(spaceCount);
             GUILayout.EndHorizontal();
 
-
             if (!string.IsNullOrEmpty(packageDir))
             {
                 EditorGUILayout.Space(10);
-                if(GUILayout.Button("设置包配置", GUILayout.Height(25)))
+                var setpgkConfigLabel = "设置包配置";
+                if (supportMultipleSelect)
+                    setpgkConfigLabel = System.IO.Path.GetFileName(packageDir) + "：" + setpgkConfigLabel;
+
+                if (GUILayout.Button(setpgkConfigLabel, GUILayout.Height(26)))
                 {
                     showSetConfig = !showSetConfig;
                 }
@@ -345,6 +348,20 @@ namespace KSwordKit.Editor.PackageManager
                 if (showSetConfig)
                 {
                     scorllPos = EditorGUILayout.BeginScrollView(scorllPos, false, false);
+                    if (supportMultipleSelect)
+                    {
+                        EditorGUILayout.Space(10);
+                        GUILayout.BeginHorizontal();
+                        GUI.enabled = false;
+                        GUILayout.Space(space);
+                        blod.fontSize = 13;
+                        EditorGUILayout.LabelField("包目录：", blod, GUILayout.Width(60));
+                        EditorGUILayout.TextField(packageDir);
+                        GUILayout.Space(space);
+                        GUI.enabled = true;
+                        GUILayout.EndHorizontal();
+                    }
+
                     EditorGUILayout.Space(10);
                     GUILayout.BeginHorizontal();
                     GUI.enabled = false;
