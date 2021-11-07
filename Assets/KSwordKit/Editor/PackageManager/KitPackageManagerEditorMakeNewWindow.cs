@@ -191,7 +191,7 @@ namespace KSwordKit.Editor.PackageManager
         }
         private void OnGUI()
         {
-            if(window == null)
+            if (window == null)
                 Open(KitPackageManagerEditor.MakeNewWindowTitle, true);
 
             blod.fontSize = 13;

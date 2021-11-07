@@ -39,9 +39,13 @@ namespace KSwordKit.Editor.PackageManager
         float hspaceCount = 20;
         static GUIStyle blod;
         static GUIStyle richText;
+        static bool needDrawGUI = false;
         private void OnGUI()
         {
-            if(assetPaths.Count > 0)
+            if (window == null)
+                window = GetWindow<KitImportKKPEditorWindow>(true, KitConst.KitName + "£º" + KitImportKKP.openWindowSubtitle);
+
+            if (assetPaths.Count > 0)
             {
                 foreach (var path in assetPaths)
                     AssetDatabase.DeleteAsset(path);
@@ -62,7 +66,6 @@ namespace KSwordKit.Editor.PackageManager
                 richText.fontSize = 10;
                 richText.richText = true;
             }
-
 
             if (kkpFilepaths.Count > 0)
             {
@@ -104,6 +107,12 @@ namespace KSwordKit.Editor.PackageManager
                     ImportAll(selectedKKPFilepaths);
                 }
                 GUILayout.Space(10);
+            }
+
+            if(needDrawGUI)
+            {
+                needDrawGUI = false;
+                OnGUI();
             }
         }
         void DrawKKPGUI(KKPFilepath kkpfilepath)
@@ -277,6 +286,7 @@ namespace KSwordKit.Editor.PackageManager
             if (System.IO.File.Exists(kkptempfilepath))
             {
                 kkpFilepaths.Clear();
+                needDrawGUI = true;
                 var lines = System.IO.File.ReadAllLines(kkptempfilepath, System.Text.Encoding.UTF8);
 
                 var kkps = new List<KKPFilepath>();
@@ -397,6 +407,9 @@ namespace KSwordKit.Editor.PackageManager
                         if(doneCount == selectedKKPFilepaths.Count)
                         {
                             EditorUtility.ClearProgressBar();
+                            window.Close();
+                            AssetDatabase.SaveAssets();
+                            AssetDatabase.Refresh();
                         }
                     }
                 }, kkp.FileIndexs.fileIndexList);

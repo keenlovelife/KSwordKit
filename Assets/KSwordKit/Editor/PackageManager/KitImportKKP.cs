@@ -9,6 +9,7 @@ namespace KSwordKit.Editor.PackageManager
     public class KitImportKKP : ScriptedImporter
     {
         public const string kkpFilepathsTempFilename = "kkpFilepaths.tmp";
+        public const string openWindowSubtitle = "导入包";
         public override void OnImportAsset(AssetImportContext ctx)
         {
             var tempfilepath = System.IO.Path.Combine(Application.temporaryCachePath, System.IO.Path.GetTempFileName());
@@ -25,7 +26,7 @@ namespace KSwordKit.Editor.PackageManager
                 System.IO.File.Delete(kkptempfilepath);
                 System.IO.File.WriteAllLines(kkptempfilepath, allLines, System.Text.Encoding.UTF8);
             }
-            KitImportKKPEditorWindow.Open("导入包", ctx.assetPath);
+            KitImportKKPEditorWindow.Open(openWindowSubtitle, ctx.assetPath);
         }
     }
 }

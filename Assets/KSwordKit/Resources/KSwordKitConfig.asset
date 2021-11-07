@@ -16,5 +16,8 @@ MonoBehaviour:
   KitVersion: v1.0.0
   KitImportedPackageList:
   - Data Processing@v1.0.0
-  - Enhanced Coroutine@v1.0.0
-  - Multithreading@v1.0.0
+  - Singleton Template@v1.0.0
+  - test1@v1.0.0
+  - test@v1.0.0
+  - test_Dependencies@v1.0.0
+  - Timer@v1.0.0

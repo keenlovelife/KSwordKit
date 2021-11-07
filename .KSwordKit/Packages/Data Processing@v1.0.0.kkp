@@ -3061,11 +3061,12 @@ namespace Mono.Xml
     "ID": "Data Processing@v1.0.0",
     "Name": "Data Processing",
     "Version": "v1.0.0",
+    "MD5Value": "",
     "liveWithOtherVersion": false,
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-10-30 21:00:36",
+    "Date": "2021-11-07 18:14:18",
     "Description": "数据处理库，提供多种json、xml等多种数据格式解析api。",
     "Dependencies": [],
     "Tags": [
@@ -3076,13 +3077,15 @@ namespace Mono.Xml
     "FileSettings": []
 }{
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Data Processing@v1.0.0",
-    "fileBytesLength": 141772,
+    "fileBytesLength": 141792,
+    "MD5Value": "",
     "fileCount": 10,
     "fileIndexList": [
         {
             "isDir": true,
             "fileName": "Example",
             "relativeFilePath": "Example",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -3090,6 +3093,7 @@ namespace Mono.Xml
             "isDir": true,
             "fileName": "ExamplesLitJson",
             "relativeFilePath": "Example/ExamplesLitJson",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -3097,6 +3101,7 @@ namespace Mono.Xml
             "isDir": false,
             "fileName": "LitJsonScene.unity",
             "relativeFilePath": "Example/ExamplesLitJson/LitJsonScene.unity",
+            "MD5Value": "7D221A87ED0B94551D5D76141EBFA657",
             "fileBytesLength": 8405,
             "filePosition": 0
         },
@@ -3104,6 +3109,7 @@ namespace Mono.Xml
             "isDir": false,
             "fileName": "LitJsonTest.cs",
             "relativeFilePath": "Example/ExamplesLitJson/LitJsonTest.cs",
+            "MD5Value": "4C2F01B18C2530F9D5C9D9797B6B0324",
             "fileBytesLength": 1111,
             "filePosition": 8405
         },
@@ -3111,6 +3117,7 @@ namespace Mono.Xml
             "isDir": true,
             "fileName": "ExamplesMono.Xml",
             "relativeFilePath": "Example/ExamplesMono.Xml",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -3118,6 +3125,7 @@ namespace Mono.Xml
             "isDir": true,
             "fileName": "Resources",
             "relativeFilePath": "Example/ExamplesMono.Xml/Resources",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -3125,6 +3133,7 @@ namespace Mono.Xml
             "isDir": false,
             "fileName": "Tutorial.xml",
             "relativeFilePath": "Example/ExamplesMono.Xml/Resources/Tutorial.xml",
+            "MD5Value": "D099F4DD3D164B6641BC780D3FF0E8B9",
             "fileBytesLength": 5501,
             "filePosition": 9516
         },
@@ -3132,6 +3141,7 @@ namespace Mono.Xml
             "isDir": false,
             "fileName": "ExamplesMono.XmlScene.unity",
             "relativeFilePath": "Example/ExamplesMono.Xml/ExamplesMono.XmlScene.unity",
+            "MD5Value": "B328CAE39AE6BB0CA489A1EFCA7DAABC",
             "fileBytesLength": 8398,
             "filePosition": 15017
         },
@@ -3139,6 +3149,7 @@ namespace Mono.Xml
             "isDir": false,
             "fileName": "MonoXmlTest.cs",
             "relativeFilePath": "Example/ExamplesMono.Xml/MonoXmlTest.cs",
+            "MD5Value": "B26F75C9FCE1995150A0C97F723C0B02",
             "fileBytesLength": 630,
             "filePosition": 23415
         },
@@ -3146,6 +3157,7 @@ namespace Mono.Xml
             "isDir": true,
             "fileName": "JSON",
             "relativeFilePath": "JSON",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -3153,6 +3165,7 @@ namespace Mono.Xml
             "isDir": true,
             "fileName": "LitJson",
             "relativeFilePath": "JSON/LitJson",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -3160,6 +3173,7 @@ namespace Mono.Xml
             "isDir": false,
             "fileName": "LitJSON.dll",
             "relativeFilePath": "JSON/LitJson/LitJSON.dll",
+            "MD5Value": "703FAC0CC11333EDF22D5674486C1C9D",
             "fileBytesLength": 60928,
             "filePosition": 24045
         },
@@ -3167,6 +3181,7 @@ namespace Mono.Xml
             "isDir": true,
             "fileName": "XML",
             "relativeFilePath": "XML",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -3174,6 +3189,7 @@ namespace Mono.Xml
             "isDir": true,
             "fileName": "Mono.Xml",
             "relativeFilePath": "XML/Mono.Xml",
+            "MD5Value": "",
             "fileBytesLength": -1,
             "filePosition": -1
         },
@@ -3181,6 +3197,7 @@ namespace Mono.Xml
             "isDir": false,
             "fileName": "MiniParser.cs",
             "relativeFilePath": "XML/Mono.Xml/MiniParser.cs",
+            "MD5Value": "0B8B6F28431192D6BCC3ADDC2CFE22F3",
             "fileBytesLength": 38706,
             "filePosition": 84973
         },
@@ -3188,6 +3205,7 @@ namespace Mono.Xml
             "isDir": false,
             "fileName": "SecurityParser.cs",
             "relativeFilePath": "XML/Mono.Xml/SecurityParser.cs",
+            "MD5Value": "969B739D0374E1E89D81C8D08FD4317C",
             "fileBytesLength": 2973,
             "filePosition": 123679
         },
@@ -3195,6 +3213,7 @@ namespace Mono.Xml
             "isDir": false,
             "fileName": "SmallXmlParser.cs",
             "relativeFilePath": "XML/Mono.Xml/SmallXmlParser.cs",
+            "MD5Value": "B502CCD8798A80E3145906157C04DA3D",
             "fileBytesLength": 14632,
             "filePosition": 126652
         },
@@ -3202,8 +3221,9 @@ namespace Mono.Xml
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "fileBytesLength": 488,
+            "MD5Value": "007E66A050628DC6CAE3B67051A6BEED",
+            "fileBytesLength": 508,
             "filePosition": 141284
         }
     ]
-}�)     ;  kkp@v1.0.0;make by ks
+}�)     �  kkp@v1.0.0;make by ks

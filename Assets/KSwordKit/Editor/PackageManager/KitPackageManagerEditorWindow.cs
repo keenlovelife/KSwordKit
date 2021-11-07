@@ -60,7 +60,7 @@ namespace KSwordKit.Editor.PackageManager
         bool per_selected = false;
         private void OnGUI()
         {
-            if(blod == null)
+            if (blod == null)
                 blod = new GUIStyle();
             if(richText == null)
             {
