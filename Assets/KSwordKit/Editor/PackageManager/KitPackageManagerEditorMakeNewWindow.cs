@@ -139,7 +139,6 @@ namespace KSwordKit.Editor.PackageManager
         bool exportJsonFile = true;
         bool exportConfigFile = true;
 
-
         void init(PGKDir pgk = null)
         {
             if (!string.IsNullOrEmpty(packageDir))
@@ -182,10 +181,14 @@ namespace KSwordKit.Editor.PackageManager
                     Tags = "以';'号分割标签";
                 if (newConfig.FileSettings != null && newConfig.FileSettings.Count > 0)
                 {
+                    var removelist = new List<KitPackageConfigFileSetting>();
                     foreach (var f in newConfig.FileSettings)
                     {
+                        if (!configFileSettingCanUse(packageItem, f)) removelist.Add(f);
                         setConfigFileSettings(packageItem, f);
                     }
+                    if (removelist.Count > 0)
+                        foreach (var f in removelist) newConfig.FileSettings.Remove(f);
                 }
             }
         }
@@ -774,7 +777,18 @@ namespace KSwordKit.Editor.PackageManager
             if (string.IsNullOrEmpty(kitPackageConfig.Description)) return false;
             return true;
         }
-
+        bool configFileSettingCanUse(FileItem fileItem, KitPackageConfigFileSetting setting)
+        {
+            if (fileItem.relativepath == setting.SourcePath)
+                return true;
+            
+            if (fileItem.isDir && fileItem.fileItems != null)
+            {
+                foreach (var f in fileItem.fileItems)
+                    if (configFileSettingCanUse(f, setting)) return true;
+            }
+            return false;
+        }
         void setConfigFileSettings(FileItem fileItem, KitPackageConfigFileSetting setting)
         {
             if (fileItem.relativepath == setting.SourcePath)

@@ -2,12 +2,12 @@
     "ID": "test@v1.0.0",
     "Name": "test",
     "Version": "v1.0.0",
-    "MD5Value": "74CC4309A9F6CB3D9CE5222A41DF6339",
+    "MD5Value": "A3FE45F0476E290701408F297DCE72CC",
     "liveWithOtherVersion": false,
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-11-07 22:09:51",
+    "Date": "2021-11-07 22:34:31",
     "Description": "测试包\n这是一个测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本",
     "Dependencies": [
         "test1@v1.0.0"
@@ -38,12 +38,6 @@
             "enableUninstall": true,
             "isDir": true,
             "SourcePath": "新建文件夹/新建文件夹",
-            "TargetPath": "{PackageRootDir}/新建文件夹/新建文件夹"
-        },
-        {
-            "enableUninstall": true,
-            "isDir": true,
-            "SourcePath": "新建文件夹/新建文件夹/新建文件夹",
             "TargetPath": "{PackageRootDir}/新建文件夹/新建文件夹"
         }
     ]
