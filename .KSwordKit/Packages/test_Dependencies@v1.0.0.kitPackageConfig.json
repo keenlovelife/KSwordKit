@@ -6,7 +6,7 @@
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-10-30 21:02:12",
+    "Date": "2021-11-07 02:17:50",
     "Description": "测试依赖导入情况",
     "Dependencies": [
         "test@v1.0.0",
