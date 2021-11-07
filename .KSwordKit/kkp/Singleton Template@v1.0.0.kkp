@@ -380,11 +380,12 @@ public class SingletonTest2 : KSwordKit.Core.SingletonTemplate<SingletonTest2>
     "ID": "Singleton Template@v1.0.0",
     "Name": "Singleton Template",
     "Version": "v1.0.0",
+    "MD5Value": "",
     "liveWithOtherVersion": false,
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-11-07 02:16:31",
+    "Date": "2021-11-07 11:42:21",
     "Description": "单例模板，提供方便生成单例的模板类接口。",
     "Dependencies": [],
     "Tags": [
@@ -431,7 +432,8 @@ namespace KSwordKit.Core
 }
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Singleton Template@v1.0.0",
-    "fileBytesLength": 12319,
+    "fileBytesLength": 12339,
+    "MD5Value": "",
     "fileCount": 6,
     "fileIndexList": [
         {
@@ -478,8 +480,8 @@ namespace KSwordKit.Core
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "�Ʋ7T�%=p3�F�\u0014\u0011�",
-            "fileBytesLength": 450,
+            "MD5Value": "\f�t�߁\u0001���z=�\r",
+            "fileBytesLength": 470,
             "filePosition": 10554
         },
         {
@@ -488,7 +490,7 @@ namespace KSwordKit.Core
             "relativeFilePath": "SingletonTemplate.cs",
             "MD5Value": "�\u0014Y�W�\u000E6�D5\u0010V�`�",
             "fileBytesLength": 1315,
-            "filePosition": 11004
+            "filePosition": 11024
         }
     ]
-}0      <	  kkp@v1.0.0;make by ks
+}30      M	  kkp@v1.0.0;make by ks

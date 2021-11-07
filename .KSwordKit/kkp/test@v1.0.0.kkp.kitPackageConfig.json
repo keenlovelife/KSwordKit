@@ -2,11 +2,12 @@
     "ID": "test@v1.0.0",
     "Name": "test",
     "Version": "v1.0.0",
+    "MD5Value": "|B�\u000B���7op�',k-M",
     "liveWithOtherVersion": false,
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-11-07 02:17:37",
+    "Date": "2021-11-07 11:43:24",
     "Description": "测试包\n这是一个测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本\n这又一行测试描述文本",
     "Dependencies": [
         "test1@v1.0.0"

@@ -1,6 +1,7 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/test1",
-    "fileBytesLength": 572985,
+    "fileBytesLength": 573005,
+    "MD5Value": "�G:�^nV�\u0011\u0016X\u000F�)�\n",
     "fileCount": 5,
     "fileIndexList": [
         {
@@ -31,8 +32,8 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "a\u0019\u0002�b���\u001CòW�\"",
-            "fileBytesLength": 1074,
+            "MD5Value": "���֬�ZP�N�>,�;�",
+            "fileBytesLength": 1094,
             "filePosition": 59904
         },
         {
@@ -41,7 +42,7 @@
             "relativeFilePath": "新建 Microsoft Access Database.accdb",
             "MD5Value": "�9\u0016ZEf�>�\u0001\u001Fd\u001E��\u0019",
             "fileBytesLength": 512000,
-            "filePosition": 60978
+            "filePosition": 60998
         },
         {
             "isDir": false,
@@ -49,7 +50,7 @@
             "relativeFilePath": "新建 RTF 文档.rtf",
             "MD5Value": "�tB]�g�\u000B/�\u0011$�T��",
             "fileBytesLength": 7,
-            "filePosition": 572978
+            "filePosition": 572998
         }
     ]
 }

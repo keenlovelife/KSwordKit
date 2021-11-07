@@ -1,6 +1,7 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Framework/xLua@v1.0.0",
-    "fileBytesLength": 10762425,
+    "fileBytesLength": 10762445,
+    "MD5Value": "���\u001Dڌ���b+�D�pP",
     "fileCount": 73,
     "fileIndexList": [
         {
@@ -815,8 +816,8 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "1z(�f�\u0016c\u001BZ�pND�p",
-            "fileBytesLength": 443,
+            "MD5Value": "�G7�\"\r�\u0006:&J�©]",
+            "fileBytesLength": 463,
             "filePosition": 10761982
         }
     ]

@@ -132,14 +132,14 @@ namespace KSwordKit.Editor
                         }
                         opconfig.ID = packageID;
                         if (string.IsNullOrEmpty(opconfig.configurl))
-                            opconfig.configurl = KitConst.KitOriginPackagesURL + "/" + URL(packageID) + ".kitPackageConfig.json";
+                            opconfig.configurl = KitConst.KitOriginPackagesURL + "/" + URL(packageID) + "." + KitPacker.FileFormat + ".kitPackageConfig.json";
                         if (string.IsNullOrEmpty(opconfig.kkpurl))
-                            opconfig.kkpurl = KitConst.KitOriginPackagesURL + "/" + URL(packageID) + ".kkp";
+                            opconfig.kkpurl = KitConst.KitOriginPackagesURL + "/" + URL(packageID) + "." + KitPacker.FileFormat;
 
                         if (string.IsNullOrEmpty(opconfig.kkpfilepath))
-                            opconfig.kkpfilepath = KitConst.KitPackagesRootDirectory + "/" + packageID + ".kkp";
+                            opconfig.kkpfilepath = KitConst.KitPackagesRootDirectory + "/" + packageID + "." + KitPacker.FileFormat;
                         if (string.IsNullOrEmpty(opconfig.configfilepath))
-                            opconfig.configfilepath = KitConst.KitPackagesRootDirectory + "/" + packageID + ".kitPackageConfig.json";
+                            opconfig.configfilepath = KitConst.KitPackagesRootDirectory + "/" + packageID + "." + KitPacker.FileFormat + ".kitPackageConfig.json";
 
                         if (System.IO.File.Exists(opconfig.configfilepath))
                         {
@@ -267,14 +267,14 @@ namespace KSwordKit.Editor
                 }
                 opconfig.ID = ID;
                 if (string.IsNullOrEmpty(opconfig.configurl))
-                    opconfig.configurl = KitConst.KitOriginPackagesURL + "/" + URL(ID) + ".kitPackageConfig.json";
+                    opconfig.configurl = KitConst.KitOriginPackagesURL + "/" + URL(ID) + "." + KitPacker.FileFormat + ".kitPackageConfig.json";
                 if (string.IsNullOrEmpty(opconfig.kkpurl))
-                    opconfig.kkpurl = KitConst.KitOriginPackagesURL + "/" + URL(ID) + ".kkp";
+                    opconfig.kkpurl = KitConst.KitOriginPackagesURL + "/" + URL(ID) + "." + KitPacker.FileFormat;
 
                 if (string.IsNullOrEmpty(opconfig.kkpfilepath))
-                    opconfig.kkpfilepath = KitConst.KitPackagesRootDirectory + "/" + ID + ".kkp";
+                    opconfig.kkpfilepath = KitConst.KitPackagesRootDirectory + "/" + ID + "." + KitPacker.FileFormat;
                 if (string.IsNullOrEmpty(opconfig.configfilepath))
-                    opconfig.configfilepath = KitConst.KitPackagesRootDirectory + "/" + ID + ".kitPackageConfig.json";
+                    opconfig.configfilepath = KitConst.KitPackagesRootDirectory + "/" + ID + "." + KitPacker.FileFormat + ".kitPackageConfig.json";
 
                 if (System.IO.File.Exists(opconfig.configfilepath))
                 {

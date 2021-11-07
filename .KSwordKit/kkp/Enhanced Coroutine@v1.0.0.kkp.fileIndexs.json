@@ -1,6 +1,7 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Enhanced Coroutine@v1.0.0",
-    "fileBytesLength": 35987,
+    "fileBytesLength": 36007,
+    "MD5Value": "���~�՗K��N�Z.��",
     "fileCount": 5,
     "fileIndexList": [
         {
@@ -39,8 +40,8 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "�II�9� �28Pg�]�",
-            "fileBytesLength": 450,
+            "MD5Value": "3���\u0017६h�G�Oy�{",
+            "fileBytesLength": 470,
             "filePosition": 29736
         },
         {
@@ -49,7 +50,7 @@
             "relativeFilePath": "Loop.cs",
             "MD5Value": "\u0011���\u0018\u001A�i��P@�*��",
             "fileBytesLength": 5801,
-            "filePosition": 30186
+            "filePosition": 30206
         }
     ]
 }

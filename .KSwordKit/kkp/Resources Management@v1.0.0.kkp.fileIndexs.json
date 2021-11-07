@@ -1,6 +1,7 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Framework/ResourcesManagement@v1.0.0",
-    "fileBytesLength": 2301492,
+    "fileBytesLength": 2301512,
+    "MD5Value": "n�E������:��\u0017�گ",
     "fileCount": 74,
     "fileIndexList": [
         {
@@ -703,8 +704,8 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "x-��\u000F2XgQ�ワ(3=",
-            "fileBytesLength": 466,
+            "MD5Value": "��\f��\u001B�d�iE^F�z",
+            "fileBytesLength": 486,
             "filePosition": 2259915
         },
         {
@@ -713,7 +714,7 @@
             "relativeFilePath": "ResourceRequestAsync.cs",
             "MD5Value": "d\u0004o\u000Bi��\u001E�\u001A�lά��",
             "fileBytesLength": 9966,
-            "filePosition": 2260381
+            "filePosition": 2260401
         },
         {
             "isDir": false,
@@ -721,7 +722,7 @@
             "relativeFilePath": "ResourcesLoadingLocation.cs",
             "MD5Value": "�C6�\u0018�����Kp�\u0012^",
             "fileBytesLength": 1762,
-            "filePosition": 2270347
+            "filePosition": 2270367
         },
         {
             "isDir": false,
@@ -729,7 +730,7 @@
             "relativeFilePath": "ResourcesManager.cs",
             "MD5Value": "+Ek�|���'\u0019X��TX�",
             "fileBytesLength": 29383,
-            "filePosition": 2272109
+            "filePosition": 2272129
         }
     ]
 }

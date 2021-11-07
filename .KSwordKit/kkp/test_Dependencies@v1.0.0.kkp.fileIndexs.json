@@ -1,14 +1,15 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/test_Dependencies",
-    "fileBytesLength": 582,
+    "fileBytesLength": 602,
+    "MD5Value": "`�����+��#8�DN�",
     "fileCount": 2,
     "fileIndexList": [
         {
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "\u0007���L�e+A%\f���",
-            "fileBytesLength": 552,
+            "MD5Value": "���7i�?@ĥ�\nw:�\u001B",
+            "fileBytesLength": 572,
             "filePosition": 0
         },
         {
@@ -17,7 +18,7 @@
             "relativeFilePath": "新建文本文档.txt",
             "MD5Value": "�W6)��\u0002P\r\u0006��y ",
             "fileBytesLength": 30,
-            "filePosition": 552
+            "filePosition": 572
         }
     ]
 }

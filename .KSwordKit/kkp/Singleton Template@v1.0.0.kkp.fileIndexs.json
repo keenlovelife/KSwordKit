@@ -1,6 +1,7 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Singleton Template@v1.0.0",
-    "fileBytesLength": 12319,
+    "fileBytesLength": 12339,
+    "MD5Value": "\r�LY���F�\n�\u0001a��",
     "fileCount": 6,
     "fileIndexList": [
         {
@@ -47,8 +48,8 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "�Ʋ7T�%=p3�F�\u0014\u0011�",
-            "fileBytesLength": 450,
+            "MD5Value": "\f�t�߁\u0001���z=�\r",
+            "fileBytesLength": 470,
             "filePosition": 10554
         },
         {
@@ -57,7 +58,7 @@
             "relativeFilePath": "SingletonTemplate.cs",
             "MD5Value": "�\u0014Y�W�\u000E6�D5\u0010V�`�",
             "fileBytesLength": 1315,
-            "filePosition": 11004
+            "filePosition": 11024
         }
     ]
 }

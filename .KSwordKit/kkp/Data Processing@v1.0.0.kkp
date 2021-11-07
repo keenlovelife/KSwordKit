@@ -3061,11 +3061,12 @@ namespace Mono.Xml
     "ID": "Data Processing@v1.0.0",
     "Name": "Data Processing",
     "Version": "v1.0.0",
+    "MD5Value": "",
     "liveWithOtherVersion": false,
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-11-07 02:15:54",
+    "Date": "2021-11-07 11:41:46",
     "Description": "数据处理库，提供多种json、xml等多种数据格式解析api。",
     "Dependencies": [],
     "Tags": [
@@ -3076,7 +3077,8 @@ namespace Mono.Xml
     "FileSettings": []
 }{
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Data Processing@v1.0.0",
-    "fileBytesLength": 141772,
+    "fileBytesLength": 141792,
+    "MD5Value": "",
     "fileCount": 10,
     "fileIndexList": [
         {
@@ -3219,9 +3221,9 @@ namespace Mono.Xml
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "�J[�o�\u0006�Q,ʯp�<",
-            "fileBytesLength": 488,
+            "MD5Value": "�F��\u001C�A\u0003�Wĩb�8�",
+            "fileBytesLength": 508,
             "filePosition": 141284
         }
     ]
-}�)     �  kkp@v1.0.0;make by ks
+}�)     �  kkp@v1.0.0;make by ks

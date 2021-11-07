@@ -2,11 +2,12 @@
     "ID": "Project File Management@v1.0.0",
     "Name": "Project File Management",
     "Version": "v1.0.0",
+    "MD5Value": "Hj\"\u000E�w�|W�<��Z�R",
     "liveWithOtherVersion": false,
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-11-07 02:16:56",
+    "Date": "2021-11-07 11:42:43",
     "Description": "项目文件管理，提供自动添加文件注释等项目文件管理",
     "Dependencies": [],
     "Tags": [

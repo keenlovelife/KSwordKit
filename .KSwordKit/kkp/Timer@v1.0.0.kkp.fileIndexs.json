@@ -1,14 +1,15 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Timer@v1.0.0",
-    "fileBytesLength": 1696,
+    "fileBytesLength": 1716,
+    "MD5Value": "�����\u0004�\u0018֠}*��",
     "fileCount": 2,
     "fileIndexList": [
         {
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "x��D�\u001Cx\u0002;x'\u0016���",
-            "fileBytesLength": 400,
+            "MD5Value": "�� ��\"d�(_�\u001C�t\u0017�",
+            "fileBytesLength": 420,
             "filePosition": 0
         },
         {
@@ -17,7 +18,7 @@
             "relativeFilePath": "Timer.cs",
             "MD5Value": "�'��-1�f��5\u001B�2+�",
             "fileBytesLength": 1296,
-            "filePosition": 400
+            "filePosition": 420
         }
     ]
 }

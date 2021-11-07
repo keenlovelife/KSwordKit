@@ -5844,11 +5844,12 @@ function Proxy:onRemove() end
     "ID": "PureMVC@v1.0.0",
     "Name": "PureMVC",
     "Version": "v1.0.0",
+    "MD5Value": "",
     "liveWithOtherVersion": false,
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-11-07 02:17:05",
+    "Date": "2021-11-07 11:42:52",
     "Description": "PureMVC框架，提供C#和Lua实现的PureMVC框架。",
     "Dependencies": [],
     "Tags": [
@@ -5857,7 +5858,8 @@ function Proxy:onRemove() end
     "FileSettings": []
 }{
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Framework/PureMVC@v1.0.0",
-    "fileBytesLength": 191722,
+    "fileBytesLength": 191742,
+    "MD5Value": "",
     "fileCount": 46,
     "fileIndexList": [
         {
@@ -6464,9 +6466,9 @@ function Proxy:onRemove() end
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "\u0019��+!ThRܸ@��j�q",
-            "fileBytesLength": 418,
+            "MD5Value": "\u000E�\u000Ej�U�NL�}���~h",
+            "fileBytesLength": 438,
             "filePosition": 191304
         }
     ]
-}��     �S  kkp@v1.0.0;make by ks
+}��     �S  kkp@v1.0.0;make by ks

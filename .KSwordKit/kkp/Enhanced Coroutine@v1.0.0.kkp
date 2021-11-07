@@ -985,11 +985,12 @@ namespace KSwordKit.Core.EnhancedCoroutine
     "ID": "Enhanced Coroutine@v1.0.0",
     "Name": "Enhanced Coroutine",
     "Version": "v1.0.0",
+    "MD5Value": "",
     "liveWithOtherVersion": false,
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-11-07 02:16:12",
+    "Date": "2021-11-07 11:42:02",
     "Description": "增强协程库，提供多种协程应用api。",
     "Dependencies": [],
     "Tags": [
@@ -1119,7 +1120,8 @@ namespace KSwordKit.Core.EnhancedCoroutine
 
 }{
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Enhanced Coroutine@v1.0.0",
-    "fileBytesLength": 35987,
+    "fileBytesLength": 36007,
+    "MD5Value": "",
     "fileCount": 5,
     "fileIndexList": [
         {
@@ -1158,8 +1160,8 @@ namespace KSwordKit.Core.EnhancedCoroutine
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "�II�9� �28Pg�]�",
-            "fileBytesLength": 450,
+            "MD5Value": "3���\u0017६h�G�Oy�{",
+            "fileBytesLength": 470,
             "filePosition": 29736
         },
         {
@@ -1168,7 +1170,7 @@ namespace KSwordKit.Core.EnhancedCoroutine
             "relativeFilePath": "Loop.cs",
             "MD5Value": "\u0011���\u0018\u001A�i��P@�*��",
             "fileBytesLength": 5801,
-            "filePosition": 30186
+            "filePosition": 30206
         }
     ]
-}��      |  kkp@v1.0.0;make by ks
+}��      �  kkp@v1.0.0;make by ks

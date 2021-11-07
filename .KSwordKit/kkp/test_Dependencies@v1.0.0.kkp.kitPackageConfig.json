@@ -2,11 +2,12 @@
     "ID": "test_Dependencies@v1.0.0",
     "Name": "test_Dependencies",
     "Version": "v1.0.0",
+    "MD5Value": "`�����+��#8�DN�",
     "liveWithOtherVersion": false,
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-11-07 02:17:50",
+    "Date": "2021-11-07 11:43:33",
     "Description": "测试依赖导入情况",
     "Dependencies": [
         "test@v1.0.0",

@@ -7,8 +7,8 @@ namespace KSwordKit
 {
     public class KitPacker
     {
-        static readonly string tag = "kkp@v1.0.0;make by ks";
-        static readonly string tag_mark = "kkp";
+        public const string FileFormat = "kkp";
+        static readonly string tag = FileFormat + "@v1.0.0;make by ks";
         [Serializable]
         public class FileIndexs
         {
@@ -211,10 +211,10 @@ namespace KSwordKit
             fs.Seek(-tagCount, System.IO.SeekOrigin.End);
             fs.Read(tagBytes, 0, tagCount);
             var getTag = System.Text.Encoding.UTF8.GetString(tagBytes);
-            if(!getTag.StartsWith(tag_mark))
+            if(!getTag.StartsWith(FileFormat))
             {
                 fs.Close();
-                if (progress != null) progress("", 1, true, "该文件不是kkp文件格式，无法解析！", null);
+                if (progress != null) progress("", 1, true, "该文件不是" + FileFormat + "文件格式，无法解析！", null);
                 return;
             }
 
@@ -357,9 +357,9 @@ namespace KSwordKit
             fs.Seek(-tagCount, System.IO.SeekOrigin.End);
             fs.Read(tagBytes, 0, tagCount);
             var getTag = System.Text.Encoding.UTF8.GetString(tagBytes);
-            if (!getTag.StartsWith(tag_mark))
+            if (!getTag.StartsWith(FileFormat))
             {
-                error = "该文件不是kkp文件格式，无法解析！";
+                error = "该文件不是" + FileFormat + "文件格式，无法解析！";
                 fs.Close();
                 return null;
             }
@@ -389,7 +389,7 @@ namespace KSwordKit
             fs.Read(tagBytes, 0, tagCount);
             var getTag = System.Text.Encoding.UTF8.GetString(tagBytes);
             fs.Close();
-            return getTag.StartsWith(tag_mark);
+            return getTag.StartsWith(FileFormat);
         }
         public static string Unpack_getKitPackageConfig_Text(string inPackageFilepath, out string error)
         {
@@ -401,9 +401,9 @@ namespace KSwordKit
             fs.Seek(-tagCount, System.IO.SeekOrigin.End);
             fs.Read(tagBytes, 0, tagCount);
             var getTag = System.Text.Encoding.UTF8.GetString(tagBytes);
-            if (!getTag.StartsWith(tag_mark))
+            if (!getTag.StartsWith(FileFormat))
             {
-                error = "该文件不是kkp文件格式，无法解析！";
+                error = "该文件不是" + FileFormat + "文件格式，无法解析！";
                 fs.Close();
                 return null;
             }
@@ -436,7 +436,7 @@ namespace KSwordKit
                 }
             }
             fs.Close();
-            error = "该文件是kkp文件，但是它里面不包含 " + KitConst.KitPackageConfigFilename + " 文件！";
+            error = "该文件是" + FileFormat + "文件，但是它里面不包含 " + KitConst.KitPackageConfigFilename + " 文件！";
             return null;
         }
         public static string CheckMD5(string filename)

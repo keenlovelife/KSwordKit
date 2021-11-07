@@ -1,6 +1,7 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/test",
-    "fileBytesLength": 8420,
+    "fileBytesLength": 8440,
+    "MD5Value": "|B�\u000B���7op�',k-M",
     "fileCount": 5,
     "fileIndexList": [
         {
@@ -39,8 +40,8 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "�\u0012^O-\n�>���9gK\u0011�",
-            "fileBytesLength": 1810,
+            "MD5Value": "����!U.\u000B$Fߘ�aD",
+            "fileBytesLength": 1830,
             "filePosition": 6610
         },
         {
@@ -49,7 +50,7 @@
             "relativeFilePath": "test.txt",
             "MD5Value": "�\u001D�ُ",
             "fileBytesLength": 0,
-            "filePosition": 8420
+            "filePosition": 8440
         },
         {
             "isDir": false,
@@ -57,7 +58,7 @@
             "relativeFilePath": "新建 文本文档.txt",
             "MD5Value": "�\u001D�ُ",
             "fileBytesLength": 0,
-            "filePosition": 8420
+            "filePosition": 8440
         }
     ]
 }

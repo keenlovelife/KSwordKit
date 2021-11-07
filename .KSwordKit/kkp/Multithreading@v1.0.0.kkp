@@ -2373,11 +2373,12 @@ namespace Frankfort.Threading
     "ID": "Multithreading@v1.0.0",
     "Name": "Multithreading",
     "Version": "v1.0.0",
+    "MD5Value": "",
     "liveWithOtherVersion": false,
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-11-07 02:16:22",
+    "Date": "2021-11-07 11:42:10",
     "Description": "多线程库，提供多线程操作的api。",
     "Dependencies": [],
     "Tags": [
@@ -2386,7 +2387,8 @@ namespace Frankfort.Threading
     "FileSettings": []
 }{
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Multithreading@v1.0.0",
-    "fileBytesLength": 102117,
+    "fileBytesLength": 102137,
+    "MD5Value": "",
     "fileCount": 12,
     "fileIndexList": [
         {
@@ -2505,9 +2507,9 @@ namespace Frankfort.Threading
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "z4ur��\u001DuJ@�ߞ\u001F#?",
-            "fileBytesLength": 424,
+            "MD5Value": "��\u001F�ro�ѡ�닯;��",
+            "fileBytesLength": 444,
             "filePosition": 101693
         }
     ]
-}�     Y  kkp@v1.0.0;make by ks
+}��     p  kkp@v1.0.0;make by ks
