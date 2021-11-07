@@ -1836,6 +1836,12 @@ namespace KSwordKit.Editor.PackageManager
                     }
                     if (doneAction != null) doneAction();
                 };
+                if (System.IO.File.Exists(originPackageConfig.kkpfilepath))
+                {
+                    var md5 = KitPacker.CheckMD5(originPackageConfig.kkpfilepath);
+                    if(originPackageConfig.KitPackageConfig.MD5Value != md5)
+                        System.IO.File.Delete(originPackageConfig.kkpfilepath);
+                }
                 if (!System.IO.File.Exists(originPackageConfig.kkpfilepath))
                 {
                     RequestKKPFile(originPackageConfig, title, () =>

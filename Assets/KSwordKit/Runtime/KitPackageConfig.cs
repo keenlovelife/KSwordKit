@@ -23,6 +23,10 @@ namespace KSwordKit
         /// </summary>
         public string Version;
         /// <summary>
+        /// 包文件的MD5值
+        /// </summary>
+        public string MD5Value;
+        /// <summary>
         /// 能否与旧版共存
         /// <para>如果值为false，则该包导入时将删除旧版本的包。</para>
         /// <para>默认为false</para>
