@@ -1,7 +1,7 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Data Processing@v1.0.0",
     "fileBytesLength": 141792,
-    "MD5Value": "��ĝ�P-B���\u0004\u0014�5",
+    "MD5Value": "22387B6D9660A248D1F7FD92FC448ECE",
     "fileCount": 10,
     "fileIndexList": [
         {
@@ -24,7 +24,7 @@
             "isDir": false,
             "fileName": "LitJsonScene.unity",
             "relativeFilePath": "Example/ExamplesLitJson/LitJsonScene.unity",
-            "MD5Value": "}\"\u001A��\u000B�U\u001D]v\u0014\u001E��W",
+            "MD5Value": "7D221A87ED0B94551D5D76141EBFA657",
             "fileBytesLength": 8405,
             "filePosition": 0
         },
@@ -32,7 +32,7 @@
             "isDir": false,
             "fileName": "LitJsonTest.cs",
             "relativeFilePath": "Example/ExamplesLitJson/LitJsonTest.cs",
-            "MD5Value": "L/\u0001��%0����y{k\u0003$",
+            "MD5Value": "4C2F01B18C2530F9D5C9D9797B6B0324",
             "fileBytesLength": 1111,
             "filePosition": 8405
         },
@@ -56,7 +56,7 @@
             "isDir": false,
             "fileName": "Tutorial.xml",
             "relativeFilePath": "Example/ExamplesMono.Xml/Resources/Tutorial.xml",
-            "MD5Value": "Й��=\u0016KfA�x\r?��",
+            "MD5Value": "D099F4DD3D164B6641BC780D3FF0E8B9",
             "fileBytesLength": 5501,
             "filePosition": 9516
         },
@@ -64,7 +64,7 @@
             "isDir": false,
             "fileName": "ExamplesMono.XmlScene.unity",
             "relativeFilePath": "Example/ExamplesMono.Xml/ExamplesMono.XmlScene.unity",
-            "MD5Value": "�(���\f�����}��",
+            "MD5Value": "B328CAE39AE6BB0CA489A1EFCA7DAABC",
             "fileBytesLength": 8398,
             "filePosition": 15017
         },
@@ -72,7 +72,7 @@
             "isDir": false,
             "fileName": "MonoXmlTest.cs",
             "relativeFilePath": "Example/ExamplesMono.Xml/MonoXmlTest.cs",
-            "MD5Value": "�ou���QP��r<\u000B\u0002",
+            "MD5Value": "B26F75C9FCE1995150A0C97F723C0B02",
             "fileBytesLength": 630,
             "filePosition": 23415
         },
@@ -96,7 +96,7 @@
             "isDir": false,
             "fileName": "LitJSON.dll",
             "relativeFilePath": "JSON/LitJson/LitJSON.dll",
-            "MD5Value": "p?�\f�\u00133��-VtHl\u001C�",
+            "MD5Value": "703FAC0CC11333EDF22D5674486C1C9D",
             "fileBytesLength": 60928,
             "filePosition": 24045
         },
@@ -120,7 +120,7 @@
             "isDir": false,
             "fileName": "MiniParser.cs",
             "relativeFilePath": "XML/Mono.Xml/MiniParser.cs",
-            "MD5Value": "\u000B�o(C\u0011�ּí�,�\"�",
+            "MD5Value": "0B8B6F28431192D6BCC3ADDC2CFE22F3",
             "fileBytesLength": 38706,
             "filePosition": 84973
         },
@@ -128,7 +128,7 @@
             "isDir": false,
             "fileName": "SecurityParser.cs",
             "relativeFilePath": "XML/Mono.Xml/SecurityParser.cs",
-            "MD5Value": "��s�\u0003t�蝁�Џ�1|",
+            "MD5Value": "969B739D0374E1E89D81C8D08FD4317C",
             "fileBytesLength": 2973,
             "filePosition": 123679
         },
@@ -136,7 +136,7 @@
             "isDir": false,
             "fileName": "SmallXmlParser.cs",
             "relativeFilePath": "XML/Mono.Xml/SmallXmlParser.cs",
-            "MD5Value": "�\u0002��y���\u0014Y\u0006\u0015|\u0004�=",
+            "MD5Value": "B502CCD8798A80E3145906157C04DA3D",
             "fileBytesLength": 14632,
             "filePosition": 126652
         },
@@ -144,7 +144,7 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "�F��\u001C�A\u0003�Wĩb�8�",
+            "MD5Value": "007E66A050628DC6CAE3B67051A6BEED",
             "fileBytesLength": 508,
             "filePosition": 141284
         }

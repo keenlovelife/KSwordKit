@@ -16,3 +16,5 @@ MonoBehaviour:
   KitVersion: v1.0.0
   KitImportedPackageList:
   - Data Processing@v1.0.0
+  - Enhanced Coroutine@v1.0.0
+  - Multithreading@v1.0.0

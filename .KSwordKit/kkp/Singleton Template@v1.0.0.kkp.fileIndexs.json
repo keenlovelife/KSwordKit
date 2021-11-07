@@ -1,7 +1,7 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Singleton Template@v1.0.0",
     "fileBytesLength": 12339,
-    "MD5Value": "\r�LY���F�\n�\u0001a��",
+    "MD5Value": "4E7043791C94498319EB11D9C23C5EC2",
     "fileCount": 6,
     "fileIndexList": [
         {
@@ -16,7 +16,7 @@
             "isDir": false,
             "fileName": "ExamplesSingletonTemplateScene.unity",
             "relativeFilePath": "ExamplesSingletonTemplate/ExamplesSingletonTemplateScene.unity",
-            "MD5Value": "Q>\u0012\\�hd\u001C+\u001D�w\n�\u0002!",
+            "MD5Value": "513E125C8268641C2B1DA5770ABB0221",
             "fileBytesLength": 8392,
             "filePosition": 0
         },
@@ -24,7 +24,7 @@
             "isDir": false,
             "fileName": "ExamplesSingletonTemplateTest.cs",
             "relativeFilePath": "ExamplesSingletonTemplate/ExamplesSingletonTemplateTest.cs",
-            "MD5Value": "���{j=6�����M��K",
+            "MD5Value": "8DF9E87B6A3D36DDFA92A2BD4DF4E84B",
             "fileBytesLength": 784,
             "filePosition": 8392
         },
@@ -32,7 +32,7 @@
             "isDir": false,
             "fileName": "ExamplesSingletonTemplateTest2.cs",
             "relativeFilePath": "ExamplesSingletonTemplate/ExamplesSingletonTemplateTest2.cs",
-            "MD5Value": "�\u0003ؼ�0��|z��Ԭ/",
+            "MD5Value": "DB03D8BCE59530A5B37C7A96A4D4AC2F",
             "fileBytesLength": 802,
             "filePosition": 9176
         },
@@ -40,7 +40,7 @@
             "isDir": false,
             "fileName": "SingletonTest2.cs",
             "relativeFilePath": "ExamplesSingletonTemplate/SingletonTest2.cs",
-            "MD5Value": "ʹsY4\u0018M\rR<\u001E�\u0010�I\u0015",
+            "MD5Value": "CDB4735934184D0D523C1E9F10C84915",
             "fileBytesLength": 576,
             "filePosition": 9978
         },
@@ -48,7 +48,7 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "\f�t�߁\u0001���z=�\r",
+            "MD5Value": "538D510799F78DD12BE4E2331DFA9E36",
             "fileBytesLength": 470,
             "filePosition": 10554
         },
@@ -56,7 +56,7 @@
             "isDir": false,
             "fileName": "SingletonTemplate.cs",
             "relativeFilePath": "SingletonTemplate.cs",
-            "MD5Value": "�\u0014Y�W�\u000E6�D5\u0010V�`�",
+            "MD5Value": "C71459CA57930E369144351056FE60FD",
             "fileBytesLength": 1315,
             "filePosition": 11024
         }

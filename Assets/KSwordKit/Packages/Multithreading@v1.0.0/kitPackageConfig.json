@@ -1,0 +1,17 @@
+{
+    "ID": "Multithreading@v1.0.0",
+    "Name": "Multithreading",
+    "Version": "v1.0.0",
+    "MD5Value": "",
+    "liveWithOtherVersion": false,
+    "Author": "ks",
+    "Contact": "ks@keenlove.com",
+    "HomePage": "https://github.com/keenlovelife",
+    "Date": "2021-11-07 11:42:10",
+    "Description": "多线程库，提供多线程操作的api。",
+    "Dependencies": [],
+    "Tags": [
+        "多线程"
+    ],
+    "FileSettings": []
+}

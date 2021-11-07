@@ -1,0 +1,36 @@
+{
+    "ID": "test1@v1.0.1",
+    "Name": "test1",
+    "Version": "v1.0.1",
+    "MD5Value": "�Σo������e'���",
+    "liveWithOtherVersion": true,
+    "Author": "ks",
+    "Contact": "ks@keenlove.com",
+    "HomePage": "https://github.com/keenlovelife",
+    "Date": "2021-11-07 11:43:49",
+    "Description": "测试包",
+    "Dependencies": [],
+    "Tags": [
+        "测试"
+    ],
+    "FileSettings": [
+        {
+            "enableUninstall": true,
+            "isDir": true,
+            "SourcePath": "新建文件夹",
+            "TargetPath": "{PackageRootDir}/新建文件夹"
+        },
+        {
+            "enableUninstall": true,
+            "isDir": false,
+            "SourcePath": "新建文件夹/新建 Microsoft Publisher Document.pub",
+            "TargetPath": "{PackageRootDir}/新建文件夹/新建 Microsoft Publisher Document.pub"
+        },
+        {
+            "enableUninstall": true,
+            "isDir": false,
+            "SourcePath": "新建文件夹/新建 文本文档.txt",
+            "TargetPath": "{PackageRootDir}/新建文件夹/新建 文本文档.txt"
+        }
+    ]
+}

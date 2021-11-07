@@ -1,7 +1,7 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Enhanced Coroutine@v1.0.0",
     "fileBytesLength": 36007,
-    "MD5Value": "���~�՗K��N�Z.��",
+    "MD5Value": "002D4BAD4638C874332E45053ECCD58D",
     "fileCount": 5,
     "fileIndexList": [
         {
@@ -16,7 +16,7 @@
             "isDir": false,
             "fileName": "ExamplesEnhancedCoroutineTest.cs",
             "relativeFilePath": "ExamplesEnhancedCoroutine/ExamplesEnhancedCoroutineTest.cs",
-            "MD5Value": "F�`�?���d�R�T���",
+            "MD5Value": "46F360CA3FADB8E864AF52CA54B392E0",
             "fileBytesLength": 4735,
             "filePosition": 0
         },
@@ -24,7 +24,7 @@
             "isDir": false,
             "fileName": "ExamplesLoopScene.unity",
             "relativeFilePath": "ExamplesEnhancedCoroutine/ExamplesLoopScene.unity",
-            "MD5Value": "���,N�qN2gZ\t����",
+            "MD5Value": "D3F2E52C4EB4714E32675A09E8DFE3F0",
             "fileBytesLength": 20553,
             "filePosition": 4735
         },
@@ -32,7 +32,7 @@
             "isDir": false,
             "fileName": "Frame.cs",
             "relativeFilePath": "Frame.cs",
-            "MD5Value": "*tj���\b�C��� l�e",
+            "MD5Value": "2A746A8EE8C508ED43BEFC8B206CF265",
             "fileBytesLength": 4448,
             "filePosition": 25288
         },
@@ -40,7 +40,7 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "3���\u0017६h�G�Oy�{",
+            "MD5Value": "99D611DA866F0065CC9FAF11B2553639",
             "fileBytesLength": 470,
             "filePosition": 29736
         },
@@ -48,7 +48,7 @@
             "isDir": false,
             "fileName": "Loop.cs",
             "relativeFilePath": "Loop.cs",
-            "MD5Value": "\u0011���\u0018\u001A�i��P@�*��",
+            "MD5Value": "1197FCA7181AC269A7885040C62AD6CC",
             "fileBytesLength": 5801,
             "filePosition": 30206
         }

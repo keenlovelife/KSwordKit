@@ -163,7 +163,7 @@ namespace KSwordKit.Editor
                 }
             }
         }
-        static string URL(string url)
+        public static string URL(string url)
         {
             url = url.Replace(" ", "%20");
             url = url.Replace("@", "%40");
@@ -220,7 +220,7 @@ namespace KSwordKit.Editor
                 }
                 else
                 {
-                    Debug.LogWarning(KSwordKit.KitConst.KitName + ": 请求资源更新信息出错：" + checkWWW.error);
+                    Debug.LogWarning(KSwordKit.KitConst.KitName + ": 请求资源更新信息出错：" + checkWWW.error + "\nurl:" + checkWWW.url);
                 }
 
                 EditorApplication.update -= Request_update;
@@ -267,14 +267,14 @@ namespace KSwordKit.Editor
                 }
                 opconfig.ID = ID;
                 if (string.IsNullOrEmpty(opconfig.configurl))
-                    opconfig.configurl = KitConst.KitOriginPackagesURL + "/" + URL(ID) + "." + KitPacker.FileFormat + ".kitPackageConfig.json";
+                    opconfig.configurl = KitConst.KitOriginPackagesURL + "/" + URL(ID) + "." + KitPacker.FileFormat + "." + KitConst.KitPackageConfigFilename;
                 if (string.IsNullOrEmpty(opconfig.kkpurl))
                     opconfig.kkpurl = KitConst.KitOriginPackagesURL + "/" + URL(ID) + "." + KitPacker.FileFormat;
 
                 if (string.IsNullOrEmpty(opconfig.kkpfilepath))
                     opconfig.kkpfilepath = KitConst.KitPackagesRootDirectory + "/" + ID + "." + KitPacker.FileFormat;
                 if (string.IsNullOrEmpty(opconfig.configfilepath))
-                    opconfig.configfilepath = KitConst.KitPackagesRootDirectory + "/" + ID + "." + KitPacker.FileFormat + ".kitPackageConfig.json";
+                    opconfig.configfilepath = KitConst.KitPackagesRootDirectory + "/" + ID + "." + KitPacker.FileFormat + "." + KitConst.KitPackageConfigFilename;
 
                 if (System.IO.File.Exists(opconfig.configfilepath))
                 {

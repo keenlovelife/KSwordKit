@@ -1,0 +1,17 @@
+{
+    "ID": "Resources Management@v1.0.0",
+    "Name": "Resources Management",
+    "Version": "v1.0.0",
+    "MD5Value": "n�E������:��\u0017�گ",
+    "liveWithOtherVersion": false,
+    "Author": "ks",
+    "Contact": "ks@keenlove.com",
+    "HomePage": "https://github.com/keenlovelife",
+    "Date": "2021-11-07 11:43:00",
+    "Description": "资源管理框架，提供项目资源打包和使用资源的框架。",
+    "Dependencies": [],
+    "Tags": [
+        "资源管理"
+    ],
+    "FileSettings": []
+}

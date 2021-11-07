@@ -2,12 +2,12 @@
     "ID": "test1@v1.0.0",
     "Name": "test1",
     "Version": "v1.0.0",
-    "MD5Value": "�G:�^nV�\u0011\u0016X\u000F�)�\n",
+    "MD5Value": "BF51F096B96319F158362D855D3EECD7",
     "liveWithOtherVersion": true,
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-11-07 11:43:41",
+    "Date": "2021-11-07 18:14:05",
     "Description": "测试包",
     "Dependencies": [],
     "Tags": [
@@ -15,7 +15,7 @@
     ],
     "FileSettings": [
         {
-            "enableUninstall": false,
+            "enableUninstall": true,
             "isDir": true,
             "SourcePath": "新建文件夹",
             "TargetPath": "{PackageRootDir}/新建文件夹"

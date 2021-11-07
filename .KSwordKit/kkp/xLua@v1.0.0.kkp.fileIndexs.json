@@ -1,7 +1,7 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Framework/xLua@v1.0.0",
     "fileBytesLength": 10762445,
-    "MD5Value": "���\u001Dڌ���b+�D�pP",
+    "MD5Value": "20E9EC3D10709D58B2E856B1346DF411",
     "fileCount": 73,
     "fileIndexList": [
         {
@@ -16,7 +16,7 @@
             "isDir": false,
             "fileName": "ExamplesXLuaScene.unity",
             "relativeFilePath": "ExamplesXLua/ExamplesXLuaScene.unity",
-            "MD5Value": "h�\u0019��c\u0006`�k/�;<\u0005\"",
+            "MD5Value": "68C919BEC4630660FF6B2FC13B3C0522",
             "fileBytesLength": 8385,
             "filePosition": 0
         },
@@ -24,7 +24,7 @@
             "isDir": false,
             "fileName": "ExamplesXLuaTest.cs",
             "relativeFilePath": "ExamplesXLua/ExamplesXLuaTest.cs",
-            "MD5Value": "?8!\u0002S",
+            "MD5Value": "3F3821025300B29C417EF3DC5C54A722",
             "fileBytesLength": 367,
             "filePosition": 8385
         },
@@ -64,7 +64,7 @@
             "isDir": false,
             "fileName": "libxlua.so",
             "relativeFilePath": "Plugins/Android/libs/arm64-v8a/libxlua.so",
-            "MD5Value": "",
+            "MD5Value": "00D472B26C23D6B8F6BC811A8AAB3B2C",
             "fileBytesLength": 993608,
             "filePosition": 8752
         },
@@ -80,7 +80,7 @@
             "isDir": false,
             "fileName": "libxlua.so",
             "relativeFilePath": "Plugins/Android/libs/armeabi-v7a/libxlua.so",
-            "MD5Value": ".<���\u0013�2e%�X0�t",
+            "MD5Value": "2E3C89C6F4BD13AD3265258458308274",
             "fileBytesLength": 546108,
             "filePosition": 1002360
         },
@@ -96,7 +96,7 @@
             "isDir": false,
             "fileName": "libxlua.so",
             "relativeFilePath": "Plugins/Android/libs/x86/libxlua.so",
-            "MD5Value": "\f��P9�h�`Ov���U%",
+            "MD5Value": "0CFEDC5039BA68B6604F7680B9925525",
             "fileBytesLength": 588904,
             "filePosition": 1548468
         },
@@ -112,7 +112,7 @@
             "isDir": false,
             "fileName": "HotfixFlags.cpp",
             "relativeFilePath": "Plugins/iOS/HotfixFlags.cpp",
-            "MD5Value": "�Y��]<r�e�tx��\u000B\f",
+            "MD5Value": "BA599CD35D3C72F065A0747880F10B0C",
             "fileBytesLength": 996,
             "filePosition": 2137372
         },
@@ -120,7 +120,7 @@
             "isDir": false,
             "fileName": "libxlua.a",
             "relativeFilePath": "Plugins/iOS/libxlua.a",
-            "MD5Value": "2�+D���c�\u0002\u0004�2�!�",
+            "MD5Value": "32E42B44A2FAF663880204A6329121DB",
             "fileBytesLength": 2573536,
             "filePosition": 2138368
         },
@@ -136,7 +136,7 @@
             "isDir": false,
             "fileName": "xlua_webgl.cpp",
             "relativeFilePath": "Plugins/WebGL/xlua_webgl.cpp",
-            "MD5Value": "�V�`7�h��jn��ܬV",
+            "MD5Value": "E256D86037FB6893D36A6E9EBBDCAC56",
             "fileBytesLength": 1565,
             "filePosition": 4711904
         },
@@ -160,7 +160,7 @@
             "isDir": false,
             "fileName": "xlua.dll",
             "relativeFilePath": "Plugins/WSA/ARM/xlua.dll",
-            "MD5Value": "\u001B�p��\u001B��V@���̭�",
+            "MD5Value": "1BA170F6871BF7ED5640C1C3EDCCADA0",
             "fileBytesLength": 200704,
             "filePosition": 4713469
         },
@@ -176,7 +176,7 @@
             "isDir": false,
             "fileName": "xlua.dll",
             "relativeFilePath": "Plugins/WSA/x64/xlua.dll",
-            "MD5Value": "\u0014�\u0015���\u0007ض\\)",
+            "MD5Value": "14E215F0B4C2E007D8B65C2900560ECE",
             "fileBytesLength": 277504,
             "filePosition": 4914173
         },
@@ -192,7 +192,7 @@
             "isDir": false,
             "fileName": "xlua.dll",
             "relativeFilePath": "Plugins/WSA/x86/xlua.dll",
-            "MD5Value": "���Fe�\u0007�\u0007K��� �",
+            "MD5Value": "AE95DF4665AA07D5074BEFF4A59320F6",
             "fileBytesLength": 221696,
             "filePosition": 5191677
         },
@@ -208,7 +208,7 @@
             "isDir": false,
             "fileName": "libxlua.so",
             "relativeFilePath": "Plugins/x86/libxlua.so",
-            "MD5Value": "��,�-NT�O���",
+            "MD5Value": "F79C2CB22D4E54EC4FFD84AA0072A314",
             "fileBytesLength": 348987,
             "filePosition": 5413373
         },
@@ -216,7 +216,7 @@
             "isDir": false,
             "fileName": "xlua.dll",
             "relativeFilePath": "Plugins/x86/xlua.dll",
-            "MD5Value": "m\u001DN��$���?�\u0016�\u0011�6",
+            "MD5Value": "6D1D4E9AC52488EAE03F9316FD119336",
             "fileBytesLength": 457216,
             "filePosition": 5762360
         },
@@ -232,7 +232,7 @@
             "isDir": false,
             "fileName": "libxlua.so",
             "relativeFilePath": "Plugins/x86_64/libxlua.so",
-            "MD5Value": "\u0011\u001D�d۵A(",
+            "MD5Value": "111DE99564DBB5412800760160582996",
             "fileBytesLength": 440203,
             "filePosition": 6219576
         },
@@ -240,7 +240,7 @@
             "isDir": false,
             "fileName": "xlua.dll",
             "relativeFilePath": "Plugins/x86_64/xlua.dll",
-            "MD5Value": "�`��\u0005��`\u0001%n\f��",
+            "MD5Value": "9D60C1F38A05EF81DF6001256E0CA787",
             "fileBytesLength": 525824,
             "filePosition": 6659779
         },
@@ -272,7 +272,7 @@
             "isDir": false,
             "fileName": "xlua",
             "relativeFilePath": "Plugins/xlua.bundle/Contents/MacOS/xlua",
-            "MD5Value": "�\t�����y\u0003k�P<F\u0002�",
+            "MD5Value": "B609FEF9C0828E79036BFD503C460298",
             "fileBytesLength": 607224,
             "filePosition": 7185603
         },
@@ -280,7 +280,7 @@
             "isDir": false,
             "fileName": "Info.plist",
             "relativeFilePath": "Plugins/xlua.bundle/Contents/Info.plist",
-            "MD5Value": "\u0012����t\n�\n����D�",
+            "MD5Value": "1296A4E1EE9A740AFB0AF6878AF54488",
             "fileBytesLength": 1375,
             "filePosition": 7792827
         },
@@ -296,7 +296,7 @@
             "isDir": false,
             "fileName": "FilesSignature.exe",
             "relativeFilePath": "Tools/FilesSignature.exe",
-            "MD5Value": "�p",
+            "MD5Value": "BE700038872F73BFBD55915B18F0FB80",
             "fileBytesLength": 5120,
             "filePosition": 7794202
         },
@@ -304,7 +304,7 @@
             "isDir": false,
             "fileName": "KeyPairsGen.exe",
             "relativeFilePath": "Tools/KeyPairsGen.exe",
-            "MD5Value": "@A@�_������oF}!\u0014",
+            "MD5Value": "404140F85F88F2FEDCFBB16F467D2114",
             "fileBytesLength": 4608,
             "filePosition": 7799322
         },
@@ -312,7 +312,7 @@
             "isDir": false,
             "fileName": "libxlua.so",
             "relativeFilePath": "Tools/libxlua.so",
-            "MD5Value": "�\t�����y\u0003k�P<F\u0002�",
+            "MD5Value": "B609FEF9C0828E79036BFD503C460298",
             "fileBytesLength": 607224,
             "filePosition": 7803930
         },
@@ -320,7 +320,7 @@
             "isDir": false,
             "fileName": "Mono.Cecil.dll",
             "relativeFilePath": "Tools/Mono.Cecil.dll",
-            "MD5Value": "��\u0005�j��E�Г���",
+            "MD5Value": "CDEE80059C6AB2F4854583D093989DEA",
             "fileBytesLength": 302592,
             "filePosition": 8411154
         },
@@ -328,7 +328,7 @@
             "isDir": false,
             "fileName": "Mono.Cecil.Mdb.dll",
             "relativeFilePath": "Tools/Mono.Cecil.Mdb.dll",
-            "MD5Value": "�����\u001D�~t�\u0002�b�)�",
+            "MD5Value": "F7B882E6E81DCD7E74A102A262B129A2",
             "fileBytesLength": 44544,
             "filePosition": 8713746
         },
@@ -336,7 +336,7 @@
             "isDir": false,
             "fileName": "Mono.Cecil.Pdb.dll",
             "relativeFilePath": "Tools/Mono.Cecil.Pdb.dll",
-            "MD5Value": "��ȟ53\bYt���",
+            "MD5Value": "E187C2C89F3533085974AAA69F00FFF5",
             "fileBytesLength": 81920,
             "filePosition": 8758290
         },
@@ -344,7 +344,7 @@
             "isDir": false,
             "fileName": "Mono.Security.dll",
             "relativeFilePath": "Tools/Mono.Security.dll",
-            "MD5Value": "��U\u001D\u0007����2�W򕣛",
+            "MD5Value": "C3CE551D07FBA382DB32D157F295A39B",
             "fileBytesLength": 293376,
             "filePosition": 8840210
         },
@@ -352,7 +352,7 @@
             "isDir": false,
             "fileName": "xlua.dll",
             "relativeFilePath": "Tools/xlua.dll",
-            "MD5Value": "�`��\u0005��`\u0001%n\f��",
+            "MD5Value": "9D60C1F38A05EF81DF6001256E0CA787",
             "fileBytesLength": 525824,
             "filePosition": 9133586
         },
@@ -360,7 +360,7 @@
             "isDir": false,
             "fileName": "XLua.Mini.dll",
             "relativeFilePath": "Tools/XLua.Mini.dll",
-            "MD5Value": "m-�׷PZ`}T�y5\u0003�k",
+            "MD5Value": "6D2DFAD7B7505A607D54F87935039F6B",
             "fileBytesLength": 175104,
             "filePosition": 9659410
         },
@@ -368,7 +368,7 @@
             "isDir": false,
             "fileName": "XLuaGenerate.exe",
             "relativeFilePath": "Tools/XLuaGenerate.exe",
-            "MD5Value": "J�'*N\u0002�f\b�\u001B�\u0016���",
+            "MD5Value": "4A9C272A4E02C06608FC1B9A16C3D9D9",
             "fileBytesLength": 156160,
             "filePosition": 9834514
         },
@@ -376,7 +376,7 @@
             "isDir": false,
             "fileName": "XLuaHotfixInject.exe",
             "relativeFilePath": "Tools/XLuaHotfixInject.exe",
-            "MD5Value": "�\u0007>Ν�\u0018U�\u0010\\{f_/'",
+            "MD5Value": "F0073ECE9DCD18558B105C7B665F2F27",
             "fileBytesLength": 41984,
             "filePosition": 9990674
         },
@@ -408,7 +408,7 @@
             "isDir": false,
             "fileName": "memory.lua.txt",
             "relativeFilePath": "XLua/Resources/perf/memory.lua.txt",
-            "MD5Value": "\u0002�|�������|Z!\u000B",
+            "MD5Value": "02F293867CB1D4D2D9E3FAB87C5A210B",
             "fileBytesLength": 948,
             "filePosition": 10032658
         },
@@ -416,7 +416,7 @@
             "isDir": false,
             "fileName": "profiler.lua.txt",
             "relativeFilePath": "XLua/Resources/perf/profiler.lua.txt",
-            "MD5Value": "�6M���7�5-���9m=",
+            "MD5Value": "C7364D86F5BC3796352DB8FDC0396D3D",
             "fileBytesLength": 4487,
             "filePosition": 10033606
         },
@@ -432,7 +432,7 @@
             "isDir": false,
             "fileName": "tdr.lua.txt",
             "relativeFilePath": "XLua/Resources/tdr/tdr.lua.txt",
-            "MD5Value": "ՙYP���\\�Y�`",
+            "MD5Value": "D599595081B1AF5C8E59F1A760008240",
             "fileBytesLength": 3280,
             "filePosition": 10038093
         },
@@ -448,7 +448,7 @@
             "isDir": false,
             "fileName": "util.lua.txt",
             "relativeFilePath": "XLua/Resources/xlua/util.lua.txt",
-            "MD5Value": "\f��3���̎��qTѬ>",
+            "MD5Value": "0CCFEA338B8FFACC8EDDF47154D1AC3E",
             "fileBytesLength": 6211,
             "filePosition": 10041373
         },
@@ -480,7 +480,7 @@
             "isDir": false,
             "fileName": "LinkXmlGen.cs",
             "relativeFilePath": "XLua/Src/Editor/LinkXmlGen/LinkXmlGen.cs",
-            "MD5Value": "�\u001F��T\u001F����PK��a�",
+            "MD5Value": "891F81DF541FEEF5D5C2504BA8EF61F7",
             "fileBytesLength": 1170,
             "filePosition": 10047584
         },
@@ -488,7 +488,7 @@
             "isDir": false,
             "fileName": "LinkXmlGen.tpl.txt",
             "relativeFilePath": "XLua/Src/Editor/LinkXmlGen/LinkXmlGen.tpl.txt",
-            "MD5Value": "b�\u0014ʫ�[��r���M�0",
+            "MD5Value": "62AC14CAAB945BBFC5728682DF4DD330",
             "fileBytesLength": 320,
             "filePosition": 10048754
         },
@@ -504,7 +504,7 @@
             "isDir": false,
             "fileName": "LuaClassWrap.tpl.txt",
             "relativeFilePath": "XLua/Src/Editor/Template/LuaClassWrap.tpl.txt",
-            "MD5Value": "3a�\u0006(�L8Cx5��h��",
+            "MD5Value": "3361B706288F4C38437835B38C68D2D5",
             "fileBytesLength": 27010,
             "filePosition": 10049074
         },
@@ -512,7 +512,7 @@
             "isDir": false,
             "fileName": "LuaClassWrapGCM.tpl.txt",
             "relativeFilePath": "XLua/Src/Editor/Template/LuaClassWrapGCM.tpl.txt",
-            "MD5Value": "�\u0002�q�^\u0010�֛^�߆�m",
+            "MD5Value": "91029671CF5E10F6D69B5E85DF86D46D",
             "fileBytesLength": 23271,
             "filePosition": 10076084
         },
@@ -520,7 +520,7 @@
             "isDir": false,
             "fileName": "LuaDelegateBridge.tpl.txt",
             "relativeFilePath": "XLua/Src/Editor/Template/LuaDelegateBridge.tpl.txt",
-            "MD5Value": ",��ſ]�t��(=nI�H",
+            "MD5Value": "2CF2F1C5BF5DE8749594283D6E498248",
             "fileBytesLength": 3864,
             "filePosition": 10099355
         },
@@ -528,7 +528,7 @@
             "isDir": false,
             "fileName": "LuaDelegateWrap.tpl.txt",
             "relativeFilePath": "XLua/Src/Editor/Template/LuaDelegateWrap.tpl.txt",
-            "MD5Value": "8;�d��_^�Y�?���C",
+            "MD5Value": "383BAF64F6D05F5EAF59D93F85DEE343",
             "fileBytesLength": 5293,
             "filePosition": 10103219
         },
@@ -536,7 +536,7 @@
             "isDir": false,
             "fileName": "LuaEnumWrap.tpl.txt",
             "relativeFilePath": "XLua/Src/Editor/Template/LuaEnumWrap.tpl.txt",
-            "MD5Value": "��\u0003pr�V\u0014��|���!�",
+            "MD5Value": "8AE8037072A95614AEFC7CF8B8E42188",
             "fileBytesLength": 3765,
             "filePosition": 10108512
         },
@@ -544,7 +544,7 @@
             "isDir": false,
             "fileName": "LuaEnumWrapGCM.tpl.txt",
             "relativeFilePath": "XLua/Src/Editor/Template/LuaEnumWrapGCM.tpl.txt",
-            "MD5Value": "\u001A+���ZM\u000B\u0002�aMU���",
+            "MD5Value": "1A2BA78CA75A4D0B02B6614D55D9CFE3",
             "fileBytesLength": 3524,
             "filePosition": 10112277
         },
@@ -552,7 +552,7 @@
             "isDir": false,
             "fileName": "LuaInterfaceBridge.tpl.txt",
             "relativeFilePath": "XLua/Src/Editor/Template/LuaInterfaceBridge.tpl.txt",
-            "MD5Value": "/;�D\u0013�މʘ�!N ��",
+            "MD5Value": "2F3BB34413EBDE89CA98C9214E208ADF",
             "fileBytesLength": 14721,
             "filePosition": 10115801
         },
@@ -560,7 +560,7 @@
             "isDir": false,
             "fileName": "LuaRegister.tpl.txt",
             "relativeFilePath": "XLua/Src/Editor/Template/LuaRegister.tpl.txt",
-            "MD5Value": "��\u001E�\u0016�F?�Rߓ��L�",
+            "MD5Value": "AFED1E8B16A8463FBE52DF938A9A4CE7",
             "fileBytesLength": 5100,
             "filePosition": 10130522
         },
@@ -568,7 +568,7 @@
             "isDir": false,
             "fileName": "LuaRegisterGCM.tpl.txt",
             "relativeFilePath": "XLua/Src/Editor/Template/LuaRegisterGCM.tpl.txt",
-            "MD5Value": "�c�T����-����Ȉ�",
+            "MD5Value": "B5639454E2CBDEF32DCDD3D7E0C888F1",
             "fileBytesLength": 5112,
             "filePosition": 10135622
         },
@@ -576,7 +576,7 @@
             "isDir": false,
             "fileName": "LuaWrapPusher.tpl.txt",
             "relativeFilePath": "XLua/Src/Editor/Template/LuaWrapPusher.tpl.txt",
-            "MD5Value": "���Sj\u0006U\u0013�~�t���n",
+            "MD5Value": "D5E8D9536A065513E37E907492E1FB6E",
             "fileBytesLength": 8424,
             "filePosition": 10140734
         },
@@ -584,7 +584,7 @@
             "isDir": false,
             "fileName": "PackUnpack.tpl.txt",
             "relativeFilePath": "XLua/Src/Editor/Template/PackUnpack.tpl.txt",
-            "MD5Value": "����x8\\\u0012L��e\u0001�",
+            "MD5Value": "C097F49CEDB978385C124C96B26501BA",
             "fileBytesLength": 4433,
             "filePosition": 10149158
         },
@@ -592,7 +592,7 @@
             "isDir": false,
             "fileName": "TemplateCommon.lua.txt",
             "relativeFilePath": "XLua/Src/Editor/Template/TemplateCommon.lua.txt",
-            "MD5Value": "75��݃��F\u0016u���\u0003",
+            "MD5Value": "3735A2E0BADD83F6DB461675899EF203",
             "fileBytesLength": 18493,
             "filePosition": 10153591
         },
@@ -600,7 +600,7 @@
             "isDir": false,
             "fileName": "Generator.cs",
             "relativeFilePath": "XLua/Src/Editor/Generator.cs",
-            "MD5Value": "���s�\u0015~�J`�.$�˜",
+            "MD5Value": "8E91A573CF157E974A60842E24A4CB9C",
             "fileBytesLength": 80941,
             "filePosition": 10172084
         },
@@ -608,7 +608,7 @@
             "isDir": false,
             "fileName": "Hotfix.cs",
             "relativeFilePath": "XLua/Src/Editor/Hotfix.cs",
-            "MD5Value": "`��r�����z�G��|�",
+            "MD5Value": "60F9C27285A0A2F5F27AF947C5F57CFB",
             "fileBytesLength": 75248,
             "filePosition": 10253025
         },
@@ -616,7 +616,7 @@
             "isDir": false,
             "fileName": "TemplateRef.cs",
             "relativeFilePath": "XLua/Src/Editor/TemplateRef.cs",
-            "MD5Value": "\u0005��\u0013F׏\"�r<�A�1",
+            "MD5Value": "0595E91346D78F22C4723CEF9741F331",
             "fileBytesLength": 635,
             "filePosition": 10328273
         },
@@ -632,7 +632,7 @@
             "isDir": false,
             "fileName": "TemplateEngine.cs",
             "relativeFilePath": "XLua/Src/TemplateEngine/TemplateEngine.cs",
-            "MD5Value": "�JJ-��\u0011t|q��pm�\u0005",
+            "MD5Value": "854A4A2DB2AD11747C71B8A1706DFB05",
             "fileBytesLength": 9002,
             "filePosition": 10328908
         },
@@ -640,7 +640,7 @@
             "isDir": false,
             "fileName": "CodeEmit.cs",
             "relativeFilePath": "XLua/Src/CodeEmit.cs",
-            "MD5Value": "�\u0012\u0010\b��I����+'\u000B6",
+            "MD5Value": "C512107F089DAF49D2FAF1ED2B270B36",
             "fileBytesLength": 86756,
             "filePosition": 10337910
         },
@@ -648,7 +648,7 @@
             "isDir": false,
             "fileName": "CopyByValue.cs",
             "relativeFilePath": "XLua/Src/CopyByValue.cs",
-            "MD5Value": "�8�\u001E\u000ES��;\u0007،\n�Q�",
+            "MD5Value": "B838FF1E0E53D7DE3B07D88C0A8551F2",
             "fileBytesLength": 5777,
             "filePosition": 10424666
         },
@@ -656,7 +656,7 @@
             "isDir": false,
             "fileName": "DelegateBridge.cs",
             "relativeFilePath": "XLua/Src/DelegateBridge.cs",
-            "MD5Value": "<L\u0006\u001F�ā��ߔ��\u0001\u0014�",
+            "MD5Value": "3C4C061FDBC481AC81DF94CEE70114BF",
             "fileBytesLength": 7819,
             "filePosition": 10430443
         },
@@ -664,7 +664,7 @@
             "isDir": false,
             "fileName": "GenAttributes.cs",
             "relativeFilePath": "XLua/Src/GenAttributes.cs",
-            "MD5Value": "�n�\\V\t1�G�V]�]\u0006�",
+            "MD5Value": "926E945C5609319447EB565DF45D06CD",
             "fileBytesLength": 4577,
             "filePosition": 10438262
         },
@@ -672,7 +672,7 @@
             "isDir": false,
             "fileName": "GenericDelegateBridge.cs",
             "relativeFilePath": "XLua/Src/GenericDelegateBridge.cs",
-            "MD5Value": "�a��)��\u0013����ɹ!",
+            "MD5Value": "CA61A0F3298B9813EB9AD8FA8FC9B921",
             "fileBytesLength": 8184,
             "filePosition": 10442839
         },
@@ -680,7 +680,7 @@
             "isDir": false,
             "fileName": "InternalGlobals.cs",
             "relativeFilePath": "XLua/Src/InternalGlobals.cs",
-            "MD5Value": "�[�&�O�� \u0004:�;q׽",
+            "MD5Value": "8E5B9A269C4F96D320043AA33B71D7BD",
             "fileBytesLength": 3003,
             "filePosition": 10451023
         },
@@ -688,7 +688,7 @@
             "isDir": false,
             "fileName": "LuaBase.cs",
             "relativeFilePath": "XLua/Src/LuaBase.cs",
-            "MD5Value": "�)˞��\u0010~\u001Dj�8�\u001D�L",
+            "MD5Value": "CE29CB9EB494107E1D6A9738AD1DBD4C",
             "fileBytesLength": 4002,
             "filePosition": 10454026
         },
@@ -696,7 +696,7 @@
             "isDir": false,
             "fileName": "LuaDLL.cs",
             "relativeFilePath": "XLua/Src/LuaDLL.cs",
-            "MD5Value": "�.�(�vJM!�$����L",
+            "MD5Value": "DD2E92288F764A4D21B824A38EB9DA4C",
             "fileBytesLength": 26769,
             "filePosition": 10458028
         },
@@ -704,7 +704,7 @@
             "isDir": false,
             "fileName": "LuaEnv.cs",
             "relativeFilePath": "XLua/Src/LuaEnv.cs",
-            "MD5Value": "��m",
+            "MD5Value": "F69A6D004E2715734BA6142DE694A2FD",
             "fileBytesLength": 25099,
             "filePosition": 10484797
         },
@@ -712,7 +712,7 @@
             "isDir": false,
             "fileName": "LuaException.cs",
             "relativeFilePath": "XLua/Src/LuaException.cs",
-            "MD5Value": "ـ�)(�L������\u0016�\u0015",
+            "MD5Value": "D980F32928C74CABF5BCBFA6D816E215",
             "fileBytesLength": 874,
             "filePosition": 10509896
         },
@@ -720,7 +720,7 @@
             "isDir": false,
             "fileName": "LuaFunction.cs",
             "relativeFilePath": "XLua/Src/LuaFunction.cs",
-            "MD5Value": "�¨g}c\u0015OP�\u0003�tŭ`",
+            "MD5Value": "94C2A8677D63154F50ED03F074C5AD60",
             "fileBytesLength": 7928,
             "filePosition": 10510770
         },
@@ -728,7 +728,7 @@
             "isDir": false,
             "fileName": "LuaTable.cs",
             "relativeFilePath": "XLua/Src/LuaTable.cs",
-            "MD5Value": "�\u0010[)e����6�c�|�",
+            "MD5Value": "F5105B2965B8BDBAAB36EAA863AF7C8A",
             "fileBytesLength": 11692,
             "filePosition": 10518698
         },
@@ -736,7 +736,7 @@
             "isDir": false,
             "fileName": "MethodWarpsCache.cs",
             "relativeFilePath": "XLua/Src/MethodWarpsCache.cs",
-            "MD5Value": "dH.�A\u0011��\u0018�h\u001DV��",
+            "MD5Value": "64482EBC4111AFEB18BB681D568CEE86",
             "fileBytesLength": 23177,
             "filePosition": 10530390
         },
@@ -744,7 +744,7 @@
             "isDir": false,
             "fileName": "ObjectCasters.cs",
             "relativeFilePath": "XLua/Src/ObjectCasters.cs",
-            "MD5Value": "��L\u0014k:\u001E~3��z�Lev",
+            "MD5Value": "E0DE4C146B3A1E7E33D9E67AB64C6576",
             "fileBytesLength": 28874,
             "filePosition": 10553567
         },
@@ -752,7 +752,7 @@
             "isDir": false,
             "fileName": "ObjectPool.cs",
             "relativeFilePath": "XLua/Src/ObjectPool.cs",
-            "MD5Value": "�zaJ-|�\"\u0016Pόv5��",
+            "MD5Value": "877A614A2D7CD4221650CF8C7635C18F",
             "fileBytesLength": 4795,
             "filePosition": 10582441
         },
@@ -760,7 +760,7 @@
             "isDir": false,
             "fileName": "ObjectTranslator.cs",
             "relativeFilePath": "XLua/Src/ObjectTranslator.cs",
-            "MD5Value": "�8\u0010�b\u001DR\u001F\u0016�",
+            "MD5Value": "FC381082621D521F16A1001E4CEFADEB",
             "fileBytesLength": 64632,
             "filePosition": 10587236
         },
@@ -768,7 +768,7 @@
             "isDir": false,
             "fileName": "ObjectTranslatorPool.cs",
             "relativeFilePath": "XLua/Src/ObjectTranslatorPool.cs",
-            "MD5Value": "\u000F��ώ#�u.�\u000F��R\u001A",
+            "MD5Value": "0F8FF187CF8E23C0752EC50FE0D3521A",
             "fileBytesLength": 3418,
             "filePosition": 10651868
         },
@@ -776,7 +776,7 @@
             "isDir": false,
             "fileName": "RawObject.cs",
             "relativeFilePath": "XLua/Src/RawObject.cs",
-            "MD5Value": "i��;mHv�ڔH-�6�F",
+            "MD5Value": "69AFCC3B6D4876EDDA94482DB936EC46",
             "fileBytesLength": 2246,
             "filePosition": 10655286
         },
@@ -784,7 +784,7 @@
             "isDir": false,
             "fileName": "SignatureLoader.cs",
             "relativeFilePath": "XLua/Src/SignatureLoader.cs",
-            "MD5Value": "T`�~�\t�)\u0006�f�:B��",
+            "MD5Value": "5460F87EE909FD29069C66A83A42C180",
             "fileBytesLength": 2397,
             "filePosition": 10657532
         },
@@ -792,7 +792,7 @@
             "isDir": false,
             "fileName": "StaticLuaCallbacks.cs",
             "relativeFilePath": "XLua/Src/StaticLuaCallbacks.cs",
-            "MD5Value": "2h\u001A����M\u0003I���]K�",
+            "MD5Value": "32681AA5C6ECF74D034988A5935D4BCD",
             "fileBytesLength": 47704,
             "filePosition": 10659929
         },
@@ -800,7 +800,7 @@
             "isDir": false,
             "fileName": "TypeExtensions.cs",
             "relativeFilePath": "XLua/Src/TypeExtensions.cs",
-            "MD5Value": "�л\u0013� \u0001�Ag\b%іu�",
+            "MD5Value": "E3D0BB13E02001D441670825D196758F",
             "fileBytesLength": 4362,
             "filePosition": 10707633
         },
@@ -808,7 +808,7 @@
             "isDir": false,
             "fileName": "Utils.cs",
             "relativeFilePath": "XLua/Src/Utils.cs",
-            "MD5Value": "��p[��_\r\u001AfN6�c��",
+            "MD5Value": "ABC5705BF6F85F0D1A664E36B663A1BC",
             "fileBytesLength": 49987,
             "filePosition": 10711995
         },
@@ -816,7 +816,7 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "�G7�\"\r�\u0006:&J�©]",
+            "MD5Value": "C1920D2DF38660DCB9114EA57D5F81F8",
             "fileBytesLength": 463,
             "filePosition": 10761982
         }

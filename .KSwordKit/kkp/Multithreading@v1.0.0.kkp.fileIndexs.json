@@ -1,7 +1,7 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Multithreading@v1.0.0",
-    "fileBytesLength": 102137,
-    "MD5Value": "��%ِ%O]�9���E�\u001F",
+    "fileBytesLength": 102153,
+    "MD5Value": "402D916BE594602548B42F5DA6A18A33",
     "fileCount": 12,
     "fileIndexList": [
         {
@@ -32,7 +32,7 @@
             "isDir": false,
             "fileName": "MainThreadDispatcher.cs",
             "relativeFilePath": "LOOM Framework/LOOM/Internal/MainThreadDispatcher.cs",
-            "MD5Value": "���M�I�L\u0015���$��",
+            "MD5Value": "BF80DF4DFC49EF4C15FCD8E88F2486AE",
             "fileBytesLength": 12932,
             "filePosition": 0
         },
@@ -40,7 +40,7 @@
             "isDir": false,
             "fileName": "MainThreadWatchdog.cs",
             "relativeFilePath": "LOOM Framework/LOOM/Internal/MainThreadWatchdog.cs",
-            "MD5Value": "�\u0017���╶��@�f�M",
+            "MD5Value": "B1178999E7E295B6E7FD7F40EE66D24D",
             "fileBytesLength": 2160,
             "filePosition": 12932
         },
@@ -48,7 +48,7 @@
             "isDir": false,
             "fileName": "MultithreadedWorkloadHelper.cs",
             "relativeFilePath": "LOOM Framework/LOOM/Internal/MultithreadedWorkloadHelper.cs",
-            "MD5Value": "K*g�+�;",
+            "MD5Value": "4B2A67922BC73B008DC40ADE68B18968",
             "fileBytesLength": 13453,
             "filePosition": 15092
         },
@@ -56,7 +56,7 @@
             "isDir": false,
             "fileName": "SingleThreadStarter.cs",
             "relativeFilePath": "LOOM Framework/LOOM/Internal/SingleThreadStarter.cs",
-            "MD5Value": "��F�Ә�S�~\u00070�\u0007�M",
+            "MD5Value": "AFC94691D3989B53A87E07309E07874D",
             "fileBytesLength": 9540,
             "filePosition": 28545
         },
@@ -64,7 +64,7 @@
             "isDir": false,
             "fileName": "ThreadDispatchAction.cs",
             "relativeFilePath": "LOOM Framework/LOOM/Internal/ThreadDispatchAction.cs",
-            "MD5Value": "�R@�u�\u000Eh���E\\4r�",
+            "MD5Value": "CF5240E175BD0E688C9EEA455C3472B2",
             "fileBytesLength": 4876,
             "filePosition": 38085
         },
@@ -72,7 +72,7 @@
             "isDir": false,
             "fileName": "ThreadPoolSchedulerWorkerObjects.cs",
             "relativeFilePath": "LOOM Framework/LOOM/Internal/ThreadPoolSchedulerWorkerObjects.cs",
-            "MD5Value": "���>�!�Z\u001C�\u001E���g�",
+            "MD5Value": "A4E0EB3E9321E45A1CDA1EAB82F867A0",
             "fileBytesLength": 3315,
             "filePosition": 42961
         },
@@ -80,7 +80,7 @@
             "isDir": false,
             "fileName": "ThreadWaitCommands.cs",
             "relativeFilePath": "LOOM Framework/LOOM/Internal/ThreadWaitCommands.cs",
-            "MD5Value": "��Qh�K�)��@�=�*\u0017",
+            "MD5Value": "C1B15168E64BF6298BB940943DC22A17",
             "fileBytesLength": 1455,
             "filePosition": 46276
         },
@@ -88,7 +88,7 @@
             "isDir": false,
             "fileName": "UnityActivityWatchdog.cs",
             "relativeFilePath": "LOOM Framework/LOOM/Internal/UnityActivityWatchdog.cs",
-            "MD5Value": "b�gKN�T��Ky��R",
+            "MD5Value": "62B0674B4EEDBE54D3CC4B797FBB9452",
             "fileBytesLength": 6232,
             "filePosition": 47731
         },
@@ -96,7 +96,7 @@
             "isDir": false,
             "fileName": "IThreadWorkerObject.cs",
             "relativeFilePath": "LOOM Framework/LOOM/IThreadWorkerObject.cs",
-            "MD5Value": "��Zj��Z���\u000B�P�\u0001-",
+            "MD5Value": "F2EC5A6A94D45AB58AAC0BD450E4012D",
             "fileBytesLength": 2272,
             "filePosition": 53963
         },
@@ -104,7 +104,7 @@
             "isDir": false,
             "fileName": "Loom.cs",
             "relativeFilePath": "LOOM Framework/LOOM/Loom.cs",
-            "MD5Value": "TO{@��1q����7�V|",
+            "MD5Value": "544F7B40F7A53171B1A8AFC737E9567C",
             "fileBytesLength": 27158,
             "filePosition": 56235
         },
@@ -112,7 +112,7 @@
             "isDir": false,
             "fileName": "ThreadPoolScheduler.cs",
             "relativeFilePath": "LOOM Framework/LOOM/ThreadPoolScheduler.cs",
-            "MD5Value": "�\u000B�I'�q�3C \u0006�|�\u0005",
+            "MD5Value": "AB0B9C4927BF71DF33432006807C8305",
             "fileBytesLength": 18300,
             "filePosition": 83393
         },
@@ -120,8 +120,8 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "��\u001F�ro�ѡ�닯;��",
-            "fileBytesLength": 444,
+            "MD5Value": "A3D8CEAE8EBEB5136AB896B6B961ADED",
+            "fileBytesLength": 460,
             "filePosition": 101693
         }
     ]

@@ -1,0 +1,18 @@
+{
+    "ID": "Enhanced Coroutine@v1.0.0",
+    "Name": "Enhanced Coroutine",
+    "Version": "v1.0.0",
+    "MD5Value": "���~�՗K��N�Z.��",
+    "liveWithOtherVersion": false,
+    "Author": "ks",
+    "Contact": "ks@keenlove.com",
+    "HomePage": "https://github.com/keenlovelife",
+    "Date": "2021-11-07 11:42:02",
+    "Description": "增强协程库，提供多种协程应用api。",
+    "Dependencies": [],
+    "Tags": [
+        "协程",
+        "工具"
+    ],
+    "FileSettings": []
+}

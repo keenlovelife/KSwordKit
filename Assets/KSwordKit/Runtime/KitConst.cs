@@ -54,11 +54,11 @@ namespace KSwordKit
         /// <summary>
         /// KSwordKit检查更新地址
         /// </summary>
-        public const string KitCheckForUpdates = "https://gitee.com/keenlovelife/ksword-kit/raw/kkp/.KitConfig.json";
+        public const string KitCheckForUpdates = "https://gitee.com/keenlovelife/KSwordKit/raw/main/.KitConfig.json";
         /// <summary>
         /// KSwordKit 包目录的源请求路径
         /// </summary>
-        public const string KitOriginPackagesURL = "https://gitee.com/keenlovelife/ksword-kit/raw/kkp/.KSwordKit/kkp";
+        public const string KitOriginPackagesURL = "https://gitee.com/keenlovelife/KSwordKit/raw/main/.KSwordKit/kkp";
         /// <summary>
         /// KSwordKit框架更新时使用的URL前缀
         /// </summary>

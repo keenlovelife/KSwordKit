@@ -1,7 +1,7 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Framework/Project File Management@v1.0.0",
     "fileBytesLength": 3245,
-    "MD5Value": "Hj\"\u000E�w�|W�<��Z�R",
+    "MD5Value": "02C301A81DB541007F1015646447493F",
     "fileCount": 3,
     "fileIndexList": [
         {
@@ -24,7 +24,7 @@
             "isDir": false,
             "fileName": "AutomaticFileAnnotationEditor.cs",
             "relativeFilePath": "AutomaticFileAnnotation/Editor/AutomaticFileAnnotationEditor.cs",
-            "MD5Value": "dܔ\u001B�����ğ\n�B�\r",
+            "MD5Value": "64DC941BB283BEB79BC49F0A8942AA0D",
             "fileBytesLength": 2134,
             "filePosition": 0
         },
@@ -40,7 +40,7 @@
             "isDir": false,
             "fileName": "ProjectFileManagementEditor.cs",
             "relativeFilePath": "Editor/ProjectFileManagementEditor.cs",
-            "MD5Value": ">`�\u0004���\\O",
+            "MD5Value": "3E60EB04AEB8A05C4F00E9E71F7639C5",
             "fileBytesLength": 583,
             "filePosition": 2134
         },
@@ -48,7 +48,7 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "��l�\u0017��F�HGIo�(�",
+            "MD5Value": "5F4C3E002E41FB9C47FA4A8727884162",
             "fileBytesLength": 528,
             "filePosition": 2717
         }

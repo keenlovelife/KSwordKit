@@ -1,7 +1,7 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/test1 - 副本 (3)",
     "fileBytesLength": 573004,
-    "MD5Value": "U\u0019\\�Kٗ�T��}\u0003��E",
+    "MD5Value": "D28F43FBFA5C874B62E7C8564BA384AA",
     "fileCount": 5,
     "fileIndexList": [
         {
@@ -16,7 +16,7 @@
             "isDir": false,
             "fileName": "新建 Microsoft Publisher Document.pub",
             "relativeFilePath": "新建文件夹/新建 Microsoft Publisher Document.pub",
-            "MD5Value": "\u0006'�r~+�\u001D\u001C��k���\\",
+            "MD5Value": "0627B4727E2BFE1D1CB7F06B82BFCC5C",
             "fileBytesLength": 59904,
             "filePosition": 0
         },
@@ -24,7 +24,7 @@
             "isDir": false,
             "fileName": "新建 文本文档.txt",
             "relativeFilePath": "新建文件夹/新建 文本文档.txt",
-            "MD5Value": "�\u001D�ُ",
+            "MD5Value": "D41D8CD98F00B204E9800998ECF8427E",
             "fileBytesLength": 0,
             "filePosition": 59904
         },
@@ -32,7 +32,7 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "ӑ�\n�<�\fe�ե�N\u0016�",
+            "MD5Value": "16EBA8E0D9F0BEC5B9BBA07AB2B0BF35",
             "fileBytesLength": 1093,
             "filePosition": 59904
         },
@@ -40,7 +40,7 @@
             "isDir": false,
             "fileName": "新建 Microsoft Access Database.accdb",
             "relativeFilePath": "新建 Microsoft Access Database.accdb",
-            "MD5Value": "�9\u0016ZEf�>�\u0001\u001Fd\u001E��\u0019",
+            "MD5Value": "C939165A4566AC3EBA011F641E94C519",
             "fileBytesLength": 512000,
             "filePosition": 60997
         },
@@ -48,7 +48,7 @@
             "isDir": false,
             "fileName": "新建 RTF 文档.rtf",
             "relativeFilePath": "新建 RTF 文档.rtf",
-            "MD5Value": "�tB]�g�\u000B/�\u0011$�T��",
+            "MD5Value": "8274425DE767B30B2FFF1124AB54ABB5",
             "fileBytesLength": 7,
             "filePosition": 572997
         }

@@ -1,7 +1,7 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/test",
     "fileBytesLength": 8440,
-    "MD5Value": "|B�\u000B���7op�',k-M",
+    "MD5Value": "94DEDF286A27F32F422A866B15B3122E",
     "fileCount": 5,
     "fileIndexList": [
         {
@@ -24,7 +24,7 @@
             "isDir": false,
             "fileName": "新建 RTF 文档.rtf",
             "relativeFilePath": "新建文件夹/新建文件夹/新建 RTF 文档.rtf",
-            "MD5Value": "�tB]�g�\u000B/�\u0011$�T��",
+            "MD5Value": "8274425DE767B30B2FFF1124AB54ABB5",
             "fileBytesLength": 7,
             "filePosition": 0
         },
@@ -32,7 +32,7 @@
             "isDir": false,
             "fileName": "新建 Microsoft Excel 工作表.xlsx",
             "relativeFilePath": "新建文件夹/新建 Microsoft Excel 工作表.xlsx",
-            "MD5Value": "��(��CR�\"}\u001F�:",
+            "MD5Value": "B3C428F9874352EF8F22C2917D1FC53A",
             "fileBytesLength": 6603,
             "filePosition": 7
         },
@@ -40,7 +40,7 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "����!U.\u000B$Fߘ�aD",
+            "MD5Value": "8454C91E3294360FBCCD3F75316691F4",
             "fileBytesLength": 1830,
             "filePosition": 6610
         },
@@ -48,7 +48,7 @@
             "isDir": false,
             "fileName": "test.txt",
             "relativeFilePath": "test.txt",
-            "MD5Value": "�\u001D�ُ",
+            "MD5Value": "D41D8CD98F00B204E9800998ECF8427E",
             "fileBytesLength": 0,
             "filePosition": 8440
         },
@@ -56,7 +56,7 @@
             "isDir": false,
             "fileName": "新建 文本文档.txt",
             "relativeFilePath": "新建 文本文档.txt",
-            "MD5Value": "�\u001D�ُ",
+            "MD5Value": "D41D8CD98F00B204E9800998ECF8427E",
             "fileBytesLength": 0,
             "filePosition": 8440
         }

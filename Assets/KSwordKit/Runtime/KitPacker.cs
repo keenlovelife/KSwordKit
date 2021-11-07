@@ -445,7 +445,7 @@ namespace KSwordKit
             {
                 using (var stream = System.IO.File.OpenRead(filename))
                 {
-                    return System.Text.Encoding.UTF8.GetString(md5.ComputeHash(stream));
+                    return System.BitConverter.ToString(md5.ComputeHash(stream)).Replace("-","");
                 }
             }
         }

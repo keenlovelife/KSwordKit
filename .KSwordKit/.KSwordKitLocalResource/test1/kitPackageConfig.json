@@ -7,7 +7,7 @@
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-11-07 11:43:41",
+    "Date": "2021-11-07 18:14:05",
     "Description": "测试包",
     "Dependencies": [],
     "Tags": [
@@ -15,7 +15,7 @@
     ],
     "FileSettings": [
         {
-            "enableUninstall": false,
+            "enableUninstall": true,
             "isDir": true,
             "SourcePath": "新建文件夹",
             "TargetPath": "{PackageRootDir}/新建文件夹"
