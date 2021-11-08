@@ -104,7 +104,8 @@ namespace KSwordKit.Editor.PackageManager
                 }
                 if (GUILayout.Button("µ¼Èë (" + selectedKKPFilepaths.Count + ")", GUILayout.Height(40)))
                 {
-                    ImportAll(selectedKKPFilepaths);
+                    if (selectedKKPFilepaths.Count > 0)
+                        ImportAll(selectedKKPFilepaths);
                 }
                 GUILayout.Space(10);
             }
@@ -360,7 +361,6 @@ namespace KSwordKit.Editor.PackageManager
                     {
                         isdir = fs.isDir;
                         importFilepath = KitPackageConfigFileSetting.TargetPathToRealPath(fs.TargetPath);
-
                     }
                     else
                     {
@@ -405,6 +405,52 @@ namespace KSwordKit.Editor.PackageManager
                     fi.childFileindexList = new List<int>();
                     tacks.Add(fi);
                 }
+            }
+        }
+        static void initFileIndexsState(KKPFilepath kkp)
+        {
+            var fileIndexs = kkp.FileIndexs;
+            var importdir = System.IO.Path.Combine(KitConst.KitInstallationDirectory, KitConst.KitPackagesImportRootDirectory); ;
+            var outdir = System.IO.Path.Combine(importdir, kkp.config.ID);
+            var haveState = System.IO.Directory.Exists(outdir);
+            for (var i = 0; i < fileIndexs.fileIndexList.Count; i++)
+            {
+                var fi = fileIndexs.fileIndexList[i];
+                if (haveState)
+                {
+                    var fs = getFileSetting(fi, kkp.config);
+                    var isdir = false;
+                    var importFilepath = "";
+                    if (fs != null)
+                    {
+                        isdir = fs.isDir;
+                        importFilepath = KitPackageConfigFileSetting.TargetPathToRealPath(fs.TargetPath);
+                    }
+                    else
+                    {
+                        isdir = fi.isDir;
+                        importFilepath = System.IO.Path.Combine(outdir, fi.relativeFilePath);
+                    }
+                    if (isdir)
+                    {
+                        if (System.IO.Directory.Exists(importFilepath))
+                            fi.fileIndexState = KitPacker.FileIndexState.Same;
+                        else fi.fileIndexState = KitPacker.FileIndexState.NewFile;
+                    }
+                    else
+                    {
+                        if (System.IO.File.Exists(importFilepath))
+                        {
+                            var md5 = KitPacker.CheckMD5(importFilepath);
+                            if (fi.MD5Value == md5)
+                                fi.fileIndexState = KitPacker.FileIndexState.Same;
+                            else
+                                fi.fileIndexState = KitPacker.FileIndexState.CanUpdate;
+                        }
+                        else fi.fileIndexState = KitPacker.FileIndexState.NewFile;
+                    }
+                }
+                else fi.fileIndexState = KitPacker.FileIndexState.None;
             }
         }
         static void ImportAll(List<KKPFilepath> selectedKKPFilepaths)

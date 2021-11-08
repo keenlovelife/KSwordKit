@@ -286,12 +286,13 @@ namespace KSwordKit
                     foreach (var fileSetting in fileFileSettings)
                     {
                         var filepath = System.IO.Path.Combine(outDir, fileSetting.SourcePath);
-                        if (!System.IO.File.Exists(filepath))
+                        var targetPath = KitPackageConfigFileSetting.TargetPathToRealPath(fileSetting.TargetPath);
+                        if (!System.IO.File.Exists(filepath) && System.IO.File.Exists(targetPath)) continue;
+                        if (!System.IO.File.Exists(filepath) && !System.IO.File.Exists(targetPath))
                         {
                             Debug.LogWarning(KitConst.KitName + ": 文件意外丢失！ " + filepath);
                             continue;
                         }
-                        var targetPath = KitPackageConfigFileSetting.TargetPathToRealPath(fileSetting.TargetPath);
                         if (System.IO.File.Exists(targetPath) && !overwrite) continue;
                         if (System.IO.File.Exists(targetPath)) System.IO.File.Delete(targetPath);
                         var targetDir = System.IO.Path.GetDirectoryName(targetPath);
@@ -324,6 +325,7 @@ namespace KSwordKit
                     {
                         var dirpath = System.IO.Path.Combine(outDir, fileSetting.SourcePath);
                         var targetPath = KitPackageConfigFileSetting.TargetPathToRealPath(fileSetting.TargetPath);
+                        if (!System.IO.Directory.Exists(dirpath) && System.IO.Directory.Exists(targetPath)) continue;
                         if (!System.IO.Directory.Exists(dirpath))
                         {
                             Debug.LogWarning(KitConst.KitName + ": 文件目录意外丢失！ " + dirpath);
