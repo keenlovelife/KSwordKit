@@ -22,6 +22,7 @@ namespace KSwordKit.Editor
         static readonly string configName = "KSwordKitConfig";
         static KitInitializeEditor()
         {
+            Debug.unityLogger.logEnabled = true;
             init();
         }
 
@@ -212,7 +213,7 @@ namespace KSwordKit.Editor
                     }
 
                     Request_packages((done, progress) => {
-                        if (done) Debug.Log(KitConst.KitName + ": 所有可用包已拉取完成！");
+                        if (done) Debug.Log(KitConst.KitName + ": 所有可用包已拉取完成！【定时拉取】");
                     });
 
                     if (originConfig != null && originConfig.Version != config.KitVersion)

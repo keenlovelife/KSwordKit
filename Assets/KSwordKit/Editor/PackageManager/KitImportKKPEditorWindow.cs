@@ -25,13 +25,13 @@ namespace KSwordKit.Editor.PackageManager
         {
             var isOpen = EditorWindow.HasOpenInstances<KitImportKKPEditorWindow>();
             assetPaths.Add(assetpath);
-            getKKPFilepaths();
             if (!isOpen)
             {
                 var windowTitle = KitConst.KitName + "：" + subtitle;
                 window = GetWindow<KitImportKKPEditorWindow>(true, windowTitle);
                 window.minSize = new Vector2(600, 800);
             }
+            getKKPFilepaths();
         }
         static Vector2 scorllPos;
         static List<KKPFilepath> kkpFilepaths = new List<KKPFilepath>();
@@ -286,7 +286,6 @@ namespace KSwordKit.Editor.PackageManager
             if (System.IO.File.Exists(kkptempfilepath))
             {
                 kkpFilepaths.Clear();
-                needDrawGUI = true;
                 var lines = System.IO.File.ReadAllLines(kkptempfilepath, System.Text.Encoding.UTF8);
 
                 var kkps = new List<KKPFilepath>();
@@ -325,7 +324,18 @@ namespace KSwordKit.Editor.PackageManager
                         }
                     }
                 }
+
+                needDrawGUI = true;
+                if (window)
+                    window.Focus();
             }
+        }
+        static KitPackageConfigFileSetting getFileSetting(KitPacker.FileIndex fi, KitPackageConfig kitPackageConfig)
+        {
+            if (kitPackageConfig == null || kitPackageConfig.FileSettings == null || kitPackageConfig.FileSettings.Count == 0) return null;
+            foreach (var fs in kitPackageConfig.FileSettings)
+                if (fs.SourcePath == fi.relativeFilePath) return fs;
+            return null;
         }
         static void initFileIndexs(KKPFilepath kkp)
         {
@@ -343,8 +353,21 @@ namespace KSwordKit.Editor.PackageManager
                 fi.foldout = true;
                 if (haveState)
                 {
-                    var importFilepath = System.IO.Path.Combine(outdir, fi.relativeFilePath);
-                    if (fi.isDir)
+                    var fs = getFileSetting(fi, kkp.config);
+                    var isdir = false;
+                    var importFilepath = "";
+                    if (fs != null)
+                    {
+                        isdir = fs.isDir;
+                        importFilepath = KitPackageConfigFileSetting.TargetPathToRealPath(fs.TargetPath);
+
+                    }
+                    else
+                    {
+                        isdir = fi.isDir;
+                        importFilepath = System.IO.Path.Combine(outdir, fi.relativeFilePath);
+                    }
+                    if (isdir)
                     {
                         if (System.IO.Directory.Exists(importFilepath))
                             fi.fileIndexState = KitPacker.FileIndexState.Same;
@@ -398,7 +421,10 @@ namespace KSwordKit.Editor.PackageManager
                     {
                         doneCount++;
                         if (string.IsNullOrEmpty(error))
+                        {
+                            Debug.Log(KitConst.KitName + ": " + kkp.config.ID + " 导入成功！");
                             EditorUtility.DisplayProgressBar(window.titleContent.text, kkp.config.ID + " 导入成功！", doneCount / (float)selectedKKPFilepaths.Count);
+                        }
                         else
                         {
                             EditorUtility.DisplayProgressBar(window.titleContent.text, kkp.config.ID + " 导入失败：" + error, doneCount / (float)selectedKKPFilepaths.Count);
@@ -410,6 +436,7 @@ namespace KSwordKit.Editor.PackageManager
                             window.Close();
                             AssetDatabase.SaveAssets();
                             AssetDatabase.Refresh();
+                            Debug.Log(KitConst.KitName + ": 导入处理完成！");
                         }
                     }
                 }, kkp.FileIndexs.fileIndexList);
@@ -422,28 +449,30 @@ namespace KSwordKit.Editor.PackageManager
                 var outdir = System.IO.Path.Combine(importdir, id);
                 KitPacker.Unpack(kkpfilepath, outdir, (filename, progress, done, error, depds) => {
                     if (action != null) action(filename, progress * 0.3f + 0.4f, null, false);
-                    if(done)
+                    if (done)
                     {
                         if (string.IsNullOrEmpty(error))
                         {
                             if (depds == null || depds.Count == 0)
                             {
-                                if (action != null) action("所有文件处理完成", 1, null, true);
+                                if (action != null) action("所有文件处理完成！", 1, null, true);
+                                Debug.Log(KitConst.KitName + ": 所有文件处理完成！");
                             }
                             else
                             {
                                 if (action != null) action("正在处理依赖...", 0.7f, null, false);
+                                Debug.Log(KitConst.KitName + ": " + id + " 正在处理依赖 ..");
                                 int doneDepdCount = 0;
                                 string allerror = "";
-                                foreach(var depd in depds)
+                                foreach (var depd in depds)
                                 {
                                     var _kkpfilepath = System.IO.Path.Combine(KitConst.KitPackagesRootDirectory, depd + "." + KitPacker.FileFormat);
-                                    Import(_kkpfilepath, "", depd, (info, _progress, _error, isdone) => 
+                                    Import(_kkpfilepath, "", depd, (info, _progress, _error, isdone) =>
                                     {
-                                        if (action != null) 
-                                            action("处理依赖" + depd + "->" + info, 
-                                                0.7f + 0.3f * _progress * (doneDepdCount + 1) / (float)depds.Count, 
-                                                null, 
+                                        if (action != null)
+                                            action("处理依赖" + depd + "->" + info,
+                                                0.7f + 0.3f * _progress * (doneDepdCount + 1) / (float)depds.Count,
+                                                null,
                                                 false);
                                         if (isdone)
                                         {
@@ -451,20 +480,33 @@ namespace KSwordKit.Editor.PackageManager
                                             if (string.IsNullOrEmpty(_error))
                                             {
                                                 if (action != null) action("依赖" + depd + "处理完成！", 0.7f + 0.3f * (float)doneDepdCount / depds.Count, null, false);
+                                                Debug.Log(KitConst.KitName + ": 依赖" + depd + "处理完成！");
                                             }
                                             else
                                             {
                                                 if (string.IsNullOrEmpty(allerror)) allerror = _error;
                                                 else allerror += "\n" + _error;
                                                 if (action != null) action("依赖" + depd + "处理失败！", 0.7f + 0.3f * (float)doneDepdCount / depds.Count, _error, false);
+                                                Debug.LogError(KitConst.KitName + ": 依赖" + depd + "处理失败！" + _error);
                                             }
-                                            if(doneDepdCount == depds.Count) if (action != null) action("所有依赖处理完毕！", 1, allerror, true);
+                                            if (doneDepdCount == depds.Count)
+                                                if (action != null)
+                                                {
+                                                    action("所有依赖处理完毕！", 1, allerror, true);
+                                                    if (string.IsNullOrEmpty(allerror))
+                                                        Debug.Log(KitConst.KitName + ": 所有依赖处理完毕！");
+                                                    else
+                                                        Debug.LogError(KitConst.KitName + ": 所有依赖处理完毕！" + allerror);
+                                                }
                                         }
                                     });
                                 }
                             }
                         }
-                        else if (action != null) action("", 1, error, true);
+                        else if (action != null)
+                        {
+                            action("", 1, error, true);
+                        }
                     }
                 }, true, true, files);
             };
@@ -493,6 +535,7 @@ namespace KSwordKit.Editor.PackageManager
                             if (uwq.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
                             {
                                 if (action != null) action("下载包成功！", 0.4f, null, false);
+                                Debug.Log(KitConst.KitName + ": " + id + " 下载包成功！" + kkpfilepath);
                                 doneAction();
                             }
                             else
@@ -504,6 +547,7 @@ namespace KSwordKit.Editor.PackageManager
                 }
                 else doneAction();
             };
+
             if (string.IsNullOrEmpty(kkpMD5Value))
             {
                 var webq = new KitToolEditor.WebRequest();
@@ -526,6 +570,7 @@ namespace KSwordKit.Editor.PackageManager
                             System.IO.Directory.CreateDirectory(KitConst.KitPackagesRootDirectory);
                         System.IO.File.WriteAllText(configfilepath, uwq.downloadHandler.text);
                         if (action != null) action("配置文件请求成功！", 0.2f, null, false);
+                        Debug.Log(KitConst.KitName + ": " + id + " 的配置文件请求成功！" + uwq.downloadHandler.text);
                         kkpConfigFileDoneAction(Config.MD5Value);
                     }
                     else if (action != null) action("配置文件请求失败：" + uwq.error, 1, "配置文件请求失败\n" + uwq.error, true);

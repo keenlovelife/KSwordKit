@@ -59,9 +59,5 @@ namespace KSwordKit
         /// KSwordKit 包目录的源请求路径
         /// </summary>
         public const string KitOriginPackagesURL = "https://gitee.com/keenlovelife/KSwordKit/raw/main/.KSwordKit/kkp";
-        /// <summary>
-        /// KSwordKit框架更新时使用的URL前缀
-        /// </summary>
-        public const string KitUpdateURLPrefix = "https://github.com/keenlovelife/KSwordKit/releases/tag";
     }
 }

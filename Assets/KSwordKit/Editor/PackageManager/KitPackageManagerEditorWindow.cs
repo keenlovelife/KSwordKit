@@ -12,6 +12,7 @@ namespace KSwordKit.Editor.PackageManager
         static KitPackageManagerEditorWindow window;
         const string kitUserSearchDefaultInputString = "搜索包名、作者、描述、版本号等等";
 
+        static bool isRequestPackagesDone = true;
         /// <summary>
         /// 窗口打开显示函数
         /// </summary>
@@ -25,10 +26,17 @@ namespace KSwordKit.Editor.PackageManager
             richText = new GUIStyle();
             richText.richText = true;
             KitInitializeEditor.Request_packages((done, progress) => {
-                if (done) Debug.Log(KitConst.KitName + ": 所有可用包已拉取完成！");
+                isRequestPackagesDone = false;
+                if (done)
+                {
+                    isRequestPackagesDone = true;
+                    needGUIRefresh = true;
+                    window.Focus();
+                    Debug.Log(KitConst.KitName + ": 所有可用包已拉取完成！【" + subtitle + " 窗口刷新】");
+                }
             });
         }
-
+        static bool needGUIRefresh;
         static string kitUserSearchInputString = kitUserSearchDefaultInputString;
         static string userSearchInputCacheFilename = "kitUserSearchInputCache";
         static Vector2 scorllPos;
@@ -222,11 +230,11 @@ namespace KSwordKit.Editor.PackageManager
                 if (System.IO.File.Exists(userSearchInputCacheFilepath))
                     System.IO.File.Delete(userSearchInputCacheFilepath);
             }
-
+            if (!isRequestPackagesDone)
+                EditorGUILayout.LabelField("刷新中...");
             EditorGUILayout.BeginHorizontal();
             blod.fontSize = 20;
             EditorGUILayout.LabelField("包列表：(" + packageCount + ")", blod);
-
             var guienabled = !string.IsNullOrEmpty(packageCount);
             if (guienabled)
             {
@@ -474,6 +482,13 @@ namespace KSwordKit.Editor.PackageManager
             }
 
             GUILayout.Space(30);
+
+
+            if(needGUIRefresh)
+            {
+                needGUIRefresh = false;
+                OnGUI();
+            }
         }
         void DrawItemGUI(KitOriginPackageConfig originPackageConfig, bool isSearchResult = false, Dictionary<string, string> tagSearchDic = null)
         {
