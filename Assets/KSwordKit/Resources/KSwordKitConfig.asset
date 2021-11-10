@@ -15,5 +15,9 @@ MonoBehaviour:
   KitInstallationPath: Assets/KSwordKit
   KitVersion: v1.0.0
   KitImportedPackageList:
+  - Data Processing@v1.0.0
+  - Singleton Template@v1.0.0
   - test1@v1.0.0
   - test@v1.0.0
+  - test_Dependencies@v1.0.0
+  - Timer@v1.0.0

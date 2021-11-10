@@ -69,6 +69,9 @@ namespace KSwordKit.Editor.PackageManager
 
             if (kkpFilepaths.Count > 0)
             {
+                //foreach (var kkp in kkpFilepaths)
+                //    initFileIndexsState(kkp);
+                
                 GUILayout.Space(10);
                 GUILayout.BeginHorizontal();
                 GUILayout.Space(8);
@@ -167,13 +170,18 @@ namespace KSwordKit.Editor.PackageManager
                     if (isin) continue;
 
                     var dispalylabel = fileindex.fileName;
+                    var fs = getFileSetting(fileindex, kkpfilepath.config);
+                    if(fs != null)
+                    {
+                        dispalylabel += " -> " + fs.TargetPath;
+                    }
                     GUILayout.BeginHorizontal();
                     GUILayout.Space(hspaceCount);
                     fileindex.selected = EditorGUILayout.Toggle(fileindex.selected, GUILayout.Width(15));
                     switch (fileindex.fileIndexState)
                     {
                         case KitPacker.FileIndexState.NewFile:
-                            GUILayout.Label("<color=green><b>New</b></color>", richText, GUILayout.Width(22));
+                            GUILayout.Label("<color=yellow><b>New</b></color>", richText, GUILayout.Width(22));
                             break;
                         case KitPacker.FileIndexState.CanUpdate:
                             GUILayout.Label("<color=red><b>Update</b></color>", richText, GUILayout.Width(32));
@@ -228,6 +236,11 @@ namespace KSwordKit.Editor.PackageManager
             {
                 var fileindex = files[index];
                 var dispalylabel = fileindex.fileName;
+                var fs = getFileSetting(fileindex, kkpfilepath.config);
+                if (fs != null)
+                {
+                    dispalylabel += " -> " + fs.TargetPath;
+                }
                 GUILayout.BeginHorizontal();
                 GUILayout.Space(space);
                 fileindex.selected = EditorGUILayout.Toggle(fileindex.selected, GUILayout.Width(15));
@@ -341,7 +354,7 @@ namespace KSwordKit.Editor.PackageManager
         static void initFileIndexs(KKPFilepath kkp)
         {
             var fileIndexs = kkp.FileIndexs;
-            var importdir = System.IO.Path.Combine(KitConst.KitInstallationDirectory, KitConst.KitPackagesImportRootDirectory); ;
+            var importdir = System.IO.Path.Combine(KitConst.KitInstallationDirectory, KitConst.KitPackagesImportRootDirectory);
             var outdir = System.IO.Path.Combine(importdir, kkp.config.ID);
             var haveState = System.IO.Directory.Exists(outdir);
 
