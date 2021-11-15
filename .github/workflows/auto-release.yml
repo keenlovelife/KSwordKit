@@ -1,6 +1,6 @@
 name: Auto Release
 on:
-  push: # 监听 main分支上的push任意tag事件 
+  push: # 监听push任意tag事件 
     tags:
       - '**'
 jobs:
