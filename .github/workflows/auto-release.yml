@@ -35,10 +35,10 @@ jobs:
       - name: ls github.workspace/Assets/KSwordKit
         run: |
           ls ${{ github.workspace }}/Assets/KSwordKit
-      - name: upload zip
-        uses: xresloader/upload-to-github-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
-        with:
-          file: "release.zip"
+      # - name: upload zip
+      #   uses: xresloader/upload-to-github-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+      #   with:
+      #     file: "release.zip"
       
