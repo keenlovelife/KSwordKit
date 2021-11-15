@@ -21,7 +21,7 @@ jobs:
           directory: Assets/KSwordKit
       - name: Create release
         id: create_release
-        uses: actions/create_release@v1
+        uses: monkeyWie/create-release@master
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
