@@ -3,7 +3,7 @@ on:
   push: # 监听 main分支上的push任意tag事件 
     branches: [main]
     tags:
-      - *
+      - **
 jobs:
   release:
     runs-on: ubuntu-latest
