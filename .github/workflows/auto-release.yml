@@ -2,6 +2,8 @@ name: Auto Release
 on:
   push: # 监听 main分支上的push任意tag事件 
     branches: [main]
+    tags:
+      - '**'
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -10,7 +12,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: cd
+      - name: cd to github.workspace
         run: |
           cd ${{ github.workspace }}
       - name: Zip
@@ -18,7 +20,7 @@ jobs:
         with:
           type: 'zip'
           filename: 'release.zip'
-          directory: Assets/KSwordKit
+          path: Assets/KSwordKit
       - name: Create release
         id: create_release
         uses: monkeyWie/create-release@master
@@ -40,5 +42,5 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
       #   with:
-      #     file: "release.zip"
+      #     file: "Assets/KSwordKit/release.zip"
       
