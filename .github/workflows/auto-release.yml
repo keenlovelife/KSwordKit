@@ -29,6 +29,12 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
+      - name: ls github.workspace 
+        run: |
+          ls ${{ github.workspace }}
+      - name: ls github.workspace/Assets/KSwordKit
+        run: |
+          ls ${{ github.workspace }}/Assets/KSwordKit
       - name: upload zip
         uses: xresloader/upload-to-github-release@v1
         env:
