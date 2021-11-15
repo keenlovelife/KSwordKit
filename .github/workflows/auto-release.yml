@@ -1,7 +1,6 @@
 name: Auto Release
 on:
   push: # 监听 main分支上的push任意tag事件 
-    branches: [main]
     tags:
       - '**'
 jobs:
@@ -37,10 +36,10 @@ jobs:
       - name: ls github.workspace/Assets/KSwordKit
         run: |
           ls ${{ github.workspace }}/Assets/KSwordKit
-      # - name: upload zip
-      #   uses: xresloader/upload-to-github-release@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
-      #   with:
-      #     file: "Assets/KSwordKit/release.zip"
+      - name: upload zip
+        uses: xresloader/upload-to-github-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+        with:
+          file: "release.zip"
       
