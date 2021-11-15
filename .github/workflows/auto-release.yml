@@ -8,18 +8,18 @@ jobs:
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
     steps:
-      - name: Checkout 代码
+      - name: Checkout
         uses: actions/checkout@v2
       - name: cd
         run: |
           cd ${{ github.workspace }}
-      - name: 打包zip
+      - name: Zip
         uses: thedoctor0/zip-release@master
         with:
           type: 'zip'
           filename: 'release.zip'
           directory: Assets/KSwordKit
-      - name: 创建发布包
+      - name: Create release
         id: create_release
         uses: actions/create_release@v1
         env:
@@ -29,7 +29,7 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-      - name: 上传发布包到最新版本
+      - name: upload zip
         uses: xresloader/upload-to-github-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
