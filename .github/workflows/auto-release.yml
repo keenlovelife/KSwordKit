@@ -1,0 +1,39 @@
+name: Auto Release
+on:
+  push: # 监听 main分支上的push任意tag事件 
+    branches: [main]
+    tags:
+      - *
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+      - name: Checkout 代码
+        uses: actions/checkout@v2
+        run: |
+          cd ${{ github.workspace }}
+      - name: 打包zip
+        uses: thedoctor0/zip-release@master
+        with:
+          type: 'zip'
+          filename: 'release.zip'
+          directory: Assets/KSwordKit
+      - name: 创建发布包
+        id: create_release
+        uses: actions/create_release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: 上传发布包到最新版本
+        uses: xresloader/upload-to-github-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        with:
+          file: "release.zip"
+      
