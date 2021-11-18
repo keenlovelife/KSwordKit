@@ -1,0 +1,41 @@
+name: Auto Release
+on:
+  push: # 监听push任意tag事件 
+    tags:
+      - '**'
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 创建仓库
+        uses: actions/checkout@v2
+      - name: cd to github.workspace
+        run: |
+          cd ${{ github.workspace }}
+      - name: 打包目标目录
+        uses: thedoctor0/zip-release@master
+        with:
+          type: 'zip'
+          filename: 'release.zip'
+          path: Assets/KSwordKit
+      - name: 创建发布包
+        id: create_release
+        uses: monkeyWie/create-release@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: 上传zip到发布包中
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: ./release.zip
+          asset_name: release-${{ github.ref_name }}.zip
+          asset_content_type: application/zip
+      
