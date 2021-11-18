@@ -758,7 +758,7 @@ namespace KSwordKit.Editor.PackageManager
                                         EditorUtility.DisplayDialog(windowTitle, "全部批量导出成功！\n\n" + successInfo, "确定");
                                     else
                                     {
-                                        Debug.LogError(KitConst.KitName + ": 批量导出失败! 成功(" + successCount + "), 失败(" + errorCount + ")\n\n" + successInfo + "\n\n" + errorInfo + "\n\n" + allerror);
+                                        KitDebug.LogError(KitConst.KitName + ": 批量导出失败! 成功(" + successCount + "), 失败(" + errorCount + ")\n\n" + successInfo + "\n\n" + errorInfo + "\n\n" + allerror);
                                         EditorUtility.DisplayDialog(windowTitle, "批量导出失败！成功(" + successCount + "), 失败(" + errorCount + ")\n\n" + successInfo + "\n\n" + errorInfo + "\n\n" + allerror, "确定");
                                     }
                                 }

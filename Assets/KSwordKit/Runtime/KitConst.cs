@@ -56,6 +56,10 @@ namespace KSwordKit
         /// </summary>
         public const string KitCheckForUpdates = "https://gitee.com/keenlovelife/KSwordKit/raw/main/.KitConfig.json";
         /// <summary>
+        /// KSwordKit release包地址
+        /// </summary>
+        public const string KitReleaseURL = "https://github.com/keenlovelife/KSwordKit/releases";
+        /// <summary>
         /// KSwordKit 包目录的源请求路径
         /// </summary>
         public const string KitOriginPackagesURL = "https://gitee.com/keenlovelife/KSwordKit/raw/main/.KSwordKit/kkp";

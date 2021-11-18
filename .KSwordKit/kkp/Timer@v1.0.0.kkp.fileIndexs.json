@@ -1,24 +1,72 @@
 {
-    "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Timer@v1.0.0",
-    "fileBytesLength": 1716,
-    "MD5Value": "0C9292C4712F9D460979DD535645E2DC",
-    "fileCount": 2,
+    "dir": "H:/Mine/Repositories/KSwordKit/Assets/KSwordKit/Packages/Timer@v1.0.0",
+    "fileBytesLength": 3521,
+    "MD5Value": "E2F1099B1733BEF6B46E8A52A6CA1392",
+    "fileCount": 7,
     "fileIndexList": [
+        {
+            "isDir": true,
+            "fileName": "Editor",
+            "relativeFilePath": "Editor",
+            "MD5Value": "",
+            "fileBytesLength": -1,
+            "filePosition": -1
+        },
+        {
+            "isDir": false,
+            "fileName": "TimerEditor.cs",
+            "relativeFilePath": "Editor/TimerEditor.cs",
+            "MD5Value": "AB27AD7FF19057024099DEE9B325141D",
+            "fileBytesLength": 754,
+            "filePosition": 0
+        },
+        {
+            "isDir": false,
+            "fileName": "TimerEditor.cs.meta",
+            "relativeFilePath": "Editor/TimerEditor.cs.meta",
+            "MD5Value": "73D59ADBDA2D510BBF0C45CE241BE18A",
+            "fileBytesLength": 243,
+            "filePosition": 754
+        },
+        {
+            "isDir": false,
+            "fileName": "Editor.meta",
+            "relativeFilePath": "Editor.meta",
+            "MD5Value": "B39ED8D423E06C5B120C8999A189C4B8",
+            "fileBytesLength": 172,
+            "filePosition": 997
+        },
         {
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "F4D5E27745F4FB2C9C5B5B189C819803",
+            "MD5Value": "A8DD5154E4EA592502132AB8E0503194",
             "fileBytesLength": 420,
-            "filePosition": 0
+            "filePosition": 1169
+        },
+        {
+            "isDir": false,
+            "fileName": "kitPackageConfig.json.meta",
+            "relativeFilePath": "kitPackageConfig.json.meta",
+            "MD5Value": "B0C0DE259D4D463182649A7361255098",
+            "fileBytesLength": 158,
+            "filePosition": 1589
         },
         {
             "isDir": false,
             "fileName": "Timer.cs",
             "relativeFilePath": "Timer.cs",
-            "MD5Value": "E127E8C92D318466D9F3351B83322BD3",
-            "fileBytesLength": 1296,
-            "filePosition": 420
+            "MD5Value": "5B33CBEAA7592A84483E2AC6B8459E43",
+            "fileBytesLength": 1531,
+            "filePosition": 1747
+        },
+        {
+            "isDir": false,
+            "fileName": "Timer.cs.meta",
+            "relativeFilePath": "Timer.cs.meta",
+            "MD5Value": "E98991F46525818C91E286ED4989BB1B",
+            "fileBytesLength": 243,
+            "filePosition": 3278
         }
     ]
 }

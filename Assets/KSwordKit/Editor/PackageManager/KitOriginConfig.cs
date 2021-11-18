@@ -12,7 +12,9 @@ namespace KSwordKit.Editor.PackageManager
     [Serializable]
     public class KitOriginConfig
     {
-        public string Version;
+        public string LatestVersion;
+        public string LatestVersionFileName;
+        public string LatestVersionURL;
         public int PackageCount;
         public List<string> PackageList;
 

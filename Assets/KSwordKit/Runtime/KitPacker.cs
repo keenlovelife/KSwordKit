@@ -102,7 +102,7 @@ namespace KSwordKit
 
             if (System.IO.File.Exists(outFilepath) && !overwrite)
             {
-                Debug.LogError(KitConst.KitName + ": 输出文件已存在！" + outFilepath);
+                KitDebug.LogError(KitConst.KitName + ": 输出文件已存在！" + outFilepath);
                 if (progress != null) progress("", 1, true, "文件已存在！" + outFilepath);
                 return;
             }
@@ -154,7 +154,7 @@ namespace KSwordKit
                         fileIndexs.fileIndexList.Add(fileIndex);
                     }
                     else
-                        Debug.Log(KitConst.KitName + ": 文件尺寸超过 " + int.MaxValue + " 字节数，不能被写入！" + fileinfo.FullName);
+                        KitDebug.Log(KitConst.KitName + ": 文件尺寸超过 " + int.MaxValue + " 字节数，不能被写入！" + fileinfo.FullName);
                     if (progress != null) progress(fileIndex.fileName, UnityEngine.Random.Range(0.1f,0.9f), false, null);
                 });
 
@@ -185,7 +185,7 @@ namespace KSwordKit
                     System.IO.File.WriteAllText(configPath, JsonUtility.ToJson(config, true));
                 }
                 else
-                    Debug.LogWarning(KitConst.KitName + ": 配置文件 " + KitConst.KitPackageConfigFilename + " 文件不存在！\n包：" + inDir);
+                    KitDebug.LogWarning(KitConst.KitName + ": 配置文件 " + KitConst.KitPackageConfigFilename + " 文件不存在！\n包：" + inDir);
             }
 
             if (exportFileIndexsJsonFile)
@@ -290,7 +290,7 @@ namespace KSwordKit
                         if (!System.IO.File.Exists(filepath) && System.IO.File.Exists(targetPath)) continue;
                         if (!System.IO.File.Exists(filepath) && !System.IO.File.Exists(targetPath))
                         {
-                            Debug.LogWarning(KitConst.KitName + ": 文件意外丢失！ " + filepath);
+                            KitDebug.LogWarning(KitConst.KitName + ": 文件意外丢失！ " + filepath);
                             continue;
                         }
                         if (System.IO.File.Exists(targetPath) && !overwrite) continue;
@@ -328,7 +328,7 @@ namespace KSwordKit
                         if (!System.IO.Directory.Exists(dirpath) && System.IO.Directory.Exists(targetPath)) continue;
                         if (!System.IO.Directory.Exists(dirpath))
                         {
-                            Debug.LogWarning(KitConst.KitName + ": 文件目录意外丢失！ " + dirpath);
+                            KitDebug.LogWarning(KitConst.KitName + ": 文件目录意外丢失！ " + dirpath);
                             if (!System.IO.Directory.Exists(targetPath))
                                 System.IO.Directory.CreateDirectory(targetPath);
                             continue;

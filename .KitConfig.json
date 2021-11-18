@@ -1,6 +1,8 @@
 {
-  "Version": "v2.1.0",
-  "PackageCount": 17,
+  "LatestVersion": "v1.0.0",
+  "LatestVersionFileName": "release-v1.0.0.zip",
+  "LatestVersionURL": "https://github.com/keenlovelife/KSwordKit/releases/download",
+  "PackageCount": 7,
   "PackageList": [
     "Data Processing@v1.0.0",
     "Enhanced Coroutine@v1.0.0",
@@ -8,17 +10,6 @@
     "Project File Management@v1.0.0",
     "PureMVC@v1.0.0",
     "Resources Management@v1.0.0",
-    "Singleton Template@v1.0.0",
-    "Timer@v1.0.0",
-    "xLua@v1.0.0" ,
-    "test@v1.0.0",
-    "test_Dependencies@v1.0.0",
-    "test1@v1.0.6",
-    "test1@v1.0.5",
-    "test1@v1.0.3",
-    "test1@v1.0.2",
-    "test1@v1.0.1",
-    "test1@v1.0.0",
-    "unkonew"
+    "Singleton Template@v1.0.0"
   ]
 }

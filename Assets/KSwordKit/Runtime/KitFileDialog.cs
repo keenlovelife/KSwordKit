@@ -111,7 +111,7 @@ namespace KSwordKit
 
             fullDirPath = fullDirPath.Substring(0, fullDirPath.IndexOf('\0'));
 
-            Debug.Log( fullDirPath);//这个就是选择的目录路径。
+            KitDebug.Log( fullDirPath);//这个就是选择的目录路径。
         }
     }
 }

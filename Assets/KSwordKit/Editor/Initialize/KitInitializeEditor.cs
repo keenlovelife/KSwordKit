@@ -20,9 +20,11 @@ namespace KSwordKit.Editor
         static readonly string scriptPath = KSwordKit.KitConst.KitName + "/Editor/Initialize/KitInitializeEditor.cs";
         static readonly string configPath = "Resources/KSwordKitConfig.asset";
         static readonly string configName = "KSwordKitConfig";
+
         static KitInitializeEditor()
         {
-            Debug.unityLogger.logEnabled = true;
+            KitDebug.logEnabled = false;
+
             init();
         }
 
@@ -70,7 +72,6 @@ namespace KSwordKit.Editor
             }
 
             initOriginConfig();
-
             bool _initsuccess = true;
             if (KSwordKitConfig == null || KitOriginConfig == null)
             {
@@ -84,7 +85,7 @@ namespace KSwordKit.Editor
                 }
                 else
                 {
-                    Debug.Log(KitConst.KitName + ": 初始化失败！项目配置文件意外null");
+                    KitDebug.LogError(KitConst.KitName + ": 初始化失败！项目配置文件意外null");
                 }
             }
 
@@ -93,9 +94,8 @@ namespace KSwordKit.Editor
                 initsuccess = true;
                 EditorApplication.projectChanged += OnProjectChanged;
                 EditorApplication.update += EditorApplication_update;
-                DateTime = System.DateTime.Now;
-
-                Debug.Log(KitConst.KitName + ": 初始化完成！");
+                CheckUpdate();
+                KitDebug.Log(KitConst.KitName + ": 初始化完成！");
             }
         }
         static void initOriginConfig()
@@ -107,7 +107,9 @@ namespace KSwordKit.Editor
                     originConfig = _originConfig;
                 else
                 {
-                    originConfig.Version = _originConfig.Version;
+                    originConfig.LatestVersion = _originConfig.LatestVersion;
+                    originConfig.LatestVersionFileName = _originConfig.LatestVersionFileName;
+                    originConfig.LatestVersionURL = _originConfig.LatestVersionURL;
                     originConfig.PackageCount = _originConfig.PackageCount;
                     originConfig.PackageList = _originConfig.PackageList;
                 }
@@ -172,27 +174,47 @@ namespace KSwordKit.Editor
         }
         static string KitConfigURL = KitConst.KitCheckForUpdates;
         static UnityEngine.Networking.UnityWebRequest checkWWW;
-        static System.DateTime DateTime;
-        static bool isFirstRequst = true;
         static bool isRequestting;
-        static void RequestUpdate()
+        static bool needCheckUpdateClearProgressBar = false;
+        static string CheckUpdateTitle = null;
+        static bool showCheckUpdateDisplayProgressBar = false;
+        public static void CheckUpdate(string title = null, bool showDisplayProgressBar = false)
         {
-            if (isFirstRequst) isFirstRequst = false;
+            if (isRequestting) return;
             isRequestting = true;
+            CheckUpdateTitle = title;
+            showCheckUpdateDisplayProgressBar = showDisplayProgressBar;
+            if (showCheckUpdateDisplayProgressBar && !string.IsNullOrEmpty(CheckUpdateTitle))
+                needCheckUpdateClearProgressBar = true;
+            if (needCheckUpdateClearProgressBar)
+                EditorUtility.DisplayProgressBar(CheckUpdateTitle, "请稍等...", 0.2f);
             checkWWW = UnityEngine.Networking.UnityWebRequest.Get(KitConfigURL);
             checkWWW.SetRequestHeader("Content-Type", "application/json");
             checkWWW.SetRequestHeader("Accept", "application/json");
             checkWWW.certificateHandler = new KitToolEditor.WebRequestCertificate();
             checkWWW.SendWebRequest();
+            if (needCheckUpdateClearProgressBar)
+                EditorUtility.DisplayProgressBar(CheckUpdateTitle, "已发送请求，正在等待检查结果...", 0.6f);
             EditorApplication.update += Request_update;
         }
         static void Request_update()
         {
             if (checkWWW != null && checkWWW.isDone)
             {
+                bool canShow = false;
+                string title = CheckUpdateTitle;
+                if (needCheckUpdateClearProgressBar)
+                {
+                    canShow = true;
+                    needCheckUpdateClearProgressBar = false;
+                    showCheckUpdateDisplayProgressBar = false;
+                    CheckUpdateTitle = null;
+                    EditorUtility.ClearProgressBar();
+                }
+
                 if (checkWWW.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
                 {
-                    Debug.Log(KitConst.KitName + ": 请求结果：" + checkWWW.downloadHandler.text);
+                    KitDebug.Log(KitConst.KitName + ": 请求结果：" + checkWWW.downloadHandler.text);
 
                     if (!string.IsNullOrEmpty(checkWWW.downloadHandler.text))
                     {
@@ -206,27 +228,34 @@ namespace KSwordKit.Editor
                             originConfig = _originConfig;
                         else
                         {
-                            originConfig.Version = _originConfig.Version;
+                            originConfig.LatestVersion = _originConfig.LatestVersion;
+                            originConfig.LatestVersionFileName = _originConfig.LatestVersionFileName;
+                            originConfig.LatestVersionURL = _originConfig.LatestVersionURL;
                             originConfig.PackageCount = _originConfig.PackageCount;
                             originConfig.PackageList = _originConfig.PackageList;
                         }
                     }
 
                     Request_packages((done, progress) => {
-                        if (done) Debug.Log(KitConst.KitName + ": 所有可用包已拉取完成！【定时拉取】");
+                        if (done) KitDebug.Log(KitConst.KitName + ": 所有可用包已拉取完成！【定时拉取】");
                     });
 
-                    if (originConfig != null && originConfig.Version != config.KitVersion)
-                        ShowUpdateKitDialog();
+                    if (originConfig != null && originConfig.LatestVersion != config.KitVersion)
+                        ShowUpdateKitDialog(canShow);
+                    else
+                    {
+                        if (canShow)
+                            EditorUtility.DisplayDialog(title, "当前已是最新版本", "确定");
+                    }
                 }
                 else
                 {
-                    Debug.LogWarning(KSwordKit.KitConst.KitName + ": 请求资源更新信息出错：" + checkWWW.error + "\nurl:" + checkWWW.url);
+                    KitDebug.LogWarning(KSwordKit.KitConst.KitName + ": 请求资源更新信息出错：" + checkWWW.error + "\nurl:" + checkWWW.url);
+                    if (canShow)
+                        EditorUtility.DisplayDialog(title, "请求资源更新信息出错：" + checkWWW.error, "确定");
                 }
 
                 EditorApplication.update -= Request_update;
-
-                DateTime = System.DateTime.Now;
                 isRequestting = false;
             }
         }
@@ -291,7 +320,7 @@ namespace KSwordKit.Editor
                 {
                     if (uwq.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
                     {
-                        Debug.Log("获取：" + ID + " 配置文件成功！\n" + uwq.downloadHandler.text);
+                        KitDebug.Log("获取：" + ID + " 配置文件成功！\n" + uwq.downloadHandler.text);
                         foreach (var config in originConfig.OriginPackageConfigList)
                         {
                             if (config.ID == ID)
@@ -308,7 +337,7 @@ namespace KSwordKit.Editor
                     }
                     else
                     {
-                        Debug.LogWarning(KitConst.KitName + ": 获取 " + ID + " 配置文件失败！" + uwq.error);
+                        KitDebug.LogWarning(KitConst.KitName + ": 获取 " + ID + " 配置文件失败！" + uwq.error);
                     }
 
                     if(requestAction != null)
@@ -348,24 +377,16 @@ namespace KSwordKit.Editor
                 KitToolEditor.AddWebRequest(webq);
             }
         }
-        public static void ShowUpdateKitDialog()
+        public static void ShowUpdateKitDialog(bool showDialog = false)
         {
-            string temp_show_kitDialog = System.IO.Path.Combine(Application.temporaryCachePath, "temp_showed_kitDialog");
-            if (!System.IO.File.Exists(temp_show_kitDialog))
-                System.IO.File.CreateText(temp_show_kitDialog);
-            else
-                return;
-
-            if(EditorUtility.DisplayDialog(KitConst.KitName + ": 新版本通知", KitConst.KitName + ": 有新版本了！", "更新", "取消"))
+            if (!showDialog) return;
+            if(EditorUtility.DisplayDialog(KitConst.KitName + ": 新版本通知", KitConst.KitName + ": 有新版本了！", "下载", "取消"))
             {
-                Debug.Log("更新新版本");
-
+                Application.OpenURL(KitConst.KitReleaseURL);
             }
         }
         static void EditorApplication_update()
         {
-            if (isFirstRequst || (!isRequestting && (System.DateTime.Now - DateTime).TotalMinutes > 1))
-                RequestUpdate();
 
             if (!EditorWindow.HasOpenInstances<PackageManager.KitImportKKPEditorWindow>())
             {
@@ -418,7 +439,7 @@ namespace KSwordKit.Editor
                 config.KitVersion = KitVersion;
                 AssetDatabase.CreateAsset(config, _configPath);
                 AssetDatabase.SaveAssets();
-                Debug.Log(KSwordKit.KitConst.KitName + ": " + configName + ".asset 是必要资源，必须存在，目前已被重新创建！");
+                KitDebug.Log(KSwordKit.KitConst.KitName + ": " + configName + ".asset 是必要资源，必须存在，目前已被重新创建！");
             }
         }
         public static AssetDeleteResult OnWillDeleteAsset(string assetPath, RemoveAssetOptions options)

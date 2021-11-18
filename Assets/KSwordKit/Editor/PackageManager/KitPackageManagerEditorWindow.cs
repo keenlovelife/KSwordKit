@@ -32,7 +32,7 @@ namespace KSwordKit.Editor.PackageManager
                     isRequestPackagesDone = true;
                     needGUIRefresh = true;
                     window.Focus();
-                    Debug.Log(KitConst.KitName + ": 所有可用包已拉取完成！【" + subtitle + " 窗口刷新】");
+                    KitDebug.Log(KitConst.KitName + ": 所有可用包已拉取完成！【" + subtitle + " 窗口刷新】");
                 }
             });
         }
@@ -269,7 +269,7 @@ namespace KSwordKit.Editor.PackageManager
                             {
                                 importKKPFile(opcs, "全部导入", true, () =>
                                 {
-                                    Debug.Log(KitConst.KitName + ": 全部导入成功！");
+                                    KitDebug.Log(KitConst.KitName + ": 全部导入成功！");
                                     EditorUtility.DisplayDialog("全部导入", info + "\n\n已全部导入成功！", "确定");
                                 });
                             }
@@ -1176,79 +1176,79 @@ namespace KSwordKit.Editor.PackageManager
         {
             //if (Event.current.type == EventType.MouseDown)
             //{
-            //    Debug.LogError(EventType.MouseDown);//鼠标按下
+            //    KitDebug.LogError(EventType.MouseDown);//鼠标按下
             //}
             //else if (Event.current.type == EventType.MouseUp)
             //{
-            //    Debug.LogError(EventType.MouseUp);//鼠标抬起
+            //    KitDebug.LogError(EventType.MouseUp);//鼠标抬起
             //}
             //else if (Event.current.type == EventType.MouseMove)
             //{
-            //    Debug.LogError(EventType.MouseMove);
+            //    KitDebug.LogError(EventType.MouseMove);
             //}
             //else if (Event.current.type == EventType.MouseDrag)
             //{
-            //    Debug.LogError(EventType.MouseDrag);//鼠标拖动
+            //    KitDebug.LogError(EventType.MouseDrag);//鼠标拖动
             //}
             //else if (Event.current.type == EventType.KeyDown)
             //{
-            //    Debug.LogError(EventType.KeyDown);//按键按下
+            //    KitDebug.LogError(EventType.KeyDown);//按键按下
             //}
             //else if (Event.current.type == EventType.KeyUp)
             //{
-            //    Debug.LogError(EventType.KeyUp);//按键抬起
+            //    KitDebug.LogError(EventType.KeyUp);//按键抬起
             //}
             //else if (Event.current.type == EventType.ScrollWheel)
             //{
-            //    Debug.LogError(EventType.ScrollWheel);//中轮滚动
+            //    KitDebug.LogError(EventType.ScrollWheel);//中轮滚动
             //}
             //else if (Event.current.type == EventType.Repaint)
             //{
-            //    Debug.LogError(EventType.Repaint);//每一帧重新渲染会发
+            //    KitDebug.LogError(EventType.Repaint);//每一帧重新渲染会发
             //}
             //else if (Event.current.type == EventType.Layout)
             //{
-            //    Debug.LogError(EventType.Layout);
+            //    KitDebug.LogError(EventType.Layout);
             //}
             //else if (Event.current.type == EventType.DragUpdated)
             //{
-            //    Debug.LogError(EventType.DragUpdated);//拖拽的资源进入界面
+            //    KitDebug.LogError(EventType.DragUpdated);//拖拽的资源进入界面
             //}
             //else if (Event.current.type == EventType.DragPerform)
             //{
-            //    Debug.LogError(EventType.DragPerform);//拖拽的资源放到了某个区域里
+            //    KitDebug.LogError(EventType.DragPerform);//拖拽的资源放到了某个区域里
             //}
             //else if (Event.current.type == EventType.Ignore)
             //{
-            //    Debug.LogError(EventType.Ignore);//操作被忽略
+            //    KitDebug.LogError(EventType.Ignore);//操作被忽略
             //}
             //else if (Event.current.type == EventType.Used)
             //{
-            //    Debug.LogError(EventType.Used);//操作已经被使用过了
+            //    KitDebug.LogError(EventType.Used);//操作已经被使用过了
             //}
             //else if (Event.current.type == EventType.ValidateCommand)
             //{
-            //    Debug.LogError(EventType.ValidateCommand);//有某种操作被触发（例如复制和粘贴）
+            //    KitDebug.LogError(EventType.ValidateCommand);//有某种操作被触发（例如复制和粘贴）
             //}
             //else if (Event.current.type == EventType.ExecuteCommand)
             //{
-            //    Debug.LogError(EventType.ExecuteCommand);//有某种操作被执行（例如复制和粘贴）
+            //    KitDebug.LogError(EventType.ExecuteCommand);//有某种操作被执行（例如复制和粘贴）
             //}
             //else if (Event.current.type == EventType.DragExited)
             //{
-            //    Debug.LogError(EventType.DragExited);//松开拖拽的资源
+            //    KitDebug.LogError(EventType.DragExited);//松开拖拽的资源
             //}
             //else if (Event.current.type == EventType.ContextClick)
             //{
-            //    Debug.LogError(EventType.ContextClick);//右键点击
+            //    KitDebug.LogError(EventType.ContextClick);//右键点击
             //}
             //else if (Event.current.type == EventType.MouseEnterWindow)
             //{
-            //    Debug.LogError(EventType.MouseEnterWindow);
+            //    KitDebug.LogError(EventType.MouseEnterWindow);
             //}
             //else if (Event.current.type == EventType.MouseLeaveWindow)
             //{
-            //    Debug.LogError(EventType.MouseLeaveWindow);
+            //    KitDebug.LogError(EventType.MouseLeaveWindow);
             //}
 
             //if (Event.current.type == EventType.ContextClick)
@@ -1741,7 +1741,7 @@ namespace KSwordKit.Editor.PackageManager
                 www = _www,
                 waitAction = (uwq) =>
                 {
-                    EditorUtility.DisplayProgressBar(title + ": " + originPackageConfig.ID, "正在下载包: " + uwq.downloadProgress * 100 + "%", uwq.downloadProgress * 100 / 2);
+                    EditorUtility.DisplayProgressBar(title + ": " + originPackageConfig.ID, "正在下载包: " + uwq.downloadProgress * 100 + "%", uwq.downloadProgress);
                 },
                 ResultAction = (uwq) =>
                 {
@@ -1781,11 +1781,11 @@ namespace KSwordKit.Editor.PackageManager
                         }
                         if (!string.IsNullOrEmpty(error))
                         {
-                            Debug.LogError(KitConst.KitName + ": 导入 " + originPackageConfig.ID + " 失败！" + error);
+                            KitDebug.LogError(KitConst.KitName + ": 导入 " + originPackageConfig.ID + " 失败！" + error);
                         }
                         else
                         {
-                            Debug.Log(KitConst.KitName + ": 导入 " + originPackageConfig.ID + " 成功！");
+                            KitDebug.Log(KitConst.KitName + ": 导入 " + originPackageConfig.ID + " 成功！");
                         }
                         if (!notDisplatDialog)
                         {
@@ -1891,7 +1891,7 @@ namespace KSwordKit.Editor.PackageManager
                         index++;
                         if (!notDisplatDialog)
                         {
-                            Debug.Log(KitConst.KitName + ": " + title + "成功！");
+                            KitDebug.Log(KitConst.KitName + ": " + title + "成功！");
                             EditorUtility.DisplayDialog(title, info + "\n\n已" + title + "成功！", "确定");
                         }
                         if (index >= kitOriginPackageConfigs.Count && doneAction != null)
@@ -1935,7 +1935,7 @@ namespace KSwordKit.Editor.PackageManager
                         AssetDatabase.Refresh();
                     }
                 }
-                Debug.Log(KitConst.KitName + ": " + originPackageConfig.ID + " 已成功卸载！");
+                KitDebug.Log(KitConst.KitName + ": " + originPackageConfig.ID + " 已成功卸载！");
                 if (!notDisplatDialog)
                     EditorUtility.DisplayDialog("卸载：" + originPackageConfig.ID, "已成功卸载！", "确认");
             }
@@ -1971,7 +1971,7 @@ namespace KSwordKit.Editor.PackageManager
                 {
                     uninstal(kitOriginPackageConfigs, true);
                     importKKPFile(originPackageConfig, "更新", true, () => {
-                        Debug.Log(KitConst.KitName + ": " + originPackageConfig.ID.Split('@')[0] + " 已成功更新到最新版本！" + originPackageConfig.ID);
+                        KitDebug.Log(KitConst.KitName + ": " + originPackageConfig.ID.Split('@')[0] + " 已成功更新到最新版本！" + originPackageConfig.ID);
                         EditorUtility.DisplayDialog("更新：" + originPackageConfig.ID.Split('@')[0],
                             "已成功更新到最新版本！\n\n" + originPackageConfig.ID,
                             "确定");
@@ -1984,7 +1984,7 @@ namespace KSwordKit.Editor.PackageManager
                 if (!liveWithOtherVersion)
                     uninstal(kitOriginPackageConfigs[0], true);
                 importKKPFile(originPackageConfig, "更新", true, ()=> {
-                    Debug.Log(KitConst.KitName + ": 更新 " + kitOriginPackageConfigs[0].ID + " -> " + originPackageConfig.ID + " 已成功！");
+                    KitDebug.Log(KitConst.KitName + ": 更新 " + kitOriginPackageConfigs[0].ID + " -> " + originPackageConfig.ID + " 已成功！");
                     EditorUtility.DisplayDialog("更新：" + kitOriginPackageConfigs[0].ID,
                         kitOriginPackageConfigs[0].ID + " -> " + originPackageConfig.ID + "\n\n更新成功！", "确定");
                 });
@@ -2003,7 +2003,7 @@ namespace KSwordKit.Editor.PackageManager
                         index++;
                         if(index == kitOriginPackageConfigs.Count)
                         {
-                            Debug.Log(KitConst.KitName + ": 全部更新成功！");
+                            KitDebug.Log(KitConst.KitName + ": 全部更新成功！");
                             EditorUtility.DisplayDialog("全部更新",
                             "已全部更新到了最新版本！",
                             "确定");
