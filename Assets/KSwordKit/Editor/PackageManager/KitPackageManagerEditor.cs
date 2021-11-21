@@ -9,9 +9,9 @@ namespace KSwordKit.Editor.PackageManager
 {
     public class KitPackageManagerEditor
     {
-        public const string Packages_import_update_uninstall_Assets = "Assets/" + KitConst.KitName + "/PackageManager/Install\\Update\\uninstall";
-        public const string Packages_import_update_uninstall = KitConst.KitName + "/PackageManager/Install\\Update\\uninstall _%&I";
-        public const string Packages_import_update_uninstall_WindowTitle = "Install\\Update\\uninstall";
+        public const string Packages_import_update_uninstall_Assets = "Assets/" + KitConst.KitName + "/PackageManager/Install\\Update\\Uninstall";
+        public const string Packages_import_update_uninstall = KitConst.KitName + "/PackageManager/Install\\Update\\Uninstall _%&I";
+        public const string Packages_import_update_uninstall_WindowTitle = "Install\\Update\\Uninstall";
 
         public const string MakeNew_Assets = "Assets/" + KitConst.KitName + "/PackageManager/MakeNewPackage";
         public const string MakeNew = KitConst.KitName + "/PackageManager/MakeNewPackage _%&N";
