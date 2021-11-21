@@ -990,7 +990,7 @@ namespace KSwordKit.Core.EnhancedCoroutine
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-11-07 18:14:14",
+    "Date": "2021-11-21 18:32:27",
     "Description": "增强协程库，提供多种协程应用api。",
     "Dependencies": [],
     "Tags": [
@@ -1160,7 +1160,7 @@ namespace KSwordKit.Core.EnhancedCoroutine
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "99D611DA866F0065CC9FAF11B2553639",
+            "MD5Value": "0B9880DBE044F92AD38E60C29EE1EBF3",
             "fileBytesLength": 470,
             "filePosition": 29736
         },

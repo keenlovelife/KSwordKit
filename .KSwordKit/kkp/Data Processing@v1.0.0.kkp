@@ -3066,7 +3066,7 @@ namespace Mono.Xml
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2021-11-07 18:14:18",
+    "Date": "2021-11-21 18:31:46",
     "Description": "数据处理库，提供多种json、xml等多种数据格式解析api。",
     "Dependencies": [],
     "Tags": [
@@ -3221,7 +3221,7 @@ namespace Mono.Xml
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "007E66A050628DC6CAE3B67051A6BEED",
+            "MD5Value": "4936ADC30916711C00ADBBB026427167",
             "fileBytesLength": 508,
             "filePosition": 141284
         }

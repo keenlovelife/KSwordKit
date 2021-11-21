@@ -1,7 +1,7 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Basic/Data Processing@v1.0.0",
     "fileBytesLength": 141792,
-    "MD5Value": "22387B6D9660A248D1F7FD92FC448ECE",
+    "MD5Value": "373BE7840116B4326A72C046101CEA73",
     "fileCount": 10,
     "fileIndexList": [
         {
@@ -144,7 +144,7 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "007E66A050628DC6CAE3B67051A6BEED",
+            "MD5Value": "4936ADC30916711C00ADBBB026427167",
             "fileBytesLength": 508,
             "filePosition": 141284
         }
