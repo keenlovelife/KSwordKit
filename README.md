@@ -7,7 +7,7 @@
 刚开始构思这个开发套件，主要是积累沉淀一下游戏开发技术，提高工作效率，所以在这里开坑造轮子了，大家如果有任何想法或者建议都可以与我交流。
 
 # **KSwordKit** 层次图
-![**KSwordKit**](https://github.com/keenlovelife/KSwordKit/blob/main/GitHub_Images/KSWordKit%20%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.jpg?raw=true)
+![**KSwordKit**](https://gitee.com/keenlovelife/KSwordKit/raw/main/GitHub_Images/KSWordKit%20%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.jpg)
 
 图中可以看出 **KSwordKit** 位于 Unity 之上，具体应用程序之下。 **KSwordKit** 试图为你的应用程序提供功能完备，接口丰富的快速开发工具包。
 
@@ -35,5 +35,5 @@
 **KSwordKit** 里面的每部分都会在 [Wiki](https://github.com/keenlovelife/KSwordKit/wiki) 里面撰写文档，大家使用中遇到问题可以去查阅。
 
 # 当前已撰写的文档
-1. [如何在项目中使用KSwordKit？](https://github.com/keenlovelife/KSwordKit/wiki/%E5%A6%82%E4%BD%95%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8KSwordKit%EF%BC%9F)
-2. [包管理器](https://github.com/keenlovelife/KSwordKit/wiki/%E7%BB%84%E4%BB%B6%E7%AE%A1%E7%90%86)
+1. [如何在项目中使用KSwordKit？](https://github.com/keenlovelife/KSwordKit/wiki/%E5%A6%82%E4%BD%95%E5%B0%86KSwordKit%E6%B7%BB%E5%8A%A0%E5%88%B0%E9%A1%B9%E7%9B%AE%E4%B8%AD%EF%BC%9F)
+2. [包管理器](https://github.com/keenlovelife/KSwordKit/wiki/%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8)
