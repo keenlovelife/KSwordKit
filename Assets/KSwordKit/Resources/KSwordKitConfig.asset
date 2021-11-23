@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KitInstallationPath: Assets/KSwordKit
   KitVersion: v1.0.0
-  KitImportedPackageList:
-  - Timer@v1.0.0
+  KitImportedPackageList: []
