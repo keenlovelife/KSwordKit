@@ -15,6 +15,9 @@ jobs:
       - name: copy reademe.md file
         run: |
           cp README.md Assets/KSwordKit/README.md
+      - name: copy LICENSE file
+        run: |
+          cp LICENSE Assets/KSwordKit/LICENSE
       - name: 打包目标目录
         uses: thedoctor0/zip-release@master
         with:
