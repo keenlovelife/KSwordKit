@@ -111,7 +111,9 @@ namespace KSwordKit
         /// <para>{PackageRootDirWhenImport} // 表示当前包准备导入时，将被导入的根目录。</para>
         /// </summary>
         public string TargetPath;
-
+        /// <summary>
+        /// 将目标路径转换成真实路径
+        /// </summary>
         public static string TargetPathToRealPath(string targetPath)
         {
             if (targetPath == null) return null;
