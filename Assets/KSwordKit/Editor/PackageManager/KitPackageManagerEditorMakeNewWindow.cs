@@ -227,7 +227,14 @@ namespace KSwordKit.Editor.PackageManager
                 foreach (var pgkdir in packageDirs)
                 {
                     if (showSetConfig && newConfig != null && !string.IsNullOrEmpty(packageDir) && pgkdir.dirpath == packageDir)
+                    {
                         pgkdir.richText.normal.textColor = Color.yellow;
+                        foreach (var _pgk in packageDirs)
+                        {
+                            if (_pgk == pgkdir) continue;
+                            _pgk.richText.normal.textColor = Color.white;
+                        }
+                    }
                     GUILayout.BeginHorizontal();
                     pgkdir.selected = EditorGUILayout.Toggle(pgkdir.selected, GUILayout.Width(15));
                     if(GUILayout.Button(pgkdir.dispalypath, pgkdir.richText))
@@ -381,7 +388,7 @@ namespace KSwordKit.Editor.PackageManager
                     GUILayout.BeginHorizontal();
                     GUILayout.Space(space);
                     blod.fontSize = 13;
-                    EditorGUILayout.LabelField("名称：", blod, GUILayout.Width(60));
+                    EditorGUILayout.LabelField("* 名称：", blod, GUILayout.Width(60));
                     _name = EditorGUILayout.TextField(_name);
                     newConfig.Name = _name;
                     GUILayout.Space(space);
@@ -392,7 +399,7 @@ namespace KSwordKit.Editor.PackageManager
                     GUILayout.BeginHorizontal();
                     GUILayout.Space(space);
                     blod.fontSize = 13;
-                    EditorGUILayout.LabelField("版本：", blod, GUILayout.Width(60));
+                    EditorGUILayout.LabelField("* 版本：", blod, GUILayout.Width(60));
                     version = EditorGUILayout.TextField(version);
                     newConfig.Version = version;
                     newConfig.liveWithOtherVersion = EditorGUILayout.Toggle("", newConfig.liveWithOtherVersion, GUILayout.Width(15));
@@ -472,7 +479,7 @@ namespace KSwordKit.Editor.PackageManager
                     GUILayout.BeginHorizontal();
                     GUILayout.Space(space);
                     blod.fontSize = 13;
-                    EditorGUILayout.LabelField("描述：", blod, GUILayout.Width(60));
+                    EditorGUILayout.LabelField("* 描述：", blod, GUILayout.Width(60));
                     description = EditorGUILayout.TextArea(description, GUILayout.Height(100));
                     newConfig.Description = description;
                     GUILayout.Space(space);

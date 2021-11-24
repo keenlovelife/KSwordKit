@@ -12,6 +12,9 @@ jobs:
       - name: cd to github.workspace
         run: |
           cd ${{ github.workspace }}
+      - name: copy reademe.md file
+        run: |
+          cp README.md Assets/KSwordKit/README.md
       - name: 打包目标目录
         uses: thedoctor0/zip-release@master
         with:
