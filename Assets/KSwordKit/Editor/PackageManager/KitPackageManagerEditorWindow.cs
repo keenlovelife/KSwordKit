@@ -1782,15 +1782,20 @@ namespace KSwordKit.Editor.PackageManager
                         if (!string.IsNullOrEmpty(error))
                         {
                             KitDebug.LogError(KitConst.KitName + ": 导入 " + originPackageConfig.ID + " 失败！" + error);
+                            if (!notDisplatDialog)
+                            {
+                                EditorUtility.DisplayDialog(title + ": " + originPackageConfig.ID, title + " 失败！" + error, "确定");
+                            }
                         }
                         else
                         {
                             KitDebug.Log(KitConst.KitName + ": 导入 " + originPackageConfig.ID + " 成功！");
+                            if (!notDisplatDialog)
+                            {
+                                EditorUtility.DisplayDialog(title + ": " + originPackageConfig.ID, title + "成功！", "确定");
+                            }
                         }
-                        if (!notDisplatDialog)
-                        {
-                            EditorUtility.DisplayDialog(title + ": " + originPackageConfig.ID, title + "成功！", "确定");
-                        }
+                        
 
                         if (doneAction != null) doneAction(dependencies);
                     }

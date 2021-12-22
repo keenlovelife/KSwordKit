@@ -1,7 +1,7 @@
 {
     "dir": "D:/Mine/Repositories/KSwordKit/.KSwordKit/.KSwordKitLocalResource/Framework/ResourcesManagement@v1.0.0",
     "fileBytesLength": 2301512,
-    "MD5Value": "8CF884EBCB51EDB651F576A8BB7A948C",
+    "MD5Value": "AAD140C222B47767177ADD7979834C05",
     "fileCount": 74,
     "fileIndexList": [
         {
@@ -704,7 +704,7 @@
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "D409535008FB0BDD7291E295D9374ADA",
+            "MD5Value": "7EA2A135BB0FB7CC6D93BA4E3BAD86FC",
             "fileBytesLength": 486,
             "filePosition": 2259915
         },
