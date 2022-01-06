@@ -23,9 +23,9 @@
 
 <meta content="IE=edge" http-equiv="X-UA-Compatible" />
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="WSzNQh1Va0xTg/mNc2rTWNPwl2P5kvIci97JFWXez4qsTrCFChVNL6Xdat/3hGS3vDs1fBLIfORsahHjCy9w7Q==" />
+<meta name="csrf-token" content="okKOPCvabEw4GxTlsa1WBNS510YE8dZE2A4HKIhFKnz6ONXSVDe1/poPc+LPbn6XAJPuG82W2EgEJEHg9522Jw==" />
 
-<link rel="stylesheet" media="all" href="https://assets.gitee.com/assets/application-a02fdc0cf222247e6ef8c695563611ba.css" />
+<link rel="stylesheet" media="all" href="https://assets.gitee.com/assets/application-de3a7845b6b10e09f011808a081f4393.css" />
 <script>
 //<![CDATA[
 window.gon = {};gon.locale="zh-CN";gon.sentry_dsn=null;gon.baidu_register_hm_push=null;gon.sensor={"server_url":"https://haveaniceday.gitee.com:3443/sa?project=production","page_type":"其他"};gon.info={"controller_path":"sessions","action_name":"new","current_user":false};gon.tour_env={"current_user":null,"action_name":"new","original_url":"http://gitee.com/login?redirect_to_url=http%3A%2F%2Fgitee.com%2Fkeenlovelife%2FKSwordKit%2Fraw%2Fmain%2F.KSwordKit%2Fkkp%2FResources%2520Management%2540v1.0.0.kkp","controller_path":"sessions"};gon.yunpian_key=false;gon.encrypt={"enabled":true,"separator":"$gitee$","password_key":"-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIrn+WB2Yi4ABAL5Tq6E09tumY\nqVTFdpU01kCDUmClczJOCGZriLNMrshmN9NJxazpqizPthwS1OIK3HwRLEP9D3GL\n7gCnvN6lpIpoVwppWd65f/rK2ewv6dstN0fCmtVj4WsLUchWlgNuVTfWljiBK/Dc\nYkfslRZzCq5Fl3ooowIDAQAB\n-----END PUBLIC KEY-----\n"};gon.oversea_login=false;
@@ -59,9 +59,9 @@ window.gon = {};gon.locale="zh-CN";gon.sentry_dsn=null;gon.baidu_register_hm_pus
     wx.config({
       debug: false,
       appId: "wxff219d611a159737",
-      timestamp: "1640186914",
-      nonceStr: "51ccdd65c319fbb85e1bcc8c1fa2e051",
-      signature: "32078d947acf249eaf97ed4045c088bffded4e08",
+      timestamp: "1641472636",
+      nonceStr: "f3272eefbcb0e2032e6e8efc89e4ee89",
+      signature: "20e362fd2d7bfba501b26759cd65aad0b3a848f8",
       jsApiList: [
         'onMenuShareTimeline',
         'onMenuShareAppMessage'
@@ -210,7 +210,7 @@ MathJax.Hub.Config({
         });
       };
       $('#remove-bulletin, #remove-bulletin-dashboard').on('click', function() {
-        setCookie('remove_bulletin', "gitee-maintain-1640085288");
+        setCookie('remove_bulletin', "gitee-maintain-1640831860");
         $('#git-bulletin').hide();
       });
       $('#remove-member-bulletin').on('click', function() {
@@ -274,7 +274,7 @@ MathJax.Hub.Config({
 </h2>
 </div>
 <div class='session-sidebox__content'>
-<div class="session-sidebox-content__container"> <div class="session-sidebox-comments__header"> <span class="session-sidebox-comments__title">李铭健</span> <span class="session-sidebox-comments__position">骑鹅旅行 Head of PMO</span> </div> <div class="session-sidebox-comments__content">Gitee 企业版不只是一个代码托管的工具，更是带着深深 Geek 文化的项目管理平台。在 Gitee 企业版上，iGola.com 的团队协作变得更加容易，整个流程管理变得更加透明流畅。</div> </div>
+<div class="session-sidebox-content__container"> <div class="session-sidebox-comments__header"> <span class="session-sidebox-comments__title">王安</span> <span class="session-sidebox-comments__position">DCloud CEO</span> </div> <div class="session-sidebox-comments__content">不少国内的好产品，因为用户的迷外心理而不被重视。其实一个友好的中文界面，可以让用户快速掌握软件的所有功能，实实在在地提升效率。期待更多开发者能重视 Gitee，重视国内认真做事的产品团队，他们会给你惊喜。</div> </div>
 </div>
 <div class='session-sidebox__footer'>
 <a target="_blank" href="/enterprises?from=login"><strong class='session-sidebox__icon-hot'>Gitee 企业版</strong>
@@ -299,7 +299,7 @@ MathJax.Hub.Config({
 <div class='session__flash-error'>
 <div class='ui message error flash_error flash_error_box'></div>
 </div>
-<form class="ui custom form session__control session-login__form session-login__with-password " data-need-verify="false" data-control="password" data-encrypt="true" data-key="password" id="new_user" action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="O9wMLE6QFOme7DIFk7BH81KXnoJ5kTFPRLNXyyK99y/OvnHrWdAyimiyoVcXXvAcPVw8nZLLv7ejB489TExISA==" /><input type="hidden" name="redirect_to_url" id="redirect_to_url" value="http://gitee.com/keenlovelife/KSwordKit/raw/main/.KSwordKit/kkp/Resources%20Management%40v1.0.0.kkp" />
+<form class="ui custom form session__control session-login__form session-login__with-password " data-need-verify="false" data-control="password" data-encrypt="true" data-key="password" id="new_user" action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="bwkqsl71N+CAKdLjjTqeXXa4SIRTeU7Giicv7/0xUss3c3FcIRjuUiI9teTz+bbOopJx2ZoeQMpWDWkngunOkA==" /><input type="hidden" name="redirect_to_url" id="redirect_to_url" value="http://gitee.com/keenlovelife/KSwordKit/raw/main/.KSwordKit/kkp/Resources%20Management%40v1.0.0.kkp" />
 <div class='session-login__body'>
 <div class='session-form__fields'>
 <div class='git-login-form-fields'>
@@ -328,7 +328,7 @@ MathJax.Hub.Config({
 </div>
 </form>
 
-<form class="ui custom form session__control session-login__form session-login__with-phone hide" data-control="phone" id="new_user" action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="tVmfZV+OxZrirJZcM1xdt4AGF1YgDOx4S+V4R4tRdJRAO+KiSM7j+RTyBQ63supY7821SctWYoCsUaCx5aDL8w==" /><input value="sms" type="hidden" name="user[login_type]" id="user_login_type" />
+<form class="ui custom form session__control session-login__form session-login__with-phone hide" data-control="phone" id="new_user" action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="k2hTTNiqAeCW+ParhVFcfzEz7IV11mHNXjkldxvz3aPLEgiip0fYUjTskaz7knTs5RnV2Lyxb8GCE2O/ZCtB+A==" /><input value="sms" type="hidden" name="user[login_type]" id="user_login_type" />
 <input type="hidden" name="redirect_to_url" id="redirect_to_url" value="http://gitee.com/keenlovelife/KSwordKit/raw/main/.KSwordKit/kkp/Resources%20Management%40v1.0.0.kkp" />
 <input class='placeholder__autofill-text'>
 <div class='field'>
