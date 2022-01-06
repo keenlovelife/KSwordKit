@@ -23,7 +23,7 @@
 
 <meta content="IE=edge" http-equiv="X-UA-Compatible" />
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="R1QR5fLsqQq0cviXuxYB4AH7V79a4/eCq6KZhSYUnNwfLkoLjQFwuBZmn5DF1Slz1dFu4pOE+Y53iN9NWcwAhw==" />
+<meta name="csrf-token" content="MDxgo2aBC3XzY6egQcvGvwJiJ/lbU27pt4PfrmDFkd1oRjtNGWzSx1F3wKc/CO4s1kgepJI0YOVrqZlmHx0Nhg==" />
 
 <link rel="stylesheet" media="all" href="https://assets.gitee.com/assets/application-de3a7845b6b10e09f011808a081f4393.css" />
 <script>
@@ -59,9 +59,9 @@ window.gon = {};gon.locale="zh-CN";gon.sentry_dsn=null;gon.baidu_register_hm_pus
     wx.config({
       debug: false,
       appId: "wxff219d611a159737",
-      timestamp: "1641472994",
-      nonceStr: "221c4a649eaf26ce69c96b219aab3af1",
-      signature: "9ece0287c630fc806a15c407d83e08cc9d0a7855",
+      timestamp: "1641473969",
+      nonceStr: "26289b753e11272d90e22e024c6bb4d7",
+      signature: "2e9cf2830a898f5d18e862f7eb070e7a74b8fbcc",
       jsApiList: [
         'onMenuShareTimeline',
         'onMenuShareAppMessage'
@@ -299,7 +299,7 @@ MathJax.Hub.Config({
 <div class='session__flash-error'>
 <div class='ui message error flash_error flash_error_box'></div>
 </div>
-<form class="ui custom form session__control session-login__form session-login__with-password " data-need-verify="false" data-control="password" data-encrypt="true" data-key="password" id="new_user" action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="89S/XLO1OQ+nNv3XsNfh/XdIMK454Gjwwm1E0IhIzdyrruSyzFjgvQUimtDOFMluo2IJ8/CHZvweRwIY95BRhw==" /><input type="hidden" name="redirect_to_url" id="redirect_to_url" value="http://gitee.com/keenlovelife/KSwordKit/raw/main/.KSwordKit/kkp/Resources%20Management%40v1.0.0.kkp" />
+<form class="ui custom form session__control session-login__form session-login__with-password " data-need-verify="false" data-control="password" data-encrypt="true" data-key="password" id="new_user" action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="FCov6y3jmCtLhovObLvFOiIkmstQBlPSykCRHG0XjK5MUHQFUg5BmemS7MkSeO2p9g6jlplhXd4WatfUEs8Q9Q==" /><input type="hidden" name="redirect_to_url" id="redirect_to_url" value="http://gitee.com/keenlovelife/KSwordKit/raw/main/.KSwordKit/kkp/Resources%20Management%40v1.0.0.kkp" />
 <div class='session-login__body'>
 <div class='session-form__fields'>
 <div class='git-login-form-fields'>
@@ -328,7 +328,7 @@ MathJax.Hub.Config({
 </div>
 </form>
 
-<form class="ui custom form session__control session-login__form session-login__with-phone hide" data-control="phone" id="new_user" action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="ASbAccTs+I8wOK7ka8KBgsluhvE3CmT+1ZXbHxABhoZZXJufuwEhPZIsyeMVAakRHUS/rP5tavIJv53Xb9ka3Q==" /><input value="sms" type="hidden" name="user[login_type]" id="user_login_type" />
+<form class="ui custom form session__control session-login__form session-login__with-phone hide" data-control="phone" id="new_user" action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="pf/UnNgx2PeK6CQACNOdmfu9pUg7oB9pmD0R7SBlDb39hY9yp9wBRSj8Qwd2ELUKL5ecFfLHEWVEF1clX72R5g==" /><input value="sms" type="hidden" name="user[login_type]" id="user_login_type" />
 <input type="hidden" name="redirect_to_url" id="redirect_to_url" value="http://gitee.com/keenlovelife/KSwordKit/raw/main/.KSwordKit/kkp/Resources%20Management%40v1.0.0.kkp" />
 <input class='placeholder__autofill-text'>
 <div class='field'>
