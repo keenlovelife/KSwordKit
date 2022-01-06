@@ -13855,7 +13855,7 @@ namespace KSwordKit.Contents.ResourcesManagement
     "Author": "ks",
     "Contact": "ks@keenlove.com",
     "HomePage": "https://github.com/keenlovelife",
-    "Date": "2022-01-06 20:38:10",
+    "Date": "2022-01-06 20:47:33",
     "Description": "资源管理框架，提供项目资源打包和使用资源的框架。",
     "Dependencies": [],
     "Tags": [
@@ -15586,7 +15586,7 @@ namespace KSwordKit.Contents.ResourcesManagement
             "isDir": false,
             "fileName": "kitPackageConfig.json",
             "relativeFilePath": "kitPackageConfig.json",
-            "MD5Value": "ECA742D98C31F35E2A7F37FF2DE9CE5F",
+            "MD5Value": "5255787ED4604995654CD353332D1856",
             "fileBytesLength": 486,
             "filePosition": 2259915
         },
